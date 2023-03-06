@@ -37,3 +37,4 @@ make all
 
 # PROGRESS STATUS
 
+**[Road/MindMap](https://www.figma.com/file/9b6RaE8ybtQWJs5uYydCCP/So_long?node-id=0%3A1&t=GJjjdQKJ2lWbG2y5-0)**
