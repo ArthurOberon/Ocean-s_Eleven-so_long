@@ -5,8 +5,9 @@ CFLAGS 			=	-Wall -Wextra #-Werror
 INCLUDES_DIR 	=	include/
 SRC_DIR 		=	src/
 OBJ_DIR 		=	obj/
-INCLUDES_H		=	-I./$(INCLUDES_DIR)
-MLX_FLAGS 		=	-L$(INCLUDES_DIR) -lmlx -lX11 -lXext
+LIB_DIR 		=	lib/
+INCLUDES_H		=	-I./$(INCLUDES_DIR) -I./$(LIB_DIR)
+MLX_FLAGS 		=	-L$(LIB_DIR) -lmlx -lX11 -lXext
 DEPS 			=	$(INCLUDES_DIR)so_long.h
 
 # ALL SOURCES FOR SO_LONG
