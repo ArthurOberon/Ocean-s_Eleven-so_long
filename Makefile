@@ -10,10 +10,39 @@ INCLUDES_H		=	-I./$(INCLUDES_DIR) -I./$(LIB_DIR)
 MLX_FLAGS 		=	-L$(LIB_DIR) -lmlx -lX11 -lXext
 DEPS 			=	$(INCLUDES_DIR)so_long.h
 
+# SOURCES USE FOR GET_NEXT_LINE
+GNL_SRC 		=	$(addprefix gnl_src/, \
+					get_next_line.c \
+					get_next_line_utils.c \
+					)
+
+# SOURCES USE FOR ALL TYPE OF LISTS
+LST_SRC 		=	$(addprefix list_src/, \
+					lst_map_utils.c \
+					)
+
+# SOURCES USE FOR READ AND PARSE THE MAP
+MAP_SRC 		=	$(addprefix map_src/, \
+					parse_map.c \
+					parse_map_utils.c \
+					)
+
+# IT'S IN THE NAME
+UTILS_SRC 		=	$(addprefix utils_src/, \
+					is_equals.c \
+					mem_functions.c \
+					print_functions.c \
+					)
+
 # ALL SOURCES FOR SO_LONG
 SL_SRCS 		=	$(addprefix $(SRC_DIR), \
+					$(GNL_SRC) \
+					$(LST_SRC) \
+					$(MAP_SRC) \
+					$(UTILS_SRC) \
 					so_long.c \
 					\
+					temporary.c \
 					)
 
 PS_OBJ 			=	$(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o, $(SL_SRCS))

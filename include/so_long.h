@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/02/26 13:23:56 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/08 16:40:30 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <fcntl.h>
 # include <mlx.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
@@ -34,14 +35,94 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
+typedef struct s_lst_map
+{
+	char				*line;
+	struct s_lst_map	*next;
+}	t_lst_map;
+
 	// int		bpp; /* bits per pixel */
 
-//------------------------------------------
+// |============================================|
+// |					GNL_SRC					|
+// |============================================|
+
+char			*get_next_line(int fd);
+
+// |============================================|
+// |					MAP_SRC					|
+// |============================================|
+
+// |------------------------------------|
+// |			PARSE_MAP_UTILS			|
+// |------------------------------------|
+
+int				is_ber(char *file_name);
+int				is_rectangle(t_lst_map *lst, int size);
+
+// |================================================|
+// |					UTILS_SRC					|
+// |================================================|
+
+// |--------------------------------|
+// |			IS_EQUALS			|
+// |--------------------------------|
+
+int				is_equals(char *s1, char *s2);
+
+// |------------------------------------|
+// |			MEM_FUNCTIONS			|
+// |------------------------------------|
+void			ft_bzero(void *s, size_t n);
+
+void			*ft_calloc(size_t nmemb, size_t size);
+void			*ft_memcpy(void *dest, const void *src, size_t n);
+
+// |------------------------------------|
+// |			PRINT_FUNCTIONS			|
+// |------------------------------------|
+
+void			ft_putnbr(int nb);
+void			ft_putstr(char *s);
+void			ft_putchar(char c);
+
+size_t			ft_strlen(const char *s);
+
+// |================================================|
+// |					LIST_SRC					|
+// |================================================|
+
+// |------------------------------------|
+// |			LST_MAP_UTILS			|
+// |------------------------------------|
+
+int				ft_lstsize(t_lst_map *lst);
+
+void			ft_lstclear(t_lst_map **lst);
+void			ft_lstadd_back(t_lst_map **lst, t_lst_map *new);
+
+t_lst_map		*ft_lstnew(void *content);
+t_lst_map		*ft_lstlast(t_lst_map *lst);
+
+//========================================
 
 // |----------------------------|
 // |			SO_LONG			|
 // |----------------------------|
 
+// |--------------------------------|
+// |			PARSE_MAPS			|
+// |--------------------------------|
+
+int				parse_map(char *file_name);
+
 //------------------------------------------
+
+// |================================================|
+// |					TEMPORARY					|
+// |================================================|
+
+void			ft_print_map(char **map);
+void			ft_print_lst_map(t_lst_map *lst_map);
 
 #endif
