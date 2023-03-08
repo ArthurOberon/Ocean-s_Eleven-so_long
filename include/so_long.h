@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/08 16:40:30 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/08 18:11:17 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ char			*get_next_line(int fd);
 // |------------------------------------|
 
 int				is_ber(char *file_name);
+int				is_closed(char **map, int x, int y);
 int				is_rectangle(t_lst_map *lst, int size);
 
 // |================================================|

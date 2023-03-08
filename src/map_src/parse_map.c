@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:30:54 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/08 15:59:30 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/08 18:31:45 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,22 @@ char	*line_to_tab(char *line)
 	return (tab);
 }
 
-char	**list_to_map(t_lst_map *lst)
+char	**list_to_map(t_lst_map *lst, int *x, int *y)
 {
 	char	**map;
-	int		x;
-	int		y;
 	int		i;
 
-	y = ft_lstsize(lst);
-	x = ft_strlen(lst->line);
-	if (x < 3 || y < 3)
+	*y = ft_lstsize(lst);
+	*x = ft_strlen(lst->line) - 1;
+	if (*x < 3 || *y < 3)
 		return (NULL);
-	if (!is_rectangle(lst, x))
+	if (!is_rectangle(lst, *x))
 		return (NULL);
-	map = malloc(sizeof(char *) * y);
+	map = malloc(sizeof(char *) * *y);
 	if (!map)
 		return (NULL);
 	i = -1;
-	while (++i < y)
+	while (++i < *y)
 	{
 		map[i] = line_to_tab(lst->line);
 		if (!map[i])
@@ -56,7 +54,7 @@ char	**list_to_map(t_lst_map *lst)
 	return (map);
 }
 
-char	**read_map(int fd)
+char	**read_map(int fd, int *x, int *y)
 {
 	char		*line;
 	t_lst_map	*lst_map;
@@ -76,12 +74,14 @@ char	**read_map(int fd)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	return (list_to_map(lst_map));
+	return (list_to_map(lst_map, x, y));
 }
 
 int	parse_map(char *file_name)
 {
 	int		fd;
+	int		x;
+	int		y;
 	char	**map;
 
 	if (!is_ber(file_name))
@@ -89,7 +89,9 @@ int	parse_map(char *file_name)
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
 		return (0);
-	map = read_map(fd);
+	map = read_map(fd, &x, &y);
 	ft_print_map(map);
+	if (!is_closed(map, x, y))
+		return (0);
 	return (1);
 }
