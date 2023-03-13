@@ -1,14 +1,20 @@
 SO_LONG 		=	so_long
 
 CC 				=	gcc
-CFLAGS 			=	-Wall -Wextra #-Werror
+CFLAGS 			=	-g -Wall -Wextra #-Werror
 INCLUDES_DIR 	=	include/
 SRC_DIR 		=	src/
 OBJ_DIR 		=	obj/
 LIB_DIR 		=	lib/
 INCLUDES_H		=	-I./$(INCLUDES_DIR) -I./$(LIB_DIR)
 MLX_FLAGS 		=	-L$(LIB_DIR) -lmlx -lX11 -lXext
-DEPS 			=	$(INCLUDES_DIR)so_long.h
+DEPS 			=	$(INCLUDES_DIR)so_long.h Makefile
+
+# SOURCES USE FOR EXIT WITH ERROR
+ERROR_SRC 		=	$(addprefix error_src/, \
+					exit.c \
+					\
+					)
 
 # SOURCES USE FOR GET_NEXT_LINE
 GNL_SRC 		=	$(addprefix gnl_src/, \
@@ -36,6 +42,7 @@ UTILS_SRC 		=	$(addprefix utils_src/, \
 
 # ALL SOURCES FOR SO_LONG
 SL_SRCS 		=	$(addprefix $(SRC_DIR), \
+					$(ERROR_SRC) \
 					$(GNL_SRC) \
 					$(LST_SRC) \
 					$(MAP_SRC) \

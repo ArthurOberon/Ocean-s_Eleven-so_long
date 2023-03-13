@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/08 18:11:17 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/13 15:16:52 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,14 @@ typedef struct s_lst_map
 	struct s_lst_map	*next;
 }	t_lst_map;
 
+typedef struct s_map_flag
+{
+	int	bool_p;
+	int	bool_e;
+	int	bool_c;
+	int	bool_error;
+}	t_map_flag;
+
 	// int		bpp; /* bits per pixel */
 
 // |============================================|
@@ -60,6 +68,17 @@ char			*get_next_line(int fd);
 int				is_ber(char *file_name);
 int				is_closed(char **map, int x, int y);
 int				is_rectangle(t_lst_map *lst, int size);
+
+char			*line_to_tab(char *line);
+
+void			free_2d_char_tab(char **tab, int y);
+
+// |================================================|
+// |					ERROR_SRC					|
+// |================================================|
+
+void			exit_arg_error(void);
+void			exit_map_error(void);
 
 // |================================================|
 // |					UTILS_SRC					|
@@ -123,7 +142,7 @@ int				parse_map(char *file_name);
 // |					TEMPORARY					|
 // |================================================|
 
-void			ft_print_map(char **map);
+void			ft_print_map(char **map, int x, int y);
 void			ft_print_lst_map(t_lst_map *lst_map);
 
 #endif

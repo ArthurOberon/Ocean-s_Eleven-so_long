@@ -6,34 +6,19 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:30:54 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/08 18:31:45 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/13 15:10:49 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	*line_to_tab(char *line)
-{
-	int		i;
-	int		size;
-	char	*tab;
-
-	size = ft_strlen(line);
-	tab = malloc(sizeof(char) * size);
-	i = -1;
-	while (++i < size - 1)
-	{
-		tab[i] = line[i];
-	}
-	tab[i] = 0;
-	return (tab);
-}
-
 char	**list_to_map(t_lst_map *lst, int *x, int *y)
 {
-	char	**map;
-	int		i;
+	t_lst_map	*lst_free_addr;
+	char		**map;
+	int			i;
 
+	lst_free_addr = lst;
 	*y = ft_lstsize(lst);
 	*x = ft_strlen(lst->line) - 1;
 	if (*x < 3 || *y < 3)
@@ -51,6 +36,7 @@ char	**list_to_map(t_lst_map *lst, int *x, int *y)
 			return (printf("PANIC ! Free tab 2D !\n"), NULL);
 		lst = lst->next;
 	}
+	ft_lstclear(&lst_free_addr);
 	return (map);
 }
 
@@ -68,6 +54,7 @@ char	**read_map(int fd, int *x, int *y)
 		if (!tmp)
 		{
 			ft_lstclear(&lst_map);
+			close(fd);
 			return (NULL);
 		}
 		ft_lstadd_back(&lst_map, tmp);
@@ -75,6 +62,45 @@ char	**read_map(int fd, int *x, int *y)
 	}
 	close(fd);
 	return (list_to_map(lst_map, x, y));
+}
+
+void	save_characters(t_map_flag *flag, char c)
+{
+	if (c == 'P')
+		flag->bool_p += 1;
+	else if (c == 'E')
+		flag->bool_e += 1;
+	else if (c == 'C')
+		flag->bool_c += 1;
+	else if (c != '0' && c != '1')
+		flag->bool_error += 1;
+}
+
+int	has_all_characters(char **map, int x, int y)
+{
+	int			i;
+	int			j;
+	t_map_flag	flag;
+
+	flag.bool_p = 0;
+	flag.bool_e = 0;
+	flag.bool_c = 0;
+	flag.bool_error = 0;
+	i = 0;
+	while (i < y)
+	{
+		j = 0;
+		while (j < x)
+		{
+			save_characters(&flag, map[i][j]);
+			j++;
+		}
+		i++;
+	}
+	if (flag.bool_p != 1 || flag.bool_e != 1
+		|| flag.bool_c == 0 || flag.bool_error != 0)
+		return (0);
+	return (1);
 }
 
 int	parse_map(char *file_name)
@@ -90,8 +116,12 @@ int	parse_map(char *file_name)
 	if (fd == -1)
 		return (0);
 	map = read_map(fd, &x, &y);
-	ft_print_map(map);
+	if (!map)
+		return (free_2d_char_tab(map, y), 0);
+	ft_print_map(map, x, y);
 	if (!is_closed(map, x, y))
-		return (0);
-	return (1);
+		return (free_2d_char_tab(map, y), 0);
+	if (!has_all_characters(map, x, y))
+		return (free_2d_char_tab(map, y), 0);
+	return (free_2d_char_tab(map, y), 1);
 }

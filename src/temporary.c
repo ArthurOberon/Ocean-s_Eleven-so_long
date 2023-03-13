@@ -6,26 +6,24 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:52:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/08 15:29:52 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/13 15:04:31 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_print_map(char **map)
+void	ft_print_map(char **map, int x, int y)
 {
 	int	i;
 	int	j;
-	int	length;
 
 	if (map == NULL)
 		return ;
 	i = 0;
-	length = ft_strlen(map[0]);
-	while (map[i])
+	while (i < y)
 	{
 		j = 0;
-		while (j < length)
+		while (j < x)
 		{
 			printf("%c ", map[i][j]);
 			j++;
