@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/14 16:10:18 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/14 17:26:09 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,22 +84,21 @@ char			*get_next_line(int fd);
 
 int				parse_map(char *file_name, char **map, t_vector_2 *map_vector);
 
-// |------------------------------------|
-// |			PARSE_MAP_UTILS			|
-// |------------------------------------|
+// |------------------------------------------------|
+// |			PARSE_MAP_UTILS_check_MAP			|
+// |------------------------------------------------|
 
 int				is_ber(char *file_name);
 int				is_closed(char **map, int x, int y);
 int				is_rectangle(t_lst_map *lst, int size);
+int				has_all_characters(char **map, int x, int y);
+
+// |--------------------------------------------------------|
+// |			PARSE_MAP_UTILS_CHAR_MANIPULATIONS			|
+// |--------------------------------------------------------|
 
 char			*line_to_tab(char *line);
-
 void			free_2d_char_tab(char **tab, int y);
-
-// |----------------------------------------|
-// |			PARSE_MAP_UTILS_2			|
-// |----------------------------------------|
-
 char			*char_2d_to_1d(char **map_2d, int x, int y);
 
 // |================================================|
