@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/13 15:16:52 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/14 16:10:18 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,23 @@ typedef struct s_map_flag
 	int	bool_error;
 }	t_map_flag;
 
+typedef struct s_vector_2
+{
+	int	x;
+	int	y;
+}	t_vector_2;
+
+typedef struct s_level
+{
+	char		*map;
+	t_vector_2	map_vector;
+}	t_level;
+
+typedef struct s_game
+{
+	t_level	level;
+}	t_game;
+
 	// int		bpp; /* bits per pixel */
 
 // |============================================|
@@ -61,6 +78,12 @@ char			*get_next_line(int fd);
 // |					MAP_SRC					|
 // |============================================|
 
+// |--------------------------------|
+// |			PARSE_MAPS			|
+// |--------------------------------|
+
+int				parse_map(char *file_name, char **map, t_vector_2 *map_vector);
+
 // |------------------------------------|
 // |			PARSE_MAP_UTILS			|
 // |------------------------------------|
@@ -72,6 +95,12 @@ int				is_rectangle(t_lst_map *lst, int size);
 char			*line_to_tab(char *line);
 
 void			free_2d_char_tab(char **tab, int y);
+
+// |----------------------------------------|
+// |			PARSE_MAP_UTILS_2			|
+// |----------------------------------------|
+
+char			*char_2d_to_1d(char **map_2d, int x, int y);
 
 // |================================================|
 // |					ERROR_SRC					|
@@ -129,12 +158,6 @@ t_lst_map		*ft_lstlast(t_lst_map *lst);
 // |----------------------------|
 // |			SO_LONG			|
 // |----------------------------|
-
-// |--------------------------------|
-// |			PARSE_MAPS			|
-// |--------------------------------|
-
-int				parse_map(char *file_name);
 
 //------------------------------------------
 

@@ -1,64 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_map_utils.c                                  :+:      :+:    :+:   */
+/*   parse_map_utils_char_manipulations.c               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 15:55:43 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/13 15:07:28 by aoberon          ###   ########.fr       */
+/*   Created: 2023/03/14 15:43:07 by aoberon           #+#    #+#             */
+/*   Updated: 2023/03/14 15:58:49 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	is_ber(char *file_name)
-{
-	size_t	size;
-
-	size = ft_strlen(file_name);
-	if (size <= 3)
-		return (0);
-	return (is_equals(file_name + size - 4, ".ber"));
-}
-
-int	is_rectangle(t_lst_map *lst, int size)
-{
-	while (lst)
-	{
-		if ((int)ft_strlen(lst->line) - 1 != size)
-			return (0);
-		lst = lst->next;
-	}
-	return (1);
-}
-
-int	is_closed(char **map, int x, int y)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (++i < y)
-	{
-		if (i == 0 || i == y - 1)
-		{
-			j = 0;
-			while (j < x)
-			{
-				if (map[i][j] != '1')
-					return (0);
-				j++;
-			}
-		}
-		else
-		{
-			if (map[i][0] != '1' || map[i][x - 1] != '1')
-				return (0);
-		}
-	}
-	return (1);
-}
 
 char	*line_to_tab(char *line)
 {
@@ -88,4 +40,29 @@ void	free_2d_char_tab(char **tab, int y)
 		i++;
 	}
 	free(tab);
+}
+
+char	*char_2d_to_1d(char **map_2d, int x, int y)
+{
+	int		i;
+	int		j;
+	int		k;
+	int		size;
+	char	*map;
+
+	size = (x * y) + 1;
+	map = malloc(sizeof(char) * size);
+	if (map)
+	{
+		i = -1;
+		j = -1;
+		while (++j < y)
+		{
+			k = -1;
+			while (++k < x)
+				map[++i] = map_2d[j][k];
+		}
+		map[++i] = '\0';
+	}
+	return (map);
 }

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:30:54 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/13 15:10:49 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/14 15:59:35 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,25 +103,29 @@ int	has_all_characters(char **map, int x, int y)
 	return (1);
 }
 
-int	parse_map(char *file_name)
+int	parse_map(char *file_name, char **map, t_vector_2 *map_vector)
 {
 	int		fd;
 	int		x;
 	int		y;
-	char	**map;
+	char	**map_2d;
 
 	if (!is_ber(file_name))
 		return (0);
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
 		return (0);
-	map = read_map(fd, &x, &y);
+	map_2d = read_map(fd, &x, &y);
+	if (!map_2d)
+		return (free_2d_char_tab(map_2d, y), 0);
+	if (!is_closed(map_2d, x, y))
+		return (free_2d_char_tab(map_2d, y), 0);
+	if (!has_all_characters(map_2d, x, y))
+		return (free_2d_char_tab(map_2d, y), 0);
+	*map = char_2d_to_1d(map_2d, x, y);
 	if (!map)
-		return (free_2d_char_tab(map, y), 0);
-	ft_print_map(map, x, y);
-	if (!is_closed(map, x, y))
-		return (free_2d_char_tab(map, y), 0);
-	if (!has_all_characters(map, x, y))
-		return (free_2d_char_tab(map, y), 0);
-	return (free_2d_char_tab(map, y), 1);
+		return (free_2d_char_tab(map_2d, y), 0);
+	*map_vector = (t_vector_2){x, y};
+	return (free_2d_char_tab(map_2d, y), 1);
 }
+	// ft_print_map(map_2d, x, y);

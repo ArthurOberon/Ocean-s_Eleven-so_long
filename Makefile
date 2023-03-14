@@ -30,7 +30,8 @@ LST_SRC 		=	$(addprefix list_src/, \
 # SOURCES USE FOR READ AND PARSE THE MAP
 MAP_SRC 		=	$(addprefix map_src/, \
 					parse_map.c \
-					parse_map_utils.c \
+					parse_map_utils_check_map.c \
+					parse_map_utils_char_manipulations.c \
 					)
 
 # IT'S IN THE NAME
