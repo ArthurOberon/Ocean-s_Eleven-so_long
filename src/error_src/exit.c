@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 15:13:50 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/13 15:17:39 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/15 15:51:14 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ void	exit_map_error(void)
 	ft_putstr("close by 1, and line_to_tab");
 	ft_putstr("with only one P and E, and at least 1 C\n");
 	ft_putstr("for example :\n");
-	ft_putstr("1111\n1P01\n10E1\n1111\n");
+	ft_putstr("1111\n1P01\n1CE1\n1111\n");
 	exit(EXIT_FAILURE);
 }

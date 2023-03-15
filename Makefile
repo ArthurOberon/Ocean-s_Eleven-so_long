@@ -34,6 +34,11 @@ MAP_SRC 		=	$(addprefix map_src/, \
 					parse_map_utils_char_manipulations.c \
 					)
 
+# SOURCES USE FOR READ AND PARSE THE MAP
+PATH_SRC 		=	$(addprefix pathfinding_src/, \
+					pathfinding.c \
+					)
+
 # IT'S IN THE NAME
 UTILS_SRC 		=	$(addprefix utils_src/, \
 					is_equals.c \
@@ -47,6 +52,7 @@ SL_SRCS 		=	$(addprefix $(SRC_DIR), \
 					$(GNL_SRC) \
 					$(LST_SRC) \
 					$(MAP_SRC) \
+					$(PATH_SRC) \
 					$(UTILS_SRC) \
 					so_long.c \
 					\

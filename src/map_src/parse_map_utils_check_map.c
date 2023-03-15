@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:55:43 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/14 17:24:39 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/15 16:18:28 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	is_rectangle(t_lst_map *lst, int size)
 {
 	while (lst)
 	{
-		if ((int)ft_strlen(lst->line) - 1 != size)
+		if ((int)ft_strlen(lst->line) != size)
 			return (0);
 		lst = lst->next;
 	}

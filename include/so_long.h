@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/14 17:26:09 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/15 15:24:10 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int				is_closed(char **map, int x, int y);
 int				is_rectangle(t_lst_map *lst, int size);
 int				has_all_characters(char **map, int x, int y);
 
-// |--------------------------------------------------------|
+// |--------------------------------------------------------|T
 // |			PARSE_MAP_UTILS_CHAR_MANIPULATIONS			|
 // |--------------------------------------------------------|
 
@@ -151,6 +151,12 @@ void			ft_lstadd_back(t_lst_map **lst, t_lst_map *new);
 
 t_lst_map		*ft_lstnew(void *content);
 t_lst_map		*ft_lstlast(t_lst_map *lst);
+
+// |====================================================|
+// |					PATHFINDING_SRC					|
+// |====================================================|
+
+int				pathfinding(t_level level);
 
 //========================================
 

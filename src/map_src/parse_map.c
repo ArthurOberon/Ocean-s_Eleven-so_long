@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:30:54 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/14 17:24:17 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/15 16:18:01 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ char	**list_to_map(t_lst_map *lst, int *x, int *y)
 	char		**map;
 	int			i;
 
+	if (!lst)
+		return (NULL);
 	lst_free_addr = lst;
 	*y = ft_lstsize(lst);
-	*x = ft_strlen(lst->line) - 1;
-	if (*x < 3 || *y < 3)
-		return (NULL);
-	if (!is_rectangle(lst, *x))
+	*x = ft_strlen(lst->line);
+	if ((*x < 3 || *y < 3) || !is_rectangle(lst, *x))
 		return (NULL);
 	map = malloc(sizeof(char *) * *y);
 	if (!map)
@@ -45,11 +45,15 @@ char	**read_map(int fd, int *x, int *y)
 	char		*line;
 	t_lst_map	*lst_map;
 	t_lst_map	*tmp;
+	size_t		line_size;
 
 	lst_map = NULL;
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
+		line_size = ft_strlen(line);
+		if (line[line_size - 1] == '\n')
+			line[line_size - 1] = 0;
 		tmp = ft_lstnew(line);
 		if (!tmp)
 		{
@@ -78,7 +82,8 @@ int	parse_map(char *file_name, char **map, t_vector_2 *map_vector)
 		return (0);
 	map_2d = read_map(fd, &x, &y);
 	if (!map_2d)
-		return (free_2d_char_tab(map_2d, y), 0);
+		return (0);
+	ft_print_map(map_2d, x, y);
 	if (!is_closed(map_2d, x, y))
 		return (free_2d_char_tab(map_2d, y), 0);
 	if (!has_all_characters(map_2d, x, y))
