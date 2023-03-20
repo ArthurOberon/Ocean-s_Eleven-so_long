@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 14:52:58 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/15 15:28:55 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/20 14:27:41 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,6 @@ char	**init_map_pathfinding(t_level level)
 			while (j < level.map_vector.x)
 			{
 				map_2d[i][j] = level.map[k++];
-				// if (level.map[k++] == '1')
-					// map_2d[i][j] = '1';
-				// else
-					// map_2d[i][j] = '0';
 				j++;
 			}
 			i++;

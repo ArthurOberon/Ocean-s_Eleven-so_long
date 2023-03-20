@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:21:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/15 15:47:49 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/20 14:26:07 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ int	main(int argc, char **argv)
 	if (!parse_map(argv[1], &(game.level.map), &(game.level.map_vector)))
 		exit_map_error();
 	printf("Map 1 line : %s\n", game.level.map);
-	// pathfinding(game.level);
+	pathfinding(game.level);
 	return (0);
 }

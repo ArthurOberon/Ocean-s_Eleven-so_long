@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:30:54 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/15 16:18:01 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/20 14:27:10 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int	parse_map(char *file_name, char **map, t_vector_2 *map_vector)
 	map_2d = read_map(fd, &x, &y);
 	if (!map_2d)
 		return (0);
-	ft_print_map(map_2d, x, y);
 	if (!is_closed(map_2d, x, y))
 		return (free_2d_char_tab(map_2d, y), 0);
 	if (!has_all_characters(map_2d, x, y))
