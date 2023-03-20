@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:43:07 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/15 16:18:30 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/20 15:47:03 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*line_to_tab(char *line)
 	char	*tab;
 
 	size = ft_strlen(line);
-	tab = malloc(sizeof(char) * size);
+	tab = malloc(sizeof(char) * size + 1);
 	if (!tab)
 		return (NULL);
 	i = -1;

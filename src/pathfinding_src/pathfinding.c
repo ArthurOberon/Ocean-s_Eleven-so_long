@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 14:52:58 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/20 14:27:41 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/20 16:01:30 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	**malloc_map_pathfinding(t_level level)
 	map_2d = malloc(sizeof(char *) * level.map_vector.y);
 	if (!map_2d)
 		return (NULL);
-	while (i < level.map_vector.x)
+	while (i < level.map_vector.y)
 	{
 		map_2d[i] = malloc(sizeof(char) * level.map_vector.x);
 		if (!map_2d[i])
@@ -63,5 +63,6 @@ int	pathfinding(t_level level)
 
 	map_copy_2d = init_map_pathfinding(level);
 	ft_print_map(map_copy_2d, level.map_vector.x, level.map_vector.y);
+	free_2d_char_tab(map_copy_2d, level.map_vector.y);
 	return (0);
 }
