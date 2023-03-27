@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/15 15:24:10 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/27 15:48:39 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,21 @@ typedef struct s_vector_2
 	int	y;
 }	t_vector_2;
 
+typedef struct s_path_map
+{
+	int	has_been_check;
+	int	dst_to_start;
+	int	dst_to_end;
+	int	f;
+	int	parent;
+}	t_path_map;
+
 typedef struct s_level
 {
 	char		*map;
 	t_vector_2	map_vector;
+	int			nb_cases;
+	t_path_map	path_map;
 }	t_level;
 
 typedef struct s_game
@@ -157,6 +168,8 @@ t_lst_map		*ft_lstlast(t_lst_map *lst);
 // |====================================================|
 
 int				pathfinding(t_level level);
+
+int				a_star(t_level level);
 
 //========================================
 
