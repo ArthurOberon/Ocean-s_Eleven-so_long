@@ -6,71 +6,11 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:53:34 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/28 19:20:03 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/28 19:37:01 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	dst_to_end(int pos, int end, int x)
-{
-	return ((int)ft_abs((end / x) - (pos / x))
-		+ (int)ft_abs((end % x) - (pos % x)));
-}
-
-t_path_map	*init_path_map(t_level level)
-{
-	int			i;
-	t_path_map	*path_map;
-
-	path_map = malloc(sizeof(t_path_map) * level.nb_cases);
-	if (!path_map)
-		return (NULL);
-	i = 0;
-	while (i < level.nb_cases)
-	{
-		path_map[i].has_been_check = 0;
-		path_map[i].dst_to_start = 0;
-		path_map[i].dst_to_end = 0;
-		path_map[i].f = 0;
-		path_map[i].parent = 0;
-		i++;
-	}
-	return (path_map);
-}
-
-int	find_character(t_level level, char searched_char)
-{
-	int	i;
-	int	j;
-
-	j = 0;
-	while (j < level.nb_cases)
-	{
-		i = 0;
-		while (i < level.map_vector.x)
-		{
-			if (level.map[i + j] == searched_char)
-				return (i + j);
-			i++;
-		}
-		j += level.map_vector.x;
-	}
-	return (-1);
-}
-
-int	calculate_dir_pos(int dir, int pos, int x)
-{
-	if (dir == 1)
-		return (pos + x);
-	if (dir == 2)
-		return (pos + 1);
-	if (dir == 3)
-		return (pos - x);
-	if (dir == 4)
-		return (pos - 1);
-	return (0);
-}
 
 int	calculate_four_dir(t_level level, t_path_map *path_map,
 	int pos, int end_pos)
@@ -78,8 +18,8 @@ int	calculate_four_dir(t_level level, t_path_map *path_map,
 	int	dir;
 	int	dir_pos;
 
-	dir = 1;
-	while (dir <= 4)
+	dir = 0;
+	while (++dir <= 4)
 	{
 		dir_pos = calculate_dir_pos(dir, pos, level.map_vector.x);
 		if (level.map[dir_pos] == '1')
@@ -98,7 +38,6 @@ int	calculate_four_dir(t_level level, t_path_map *path_map,
 			if (path_map[dir_pos].dst_to_end == 0)
 				return (1);
 		}
-		dir++;
 	}
 	return (0);
 }
@@ -144,7 +83,7 @@ int	a_star(t_level level, int end_pos)
 		pos = find_lower_f(level.path_map, level.nb_cases, pos);
 		level.path_map[pos].has_been_check = 1;
 		bool_end = calculate_four_dir(level, level.path_map, pos, end_pos);
-		// ft_print_path_map(level);
+		ft_print_path_map(level);
 		// ft_print_path_map_status(level);
 		// printf("##################################################\n\n");
 	}

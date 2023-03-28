@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/28 19:16:59 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/28 19:36:28 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,8 +174,21 @@ t_lst_map			*ft_lstlast(t_lst_map *lst);
 // |					PATHFINDING_SRC					|
 // |====================================================|
 
-int					a_star(t_level level, int end_pos);
+// |------------------------------------|
+// |			A_STAR_UTILS			|
+// |------------------------------------|
+
+int					dst_to_end(int pos, int end, int x);
+int					calculate_dir_pos(int dir, int pos, int x);
 int					find_character(t_level level, char searched_char);
+
+t_path_map			*init_path_map(t_level level);
+
+// |----------------------------------------|
+// |			A_STAR_ALGORITHM			|
+// |----------------------------------------|
+
+int					a_star(t_level level, int end_pos);
 
 //========================================
 
