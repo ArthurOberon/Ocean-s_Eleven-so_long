@@ -41,4 +41,5 @@ make all
 
 ### A_STAR ALGO FOR COLLECTIBLE
 - [ ] Number of collectibles
--[] Positions of all collectibles
+- [ ] Positions of all collectibles
+- [ ] a_star with each collectible position
