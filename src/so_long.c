@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:21:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/27 15:54:04 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/28 19:18:30 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ int	main(int argc, char **argv)
 		exit_map_error();
 	game.level.nb_cases = game.level.map_vector.x * game.level.map_vector.y;
 	printf("Map 1 line : %s\n", game.level.map);
-	// pathfinding(game.level);
 	char_tab_print_1d_to_2d(game.level);
-	a_star(game.level);
+	a_star(game.level, find_character(game.level, 'E'));
+	printf("SEEKING COLECTIBLE...\n");
+	a_star(game.level, find_character(game.level, 'C'));
 	free(game.level.map);
 	return (0);
 }
