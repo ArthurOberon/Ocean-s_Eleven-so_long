@@ -42,7 +42,7 @@ PATH_SRC 		=	$(addprefix pathfinding_src/, \
 
 # IT'S IN THE NAME
 UTILS_SRC 		=	$(addprefix utils_src/, \
-					is_equals.c \
+					utils.c \
 					mem_functions.c \
 					print_functions.c \
 					)
