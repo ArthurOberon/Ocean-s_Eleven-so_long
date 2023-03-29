@@ -6,13 +6,13 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:53:34 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/28 19:38:48 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/29 14:51:05 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	calculate_four_dir(t_level level, t_path_map *path_map,
+static int	calculate_four_dir(t_level level, t_path_map *path_map,
 	int pos, int end_pos)
 {
 	int	dir;
@@ -42,7 +42,7 @@ int	calculate_four_dir(t_level level, t_path_map *path_map,
 	return (0);
 }
 
-int	find_lower_f(t_path_map *path_map, int nb_cases, int pos)
+static int	find_lower_f(t_path_map *path_map, int nb_cases)
 {
 	int	i;
 	int	lower_f_value;
@@ -50,7 +50,7 @@ int	find_lower_f(t_path_map *path_map, int nb_cases, int pos)
 
 	i = 0;
 	lower_f_value = INT_MAX;
-	lower_f_pos = pos;
+	lower_f_pos = -1;
 	while (i < nb_cases)
 	{
 		if (path_map[i].f > 0 && path_map[i].f < lower_f_value
@@ -61,6 +61,8 @@ int	find_lower_f(t_path_map *path_map, int nb_cases, int pos)
 		}
 		i++;
 	}
+	if (lower_f_pos > -1)
+		path_map[lower_f_pos].has_been_check = 1;
 	return (lower_f_pos);
 }
 
@@ -69,23 +71,22 @@ int	a_star(t_level level, int end_pos)
 	int			pos;
 	int			bool_end;
 
-	level.path_map = init_path_map(level);
-	if (!level.path_map)
-		return (0);
 	bool_end = 0;
 	pos = find_character(level, 'P');
 	level.player_pos = pos;
 	level.path_map[pos].dst_to_end = dst_to_end(pos,
 			end_pos, level.map_vector.x);
-	level.path_map[pos].f = INT_MIN;
+	level.path_map[pos].f = level.path_map[pos].dst_to_end;
 	while (!bool_end)
 	{
-		pos = find_lower_f(level.path_map, level.nb_cases, pos);
-		level.path_map[pos].has_been_check = 1;
+		pos = find_lower_f(level.path_map, level.nb_cases);
+		if (pos == -1)
+			break ;
 		bool_end = calculate_four_dir(level, level.path_map, pos, end_pos);
-		ft_print_path_map(level);
+		if (IS_DEBUG)
+			ft_print_path_map(level, end_pos);
 	}
-	return (1);
+	return (bool_end);
 }
 		// ft_print_path_map_status(level);
 		// printf("##################################################\n\n");

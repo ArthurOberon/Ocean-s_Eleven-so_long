@@ -6,9 +6,11 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:52:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/28 18:45:41 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/29 15:04:35 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*\*/
 
 #include "so_long.h"
 
@@ -42,30 +44,41 @@ void	ft_print_lst_map(t_lst_map *lst_map)
 	}
 }
 
-void	ft_print_path_map(t_level level)
+void	ft_print_path_map(t_level level, int end_pos)
 {
 	int	i;
 
 	i = 0;
 	while (i < level.nb_cases)
 	{
-		if (level.map[i] == 'P')
-			printf("P_");
+		if (i == end_pos && level.map[i] == 'E')
+			ft_putstr("E!");
+		else if (i == end_pos && level.map[i] == 'C')
+			ft_putstr("C!");
+		else if (level.path_map[i].has_been_check == 1 && level.map[i] == 'C')
+			ft_putstr("CK");
+		else if (level.path_map[i].has_been_check == 1 && level.map[i] == 'E')
+			ft_putstr("EK");
+		else if (level.map[i] == 'P')
+			ft_putstr("P_");
 		else if (level.map[i] == 'E')
-			printf("E_");
+			ft_putstr("E_");
+		else if (level.map[i] == 'C')
+			ft_putstr("C_");
 		else if (level.path_map[i].f == -1)
-			printf("##");
+			ft_putstr("##");
 		else if (level.path_map[i].has_been_check == 1)
-			printf("OK");
+			ft_putstr("OK");
 		else if (level.path_map[i].f != 0)
-			printf("??");
+			ft_putstr("??");
 		else
-			printf("__");
-		printf(" ");
+			ft_putstr("__");
+		ft_putstr(" ");
 		i++;
 		if (i % level.map_vector.x == 0)
-			printf("\n");
+			ft_putstr("\n");
 	}
+	ft_putstr("\n");
 }
 
 void	ft_print_path_map_status(t_level level)
@@ -93,3 +106,18 @@ void	ft_print_path_map_status(t_level level)
 		i++;
 	}
 }
+
+void	ft_print_collectibles_pos(t_vector_2 *c_pos, int c_count)
+{
+	int	i;
+
+	i = 0;
+	while (i < c_count)
+	{
+		printf("collectibles %d : x : [%d]  y : [%d]\n", i + 1,
+			c_pos[i].x, c_pos[i].y);
+		i++;
+	}
+}
+
+/**/

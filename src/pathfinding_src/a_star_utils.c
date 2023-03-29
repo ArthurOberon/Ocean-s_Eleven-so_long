@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 19:26:47 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/28 19:34:04 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/29 14:48:40 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	dst_to_end(int pos, int end, int x)
 {
-	return ((int)ft_abs((end / x) - (pos / x))
-		+ (int)ft_abs((end % x) - (pos % x)));
+	return ((int)ft_abs((end % x) - (pos % x))
+		+ (int)ft_abs((end / x) - (pos / x)));
 }
 
 t_path_map	*init_path_map(t_level level)

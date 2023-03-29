@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 15:13:50 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/15 15:51:14 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/29 14:03:27 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,29 @@ void	exit_map_error(void)
 	ft_putstr("close by 1, and line_to_tab");
 	ft_putstr("with only one P and E, and at least 1 C\n");
 	ft_putstr("for example :\n");
-	ft_putstr("1111\n1P01\n1CE1\n1111\n");
+	ft_putstr("1111\n1P01\n10C1\n1E01\n1111\n");
+	exit(EXIT_FAILURE);
+}
+
+	// ft_putstr("1111\n1P01\n1CE1\n1111\n");
+
+void	exit_pathfinding(t_level level, char flag, int pos_error)
+{
+	free(level.map);
+	free(level.path_map);
+	ft_putstr("Error\n");
+	ft_putstr("Not a valid map.\n");
+	if (flag == 'E')
+		ft_putstr("The Exit (E) at position x : [");
+	else if (flag == 'C')
+		ft_putstr("The Collectible (C) at position x : [");
+	ft_putnbr(pos_error % level.map_vector.x);
+	ft_putstr("] y : [");
+	ft_putnbr(pos_error / level.map_vector.x);
+	ft_putstr("] is not reachable.\n");
+	ft_putstr("Please make the Exit and all the Collectibles ");
+	ft_putstr("reachable from the Player P.\n");
+	ft_putstr("for example :\n");
+	ft_putstr("1111\n1P01\n10C1\n1E01\n1111\n");
 	exit(EXIT_FAILURE);
 }

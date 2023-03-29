@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/28 19:36:28 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/29 14:56:15 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 
 # define WINDOW_WIDTH 1600
 # define WINDOW_HEIGHT 800
+
+# define IS_DEBUG 1
 
 # define INT_MIN -2147483648
 # define INT_MAX 2147483647
@@ -124,6 +126,7 @@ char				*char_2d_to_1d(char **map_2d, int x, int y);
 
 void				exit_arg_error(void);
 void				exit_map_error(void);
+void				exit_pathfinding(t_level level, char flag, int pos_error);
 
 // |================================================|
 // |					UTILS_SRC					|
@@ -174,6 +177,12 @@ t_lst_map			*ft_lstlast(t_lst_map *lst);
 // |					PATHFINDING_SRC					|
 // |====================================================|
 
+// |--------------------------------|
+// |			PATHFINDING			|
+// |--------------------------------|
+
+int					pathfinding(t_game *game);
+
 // |------------------------------------|
 // |			A_STAR_UTILS			|
 // |------------------------------------|
@@ -202,9 +211,10 @@ int					a_star(t_level level, int end_pos);
 // |					TEMPORARY					|
 // |================================================|
 
-void				ft_print_path_map(t_level level);
+void				ft_print_path_map(t_level level, int end_pos);
 void				ft_print_lst_map(t_lst_map *lst_map);
 void				ft_print_map(char **map, int x, int y);
 void				ft_print_path_map_status(t_level level);
+void				ft_print_collectibles_pos(t_vector_2 *c_pos, int c_count);
 
 #endif

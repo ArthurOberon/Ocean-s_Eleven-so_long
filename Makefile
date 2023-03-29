@@ -36,6 +36,7 @@ MAP_SRC 		=	$(addprefix map_src/, \
 
 # SOURCES USE FOR READ AND PARSE THE MAP
 PATH_SRC 		=	$(addprefix pathfinding_src/, \
+					pathfinding.c \
 					a_star_utils.c \
 					a_star_algorithm.c \
 					)

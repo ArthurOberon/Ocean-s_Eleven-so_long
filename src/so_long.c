@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:21:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/28 19:18:30 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/03/29 14:31:07 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static void	char_tab_print_1d_to_2d(t_level level)
 	int	j;
 
 	j = 0;
-	printf("2d printed with 1d\n");
 	while (j < level.map_vector.y * level.map_vector.x)
 	{
 		i = 0;
@@ -43,11 +42,13 @@ int	main(int argc, char **argv)
 	if (!parse_map(argv[1], &(game.level.map), &(game.level.map_vector)))
 		exit_map_error();
 	game.level.nb_cases = game.level.map_vector.x * game.level.map_vector.y;
-	printf("Map 1 line : %s\n", game.level.map);
-	char_tab_print_1d_to_2d(game.level);
-	a_star(game.level, find_character(game.level, 'E'));
-	printf("SEEKING COLECTIBLE...\n");
-	a_star(game.level, find_character(game.level, 'C'));
+	if (IS_DEBUG)
+	{
+		printf("Map 1 line : %s\n", game.level.map);
+		char_tab_print_1d_to_2d(game.level);
+	}
+	pathfinding(&game);
 	free(game.level.map);
+	free(game.level.path_map);
 	return (0);
 }
