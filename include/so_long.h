@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/29 14:56:15 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/03 16:26:05 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define WINDOW_WIDTH 1600
 # define WINDOW_HEIGHT 800
 
-# define IS_DEBUG 1
+# define IS_DEBUG 0
 
 # define INT_MIN -2147483648
 # define INT_MAX 2147483647
@@ -83,6 +83,14 @@ typedef struct s_game
 {
 	t_level	level;
 }	t_game;
+
+typedef struct s_data
+{
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_img		img;
+	t_game		game;
+}	t_data;
 
 	// int		bpp; /* bits per pixel */
 
@@ -144,6 +152,8 @@ long unsigned int	ft_abs(long n);
 // |------------------------------------|
 void				ft_bzero(void *s, size_t n);
 
+void				ft_memset(void *addr, size_t n, int value);
+
 void				*ft_calloc(size_t nmemb, size_t size);
 void				*ft_memcpy(void *dest, const void *src, size_t n);
 
@@ -172,6 +182,23 @@ void				ft_lstadd_back(t_lst_map **lst, t_lst_map *new);
 
 t_lst_map			*ft_lstnew(void *content);
 t_lst_map			*ft_lstlast(t_lst_map *lst);
+
+// |================================================|
+// |					DISPLAY_SRC					|
+// |================================================|
+
+// |----------------------------|
+// |			HANDLER			|
+// |----------------------------|
+
+int					close_window(t_data *data);
+int					handle_keypress(int keysym, t_data *data);
+
+// |----------------------------|
+// |			DISPLAY			|
+// |----------------------------|
+
+void				display(t_game *game);
 
 // |====================================================|
 // |					PATHFINDING_SRC					|

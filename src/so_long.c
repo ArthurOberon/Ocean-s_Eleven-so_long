@@ -6,12 +6,13 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:21:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/29 14:31:07 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/03 16:36:44 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+//To delete !
 static void	char_tab_print_1d_to_2d(t_level level)
 {
 	int	i;
@@ -48,6 +49,7 @@ int	main(int argc, char **argv)
 		char_tab_print_1d_to_2d(game.level);
 	}
 	pathfinding(&game);
+	display(&game);
 	free(game.level.map);
 	free(game.level.path_map);
 	return (0);

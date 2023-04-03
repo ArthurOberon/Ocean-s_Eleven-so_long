@@ -44,3 +44,4 @@ make all
 - [x] Positions of all collectibles
 - [x] a_star with each collectible position
 - [ ] bzero_path_map struct instead of free/malloc
+- [ ] Implement my printf
