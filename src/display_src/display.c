@@ -6,41 +6,48 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/03 16:33:53 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/04 20:35:08 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	img_pix_put(t_img *img, int x, int y, int color)
+void	get_chunk_positions(t_vector_2 **chunk_pos, t_vector_2 size, int nb)
 {
-	char	*pixel;
+	int	i;
+	int	j;
+	int	x;
+	int	y;
 
-	pixel = img->addr + (y * img->line_len + x * 4);
-	*(unsigned int *)pixel = color;
+	(*chunk_pos) = malloc(sizeof(t_vector_2) * (nb));
+	if (!*chunk_pos)
+		printf("PANIC ! free and exit !\n");
+	i = 0;
+	y = 0;
+	while (i < size.y)
+	{
+		j = 0;
+		x = 0;
+		while (j < size.x)
+		{
+			(*chunk_pos)[(i * size.x) + j] = (t_vector_2){x, y};
+			j++;
+			x += CHUNK_SIZE;
+		}
+		i++;
+		y += CHUNK_SIZE;
+	}
 }
 
-void	background(t_img *img, int color)
-{
-	ft_memset(img->addr, WINDOW_HEIGHT * WINDOW_WIDTH * 4, color);
-}
-	// int	i;
-	// int	j;
-// 
-	// // i = 0;
-	// // while (i < WINDOW_HEIGHT)
-	// // {
-		// // j = 0;
-		// // while (j < WINDOW_WIDTH)
-			// // img_pix_put(img, j++, i, color);
-		// // ++i;
-	// }
-
-int	handle_no_event(t_data *data)
+int	on_update(t_data *data)
 {
 	if (!data->win_ptr)
 		return (0);
 	background(&data->img, 0xE0E0E0);
+	display_map(&data->img, data->game);
+	if (IS_DEBUG)
+		display_debug(&data->img, BLACK, data->game.chunks_pos,
+			data->game.level.nb_cases);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img,
 		0, 0);
 	return (0);
@@ -64,6 +71,13 @@ t_data	data_init(t_game *game)
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp,
 			&data.img.line_len, &data.img.endian);
 	data.game = *game;
+	get_chunk_positions(&data.game.chunks_pos, data.game.level.map_vector,
+		data.game.level.nb_cases);
+	if (IS_DEBUG)
+	{
+		ft_print_chunk_pos(data.game.chunks_pos, data.game.level.nb_cases);
+		ft_print_1d_to_2d(game->level);
+	}
 	return (data);
 }
 
@@ -74,9 +88,10 @@ void	display(t_game *game)
 	data = data_init(game);
 	mlx_hook(data.win_ptr, DestroyNotify, KeyPressMask, close_window, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
-	mlx_loop_hook(data.mlx_ptr, &handle_no_event, &data);
+	mlx_loop_hook(data.mlx_ptr, &on_update, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_image(data.mlx_ptr, data.img.mlx_img);
 	mlx_destroy_display(data.mlx_ptr);
 	free(data.mlx_ptr);
+	free(data.game.chunks_pos);
 }

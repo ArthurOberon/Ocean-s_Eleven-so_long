@@ -6,33 +6,11 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:21:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/03 16:36:44 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/04 20:25:26 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-//To delete !
-static void	char_tab_print_1d_to_2d(t_level level)
-{
-	int	i;
-	int	j;
-
-	j = 0;
-	while (j < level.map_vector.y * level.map_vector.x)
-	{
-		i = 0;
-		while (i < level.map_vector.x)
-		{
-			ft_putchar(level.map[i + j]);
-			ft_putchar(' ');
-			i++;
-		}
-		j += level.map_vector.x;
-		ft_putchar('\n');
-	}
-	ft_putchar('\n');
-}
 
 int	main(int argc, char **argv)
 {
@@ -46,7 +24,7 @@ int	main(int argc, char **argv)
 	if (IS_DEBUG)
 	{
 		printf("Map 1 line : %s\n", game.level.map);
-		char_tab_print_1d_to_2d(game.level);
+		ft_print_1d_to_2d(game.level);
 	}
 	pathfinding(&game);
 	display(&game);

@@ -14,6 +14,7 @@ DEPS 			=	$(INCLUDES_DIR)so_long.h Makefile
 DISPLAY_SRC		=	$(addprefix display_src/, \
 					handler.c \
 				 	display.c \
+				 	display_functions.c \
 					)
 
 # SOURCES USE TO EXIT WITH ERROR
