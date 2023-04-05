@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/04 20:35:08 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/05 16:45:46 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ int	on_update(t_data *data)
 			data->game.level.nb_cases);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img,
 		0, 0);
+	display_test(data);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img,
+		WINDOW_WIDTH / 2, 0);
 	return (0);
 }
 
