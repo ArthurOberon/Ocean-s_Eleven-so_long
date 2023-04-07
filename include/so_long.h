@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/05 16:08:17 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/07 15:07:58 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,6 @@
 
 # define INT_MIN -2147483648
 # define INT_MAX 2147483647
-
-typedef struct s_img
-{
-	void	*mlx_img;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}	t_img;
 
 typedef struct s_lst_map
 {
@@ -92,6 +83,15 @@ typedef struct s_game
 	t_level		level;
 	t_vector_2	*chunks_pos;
 }	t_game;
+
+typedef struct s_img
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_img;
 
 typedef struct s_data
 {
@@ -213,7 +213,7 @@ void				display(t_game *game);
 // |			DISPLAY_SPRITES			|
 // |------------------------------------|
 
-void				display_test(t_data *data);
+void				display_test(t_data *data, t_img *img);
 
 // |----------------------------------------|
 // |			DISPLAY_FUNCTIONS			|
