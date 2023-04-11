@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/07 15:07:58 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/11 15:04:57 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,14 @@ typedef struct s_img
 	int		line_len;
 	int		endian;
 }	t_img;
+
+typedef struct s_sprite
+{
+	t_img	*img;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_sprite;
 
 typedef struct s_data
 {
