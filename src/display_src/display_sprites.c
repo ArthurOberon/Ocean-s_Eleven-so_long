@@ -6,12 +6,11 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/12 14:13:19 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/13 15:00:21 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 void	init_xpm_file(void *ptr, char *path, t_img *img)
 {
@@ -36,56 +35,64 @@ void	put_image_to_image(t_data *data, t_vector_2 pos, t_img *img)
 				| img->addr[i * 4 + j * img->size.x * 4 + 1] << 8
 				| img->addr[i * 4 + j * img->size.x * 4 + 2] << 16
 				| img->addr[i * 4 + j * img->size.x * 4 + 3] << 24;
-			// if ((pixel >> 24) != 0xFF)
 			img_pix_put(&data->img, i + pos.x, j + pos.y, pixel);
 			i++;
 		}
 		j++;
 	}
 }
+			// if ((pixel >> 24) != 0xFF)
 
-void	display_test(t_data *data, t_img *img)
+void	init_img
+
+t_sprite	*init_sprites_tab(t_data *data)
 {
-	init_xpm_file(data->mlx_ptr, "sprites/test.xpm", img);
-	put_image_to_image(data, (t_vector_2){300, 16}, img);
+	int			i;
+	t_sprite	*map_sprites;
+
+	map_sprites = malloc(sizeof(t_sprite) * data->game.level.nb_cases + 1);
+	if (!map_sprites)
+		printf("PANIC ! free and exit.");
+	i = 0;
+	while (i < data->game.level.nb_cases)
+	{
+		init_img();
+		if (data->game.level.map[i] == '0' || data->game.level.map[i] == 'P')
+			init_xpm_file(data->mlx_ptr, "sprites/test.xpm",
+				map_sprites[i].img);
+		else if (data->game.level.map[i] == '1')
+			init_xpm_file(data->mlx_ptr, "sprites/test.xpm",
+				map_sprites[i].img);
+		else if (data->game.level.map[i] == 'C')
+			init_xpm_file(data->mlx_ptr, "sprites/test.xpm",
+				map_sprites[i].img);
+		else if (data->game.level.map[i] == 'E')
+			init_xpm_file(data->mlx_ptr, "sprites/test.xpm",
+				map_sprites[i].img);
+		i++;
+	}
+	init_xpm_file(data->mlx_ptr, "sprites/test.xpm", map_sprites[i].img);
+	return (map_sprites);
 }
 
-	// sprite.img = img;
-	// sprite.bpp = img->bpp;
-	// sprite.endian = img->endian;
-	// sprite.line_len = img->line_len;
-	// printf("bpp = %d\n", sprite.bpp);
-	// printf("line_len = %d\n", sprite.line_len);
-	// printf("pixel = %s\n", data->img.addr);
-	// printf("addr = %s\n", addr);
-	// int		i;
-	// int		j;
-	// char	*pixel;
+void	display_sprites(t_data *data)
+{
+	int			i;
+	int			j;
+	t_sprite	*map_sprites;
 
-	// i = pos.x - CHUNK_SIZE;
-	// while (i < pos.x)
-	// {
-	// 	j = pos.y - CHUNK_SIZE;
-	// 	while (j < pos.y)
-	// 	{
-	// 		pixel = data->img.addr + (j * data->img.line_len + i * 4);
-	// 		// *(unsigned int *)pixel = WHITE;
-	// 		*pixel = *addr + (j * sprite.line_len + i * 4);
-	// 		printf("OSKOUR = [%d]\n", (j * sprite.line_len + i * 4));
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
-
-//
-
-	// int			y;
-	// y = 0;
-	// while (y < 64 * 64)
-	// {
-	// 	ft_memcpy(data->img.addr + y, addr + y, data->img.bpp);
-	// 	y++;
-	// }
-
-			// ft_memcpy(data->img.addr + (j * img->line_len + i * 4),
-			// 	addr + (j * img->line_len + i * 4), data->img.bpp);
+	j = 0;
+	map_sprites = init_sprites_tab(data);
+	while (j < data->game.level.nb_cases)
+	{
+		i = 0;
+		while (i < data->game.level.map_vector.x)
+		{
+			put_image_to_image(data,
+				(t_vector_2){i * data->game.level.map_vector.x, j},
+				map_sprites[i + j].img);
+			i++;
+		}
+		j += data->game.level.map_vector.y;
+	}
+}

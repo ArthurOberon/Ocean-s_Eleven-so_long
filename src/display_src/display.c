@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/11 15:04:51 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/13 14:12:46 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,16 @@ void	get_chunk_positions(t_vector_2 **chunk_pos, t_vector_2 size, int nb)
 
 int	on_update(t_data *data)
 {
-	t_img	sprite_test;
-
 	if (!data->win_ptr)
 		return (0);
 	background(&data->img, 0xE0E0E0);
 	display_map(&data->img, data->game);
+	display_sprites(data);
 	if (IS_DEBUG)
 		display_debug(&data->img, BLACK, data->game.chunks_pos,
 			data->game.level.nb_cases);
-	display_test(data, &sprite_test);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img,
 		0, 0);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, sprite_test.mlx_img,
-		WINDOW_WIDTH / 2, 0);
 	return (0);
 }
 

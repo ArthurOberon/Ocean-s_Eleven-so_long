@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/12 13:34:22 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/13 14:12:49 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,8 @@ typedef struct s_img
 typedef struct s_sprite
 {
 	t_img	*img;
-	int		bpp;
-	int		line_len;
-	int		endian;
+	int		frame;
+	int		size;
 }	t_sprite;
 
 typedef struct s_data
@@ -222,7 +221,7 @@ void				display(t_game *game);
 // |			DISPLAY_SPRITES			|
 // |------------------------------------|
 
-void				display_test(t_data *data, t_img *img);
+void				display_sprites(t_data *data);
 
 // |----------------------------------------|
 // |			DISPLAY_FUNCTIONS			|
