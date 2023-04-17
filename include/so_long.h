@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/13 14:12:49 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/17 17:40:36 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ typedef struct s_img
 
 typedef struct s_sprite
 {
-	t_img	*img;
+	t_img	*sprite_img;
 	int		frame;
 	int		size;
 }	t_sprite;
@@ -107,6 +107,7 @@ typedef struct s_data
 	void		*win_ptr;
 	t_img		img;
 	t_game		game;
+	t_sprite	*map_sprites;
 }	t_data;
 
 	// int		bpp; /* bits per pixel */
@@ -216,6 +217,12 @@ int					handle_keypress(int keysym, t_data *data);
 // |----------------------------|
 
 void				display(t_game *game);
+
+// |------------------------------------|
+// |			INIT_SPRITES			|
+// |------------------------------------|
+
+void				init_sprite(t_data *data);
 
 // |------------------------------------|
 // |			DISPLAY_SPRITES			|

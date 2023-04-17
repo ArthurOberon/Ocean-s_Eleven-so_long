@@ -45,3 +45,4 @@ make all
 - [x] a_star with each collectible position
 - [ ] bzero_path_map struct instead of free/malloc
 - [ ] Implement my printf
+- [ ] free t_sprite map_sprites + free map_sprites[i].sprite_img
