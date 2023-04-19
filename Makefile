@@ -23,7 +23,7 @@ SPRITES_SRC		=	$(addprefix sprites_src/, \
 DISPLAY_SRC		=	$(addprefix display_src/, \
 					handler.c \
 				 	display.c \
-				 	display_functions.c \
+				 	display_useful.c \
 					$(SPRITES_SRC) \
 					\
 					)
