@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:39:40 by arthurobero       #+#    #+#             */
-/*   Updated: 2023/04/19 22:11:06 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/04/19 22:16:14 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static t_img	resize_img(void *ptr, t_img *src, t_vector_2 dst_size)
 				| src->addr[(int)(i * quotient.x) * 4 + (int)(j * quotient.y) * src->size.x * 4 + 1] << 8
 				| src->addr[(int)(i * quotient.x) * 4 + (int)(j * quotient.y) * src->size.x * 4 + 2] << 16
 				| src->addr[(int)(i * quotient.x) * 4 + (int)(j * quotient.y) * src->size.x * 4 + 3] << 24;
-			
 			img_pix_put(&new_img, i, j, pixel);
 			i++;
 		}
