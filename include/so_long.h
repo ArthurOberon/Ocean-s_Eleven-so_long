@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/17 17:40:36 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/19 17:44:57 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,13 @@ typedef struct s_vector_2
 	int	x;
 	int	y;
 }	t_vector_2;
+
+typedef struct s_f_vector_2
+{
+	double	x;
+	double	y;
+}	t_f_vector_2;
+
 
 typedef struct s_path_map
 {
