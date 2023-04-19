@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/19 17:44:57 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/04/19 19:42:14 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,6 +236,13 @@ void				init_sprite(t_data *data);
 // |------------------------------------|
 
 void				display_sprites(t_data *data);
+
+// |----------------------------------------|
+// |			INIT_SPRITES_TAB			|
+// |----------------------------------------|
+
+void				init_sprites_tab(t_data *data, t_sprite *map_sprites);
+
 
 // |----------------------------------------|
 // |			DISPLAY_FUNCTIONS			|

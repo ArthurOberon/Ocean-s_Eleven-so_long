@@ -10,13 +10,22 @@ INCLUDES_H		=	-I./$(INCLUDES_DIR) -I./$(LIB_DIR)
 MLX_FLAGS 		=	-L$(LIB_DIR) -lmlx -lX11 -lXext
 DEPS 			=	$(INCLUDES_DIR)so_long.h Makefile
 
+
+#SOURCES USE TO INIT AND DISPLAY SPRITES
+SPRITES_SRC		=	$(addprefix sprites_src/, \
+					init_sprites.c \
+				 	display_sprites.c \
+					init_sprites_tab.c \
+					\
+					)
+
 # SOURCES USE TO DISPLAY THE GAME
 DISPLAY_SRC		=	$(addprefix display_src/, \
 					handler.c \
 				 	display.c \
-					init_sprites.c \
-				 	display_sprites.c \
 				 	display_functions.c \
+					$(SPRITES_SRC) \
+					\
 					)
 
 # SOURCES USE TO EXIT WITH ERROR

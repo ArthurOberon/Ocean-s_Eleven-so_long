@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_sprites.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/17 18:45:06 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/19 20:30:22 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,27 @@ void	display_sprites(t_data *data)
 {
 	int			i;
 	int			j;
+	int			k;
 	int			y;
 
 	j = 0;
 	y = 0;
-	while (j < data->game.level.nb_cases)
+	while (j < data->game.level.map_vector.y)
 	{
 		i = 0;
-		while (i <= data->game.level.map_vector.x)
+		while (i < data->game.level.map_vector.x)
 		{
-			put_image_to_image(data,
-				(t_vector_2){y * CHUNK_SIZE, i * CHUNK_SIZE},
-				&(data->map_sprites[i + j].sprite_img)[0]);
+			k = 0;
+			while (k < data->map_sprites[i + y].size)
+			{
+				put_image_to_image(data,
+					(t_vector_2){i * CHUNK_SIZE, j * CHUNK_SIZE},
+					&(data->map_sprites[i + y].sprite_img)[k]);
+				k++;
+			}
 			i++;
 		}
-		j += data->game.level.map_vector.y;
-		y += 1;
+		j++;
+		y += data->game.level.map_vector.x;
 	}
 }
