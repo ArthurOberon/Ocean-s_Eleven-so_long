@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:39:40 by arthurobero       #+#    #+#             */
-/*   Updated: 2023/04/19 20:26:31 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/04/19 22:11:06 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static t_img	resize_img(void *ptr, t_img *src, t_vector_2 dst_size)
 				| src->addr[(int)(i * quotient.x) * 4 + (int)(j * quotient.y) * src->size.x * 4 + 1] << 8
 				| src->addr[(int)(i * quotient.x) * 4 + (int)(j * quotient.y) * src->size.x * 4 + 2] << 16
 				| src->addr[(int)(i * quotient.x) * 4 + (int)(j * quotient.y) * src->size.x * 4 + 3] << 24;
+			
 			img_pix_put(&new_img, i, j, pixel);
 			i++;
 		}
@@ -54,6 +55,12 @@ static t_img	resize_img(void *ptr, t_img *src, t_vector_2 dst_size)
 	}
 	return (new_img);
 }
+
+			// pixel = *(unsigned int *)(src->addr + ((int)(j * quotient.y) * src->line_len) + ((int)(i * quotient.x) * 4));
+			// pixel = ((pixel >> 16) & 0xFF)
+			// 		| (pixel & 0xFF00)
+			// 		| ((pixel << 16) & 0xFF0000)
+			// 		| (pixel & 0xFF000000);
 
 static void get_img_sprite(void *ptr, char *path, t_sprite *sprite)
 {
@@ -79,9 +86,9 @@ void	init_sprites_tab(t_data *data, t_sprite *map_sprites)
 	while (i < data->game.level.nb_cases)
 	{
 		if (data->game.level.map[i] == '0' || data->game.level.map[i] == 'P')
-			get_img_sprite(data->mlx_ptr, "sprites/test.xpm", &map_sprites[i]);
-		else if (data->game.level.map[i] == '1')
 			get_img_sprite(data->mlx_ptr, "sprites/test_32px.xpm", &map_sprites[i]);
+		else if (data->game.level.map[i] == '1')
+			get_img_sprite(data->mlx_ptr, "sprites/test.xpm", &map_sprites[i]);
 		else if (data->game.level.map[i] == 'C')
 			get_img_sprite(data->mlx_ptr, "sprites/New-Piskel_1.xpm", &map_sprites[i]);
 		else if (data->game.level.map[i] == 'E')

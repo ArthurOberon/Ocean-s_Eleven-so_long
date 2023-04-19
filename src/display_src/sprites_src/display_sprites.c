@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/19 20:30:22 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/04/19 22:10:42 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,42 @@ void	put_image_to_image(t_data *data, t_vector_2 pos, t_img *img)
 		j++;
 	}
 }
+
+			// pixel = *(unsigned int *)(img->addr + (j * img->line_len) + (i * 4));
+			// pixel = ((pixel >> 16) & 0xFF)
+			// 		| (pixel & 0xFF00)
+			// 		| ((pixel << 16) & 0xFF0000)
+			// 		| (pixel & 0xFF000000);
+
+			// pixel = (img->addr[(j * img->line_len) + (i * 4) + 3] << 24)
+			// 	| (img->addr[(j * img->line_len) + (i * 4) + 2] << 16)
+			// 	| (img->addr[(j * img->line_len) + (i * 4) + 1] << 8)
+			// 	| img->addr[(j * img->line_len) + (i * 4)];
+
+			// pixel = (img->addr[i * 4 + j * img->size.x * 4 + 3] << 24)
+			// 	| (img->addr[i * 4 + j * img->size.x * 4 + 2] << 16)
+			// 	| (img->addr[i * 4 + j * img->size.x * 4 + 1] << 8)
+			// 	| img->addr[i * 4 + j * img->size.x * 4];
+
+			// pixel = img->addr[i * 4 + j * img->size.x * 4]
+			// 	| img->addr[i * 4 + j * img->size.x * 4 + 1] << 8
+			// 	| img->addr[i * 4 + j * img->size.x * 4 + 2] << 16
+			// 	| img->addr[i * 4 + j * img->size.x * 4 + 3] << 24;
+
+			// pixel = img->addr[(j * img->line_len) + (i * 4)]
+			// 	| img->addr[(j * img->line_len) + (i * 4) + 1] << 8
+			// 	| img->addr[(j * img->line_len) + (i * 4) + 2] << 16
+			// 	| img->addr[(j * img->line_len) + (i * 4) + 3] << 24;
+
+			// pixel = *(unsigned int *)(img->addr + (j * img->line_len) + (i * 4));
+			// unsigned char red = pixel & 0xFF;
+			// unsigned char blue = (pixel >> 8) & 0xFF;
+			// unsigned char green = (pixel >> 16) & 0xFF;
+			// unsigned char alpha = (pixel >> 24) & 0xFF;
+			// pixel = (alpha << 24) | (blue << 16) | (green << 8) | red;
+
+			// pixel = red | (green << 8) | (blue << 16) | (alpha << 24);
+
 			// if ((pixel >> 24) != 0xFF)
 
 void	display_sprites(t_data *data)
