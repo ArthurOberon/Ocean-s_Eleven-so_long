@@ -21,7 +21,7 @@ To launch so_long with a map :
 make all
 ```
 
-# How My So_long Work ?
+# How My So_long Works ?
 
 ---
 
@@ -31,6 +31,7 @@ make all
 ### Thanks to :
 * **Alex Cardona**
 * **Johanne Vigny**
+* **Ulysse Levallois**
 * **[Quentin Thierry](https://github.com/QuentinThierry/)**
 
 ---

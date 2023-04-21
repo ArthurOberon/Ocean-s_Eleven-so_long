@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/21 16:38:31 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/21 17:22:29 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,49 +33,15 @@ void	put_image_to_image(t_data *data, t_vector_2 pos, t_img *img)
 	}
 }
 
-			// pixel = (img->addr[i * 4 + j * img->size.x * 4])
-			// 	| (img->addr[i * 4 + j * img->size.x * 4 + 1]) << 8
-			// 	| (img->addr[i * 4 + j * img->size.x * 4 + 2]) << 16
-			// 	| (img->addr[i * 4 + j * img->size.x * 4 + 3]) << 24;
-
-			// pixel = *(unsigned int *)(img->addr + (j * img->line_len)
-				// + (i * 4));
-			// pixel = ((pixel >> 16) & 0xFF)
-			// 		| (pixel & 0xFF00)
-			// 		| ((pixel << 16) & 0xFF0000)
-			// 		| (pixel & 0xFF000000);
-
-			// pixel = (img->addr[(j * img->line_len) + (i * 4) + 3] << 24)
-			// 	| (img->addr[(j * img->line_len) + (i * 4) + 2] << 16)
-			// 	| (img->addr[(j * img->line_len) + (i * 4) + 1] << 8)
-			// 	| img->addr[(j * img->line_len) + (i * 4)];
-
-			// pixel = (img->addr[i * 4 + j * img->size.x * 4 + 3] << 24)
-			// 	| (img->addr[i * 4 + j * img->size.x * 4 + 2] << 16)
-			// 	| (img->addr[i * 4 + j * img->size.x * 4 + 1] << 8)
-			// 	| img->addr[i * 4 + j * img->size.x * 4];
-
-			// pixel = img->addr[i * 4 + j * img->size.x * 4]
-			// 	| img->addr[i * 4 + j * img->size.x * 4 + 1] << 8
-			// 	| img->addr[i * 4 + j * img->size.x * 4 + 2] << 16
-			// 	| img->addr[i * 4 + j * img->size.x * 4 + 3] << 24;
-
-			// pixel = img->addr[(j * img->line_len) + (i * 4)]
-			// 	| img->addr[(j * img->line_len) + (i * 4) + 1] << 8
-			// 	| img->addr[(j * img->line_len) + (i * 4) + 2] << 16
-			// 	| img->addr[(j * img->line_len) + (i * 4) + 3] << 24;
-
-			// pixel = *(unsigned int *)(img->addr + (j * img->line_len)
-				// + (i * 4));
-			// unsigned char red = pixel & 0xFF;
-			// unsigned char blue = (pixel >> 8) & 0xFF;
-			// unsigned char green = (pixel >> 16) & 0xFF;
-			// unsigned char alpha = (pixel >> 24) & 0xFF;
-			// pixel = (alpha << 24) | (blue << 16) | (green << 8) | red;
-
-			// pixel = red | (green << 8) | (blue << 16) | (alpha << 24);
-
-			// if ((pixel >> 24) != 0xFF)
+static void	display_player(t_data *data)
+{
+	printf("pos player : x : [%d] y : [%d]\n", data->game.player_pos.x,
+		data->game.player_pos.y);
+	put_image_to_image(data,
+		(t_vector_2){data->game.player_pos.x * CHUNK_SIZE,
+		data->game.player_pos.y * CHUNK_SIZE},
+		&(data->map_sprites[data->game.level.nb_cases].sprite_img)[0]);
+}
 
 void	display_sprites(t_data *data)
 {
@@ -96,18 +62,12 @@ void	display_sprites(t_data *data)
 			{
 				put_image_to_image(data,
 					(t_vector_2){i * CHUNK_SIZE, j * CHUNK_SIZE},
-					&(data->map_sprites[i + y].sprite_img)[k]);
-				k++;
+					&(data->map_sprites[i + y].sprite_img)[k++]);
 			}
 			i++;
 		}
 		j++;
 		y += data->game.level.map_vector.x;
 	}
-	printf("pos player : x : [%d] y : [%d]\n", data->game.player_pos.x,
-		data->game.player_pos.y);
-	put_image_to_image(data,
-		(t_vector_2){data->game.player_pos.x * CHUNK_SIZE,
-		data->game.player_pos.y * CHUNK_SIZE},
-		&(data->map_sprites[data->game.level.nb_cases].sprite_img)[0]);
+	display_player(data);
 }
