@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/21 14:31:41 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/21 14:53:32 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	on_update(t_data *data)
 	background(&data->img, 0xE0E0E0);
 	display_sprites(data);
 	if (IS_DEBUG)
-		display_debug(&data->img, RED, data->game.chunks_pos,
+		display_debug(&data->img, GREEN, data->game.chunks_pos,
 			data->game.level.nb_cases);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img,
 		0, 0);

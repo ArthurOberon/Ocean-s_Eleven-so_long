@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 13:09:46 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/21 13:11:17 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/21 15:00:20 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@ void	display_debug(t_img *img, int color,
 	while (i < size)
 	{
 		img_pix_put(img, chunk_pos[i].x, chunk_pos[i].y, color);
-		img_pix_put(img, chunk_pos[i].x + CHUNK_SIZE,
-			chunk_pos[i].y + CHUNK_SIZE, color);
+		img_pix_put(img, chunk_pos[i].x + CHUNK_SIZE - 1, chunk_pos[i].y,
+			color);
+		img_pix_put(img, chunk_pos[i].x, chunk_pos[i].y + CHUNK_SIZE - 1,
+			color);
+		img_pix_put(img, chunk_pos[i].x + CHUNK_SIZE - 1,
+			chunk_pos[i].y + CHUNK_SIZE - 1, color);
 		i++;
 	}
 }

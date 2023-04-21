@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/21 14:05:12 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/21 15:27:32 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ typedef struct s_level
 
 typedef struct s_game
 {
-	t_level			level;
-	t_vector_2		*chunks_pos;
-	t_f_vector_2	player_pos;
+	t_level		level;
+	t_vector_2	*chunks_pos;
+	t_vector_2	player_pos;
 }	t_game;
 
 typedef struct s_img

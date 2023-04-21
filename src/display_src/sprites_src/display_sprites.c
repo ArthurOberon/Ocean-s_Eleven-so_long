@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/21 14:22:47 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/21 15:28:00 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void	put_image_to_image(t_data *data, t_vector_2 pos, t_img *img)
 	}
 }
 
-			// pixel = img->addr[i * 4 + j * img->size.x * 4]
-			// 	| img->addr[i * 4 + j * img->size.x * 4 + 1] << 8
-			// 	| img->addr[i * 4 + j * img->size.x * 4 + 2] << 16
-			// 	| img->addr[i * 4 + j * img->size.x * 4 + 3] << 24;
+			// pixel = (unsigned char)(img->addr[i * 4 + j * img->size.x * 4])
+			// 	| (unsigned char)(img->addr[i * 4 + j * img->size.x * 4 + 1]) << 8
+			// 	| (unsigned char)(img->addr[i * 4 + j * img->size.x * 4 + 2]) << 16
+			// 	| (unsigned char)(img->addr[i * 4 + j * img->size.x * 4 + 3]) << 24;
 
 			// pixel = *(unsigned int *)(img->addr + (j * img->line_len)
 				// + (i * 4));
@@ -104,7 +104,7 @@ void	display_sprites(t_data *data)
 		j++;
 		y += data->game.level.map_vector.x;
 	}
-	printf("pos player : x : [%f] y : [%f]\n", data->game.player_pos.x,
+	printf("pos player : x : [%d] y : [%d]\n", data->game.player_pos.x,
 		data->game.player_pos.y);
 	put_image_to_image(data,
 		(t_vector_2){data->game.player_pos.x * CHUNK_SIZE,
