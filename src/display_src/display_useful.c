@@ -1,16 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_functions.c                                :+:      :+:    :+:   */
+/*   display_useful.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:17:13 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/11 15:01:54 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/21 13:10:26 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+__uint32_t	get_color_pixel(t_img *img, int i, int j)
+{
+	__uint32_t	pixel;
+
+	pixel = (img->addr[i * 4 + j * img->size.x * 4] & 0xFF)
+		| (img->addr[i * 4 + j * img->size.x * 4 + 1] << 8 & 0xFF00)
+		| (img->addr[i * 4 + j * img->size.x * 4 + 2] << 16 & 0xFF0000)
+		| (img->addr[i * 4 + j * img->size.x * 4 + 3] << 24
+			& 0xFF000000);
+	return (pixel);
+}
 
 void	img_pix_put(t_img *img, int x, int y, int color)
 {
@@ -23,58 +35,4 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 void	background(t_img *img, int color)
 {
 	ft_memset(img->addr, WINDOW_HEIGHT * WINDOW_WIDTH * 4, color);
-}
-
-void	display_debug(t_img *img, int color,
-	t_vector_2 *chunk_pos, int size)
-{
-	int	i;
-
-	i = 0;
-	while (i < size)
-	{
-		img_pix_put(img, chunk_pos[i].x, chunk_pos[i].y, color);
-		img_pix_put(img, chunk_pos[i].x + CHUNK_SIZE,
-			chunk_pos[i].y + CHUNK_SIZE, color);
-		i++;
-	}
-}
-
-void	display_square(t_img *img, t_vector_2 pos, int color)
-{
-	int	i;
-	int	j;
-
-	i = pos.x;
-	while (i < pos.x + CHUNK_SIZE)
-	{
-		j = pos.y;
-		while (j < pos.y + CHUNK_SIZE)
-		{
-			img_pix_put(img, i, j, color);
-			j++;
-		}
-		i++;
-	}
-}
-
-void	display_map(t_img *img, t_game game)
-{
-	int	i;
-
-	i = 0;
-	while (i < game.level.nb_cases)
-	{
-		if (game.level.map[i] == '0')
-			display_square(img, game.chunks_pos[i], WHITE);
-		else if (game.level.map[i] == '1')
-			display_square(img, game.chunks_pos[i], RED);
-		else if (game.level.map[i] == 'C')
-			display_square(img, game.chunks_pos[i], GREEN);
-		else if (game.level.map[i] == 'E')
-			display_square(img, game.chunks_pos[i], BLACK);
-		else if (game.level.map[i] == 'P')
-			display_square(img, game.chunks_pos[i], BLUE);
-		i ++;
-	}
 }

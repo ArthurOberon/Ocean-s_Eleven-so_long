@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/21 12:00:42 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/21 13:11:07 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,6 +236,14 @@ void				init_sprite(t_data *data);
 
 void				display_sprites(t_data *data);
 
+// |------------------------------------|
+// |			DISPLAY_DEBUG			|
+// |------------------------------------|
+
+void				display_map(t_img *img, t_game game);
+void				display_debug(t_img *img, int color,
+						t_vector_2 *chunk_pos, int size);
+
 // |----------------------------------------|
 // |			INIT_SPRITES_TAB			|
 // |----------------------------------------|
@@ -247,10 +255,8 @@ void				init_sprites_tab(t_data *data, t_sprite *map_sprites);
 // |----------------------------------------|
 
 void				background(t_img *img, int color);
-void				display_map(t_img *img, t_game game);
 void				img_pix_put(t_img *img, int x, int y, int color);
-void				display_debug(t_img *img, int color,
-						t_vector_2 *chunk_pos, int size);
+__uint32_t			get_color_pixel(t_img *img, int i, int j);
 
 // |====================================================|
 // |					PATHFINDING_SRC					|

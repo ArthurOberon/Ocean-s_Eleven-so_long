@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:39:40 by arthurobero       #+#    #+#             */
-/*   Updated: 2023/04/21 11:59:50 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/21 13:18:48 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ static void	init_xpm_file(void *ptr, char *path, t_img *img)
 			&img->endian);
 }
 
+static void	init_new_resize_img(void *ptr, t_img *new_img, t_vector_2 new_size)
+{
+	new_img->mlx_img = mlx_new_image(ptr, new_size.x, new_size.y);
+	new_img->addr = mlx_get_data_addr(new_img->mlx_img, &new_img->bpp,
+			&new_img->line_len, &new_img->endian);
+	new_img->size = new_size;
+}
+
 static t_img	resize_img(void *ptr, t_img *src, t_vector_2 dst_size)
 {
 	int				i;
@@ -31,10 +39,7 @@ static t_img	resize_img(void *ptr, t_img *src, t_vector_2 dst_size)
 
 	if (src->size.x == dst_size.x && src->size.y == dst_size.y)
 		return (*src);
-	new_img.mlx_img = mlx_new_image(ptr, dst_size.x, dst_size.y);
-	new_img.addr = mlx_get_data_addr(new_img.mlx_img, &new_img.bpp,
-			&new_img.line_len, &new_img.endian);
-	new_img.size = dst_size;
+	init_new_resize_img(ptr, &new_img, dst_size);
 	quotient.x = (double)(src->size.x) / (double)(dst_size.x);
 	quotient.y = (double)(src->size.y) / (double)(dst_size.y);
 	j = 0;
@@ -43,10 +48,8 @@ static t_img	resize_img(void *ptr, t_img *src, t_vector_2 dst_size)
 		i = 0;
 		while (i < dst_size.x)
 		{
-			pixel = src->addr[(int)(i * quotient.x) * 4 + (int)(j * quotient.y) * src->size.x * 4]
-				| src->addr[(int)(i * quotient.x) * 4 + (int)(j * quotient.y) * src->size.x * 4 + 1] << 8
-				| src->addr[(int)(i * quotient.x) * 4 + (int)(j * quotient.y) * src->size.x * 4 + 2] << 16
-				| src->addr[(int)(i * quotient.x) * 4 + (int)(j * quotient.y) * src->size.x * 4 + 3] << 24;
+			pixel = get_color_pixel(src, (int)(i * quotient.x),
+					(int)(j * quotient.y));
 			img_pix_put(&new_img, i, j, pixel);
 			i++;
 		}
@@ -54,6 +57,15 @@ static t_img	resize_img(void *ptr, t_img *src, t_vector_2 dst_size)
 	}
 	return (new_img);
 }
+
+	// pixel = src->addr[(int)(i * quotient.x) * 4 + (int)(j * quotient.y)
+		// * src->size.x * 4]
+		// | src->addr[(int)(i * quotient.x) * 4 + (int)(j * quotient.y) 
+			// * src->size.x * 4 + 1] << 8
+		// | src->addr[(int)(i * quotient.x) * 4 + (int)(j * quotient.y) 
+			// * src->size.x * 4 + 2] << 16
+		// | src->addr[(int)(i * quotient.x) * 4 + (int)(j * quotient.y) 
+			// * src->size.x * 4 + 3] << 24;
 
 			// pixel = *(unsigned int *)(src->addr + ((int)(j * quotient.y)
 				// * src->line_len) + ((int)(i * quotient.x) * 4));

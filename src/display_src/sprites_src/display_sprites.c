@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/21 12:00:21 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/21 13:06:50 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,18 @@ void	put_image_to_image(t_data *data, t_vector_2 pos, t_img *img)
 		i = 0;
 		while (i < img->size.x)
 		{
-			pixel = img->addr[i * 4 + j * img->size.x * 4]
-				| img->addr[i * 4 + j * img->size.x * 4 + 1] << 8
-				| img->addr[i * 4 + j * img->size.x * 4 + 2] << 16
-				| img->addr[i * 4 + j * img->size.x * 4 + 3] << 24;
+			pixel = get_color_pixel(img, i, j);
 			img_pix_put(&data->img, i + pos.x, j + pos.y, pixel);
 			i++;
 		}
 		j++;
 	}
 }
+
+			// pixel = img->addr[i * 4 + j * img->size.x * 4]
+			// 	| img->addr[i * 4 + j * img->size.x * 4 + 1] << 8
+			// 	| img->addr[i * 4 + j * img->size.x * 4 + 2] << 16
+			// 	| img->addr[i * 4 + j * img->size.x * 4 + 3] << 24;
 
 			// pixel = *(unsigned int *)(img->addr + (j * img->line_len)
 				// + (i * 4));
