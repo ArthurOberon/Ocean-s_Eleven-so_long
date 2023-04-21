@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_sprites.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/19 22:10:42 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/04/21 12:00:21 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void	put_image_to_image(t_data *data, t_vector_2 pos, t_img *img)
 	}
 }
 
-			// pixel = *(unsigned int *)(img->addr + (j * img->line_len) + (i * 4));
+			// pixel = *(unsigned int *)(img->addr + (j * img->line_len)
+				// + (i * 4));
 			// pixel = ((pixel >> 16) & 0xFF)
 			// 		| (pixel & 0xFF00)
 			// 		| ((pixel << 16) & 0xFF0000)
@@ -61,7 +62,8 @@ void	put_image_to_image(t_data *data, t_vector_2 pos, t_img *img)
 			// 	| img->addr[(j * img->line_len) + (i * 4) + 2] << 16
 			// 	| img->addr[(j * img->line_len) + (i * 4) + 3] << 24;
 
-			// pixel = *(unsigned int *)(img->addr + (j * img->line_len) + (i * 4));
+			// pixel = *(unsigned int *)(img->addr + (j * img->line_len)
+				// + (i * 4));
 			// unsigned char red = pixel & 0xFF;
 			// unsigned char blue = (pixel >> 8) & 0xFF;
 			// unsigned char green = (pixel >> 16) & 0xFF;
