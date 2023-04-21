@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/21 14:53:32 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/21 16:40:48 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,12 @@ t_data	data_init(t_game *game)
 	data.game = *game;
 	get_chunk_positions(&data.game.chunks_pos, data.game.level.map_vector,
 		data.game.level.nb_cases);
+	init_player_pos(&data);
 	if (IS_DEBUG)
 	{
 		ft_print_chunk_pos(data.game.chunks_pos, data.game.level.nb_cases);
 		ft_print_1d_to_2d(game->level);
 	}
-	init_player_pos(&data);
 	return (data);
 }
 
