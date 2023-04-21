@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:39:40 by arthurobero       #+#    #+#             */
-/*   Updated: 2023/04/21 13:18:48 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/21 14:31:26 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,22 +58,6 @@ static t_img	resize_img(void *ptr, t_img *src, t_vector_2 dst_size)
 	return (new_img);
 }
 
-	// pixel = src->addr[(int)(i * quotient.x) * 4 + (int)(j * quotient.y)
-		// * src->size.x * 4]
-		// | src->addr[(int)(i * quotient.x) * 4 + (int)(j * quotient.y) 
-			// * src->size.x * 4 + 1] << 8
-		// | src->addr[(int)(i * quotient.x) * 4 + (int)(j * quotient.y) 
-			// * src->size.x * 4 + 2] << 16
-		// | src->addr[(int)(i * quotient.x) * 4 + (int)(j * quotient.y) 
-			// * src->size.x * 4 + 3] << 24;
-
-			// pixel = *(unsigned int *)(src->addr + ((int)(j * quotient.y)
-				// * src->line_len) + ((int)(i * quotient.x) * 4));
-			// pixel = ((pixel >> 16) & 0xFF)
-			// 		| (pixel & 0xFF00)
-			// 		| ((pixel << 16) & 0xFF0000)
-			// 		| (pixel & 0xFF000000);
-
 static void	get_img_sprite(void *ptr, char *path, t_sprite *sprite)
 {
 	int		i;
@@ -98,41 +82,20 @@ void	init_sprites_tab(t_data *data, t_sprite *map_sprites)
 	while (i < data->game.level.nb_cases)
 	{
 		if (data->game.level.map[i] == '0' || data->game.level.map[i] == 'P')
-			get_img_sprite(data->mlx_ptr, "sprites/test_32px.xpm",
+			get_img_sprite(data->mlx_ptr, "sprites/ground/carpet_64px.xpm",
 				&map_sprites[i]);
 		else if (data->game.level.map[i] == '1')
-			get_img_sprite(data->mlx_ptr, "sprites/test.xpm", &map_sprites[i]);
+			get_img_sprite(data->mlx_ptr, "sprites/wall/column_64px.xpm",
+				&map_sprites[i]);
 		else if (data->game.level.map[i] == 'C')
-			get_img_sprite(data->mlx_ptr, "sprites/New-Piskel_1.xpm",
+			get_img_sprite(data->mlx_ptr,
+				"sprites/wall/roulette_table_64px.xpm",
 				&map_sprites[i]);
 		else if (data->game.level.map[i] == 'E')
-			get_img_sprite(data->mlx_ptr, "sprites/test.xpm", &map_sprites[i]);
+			get_img_sprite(data->mlx_ptr, "sprites/debug/test.xpm",
+				&map_sprites[i]);
 		i++;
 	}
+	get_img_sprite(data->mlx_ptr, "sprites/player/player_64px.xpm",
+		&map_sprites[i]);
 }
-
-// void	init_sprites_tab(t_data *data, t_sprite *map_sprites)
-// {
-// 	int			i;
-
-// 	i = 0;
-// 	while (i < data->game.level.nb_cases)
-// 	{
-// 		if (data->game.level.map[i] == '0' || data->game.level.map[i] == 'P')
-// 			init_xpm_file(data->mlx_ptr, "sprites/test.xpm",
-// 				&map_sprites[i].sprite_img[0]);
-// 		else if (data->game.level.map[i] == '1')
-// 			init_xpm_file(data->mlx_ptr, "sprites/test_32px.xpm",
-// 				&map_sprites[i].sprite_img[0]);
-// 		else if (data->game.level.map[i] == 'C')
-// 			init_xpm_file(data->mlx_ptr, "sprites/test.xpm",
-// 				&map_sprites[i].sprite_img[0]);
-// 		else if (data->game.level.map[i] == 'E')
-// 			init_xpm_file(data->mlx_ptr, "sprites/test.xpm",
-// 				&map_sprites[i].sprite_img[0]);
-// 		(map_sprites[i].sprite_img)[0] = resize_img(data->mlx_ptr,
-// 			&(map_sprites[i].sprite_img)[0],
-		// (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
-// 		i++;
-// 	}
-// }

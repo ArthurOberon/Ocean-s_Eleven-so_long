@@ -6,11 +6,19 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/21 13:11:34 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/21 14:31:41 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static void	init_player_pos(t_data *data)
+{
+	data->game.player_pos.x = data->game.level.player_pos_tab
+		- data->game.level.map_vector.x;
+	data->game.player_pos.y = data->game.level.player_pos_tab
+		/ data->game.level.map_vector.y;
+}
 
 static void	get_chunk_positions(t_vector_2 **chunk_pos, t_vector_2 size, int nb)
 {
@@ -78,6 +86,7 @@ t_data	data_init(t_game *game)
 		ft_print_chunk_pos(data.game.chunks_pos, data.game.level.nb_cases);
 		ft_print_1d_to_2d(game->level);
 	}
+	init_player_pos(&data);
 	return (data);
 }
 

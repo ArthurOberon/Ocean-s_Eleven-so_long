@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/21 13:11:07 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/21 14:05:12 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define WINDOW_WIDTH 1600
 # define WINDOW_HEIGHT 800
 
-# define CHUNK_SIZE 64
+# define CHUNK_SIZE 128
 
 # define IS_DEBUG 1
 
@@ -79,15 +79,16 @@ typedef struct s_level
 	char		*map;
 	t_vector_2	map_vector;
 	int			nb_cases;
-	int			player_pos;
+	int			player_pos_tab;
 	int			exit_pos;
 	t_path_map	*path_map;
 }	t_level;
 
 typedef struct s_game
 {
-	t_level		level;
-	t_vector_2	*chunks_pos;
+	t_level			level;
+	t_vector_2		*chunks_pos;
+	t_f_vector_2	player_pos;
 }	t_game;
 
 typedef struct s_img
@@ -282,7 +283,7 @@ t_path_map			*init_path_map(t_level level);
 // |			A_STAR_ALGORITHM			|
 // |----------------------------------------|
 
-int					a_star(t_level level, int end_pos);
+int					a_star(t_level level, int pos, int end_pos);
 
 //========================================
 

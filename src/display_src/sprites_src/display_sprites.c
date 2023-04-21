@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/21 13:06:50 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/21 14:22:47 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	put_image_to_image(t_data *data, t_vector_2 pos, t_img *img)
 		while (i < img->size.x)
 		{
 			pixel = get_color_pixel(img, i, j);
-			img_pix_put(&data->img, i + pos.x, j + pos.y, pixel);
+			if (((pixel >> 24)) != 0xFF)
+				img_pix_put(&data->img, i + pos.x, j + pos.y, pixel);
 			i++;
 		}
 		j++;
@@ -103,4 +104,10 @@ void	display_sprites(t_data *data)
 		j++;
 		y += data->game.level.map_vector.x;
 	}
+	printf("pos player : x : [%f] y : [%f]\n", data->game.player_pos.x,
+		data->game.player_pos.y);
+	put_image_to_image(data,
+		(t_vector_2){data->game.player_pos.x * CHUNK_SIZE,
+		data->game.player_pos.y * CHUNK_SIZE},
+		&(data->map_sprites[data->game.level.nb_cases].sprite_img)[0]);
 }

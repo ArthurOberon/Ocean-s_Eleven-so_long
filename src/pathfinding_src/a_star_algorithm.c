@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:53:34 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/29 14:51:05 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/21 14:04:08 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,11 @@ static int	find_lower_f(t_path_map *path_map, int nb_cases)
 	return (lower_f_pos);
 }
 
-int	a_star(t_level level, int end_pos)
+int	a_star(t_level level, int pos, int end_pos)
 {
-	int			pos;
 	int			bool_end;
 
 	bool_end = 0;
-	pos = find_character(level, 'P');
-	level.player_pos = pos;
 	level.path_map[pos].dst_to_end = dst_to_end(pos,
 			end_pos, level.map_vector.x);
 	level.path_map[pos].f = level.path_map[pos].dst_to_end;
