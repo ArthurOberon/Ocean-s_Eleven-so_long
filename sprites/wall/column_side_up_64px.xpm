@@ -1,5 +1,5 @@
 /* XPM */
-static char * sprite_carpet_test_3_64px_xpm[] = {
+static char * sprite_column_side_up_64px_xpm[] = {
 "64 64 10 1",
 " 	c #C6BF92",
 ".	c #000000",

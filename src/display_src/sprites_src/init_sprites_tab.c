@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:39:40 by arthurobero       #+#    #+#             */
-/*   Updated: 2023/04/21 14:31:26 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/24 14:08:36 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static t_img	resize_img(void *ptr, t_img *src, t_vector_2 dst_size)
 	return (new_img);
 }
 
-static void	get_img_sprite(void *ptr, char *path, t_sprite *sprite)
+void	get_img_sprite(void *ptr, char *path, t_sprite *sprite)
 {
 	int		i;
 	t_img	raw_img;
@@ -85,11 +85,9 @@ void	init_sprites_tab(t_data *data, t_sprite *map_sprites)
 			get_img_sprite(data->mlx_ptr, "sprites/ground/carpet_64px.xpm",
 				&map_sprites[i]);
 		else if (data->game.level.map[i] == '1')
-			get_img_sprite(data->mlx_ptr, "sprites/wall/column_64px.xpm",
-				&map_sprites[i]);
+			get_wall_image(data, map_sprites, i);
 		else if (data->game.level.map[i] == 'C')
-			get_img_sprite(data->mlx_ptr,
-				"sprites/wall/roulette_table_64px.xpm",
+			get_img_sprite(data->mlx_ptr, "sprites/debug/test_32px.xpm",
 				&map_sprites[i]);
 		else if (data->game.level.map[i] == 'E')
 			get_img_sprite(data->mlx_ptr, "sprites/debug/test.xpm",

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/21 16:38:10 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/24 13:23:20 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,9 +246,16 @@ void				display_debug(t_img *img, int color,
 						t_vector_2 *chunk_pos, int size);
 
 // |----------------------------------------|
+// |			SPRITES_ARRENGEMENT			|
+// |----------------------------------------|
+
+void				get_wall_image(t_data *data, t_sprite*map_sprites, int pos);
+
+// |----------------------------------------|
 // |			INIT_SPRITES_TAB			|
 // |----------------------------------------|
 
+void				get_img_sprite(void *ptr, char *path, t_sprite *sprite);
 void				init_sprites_tab(t_data *data, t_sprite *map_sprites);
 
 // |----------------------------------------|

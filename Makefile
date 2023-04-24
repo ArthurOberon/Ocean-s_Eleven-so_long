@@ -16,6 +16,7 @@ SPRITES_SRC		=	$(addprefix sprites_src/, \
 					init_sprites.c \
 				 	display_sprites.c \
 					init_sprites_tab.c \
+					sprites_arrengement.c \
 					\
 					)
 

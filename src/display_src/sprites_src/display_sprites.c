@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/21 17:22:29 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/24 14:17:03 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	put_image_to_image(t_data *data, t_vector_2 pos, t_img *img)
 
 static void	display_player(t_data *data)
 {
-	printf("pos player : x : [%d] y : [%d]\n", data->game.player_pos.x,
-		data->game.player_pos.y);
+	// printf("pos player : x : [%d] y : [%d]\n", data->game.player_pos.x,
+		// data->game.player_pos.y);
 	put_image_to_image(data,
 		(t_vector_2){data->game.player_pos.x * CHUNK_SIZE,
 		data->game.player_pos.y * CHUNK_SIZE},
@@ -45,10 +45,9 @@ static void	display_player(t_data *data)
 
 void	display_sprites(t_data *data)
 {
-	int			i;
-	int			j;
-	int			k;
-	int			y;
+	int	i;
+	int	j;
+	int	y;
 
 	j = 0;
 	y = 0;
@@ -57,13 +56,10 @@ void	display_sprites(t_data *data)
 		i = 0;
 		while (i < data->game.level.map_vector.x)
 		{
-			k = 0;
-			while (k < data->map_sprites[i + y].size)
-			{
-				put_image_to_image(data,
-					(t_vector_2){i * CHUNK_SIZE, j * CHUNK_SIZE},
-					&(data->map_sprites[i + y].sprite_img)[k++]);
-			}
+			put_image_to_image(data,
+				(t_vector_2){i * CHUNK_SIZE, j * CHUNK_SIZE},
+				&(data->map_sprites[i + y].sprite_img)
+			[data->map_sprites[i + j].frame]);
 			i++;
 		}
 		j++;
@@ -71,3 +67,14 @@ void	display_sprites(t_data *data)
 	}
 	display_player(data);
 }
+
+			// data->map_sprites[i + j].frame++;
+
+// int	k;
+// k = 0;
+			// while (k < data->map_sprites[i + y].size)
+			// {
+				// put_image_to_image(data,
+					// (t_vector_2){i * CHUNK_SIZE, j * CHUNK_SIZE},
+					// &(data->map_sprites[i + y].sprite_img)[k++]);
+			// }
