@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/24 17:22:11 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/25 19:10:15 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,29 +48,19 @@ void	display_sprites(t_data *data)
 	int		i;
 	int		j;
 	int		y;
-	int		diff_time;
 
 	j = 0;
 	y = 0;
-	diff_time = 1000;
 	while (j < data->game.level.map_vector.y)
 	{
 		i = 0;
 		while (i < data->game.level.map_vector.x)
 		{
+			printf("total : [%d]\n", i + j);
 			put_image_to_image(data,
 				(t_vector_2){i * CHUNK_SIZE, j * CHUNK_SIZE},
 				&(data->map_sprites[i + y].sprite_img)
 			[data->map_sprites[i + j].frame]);
-			if (clock() % diff_time == 0)
-			{
-				printf("clock = %ld\n", clock() % diff_time);
-				data->map_sprites[i + j].frame += 1;
-				if (data->map_sprites[i + j].frame
-					== data->map_sprites[i + j].size)
-					data->map_sprites[i + j].frame = 0;
-				printf("New frame = %d\n\n", data->map_sprites[i + j].frame);
-			}
 			i++;
 		}
 		j++;

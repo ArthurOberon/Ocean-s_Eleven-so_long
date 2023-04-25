@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/21 16:40:48 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/25 19:29:50 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,13 @@ void	display(t_game *game)
 	t_data	data;
 
 	data = data_init(game);
-	init_sprite(&data);
+	init_sprites(&data);
 	mlx_hook(data.win_ptr, DestroyNotify, KeyPressMask, close_window, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
 	mlx_loop_hook(data.mlx_ptr, &on_update, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_image(data.mlx_ptr, data.img.mlx_img);
-	free(data.mlx_ptr);
-	free(data.game.chunks_pos);
+	free_data(data);
 }
 
 	// mlx_destroy_display(data.mlx_ptr);

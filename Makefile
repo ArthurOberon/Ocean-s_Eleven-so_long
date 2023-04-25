@@ -11,6 +11,10 @@ MLX_FLAGS 		=	-L$(LIB_DIR) -lmlx -lX11 -lXext
 DEPS 			=	$(INCLUDES_DIR)so_long.h Makefile
 
 
+FREE_SRC		=	$(addprefix free_src/, \
+					free.c \
+					)
+
 #SOURCES USE TO INIT AND DISPLAY SPRITES
 SPRITES_SRC		=	$(addprefix sprites_src/, \
 					init_sprites.c \
@@ -18,6 +22,7 @@ SPRITES_SRC		=	$(addprefix sprites_src/, \
 					init_sprites_tab.c \
 					sprites_arrengement.c \
 					\
+					new_init_sprite.c \
 					)
 
 # SOURCES USE TO DISPLAY THE GAME
@@ -77,6 +82,7 @@ SL_SRCS 		=	$(addprefix $(SRC_DIR), \
 					$(MAP_SRC) \
 					$(PATH_SRC) \
 					$(UTILS_SRC) \
+					$(FREE_SRC) \
 					so_long.c \
 					\
 					temporary.c \

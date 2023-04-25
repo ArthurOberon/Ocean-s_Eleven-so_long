@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:21:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/17 17:08:54 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/25 19:29:27 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,5 @@ int	main(int argc, char **argv)
 	}
 	pathfinding(&game);
 	display(&game);
-	free(game.level.map);
-	free(game.level.path_map);
 	return (0);
 }

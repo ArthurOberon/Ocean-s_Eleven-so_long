@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/24 16:11:09 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/25 19:29:09 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,12 @@ void				exit_map_error(void);
 void				exit_pathfinding(t_level level, char flag, int pos_error);
 
 // |================================================|
+// |					FREE_SRC					|
+// |================================================|
+
+void				free_data(t_data data);
+
+// |================================================|
 // |					UTILS_SRC					|
 // |================================================|
 
@@ -230,7 +236,7 @@ void				display(t_game *game);
 // |			INIT_SPRITES			|
 // |------------------------------------|
 
-void				init_sprite(t_data *data);
+void				init_sprites(t_data *data);
 
 // |------------------------------------|
 // |			DISPLAY_SPRITES			|
