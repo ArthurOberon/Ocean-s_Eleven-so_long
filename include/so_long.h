@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/25 19:29:09 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/25 22:08:41 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,8 +150,9 @@ int					has_all_characters(char **map, int x, int y);
 // |			PARSE_MAP_UTILS_CHAR_MANIPULATIONS			|
 // |--------------------------------------------------------|
 
-char				*line_to_tab(char *line);
 void				free_2d_char_tab(char **tab, int y);
+
+char				*line_to_tab(char *line);
 char				*char_2d_to_1d(char **map_2d, int x, int y);
 
 // |================================================|
@@ -219,6 +220,35 @@ t_lst_map			*ft_lstlast(t_lst_map *lst);
 // |					DISPLAY_SRC					|
 // |================================================|
 
+// _____________________________________________________________________________
+//								SPRITES_SRC
+
+// |--------------------------------|
+// |			INIT_IMAGES			|
+// |--------------------------------|
+
+void				init_xpm_file(void *ptr, char *path, t_img *img);
+void				init_new_resize_img(void *ptr, t_img *new_img,
+						t_vector_2 new_size);
+
+t_img				resize_img(void *ptr, t_img *src, t_vector_2 dst_size);
+
+// |------------------------------------|
+// |			INIT_SPRITES			|
+// |------------------------------------|
+
+void				init_sprite(void *ptr, t_sprite *sprite, int size,
+						char *path);
+void				init_sprites(t_data *data);
+
+// |----------------------------------------|
+// |			SPRITES_ARRENGEMENT			|
+// |----------------------------------------|
+
+void				get_wall_image(t_data *data, t_sprite*map_sprites, int pos);
+
+// _____________________________________________________________________________
+
 // |----------------------------|
 // |			HANDLER			|
 // |----------------------------|
@@ -231,12 +261,6 @@ int					handle_keypress(int keysym, t_data *data);
 // |----------------------------|
 
 void				display(t_game *game);
-
-// |------------------------------------|
-// |			INIT_SPRITES			|
-// |------------------------------------|
-
-void				init_sprites(t_data *data);
 
 // |------------------------------------|
 // |			DISPLAY_SPRITES			|
@@ -253,24 +277,12 @@ void				display_debug(t_img *img, int color,
 						t_vector_2 *chunk_pos, int size);
 
 // |----------------------------------------|
-// |			SPRITES_ARRENGEMENT			|
-// |----------------------------------------|
-
-void				get_wall_image(t_data *data, t_sprite*map_sprites, int pos);
-
-// |----------------------------------------|
-// |			INIT_SPRITES_TAB			|
-// |----------------------------------------|
-
-void				get_img_sprite(void *ptr, char *path, t_sprite *sprite);
-void				init_sprites_tab(t_data *data, t_sprite *map_sprites);
-
-// |----------------------------------------|
 // |			DISPLAY_FUNCTIONS			|
 // |----------------------------------------|
 
 void				background(t_img *img, int color);
 void				img_pix_put(t_img *img, int x, int y, int color);
+
 __uint32_t			get_color_pixel(t_img *img, int i, int j);
 
 // |====================================================|

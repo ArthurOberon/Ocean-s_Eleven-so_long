@@ -5,58 +5,71 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/17 17:01:24 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/25 18:40:25 by aoberon          ###   ########.fr       */
+/*   Created: 2023/04/25 18:40:38 by aoberon           #+#    #+#             */
+/*   Updated: 2023/04/25 22:02:35 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// void	init_frame_size(t_data *data, t_sprite *map_sprites)
-// {
-// 	int	i;
+static char	*find_sprite_path(char *start_path)
+{
+	char	*complet_path;
 
-// 	i = 0;
-// 	while (i < data->game.level.nb_cases)
-// 	{
-// 		if (data->game.level.map[i] == '0')
-// 			map_sprites[i].size = 1;
-// 		else if (data->game.level.map[i] == '1'
-// 			|| data->game.level.map[i] == 'P')
-// 			map_sprites[i].size = 1;
-// 		else if (data->game.level.map[i] == 'C')
-// 			map_sprites[i].size = 1;
-// 		else if (data->game.level.map[i] == 'E')
-// 			map_sprites[i].size = 1;
-// 		i++;
-// 	}
-// 	map_sprites[i].size = 1;
-// }
+	return (start_path);
+}
 
-// void	init_img_tab(t_sprite *map_sprites, int size)
-// {
-// 	int	i;
+void	init_sprite(void *ptr, t_sprite *sprite, int size, char *path)
+{
+	int		i;
+	char	*complet_path;
 
-// 	i = 0;
-// 	while (i < size)
-// 	{
-// 		map_sprites[i].sprite_img = malloc(sizeof(t_img) * map_sprites[i].size);
-// 		if (!map_sprites)
-// 			printf("PANIC ! free and exit.");
-// 		map_sprites[i].sprite_img->mlx_img = NULL;
-// 		i++;
-// 	}
-// }
+	sprite->frame = 0;
+	sprite->size = size;
+	sprite->sprite_img = malloc(sizeof(t_img) * size);
+	if (!sprite->sprite_img)
+		printf("PANIC ! free and exit.\n");
+	i = 0;
+	complet_path = find_sprite_path(path);
+	while (i < size)
+	{
+		init_xpm_file(ptr, complet_path, &(sprite->sprite_img)[i]);
+		(sprite->sprite_img)[i] = resize_img(ptr, &(sprite->sprite_img)[i],
+				(t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+		i++;
+	}
+}
 
-// void	init_sprite(t_data *data)
-// {
-// 	t_sprite	*map_sprites;
+void	get_sprite(t_data *data, t_sprite *sprite, int i)
+{
+	if (data->game.level.map[i] == '0' || data->game.level.map[i] == 'P')
+		init_sprite(data->mlx_ptr, sprite, 1,
+			"sprites/ground/carpet_64px.xpm");
+	else if (data->game.level.map[i] == '1')
+		get_wall_image(data, sprite, i);
+	else if (data->game.level.map[i] == 'C')
+		init_sprite(data->mlx_ptr, sprite, 1,
+			"sprites/debug/test_32px.xpm");
+	else if (data->game.level.map[i] == 'E')
+		init_sprite(data->mlx_ptr, sprite, 1,
+			"sprites/debug/test.xpm");
+}
 
-// 	map_sprites = malloc(sizeof(t_sprite) * (data->game.level.nb_cases + 1));
-// 	if (!map_sprites)
-// 		printf("PANIC ! free and exit.");
-// 	init_frame_size(data, map_sprites);
-// 	init_img_tab(map_sprites, data->game.level.nb_cases + 1);
-// 	init_sprites_tab(data, map_sprites);
-// 	data->map_sprites = map_sprites;
-// }
+void	init_sprites(t_data *data)
+{
+	int			i;
+	t_sprite	*map_sprites;
+
+	i = 0;
+	map_sprites = malloc(sizeof(t_sprite) * (data->game.level.nb_cases + 1));
+	if (!map_sprites)
+		printf("PANIC ! free and exit.\n");
+	while (i < data->game.level.nb_cases)
+	{
+		get_sprite(data, &map_sprites[i], i);
+		i++;
+	}
+	init_sprite(data->mlx_ptr, &map_sprites[i], 1,
+		"sprites/player/player_64px.xpm");
+	data->map_sprites = map_sprites;
+}

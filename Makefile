@@ -17,12 +17,9 @@ FREE_SRC		=	$(addprefix free_src/, \
 
 #SOURCES USE TO INIT AND DISPLAY SPRITES
 SPRITES_SRC		=	$(addprefix sprites_src/, \
+					init_images.c \
 					init_sprites.c \
-				 	display_sprites.c \
-					init_sprites_tab.c \
 					sprites_arrengement.c \
-					\
-					new_init_sprite.c \
 					)
 
 # SOURCES USE TO DISPLAY THE GAME
@@ -31,14 +28,13 @@ DISPLAY_SRC		=	$(addprefix display_src/, \
 				 	display.c \
 					display_debug.c \
 				 	display_useful.c \
+				 	display_sprites.c \
 					$(SPRITES_SRC) \
-					\
 					)
 
 # SOURCES USE TO EXIT WITH ERROR
 ERROR_SRC 		=	$(addprefix error_src/, \
 					exit.c \
-					\
 					)
 
 # SOURCES USE FOR GET_NEXT_LINE

@@ -45,5 +45,9 @@ make all
 - [x] Positions of all collectibles
 - [x] a_star with each collectible position
 - [ ] bzero_path_map struct instead of free/malloc
+
+### OTHERS
 - [ ] Implement my printf
 - [ ] free t_sprite map_sprites + free map_sprites[i].sprite_img
+- [ ] replace all mallocs by callocs
+- [ ] sort so_long.h by alphabetic
