@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:40:38 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/26 15:39:31 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/26 15:55:49 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ void	init_sprite(void *ptr, t_sprite *sprite, int size, char *path)
 void	get_sprite(t_data *data, t_sprite *sprite, int i)
 {
 	if (data->game.level.map[i] == '0' || data->game.level.map[i] == 'P')
-		init_sprite(data->mlx_ptr, sprite, 2, "ground/carpet_64px");
+		init_sprite(data->mlx_ptr, sprite, FRAME_GROUND, "ground/carpet_64px");
 	else if (data->game.level.map[i] == '1')
 		get_wall_image(data, sprite, i);
 	else if (data->game.level.map[i] == 'C')
-		init_sprite(data->mlx_ptr, sprite, 1, "debug/test_32px");
+		init_sprite(data->mlx_ptr, sprite, FRAME_COLLECT, "debug/test_32px");
 	else if (data->game.level.map[i] == 'E')
-		init_sprite(data->mlx_ptr, sprite, 1, "debug/test");
+		init_sprite(data->mlx_ptr, sprite, FRAME_EXIT, "debug/test");
 }
 
 void	init_sprites(t_data *data)
@@ -86,7 +86,7 @@ void	init_sprites(t_data *data)
 		get_sprite(data, &map_sprites[i], i);
 		i++;
 	}
-	init_sprite(data->mlx_ptr, &map_sprites[i], 1,
+	init_sprite(data->mlx_ptr, &map_sprites[i], FRAME_PLAYER,
 		"player/player_64px");
 	data->map_sprites = map_sprites;
 }
