@@ -11,78 +11,65 @@ MLX_FLAGS 		=	-L$(LIB_DIR) -lmlx -lX11 -lXext
 DEPS 			=	$(INCLUDES_DIR)so_long.h Makefile
 
 
-# SOURCES USE TO EXIT WITH ERROR
-ERROR_SRC 		=	$(addprefix error_src/, \
-					exit.c \
-					)
-
-FREE_SRC		=	$(addprefix free_src/, \
-					free.c \
-					)
-
-# SOURCES USE FOR GET_NEXT_LINE
-GNL_SRC 		=	$(addprefix gnl_src/, \
-					get_next_line.c \
-					get_next_line_utils.c \
-					)
-
-# SOURCES USE FOR ALL TYPE OF LISTS
-LST_SRC 		=	$(addprefix list_src/, \
-					lst_map_utils.c \
-					)
-
-# SOURCES USE TO READ AND PARSE THE MAP
-MAP_SRC 		=	$(addprefix map_src/, \
-					parse_map.c \
-					parse_map_utils_check_map.c \
-					parse_map_utils_char_manipulations.c \
-					)
-
-# SOURCES USE TO READ AND PARSE THE MAP
-PATH_SRC 		=	$(addprefix pathfinding_src/, \
-					pathfinding.c \
-					a_star_utils.c \
-					a_star_algorithm.c \
-					)
-
-# IT'S IN THE NAME
-UTILS_SRC 		=	$(addprefix utils_src/, \
-					utils.c \
-					mem_functions.c \
-					print_functions.c \
-					)
-
-#SOURCES USE TO INIT AND DISPLAY SPRITES
-SPRITES_SRC		=	$(addprefix sprites_src/, \
-					init_images.c \
-					init_sprites.c \
-					sprites_arrengement.c \
-					)
-
-# SOURCES USE TO DISPLAY THE GAME
-DISPLAY_SRC		=	$(addprefix display_src/, \
+# SOURCES USE TO DISPLAY THE GAME WITH THE MLX
+SRC_DISPLAY		=	$(addprefix src_display_mlx/, \
 				 	display.c \
 					display_debug.c \
 				 	display_useful.c \
 				 	display_sprites.c \
 					)
 
-MLX_SRC			=	$(addprefix mlx_src/, \
+# SOURCES USE FOR THE GAMEPLAY
+SRC_GAMEPLAY	=	$(addprefix src_gameplay/, \
 					handler.c \
-					$(DISPLAY_SRC) \
-					$(SPRITES_SRC) \
+					)
+
+# SOURCES USE FOR GET_NEXT_LINE
+SRC_GNL			=	$(addprefix src_gnl/, \
+					get_next_line.c \
+					get_next_line_utils.c \
+					)
+
+# SOURCES USE TO INIT VARIABLES FOR DISPLAY
+SRC_INIT_MLX	=	$(addprefix src_init_mlx/, \
+					init_images.c \
+					init_sprites.c \
+					sprites_arrengement.c \
+					)
+
+# SOURCES USE TO READ AND PARSE THE MAP
+SRC_PARSING		=	$(addprefix src_parsing/, \
+					lst_map_utils.c \
+					parse_map_utils_char_manipulations.c \
+					parse_map_utils_check_map.c \
+					parse_map.c \
+					)
+
+# SOURCES USE FOR THE ALGO A_STAR
+SRC_PATH 		=	$(addprefix src_pathfinding/, \
+					pathfinding.c \
+					a_star_utils.c \
+					a_star_algorithm.c \
+					)
+
+# SOURCES USEFULS
+SRC_TOOLS		=	$(addprefix src_tools/, \
+					exit.c \
+					free.c \
+					mem_functions.c \
+					print_functions.c \
+					utils.c \
 					)
 
 # ALL SOURCES FOR SO_LONG
 SL_SRCS 		=	$(addprefix $(SRC_DIR), \
-					$(ERROR_SRC) \
-					$(FREE_SRC) \
-					$(GNL_SRC) \
-					$(LST_SRC) \
-					$(MAP_SRC) \
-					$(MLX_SRC) \
-					$(PATH_SRC) \
-					$(UTILS_SRC) \
+					$(SRC_DISPLAY) \
+					$(SRC_GAMEPLAY) \
+					$(SRC_GNL) \
+					$(SRC_INIT_MLX) \
+					$(SRC_PARSING) \
+					$(SRC_PATH) \
+					$(SRC_TOOLS) \
 					so_long.c \
 					\
 					temporary.c \

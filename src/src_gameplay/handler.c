@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:34:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/26 19:01:05 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/26 19:04:46 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,3 +28,8 @@ int	handle_keypress(int keysym, t_data *data)
 	}
 	return (0);
 }
+
+	// if (keysym == XK_D || keysym == XK_d)
+	// {
+	// 	data->game.player_pos.x += 1;
+	// }
