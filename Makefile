@@ -15,7 +15,7 @@ DEPS 			=	$(INCLUDES_DIR)so_long.h Makefile
 SRC_DISPLAY		=	$(addprefix src_display_mlx/, \
 				 	display.c \
 					display_debug.c \
-				 	display_useful.c \
+				 	display_tools.c \
 				 	display_sprites.c \
 					)
 
@@ -39,10 +39,10 @@ SRC_INIT_MLX	=	$(addprefix src_init_mlx/, \
 
 # SOURCES USE TO READ AND PARSE THE MAP
 SRC_PARSING		=	$(addprefix src_parsing/, \
-					lst_map_utils.c \
-					parse_map_utils_char_manipulations.c \
-					parse_map_utils_check_map.c \
 					parse_map.c \
+					lst_map_utils.c \
+					parse_map_utils_check_map.c \
+					parse_map_utils_char_manipulations.c \
 					)
 
 # SOURCES USE FOR THE ALGO A_STAR

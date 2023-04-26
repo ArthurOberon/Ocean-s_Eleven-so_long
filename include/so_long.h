@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/26 17:20:57 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/26 21:51:49 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,112 +129,59 @@ typedef struct s_data
 
 	// int		bpp; /* bits per pixel */
 
+// |====================================================|
+// |					SRC_DISPLAY_MLX					|
+// |====================================================|
+
+// |------------------------------------|
+// |			DISPLAY_DEBUG			|
+// |------------------------------------|
+
+void				display_map(t_img *img, t_game game);
+void				display_debug(t_img *img, int color,
+						t_vector_2 *chunk_pos, int size);
+
+// |------------------------------------|
+// |			DISPLAY_SPRITES			|
+// |------------------------------------|
+
+void				display_sprites(t_data *data);
+
+// |------------------------------------|
+// |			DISPLAY_TOOLS			|
+// |------------------------------------|
+
+void				background(t_img *img, int color);
+void				img_pix_put(t_img *img, int x, int y, int color);
+
+__uint32_t			get_color_pixel(t_img *img, int i, int j);
+
+// |----------------------------|
+// |			DISPLAY			|
+// |----------------------------|
+
+void				display(t_game *game);
+
+// |====================================================|
+// |					SRC_GAMEPLAY					|
+// |====================================================|
+
+// |----------------------------|
+// |			HANDLER			|
+// |----------------------------|
+
+int					close_window(t_data *data);
+int					handle_keypress(int keysym, t_data *data);
+
 // |============================================|
-// |					GNL_SRC					|
+// |					SRC_GNL					|
 // |============================================|
 
 char				*get_next_line(int fd);
 
-// |============================================|
-// |					MAP_SRC					|
-// |============================================|
-
-// |--------------------------------|
-// |			PARSE_MAPS			|
-// |--------------------------------|
-
-int					parse_map(char *file_name, char **map,
-						t_vector_2 *map_vector);
-
-// |------------------------------------------------|
-// |			PARSE_MAP_UTILS_check_MAP			|
-// |------------------------------------------------|
-
-int					is_ber(char *file_name);
-int					is_closed(char **map, int x, int y);
-int					is_rectangle(t_lst_map *lst, int size);
-int					has_all_characters(char **map, int x, int y);
-
-// |--------------------------------------------------------|T
-// |			PARSE_MAP_UTILS_CHAR_MANIPULATIONS			|
-// |--------------------------------------------------------|
-
-void				free_2d_char_tab(char **tab, int y);
-
-char				*line_to_tab(char *line);
-char				*char_2d_to_1d(char **map_2d, int x, int y);
-
-// |================================================|
-// |					ERROR_SRC					|
-// |================================================|
-
-void				exit_arg_error(void);
-void				exit_map_error(void);
-void				exit_pathfinding(t_level level, char flag, int pos_error);
-
-// |================================================|
-// |					FREE_SRC					|
-// |================================================|
-
-void				free_data(t_data data);
-
-// |================================================|
-// |					UTILS_SRC					|
-// |================================================|
-
-// |----------------------------|
-// |			UTILS			|
-// |----------------------------|
-
-int					is_equals(char *s1, char *s2);
-
-char				*ft_itoa(int n);
-char				*ft_strjoin(char const *s1, char const *s2);
-
-long unsigned int	ft_abs(long n);
-
-// |------------------------------------|
-// |			MEM_FUNCTIONS			|
-// |------------------------------------|
-void				ft_bzero(void *s, size_t n);
-
-void				ft_memset(void *addr, size_t n, int value);
-
-void				*ft_calloc(size_t nmemb, size_t size);
-void				*ft_memcpy(void *dest, const void *src, size_t n);
-
-// |------------------------------------|
-// |			PRINT_FUNCTIONS			|
-// |------------------------------------|
-
-void				ft_putnbr(int nb);
-void				ft_putstr(char *s);
-void				ft_putchar(char c);
-
-size_t				ft_strlen(const char *s);
-
-// |================================================|
-// |					LIST_SRC					|
-// |================================================|
-
-// |------------------------------------|
-// |			LST_MAP_UTILS			|
-// |------------------------------------|
-
-int					ft_lstsize(t_lst_map *lst);
-
-void				ft_lstclear(t_lst_map **lst);
-void				ft_lstadd_back(t_lst_map **lst, t_lst_map *new);
-
-t_lst_map			*ft_lstnew(void *content);
-t_lst_map			*ft_lstlast(t_lst_map *lst);
-
-// |================================================|
-// |					DISPLAY_SRC					|
-// |================================================|
-
-// _____________________________________________________________________________
-//								SPRITES_SRC
+// |====================================================|
+// |					SRC_INIT_MLX					|
+// |====================================================|
 
 // |--------------------------------|
 // |			INIT_IMAGES			|
@@ -260,53 +207,56 @@ void				init_sprites(t_data *data);
 
 void				get_wall_image(t_data *data, t_sprite*map_sprites, int pos);
 
-// _____________________________________________________________________________
-
-// |----------------------------|
-// |			HANDLER			|
-// |----------------------------|
-
-int					close_window(t_data *data);
-int					handle_keypress(int keysym, t_data *data);
-
-// |----------------------------|
-// |			DISPLAY			|
-// |----------------------------|
-
-void				display(t_game *game);
+// |================================================|
+// |					SRC_PARSING					|
+// |================================================|
 
 // |------------------------------------|
-// |			DISPLAY_SPRITES			|
+// |			LST_MAP_UTILS			|
 // |------------------------------------|
 
-void				display_sprites(t_data *data);
+int					ft_lstsize(t_lst_map *lst);
 
-// |------------------------------------|
-// |			DISPLAY_DEBUG			|
-// |------------------------------------|
+void				ft_lstclear(t_lst_map **lst);
+void				ft_lstadd_back(t_lst_map **lst, t_lst_map *new);
 
-void				display_map(t_img *img, t_game game);
-void				display_debug(t_img *img, int color,
-						t_vector_2 *chunk_pos, int size);
+t_lst_map			*ft_lstnew(void *content);
+t_lst_map			*ft_lstlast(t_lst_map *lst);
 
-// |----------------------------------------|
-// |			DISPLAY_FUNCTIONS			|
-// |----------------------------------------|
+// |--------------------------------------------------------|T
+// |			PARSE_MAP_UTILS_CHAR_MANIPULATIONS			|
+// |--------------------------------------------------------|
 
-void				background(t_img *img, int color);
-void				img_pix_put(t_img *img, int x, int y, int color);
+void				free_2d_char_tab(char **tab, int y);
 
-__uint32_t			get_color_pixel(t_img *img, int i, int j);
+char				*line_to_tab(char *line);
+char				*char_2d_to_1d(char **map_2d, int x, int y);
 
-// |====================================================|
-// |					PATHFINDING_SRC					|
-// |====================================================|
+// |------------------------------------------------|
+// |			PARSE_MAP_UTILS_check_MAP			|
+// |------------------------------------------------|
+
+int					is_ber(char *file_name);
+int					is_closed(char **map, int x, int y);
+int					is_rectangle(t_lst_map *lst, int size);
+int					has_all_characters(char **map, int x, int y);
 
 // |--------------------------------|
-// |			PATHFINDING			|
+// |			PARSE_MAPS			|
 // |--------------------------------|
 
-int					pathfinding(t_game *game);
+int					parse_map(char *file_name, char **map,
+						t_vector_2 *map_vector);
+
+// |====================================================|
+// |					SRC_PATHFINDING					|
+// |====================================================|
+
+// |----------------------------------------|
+// |			A_STAR_ALGORITHM			|
+// |----------------------------------------|
+
+int					a_star(t_level level, int pos, int end_pos);
 
 // |------------------------------------|
 // |			A_STAR_UTILS			|
@@ -318,11 +268,60 @@ int					find_character(t_level level, char searched_char);
 
 t_path_map			*init_path_map(t_level level);
 
-// |----------------------------------------|
-// |			A_STAR_ALGORITHM			|
-// |----------------------------------------|
+// |--------------------------------|
+// |			PATHFINDING			|
+// |--------------------------------|
 
-int					a_star(t_level level, int pos, int end_pos);
+int					pathfinding(t_game *game);
+
+// |================================================|
+// |					SRC_TOOLS					|
+// |================================================|
+
+// |----------------------------|
+// |			EXIT			|
+// |----------------------------|
+
+void				exit_arg_error(void);
+void				exit_map_error(void);
+void				exit_pathfinding(t_level level, char flag, int pos_error);
+
+// |----------------------------|
+// |			FREE			|
+// |----------------------------|
+
+void				free_data(t_data data);
+
+// |------------------------------------|
+// |			MEM_FUNCTIONS			|
+// |------------------------------------|
+void				ft_bzero(void *s, size_t n);
+
+void				ft_memset(void *addr, size_t n, int value);
+
+void				*ft_calloc(size_t nmemb, size_t size);
+void				*ft_memcpy(void *dest, const void *src, size_t n);
+
+// |------------------------------------|
+// |			PRINT_FUNCTIONS			|
+// |------------------------------------|
+
+void				ft_putnbr(int nb);
+void				ft_putstr(char *s);
+void				ft_putchar(char c);
+
+size_t				ft_strlen(const char *s);
+
+// |----------------------------|
+// |			UTILS			|
+// |----------------------------|
+
+int					is_equals(char *s1, char *s2);
+
+char				*ft_itoa(int n);
+char				*ft_strjoin(char const *s1, char const *s2);
+
+long unsigned int	ft_abs(long n);
 
 //========================================
 
