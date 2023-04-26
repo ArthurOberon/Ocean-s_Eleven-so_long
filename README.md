@@ -52,4 +52,5 @@ make all
 - [ ] Replace all mallocs by callocs
 - [x] Sort so_long.h by alphabetic
 - [ ] Write Comments to functions with extension doxygen
-- [ ] Protect init_xpm_file ?
+- [x] Protect init_xpm_file
+- [ ] Create new image with size of the total image or init data->img at the size of the total image

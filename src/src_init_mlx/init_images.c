@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:02:17 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/26 14:54:52 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/26 22:07:30 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	init_xpm_file(void *ptr, char *path, t_img *img)
 void	init_new_resize_img(void *ptr, t_img *new_img, t_vector_2 new_size)
 {
 	new_img->mlx_img = mlx_new_image(ptr, new_size.x, new_size.y);
+	if (!new_img->mlx_img)
+		printf("PANIC ! free and exit.");
 	new_img->addr = mlx_get_data_addr(new_img->mlx_img, &new_img->bpp,
 			&new_img->line_len, &new_img->endian);
 	new_img->size = new_size;
