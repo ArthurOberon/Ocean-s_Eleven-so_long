@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 12:49:01 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/21 14:07:21 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/26 14:53:13 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,14 @@ static int	a_star_collectibles(t_game *game, t_vector_2 *c_pos, int c_count)
 	i = 0;
 	while (i < c_count)
 	{
-		free(game->level.path_map);
-		game->level.path_map = init_path_map(game->level);
-		if (!game->level.path_map)
-			return (printf("PANIC send to pathfind ! Free level tabs' !\n"), 0);
 		c_pos_converted = c_pos[i].x + (c_pos[i].y * game->level.map_vector.x);
 		if (!a_star(game->level, game->level.player_pos_tab, c_pos_converted))
 		{
 			free(c_pos);
 			exit_pathfinding(game->level, 'C', c_pos_converted);
 		}
+		ft_bzero(game->level.path_map, sizeof(t_path_map)
+			* game->level.nb_cases);
 		i++;
 	}
 	free(c_pos);
@@ -90,10 +88,7 @@ int	pathfinding(t_game *game)
 		return (printf("PANIC ! Free level tabs' !\n"), 0);
 	if (!a_star_collectibles(game, c_pos, c_count))
 		return (printf("PANIC from a_star_c ! Free level tabs' !\n"), 0);
-	free(game->level.path_map);
-	game->level.path_map = init_path_map(game->level);
-	if (!game->level.path_map)
-		return (printf("PANIC send to pathfind ! Free level tabs' !\n"), 0);
+	ft_bzero(game->level.path_map, sizeof(t_path_map) * game->level.nb_cases);
 	if (!a_star(game->level, game->level.player_pos_tab, game->level.exit_pos))
 		exit_pathfinding(game->level, 'E', game->level.exit_pos);
 	return (1);

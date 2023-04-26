@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/25 22:08:41 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/26 15:25:32 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define WINDOW_HEIGHT 800
 
 # define CHUNK_SIZE 128
+# define SPRITES_PATH "sprites/"
 
 # define IS_DEBUG 1
 
@@ -178,6 +179,10 @@ void				free_data(t_data data);
 // |----------------------------|
 
 int					is_equals(char *s1, char *s2);
+
+char				*ft_itoa(int n);
+char				*ft_strjoin(char const *s1, char const *s2);
+
 long unsigned int	ft_abs(long n);
 
 // |------------------------------------|

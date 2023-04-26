@@ -44,10 +44,12 @@ make all
 - [x] Number of collectibles
 - [x] Positions of all collectibles
 - [x] a_star with each collectible position
-- [ ] bzero_path_map struct instead of free/malloc
+- [x] bzero_path_map struct instead of free/malloc
 
 ### OTHERS
 - [ ] Implement my printf
-- [ ] free t_sprite map_sprites + free map_sprites[i].sprite_img
-- [ ] replace all mallocs by callocs
-- [ ] sort so_long.h by alphabetic
+- [x] Free t_sprite map_sprites + free map_sprites[i].sprite_img
+- [ ] Replace all mallocs by callocs
+- [ ] Sort so_long.h by alphabetic
+- [ ] Write Comments to functions with extension doxygen
+- [ ] Protect init_xpm_file ?

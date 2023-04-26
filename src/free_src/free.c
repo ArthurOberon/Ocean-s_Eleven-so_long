@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 19:17:43 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/25 21:28:13 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/26 15:39:37 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	free_data(t_data data)
 		{
 			mlx_destroy_image(data.mlx_ptr,
 				data.map_sprites[i].sprite_img[j].mlx_img);
-			free(data.map_sprites[i].sprite_img);
 			j++;
 		}
+		free(data.map_sprites[i].sprite_img);
 		i++;
 	}
 	free(data.map_sprites);
