@@ -11,30 +11,13 @@ MLX_FLAGS 		=	-L$(LIB_DIR) -lmlx -lX11 -lXext
 DEPS 			=	$(INCLUDES_DIR)so_long.h Makefile
 
 
-FREE_SRC		=	$(addprefix free_src/, \
-					free.c \
-					)
-
-#SOURCES USE TO INIT AND DISPLAY SPRITES
-SPRITES_SRC		=	$(addprefix sprites_src/, \
-					init_images.c \
-					init_sprites.c \
-					sprites_arrengement.c \
-					)
-
-# SOURCES USE TO DISPLAY THE GAME
-DISPLAY_SRC		=	$(addprefix display_src/, \
-					handler.c \
-				 	display.c \
-					display_debug.c \
-				 	display_useful.c \
-				 	display_sprites.c \
-					$(SPRITES_SRC) \
-					)
-
 # SOURCES USE TO EXIT WITH ERROR
 ERROR_SRC 		=	$(addprefix error_src/, \
 					exit.c \
+					)
+
+FREE_SRC		=	$(addprefix free_src/, \
+					free.c \
 					)
 
 # SOURCES USE FOR GET_NEXT_LINE
@@ -69,16 +52,37 @@ UTILS_SRC 		=	$(addprefix utils_src/, \
 					print_functions.c \
 					)
 
+#SOURCES USE TO INIT AND DISPLAY SPRITES
+SPRITES_SRC		=	$(addprefix sprites_src/, \
+					init_images.c \
+					init_sprites.c \
+					sprites_arrengement.c \
+					)
+
+# SOURCES USE TO DISPLAY THE GAME
+DISPLAY_SRC		=	$(addprefix display_src/, \
+				 	display.c \
+					display_debug.c \
+				 	display_useful.c \
+				 	display_sprites.c \
+					)
+
+MLX_SRC			=	$(addprefix mlx_src/, \
+					handler.c \
+					$(DISPLAY_SRC) \
+					$(SPRITES_SRC) \
+					)
+
 # ALL SOURCES FOR SO_LONG
 SL_SRCS 		=	$(addprefix $(SRC_DIR), \
-					$(DISPLAY_SRC) \
 					$(ERROR_SRC) \
+					$(FREE_SRC) \
 					$(GNL_SRC) \
 					$(LST_SRC) \
 					$(MAP_SRC) \
+					$(MLX_SRC) \
 					$(PATH_SRC) \
 					$(UTILS_SRC) \
-					$(FREE_SRC) \
 					so_long.c \
 					\
 					temporary.c \
