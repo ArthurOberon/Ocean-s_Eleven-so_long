@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/25 22:00:25 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/26 17:22:35 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,21 @@ static void	display_player(t_data *data)
 	// printf("pos player : x : [%d] y : [%d]\n", data->game.player_pos.x,
 		// data->game.player_pos.y);
 
+static void	update_frame(t_sprite *sprite)
+{
+	double	time;
+
+	time = clock() / CLOCKS_PER_SEC;
+	printf("time per second : [%f]\n", time);
+	if ((time - sprite->last_time) >= DELAY_ANIMATION)
+	{
+		sprite->last_time = time;
+		sprite->frame = (sprite->frame + 1) % sprite->size;
+	}
+}
+
+	// printf("last_time : [%f]\n", sprite->last_time);
+
 void	display_sprites(t_data *data)
 {
 	int		i;
@@ -57,10 +72,11 @@ void	display_sprites(t_data *data)
 		i = 0;
 		while (i < data->game.level.map_vector.x)
 		{
+			update_frame(&data->map_sprites[i + y]);
 			put_image_to_image(data,
 				(t_vector_2){i * CHUNK_SIZE, j * CHUNK_SIZE},
 				&(data->map_sprites[i + y].sprite_img)
-			[data->map_sprites[i + j].frame]);
+			[data->map_sprites[i + y].frame]);
 			i++;
 		}
 		j++;

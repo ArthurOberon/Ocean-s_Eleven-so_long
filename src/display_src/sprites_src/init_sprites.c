@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:40:38 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/26 15:55:49 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/26 16:57:25 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	init_sprite(void *ptr, t_sprite *sprite, int size, char *path)
 
 	sprite->frame = 0;
 	sprite->size = size;
+	sprite->last_time = 0;
 	sprite->sprite_img = malloc(sizeof(t_img) * size);
 	if (!sprite->sprite_img)
 		printf("PANIC ! free and exit.\n");

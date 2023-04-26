@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/26 15:57:47 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/26 17:20:57 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,12 @@
 # define CHUNK_SIZE 128
 
 # define SPRITES_PATH "sprites/"
-# define FRAME_GROUND 1
-# define FRAME_COLLECT 1
 # define FRAME_EXIT 1
 # define FRAME_PLAYER 1
+# define FRAME_GROUND 2
+# define FRAME_COLLECT 1
+
+# define DELAY_ANIMATION 2
 
 # define IS_DEBUG 1
 
@@ -113,6 +115,7 @@ typedef struct s_sprite
 	t_img	*sprite_img;
 	int		frame;
 	int		size;
+	double	last_time;
 }	t_sprite;
 
 typedef struct s_data
