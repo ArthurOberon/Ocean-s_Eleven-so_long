@@ -50,6 +50,6 @@ make all
 - [ ] Implement my printf
 - [x] Free t_sprite map_sprites + free map_sprites[i].sprite_img
 - [ ] Replace all mallocs by callocs
-- [ ] Sort so_long.h by alphabetic
+- [x] Sort so_long.h by alphabetic
 - [ ] Write Comments to functions with extension doxygen
 - [ ] Protect init_xpm_file ?
