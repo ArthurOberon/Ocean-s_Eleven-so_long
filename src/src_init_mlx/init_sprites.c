@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:40:38 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/27 13:35:48 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/27 14:06:45 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,13 @@ void	init_sprite(void *ptr, t_sprite *sprite, int size, char *path)
 void	get_sprite(t_game *game, t_sprite *sprite, int i)
 {
 	if (game->level.map[i] == '0' || game->level.map[i] == 'P')
-		init_sprite(game->window.mlx_ptr, sprite, FRAME_GROUND,
-			"ground/carpet_64px");
+		init_sprite(game->window.mlx_ptr, sprite, FRAME_GROUND, PATH_GROUND);
 	else if (game->level.map[i] == '1')
 		get_wall_image(game, sprite, i);
 	else if (game->level.map[i] == 'C')
-		init_sprite(game->window.mlx_ptr, sprite, FRAME_COLLECT,
-			"debug/test_32px");
+		init_sprite(game->window.mlx_ptr, sprite, FRAME_COLLECT, PATH_COLLECT);
 	else if (game->level.map[i] == 'E')
-		init_sprite(game->window.mlx_ptr, sprite, FRAME_EXIT, "debug/test");
+		init_sprite(game->window.mlx_ptr, sprite, FRAME_EXIT, PATH_EXIT);
 }
 
 void	init_sprites(t_game *game)
@@ -90,6 +88,6 @@ void	init_sprites(t_game *game)
 		i++;
 	}
 	init_sprite(game->window.mlx_ptr, &map_sprites[i], FRAME_PLAYER,
-		"player/player_64px");
+		PATH_PLAYER);
 	game->window.map_sprites = map_sprites;
 }

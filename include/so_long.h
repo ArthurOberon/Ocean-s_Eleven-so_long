@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/27 12:43:30 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/27 14:14:51 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,22 @@
 # define CHUNK_SIZE 128
 
 # define SPRITES_PATH "sprites/"
+
+# define PATH_WALL_CORNER_N_O	"wall/column_corner_N-O_64px"
+# define PATH_WALL_CORNER_N_E	"wall/column_corner_N-E_64px"
+# define PATH_WALL_CORNER_S_E	"wall/column_corner_S-E_64px"
+# define PATH_WALL_CORNER_S_O	"wall/column_corner_S-O_64px"
+# define PATH_WALL_SIDE_UP		"wall/column_side_up_64px"
+# define PATH_WALL_SIDE_DOWN	"wall/column_side_down_64px"
+# define PATH_WALL_SIDE_LEFT	"wall/column_side_left_64px"
+# define PATH_WALL_SIDE_RIGHT	"wall/column_side_right_64px"
+# define PATH_WALL_INSIDE		"wall/roulette_table_64px"
+
+# define PATH_GROUND			"ground/carpet_64px"
+# define PATH_COLLECT			"debug/test_32px"
+# define PATH_EXIT				"debug/test"
+# define PATH_PLAYER			"player/player_64px"
+
 # define FRAME_EXIT 1
 # define FRAME_PLAYER 1
 # define FRAME_GROUND 2
@@ -129,17 +145,27 @@ typedef struct s_game
 
 	// int		bpp; /* bits per pixel */
 
-// |====================================================|
-// |					SRC_DISPLAY_MLX					|
-// |====================================================|
+// |================================================|
+// |					SRC_DEBUG					|
+// |================================================|
 
 // |------------------------------------|
-// |			DISPLAY_DEBUG			|
+// |			DEBUG_DISPLAY			|
 // |------------------------------------|
 
 void				display_map(t_img *img, t_game game);
 void				display_debug(t_img *img, int color,
 						t_vector_2 *chunk_pos, int size);
+
+// |--------------------------------|
+// |			DEBUG_PRINT			|
+// |--------------------------------|
+
+void				print_debug(t_game *game);
+
+// |====================================================|
+// |					SRC_DISPLAY_MLX					|
+// |====================================================|
 
 // |------------------------------------|
 // |			DISPLAY_SPRITES			|

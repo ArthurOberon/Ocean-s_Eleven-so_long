@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 12:15:53 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/27 13:49:56 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/27 14:13:14 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ t_window	init_window(t_game *game)
 	window.img.mlx_img = mlx_new_image(window.mlx_ptr,
 			WINDOW_WIDTH, WINDOW_HEIGHT);
 	if (!window.img.mlx_img)
+	{
+		free(window.win_ptr);
 		printf("PANIC ! free and exit.");
+	}
 	printf("OSKOUR 2 bis : [%s]\n", window.img.addr);
 	window.img.addr = mlx_get_data_addr(window.img.mlx_img, &window.img.bpp,
 			&window.img.line_len, &window.img.endian);
@@ -67,13 +70,6 @@ t_window	init_window(t_game *game)
 	get_chunk_positions(&game->chunks_pos, game->level.map_vector,
 		game->level.nb_cases);
 	init_player_pos(game);
-	if (IS_DEBUG)
-	{
-		ft_print_chunk_pos(game->chunks_pos, game->level.nb_cases);
-		ft_print_1d_to_2d(game->level);
-	}
+	print_debug(game);
 	return (window);
 }
-
-// 	if (!window.win_ptr)	??
-	// free(window.win_ptr);  ??

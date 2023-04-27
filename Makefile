@@ -11,10 +11,15 @@ MLX_FLAGS 		=	-L$(LIB_DIR) -lmlx -lX11 -lXext
 DEPS 			=	$(INCLUDES_DIR)so_long.h Makefile
 
 
+# SOURCES USE WHEN IS_DEBUG == 1
+SRC_DEBUG		=	$(addprefix src_debug/, \
+					debug_print.c \
+					debug_display.c \
+					)
+
 # SOURCES USE TO DISPLAY THE GAME WITH THE MLX
 SRC_DISPLAY		=	$(addprefix src_display_mlx/, \
 				 	display.c \
-					display_debug.c \
 				 	display_tools.c \
 				 	display_sprites.c \
 					)
@@ -64,6 +69,7 @@ SRC_TOOLS		=	$(addprefix src_tools/, \
 
 # ALL SOURCES FOR SO_LONG
 SL_SRCS 		=	$(addprefix $(SRC_DIR), \
+					$(SRC_DEBUG) \
 					$(SRC_DISPLAY) \
 					$(SRC_GAMEPLAY) \
 					$(SRC_GNL) \
