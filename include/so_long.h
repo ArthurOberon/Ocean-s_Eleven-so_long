@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/27 14:14:51 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/27 15:42:26 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 
 # define CHUNK_SIZE 128
 
-# define SPRITES_PATH "sprites/"
+# define SPRITES_PATH "assets/sprites/xpm/"
 
 # define PATH_WALL_CORNER_N_O	"wall/column_corner_N-O_64px"
 # define PATH_WALL_CORNER_N_E	"wall/column_corner_N-E_64px"
