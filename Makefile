@@ -32,7 +32,7 @@ SRC_GNL			=	$(addprefix src_gnl/, \
 
 # SOURCES USE TO INIT VARIABLES FOR DISPLAY
 SRC_INIT_MLX	=	$(addprefix src_init_mlx/, \
-					init_data.c \
+					init_window.c \
 					init_images.c \
 					init_sprites.c \
 					sprites_arrengement.c \

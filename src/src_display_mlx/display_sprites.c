@@ -6,13 +6,13 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/26 17:22:35 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/27 13:35:48 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	put_image_to_image(t_data *data, t_vector_2 pos, t_img *img)
+void	put_image_to_image(t_window *window, t_vector_2 pos, t_img *img)
 {		
 	int			i;
 	int			j;
@@ -26,23 +26,23 @@ void	put_image_to_image(t_data *data, t_vector_2 pos, t_img *img)
 		{
 			pixel = get_color_pixel(img, i, j);
 			if (((pixel >> 24)) != 0xFF)
-				img_pix_put(&data->img, i + pos.x, j + pos.y, pixel);
+				img_pix_put(&window->img, i + pos.x, j + pos.y, pixel);
 			i++;
 		}
 		j++;
 	}
 }
 
-static void	display_player(t_data *data)
+static void	display_player(t_game *game)
 {
-	put_image_to_image(data,
-		(t_vector_2){data->game.player_pos.x * CHUNK_SIZE,
-		data->game.player_pos.y * CHUNK_SIZE},
-		&(data->map_sprites[data->game.level.nb_cases].sprite_img)[0]);
+	put_image_to_image(&game->window,
+		(t_vector_2){game->player_pos.x * CHUNK_SIZE,
+		game->player_pos.y * CHUNK_SIZE},
+		&(game->window.map_sprites[game->level.nb_cases].sprite_img)[0]);
 }
 
-	// printf("pos player : x : [%d] y : [%d]\n", data->game.player_pos.x,
-		// data->game.player_pos.y);
+	// printf("pos player : x : [%d] y : [%d]\n", game->player_pos.x,
+		// game->player_pos.y);
 
 static void	update_frame(t_sprite *sprite)
 {
@@ -59,7 +59,7 @@ static void	update_frame(t_sprite *sprite)
 
 	// printf("last_time : [%f]\n", sprite->last_time);
 
-void	display_sprites(t_data *data)
+void	display_sprites(t_game *game)
 {
 	int		i;
 	int		j;
@@ -67,31 +67,20 @@ void	display_sprites(t_data *data)
 
 	j = 0;
 	y = 0;
-	while (j < data->game.level.map_vector.y)
+	while (j < game->level.map_vector.y)
 	{
 		i = 0;
-		while (i < data->game.level.map_vector.x)
+		while (i < game->level.map_vector.x)
 		{
-			update_frame(&data->map_sprites[i + y]);
-			put_image_to_image(data,
+			update_frame(&game->window.map_sprites[i + y]);
+			put_image_to_image(&game->window,
 				(t_vector_2){i * CHUNK_SIZE, j * CHUNK_SIZE},
-				&(data->map_sprites[i + y].sprite_img)
-			[data->map_sprites[i + y].frame]);
+				&(game->window.map_sprites[i + y].sprite_img)
+			[game->window.map_sprites[i + y].frame]);
 			i++;
 		}
 		j++;
-		y += data->game.level.map_vector.x;
+		y += game->level.map_vector.x;
 	}
-	display_player(data);
+	display_player(game);
 }
-
-			// data->map_sprites[i + j].frame++;
-
-// int	k;
-// k = 0;
-			// while (k < data->map_sprites[i + y].size)
-			// {
-				// put_image_to_image(data,
-					// (t_vector_2){i * CHUNK_SIZE, j * CHUNK_SIZE},
-					// &(data->map_sprites[i + y].sprite_img)[k++]);
-			// }

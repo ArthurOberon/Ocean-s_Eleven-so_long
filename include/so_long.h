@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/26 21:57:08 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/27 12:43:30 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,15 @@ typedef struct s_map_flag
 	int	bool_error;
 }	t_map_flag;
 
+typedef struct s_path_map
+{
+	int	has_been_check;
+	int	dst_to_start;
+	int	dst_to_end;
+	int	f;
+	int	parent;
+}	t_path_map;
+
 typedef struct s_vector_2
 {
 	int	x;
@@ -73,32 +82,6 @@ typedef struct s_f_vector_2
 	double	x;
 	double	y;
 }	t_f_vector_2;
-
-typedef struct s_path_map
-{
-	int	has_been_check;
-	int	dst_to_start;
-	int	dst_to_end;
-	int	f;
-	int	parent;
-}	t_path_map;
-
-typedef struct s_level
-{
-	char		*map;
-	t_vector_2	map_vector;
-	int			nb_cases;
-	int			player_pos_tab;
-	int			exit_pos;
-	t_path_map	*path_map;
-}	t_level;
-
-typedef struct s_game
-{
-	t_level		level;
-	t_vector_2	*chunks_pos;
-	t_vector_2	player_pos;
-}	t_game;
 
 typedef struct s_img
 {
@@ -118,14 +101,31 @@ typedef struct s_sprite
 	double	last_time;
 }	t_sprite;
 
-typedef struct s_data
+typedef struct s_level
+{
+	char		*map;
+	t_vector_2	map_vector;
+	int			nb_cases;
+	int			player_pos_tab;
+	int			exit_pos;
+	t_path_map	*path_map;
+}	t_level;
+
+typedef struct s_window
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_img		img;
-	t_game		game;
 	t_sprite	*map_sprites;
-}	t_data;
+}	t_window;
+
+typedef struct s_game
+{
+	t_level		level;
+	t_window	window;
+	t_vector_2	player_pos;
+	t_vector_2	*chunks_pos;
+}	t_game;
 
 	// int		bpp; /* bits per pixel */
 
@@ -145,7 +145,7 @@ void				display_debug(t_img *img, int color,
 // |			DISPLAY_SPRITES			|
 // |------------------------------------|
 
-void				display_sprites(t_data *data);
+void				display_sprites(t_game *game);
 
 // |------------------------------------|
 // |			DISPLAY_TOOLS			|
@@ -170,8 +170,8 @@ void				display(t_game *game);
 // |			HANDLER			|
 // |----------------------------|
 
-int					close_window(t_data *data);
-int					handle_keypress(int keysym, t_data *data);
+int					close_window(t_window *window);
+int					handle_keypress(int keysym, t_game	*game);
 
 // |============================================|
 // |					SRC_GNL					|
@@ -187,7 +187,7 @@ char				*get_next_line(int fd);
 // |			INIT_DATA			|
 // |--------------------------------|
 
-t_data				init_data(t_game *game);
+t_window			init_window(t_game *game);
 
 // |--------------------------------|
 // |			INIT_IMAGES			|
@@ -203,15 +203,15 @@ t_img				resize_img(void *ptr, t_img *src, t_vector_2 dst_size);
 // |			INIT_SPRITES			|
 // |------------------------------------|
 
+void				init_sprites(t_game *game);
 void				init_sprite(void *ptr, t_sprite *sprite, int size,
 						char *path);
-void				init_sprites(t_data *data);
 
 // |----------------------------------------|
 // |			SPRITES_ARRENGEMENT			|
 // |----------------------------------------|
 
-void				get_wall_image(t_data *data, t_sprite*map_sprites, int pos);
+void				get_wall_image(t_game *game, t_sprite *sprite, int pos);
 
 // |================================================|
 // |					SRC_PARSING					|
@@ -296,7 +296,7 @@ void				exit_pathfinding(t_level level, char flag, int pos_error);
 // |			FREE			|
 // |----------------------------|
 
-void				free_data(t_data data);
+void				free_game(t_game game);
 
 // |------------------------------------|
 // |			MEM_FUNCTIONS			|

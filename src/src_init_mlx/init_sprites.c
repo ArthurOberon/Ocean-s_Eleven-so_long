@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:40:38 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/26 16:57:25 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/27 13:35:48 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,33 +61,35 @@ void	init_sprite(void *ptr, t_sprite *sprite, int size, char *path)
 	}
 }
 
-void	get_sprite(t_data *data, t_sprite *sprite, int i)
+void	get_sprite(t_game *game, t_sprite *sprite, int i)
 {
-	if (data->game.level.map[i] == '0' || data->game.level.map[i] == 'P')
-		init_sprite(data->mlx_ptr, sprite, FRAME_GROUND, "ground/carpet_64px");
-	else if (data->game.level.map[i] == '1')
-		get_wall_image(data, sprite, i);
-	else if (data->game.level.map[i] == 'C')
-		init_sprite(data->mlx_ptr, sprite, FRAME_COLLECT, "debug/test_32px");
-	else if (data->game.level.map[i] == 'E')
-		init_sprite(data->mlx_ptr, sprite, FRAME_EXIT, "debug/test");
+	if (game->level.map[i] == '0' || game->level.map[i] == 'P')
+		init_sprite(game->window.mlx_ptr, sprite, FRAME_GROUND,
+			"ground/carpet_64px");
+	else if (game->level.map[i] == '1')
+		get_wall_image(game, sprite, i);
+	else if (game->level.map[i] == 'C')
+		init_sprite(game->window.mlx_ptr, sprite, FRAME_COLLECT,
+			"debug/test_32px");
+	else if (game->level.map[i] == 'E')
+		init_sprite(game->window.mlx_ptr, sprite, FRAME_EXIT, "debug/test");
 }
 
-void	init_sprites(t_data *data)
+void	init_sprites(t_game *game)
 {
 	int			i;
 	t_sprite	*map_sprites;
 
 	i = 0;
-	map_sprites = malloc(sizeof(t_sprite) * (data->game.level.nb_cases + 1));
+	map_sprites = malloc(sizeof(t_sprite) * (game->level.nb_cases + 1));
 	if (!map_sprites)
 		printf("PANIC ! free and exit.\n");
-	while (i < data->game.level.nb_cases)
+	while (i < game->level.nb_cases)
 	{
-		get_sprite(data, &map_sprites[i], i);
+		get_sprite(game, &map_sprites[i], i);
 		i++;
 	}
-	init_sprite(data->mlx_ptr, &map_sprites[i], FRAME_PLAYER,
+	init_sprite(game->window.mlx_ptr, &map_sprites[i], FRAME_PLAYER,
 		"player/player_64px");
-	data->map_sprites = map_sprites;
+	game->window.map_sprites = map_sprites;
 }

@@ -6,38 +6,35 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/26 21:56:37 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/27 13:52:53 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	on_update(t_data *data)
+static int	on_update(t_game *game)
 {
-	if (!data->win_ptr)
+	if (!game->window.win_ptr)
 		return (0);
-	background(&data->img, 0xE0E0E0);
-	display_sprites(data);
+	background(&game->window.img, 0xE0E0E0);
+	display_sprites(game);
 	if (IS_DEBUG)
-		display_debug(&data->img, GREEN, data->game.chunks_pos,
-			data->game.level.nb_cases);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img,
-		0, 0);
+		display_debug(&game->window.img, GREEN, game->chunks_pos,
+			game->level.nb_cases);
+	mlx_put_image_to_window(game->window.mlx_ptr, game->window.win_ptr,
+		game->window.img.mlx_img, 0, 0);
 	return (0);
 }
 
 void	display(t_game *game)
 {
-	t_data	data;
-
-	data = init_data(game);
-	init_sprites(&data);
-	mlx_hook(data.win_ptr, DestroyNotify, KeyPressMask, close_window, &data);
-	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
-	mlx_loop_hook(data.mlx_ptr, &on_update, &data);
-	mlx_loop(data.mlx_ptr);
-	mlx_destroy_image(data.mlx_ptr, data.img.mlx_img);
-	free_data(data);
+	game->window = init_window(game);
+	init_sprites(game);
+	mlx_hook(game->window.win_ptr, DestroyNotify, KeyPressMask, close_window,
+		&game->window);
+	mlx_hook(game->window.win_ptr, KeyPress, KeyPressMask, &handle_keypress,
+		game);
+	mlx_loop_hook(game->window.mlx_ptr, &on_update, game);
+	mlx_loop(game->window.mlx_ptr);
+	mlx_destroy_image(game->window.mlx_ptr, game->window.img.mlx_img);
 }
-
-	// mlx_destroy_display(data.mlx_ptr);

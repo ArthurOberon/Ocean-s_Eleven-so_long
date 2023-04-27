@@ -6,24 +6,24 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:34:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/26 19:04:46 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/27 13:51:59 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	close_window(t_data *data)
+int	close_window(t_window *window)
 {
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	data->win_ptr = NULL;
+	mlx_destroy_window(window->mlx_ptr, window->win_ptr);
+	window->win_ptr = NULL;
 	return (0);
 }
 
-int	handle_keypress(int keysym, t_data *data)
+int	handle_keypress(int keysym, t_game *game)
 {
 	if (keysym == XK_Escape || keysym == XK_Q || keysym == XK_q)
 	{
-		close_window(data);
+		close_window(&game->window);
 		return (1);
 	}
 	return (0);
@@ -31,5 +31,5 @@ int	handle_keypress(int keysym, t_data *data)
 
 	// if (keysym == XK_D || keysym == XK_d)
 	// {
-	// 	data->game.player_pos.x += 1;
+	// 	game->player_pos.x += 1;
 	// }
