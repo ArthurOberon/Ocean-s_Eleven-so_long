@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 12:15:53 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/27 14:13:14 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/27 17:10:56 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	get_chunk_positions(t_vector_2 **chunk_pos, t_vector_2 size, int nb)
 	}
 }
 
-t_window	init_window(t_game *game)
+void	init_window(t_game *game)
 {
 	t_window	window;
 
@@ -63,13 +63,12 @@ t_window	init_window(t_game *game)
 		free(window.win_ptr);
 		printf("PANIC ! free and exit.");
 	}
-	printf("OSKOUR 2 bis : [%s]\n", window.img.addr);
 	window.img.addr = mlx_get_data_addr(window.img.mlx_img, &window.img.bpp,
 			&window.img.line_len, &window.img.endian);
-	printf("OSKOUR 2 ter : [%s]\n", window.img.addr);
 	get_chunk_positions(&game->chunks_pos, game->level.map_vector,
 		game->level.nb_cases);
 	init_player_pos(game);
-	print_debug(game);
-	return (window);
+	if (IS_DEBUG)
+		debug_chunk_pos(game);
+	game->window = window;
 }

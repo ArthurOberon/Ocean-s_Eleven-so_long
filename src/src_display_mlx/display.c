@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/27 13:52:53 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/27 18:07:05 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static int	on_update(t_game *game)
 
 void	display(t_game *game)
 {
-	game->window = init_window(game);
+	init_window(game);
+	init_images_assets(game->window.mlx_ptr, game);
 	init_sprites(game);
 	mlx_hook(game->window.win_ptr, DestroyNotify, KeyPressMask, close_window,
 		&game->window);

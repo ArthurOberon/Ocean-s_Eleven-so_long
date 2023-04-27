@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/27 15:42:26 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/27 20:22:26 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,15 @@ typedef struct s_f_vector_2
 	double	y;
 }	t_f_vector_2;
 
+typedef struct s_stat_tiles
+{
+	int	exit;
+	int	wall;
+	int	ground;
+	int	player;
+	int	collect;
+}	t_stat_tiles;
+
 typedef struct s_img
 {
 	void		*mlx_img;
@@ -119,12 +128,13 @@ typedef struct s_sprite
 
 typedef struct s_level
 {
-	char		*map;
-	t_vector_2	map_vector;
-	int			nb_cases;
-	int			player_pos_tab;
-	int			exit_pos;
-	t_path_map	*path_map;
+	char			*map;
+	int				exit_pos;
+	int				nb_cases;
+	int				player_pos_tab;
+	t_path_map		*path_map;
+	t_vector_2		map_vector;
+	t_stat_tiles	stat_tiles;
 }	t_level;
 
 typedef struct s_window
@@ -135,12 +145,30 @@ typedef struct s_window
 	t_sprite	*map_sprites;
 }	t_window;
 
+typedef struct s_images_assets
+{
+	t_img	*player;
+	t_img	*exit;
+	t_img	*collect;
+	t_img	*ground;
+	t_img	*wall_corner_n_o;
+	t_img	*wall_corner_n_e;
+	t_img	*wall_corner_s_e;
+	t_img	*wall_corner_s_o;
+	t_img	*wall_side_up;
+	t_img	*wall_side_down;
+	t_img	*wall_side_left;
+	t_img	*wall_side_right;
+	t_img	*wall_inside;
+}	t_images_assets;
+
 typedef struct s_game
 {
-	t_level		level;
-	t_window	window;
-	t_vector_2	player_pos;
-	t_vector_2	*chunks_pos;
+	t_level			level;
+	t_window		window;
+	t_images_assets	assets;
+	t_vector_2		player_pos;
+	t_vector_2		*chunks_pos;
 }	t_game;
 
 	// int		bpp; /* bits per pixel */
@@ -161,7 +189,8 @@ void				display_debug(t_img *img, int color,
 // |			DEBUG_PRINT			|
 // |--------------------------------|
 
-void				print_debug(t_game *game);
+void				debug_chunk_pos(t_game *game);
+void				debug_stat_tiles(t_stat_tiles stat);
 
 // |====================================================|
 // |					SRC_DISPLAY_MLX					|
@@ -209,11 +238,17 @@ char				*get_next_line(int fd);
 // |					SRC_INIT_MLX					|
 // |====================================================|
 
+// |----------------------------------------|
+// |			INIT_IMAGES_ASSETS			|
+// |----------------------------------------|
+
+void				init_images_assets(void *ptr, t_game *game);
+
 // |--------------------------------|
-// |			INIT_DATA			|
+// |			INIT_WINDOW			|
 // |--------------------------------|
 
-t_window			init_window(t_game *game);
+void				init_window(t_game *game);
 
 // |--------------------------------|
 // |			INIT_IMAGES			|
@@ -230,14 +265,14 @@ t_img				resize_img(void *ptr, t_img *src, t_vector_2 dst_size);
 // |------------------------------------|
 
 void				init_sprites(t_game *game);
-void				init_sprite(void *ptr, t_sprite *sprite, int size,
-						char *path);
+void				init_sprite(t_img *image_asset, t_sprite *sprite, int size);
 
 // |----------------------------------------|
 // |			SPRITES_ARRENGEMENT			|
 // |----------------------------------------|
 
-void				get_wall_image(t_game *game, t_sprite *sprite, int pos);
+void				get_wall_image(t_game *game, t_images_assets assets,
+						t_sprite *sprite, int pos);
 
 // |================================================|
 // |					SRC_PARSING					|

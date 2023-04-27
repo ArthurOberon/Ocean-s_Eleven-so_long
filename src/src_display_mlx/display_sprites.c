@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/27 13:35:48 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/27 20:16:04 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	update_frame(t_sprite *sprite)
 	double	time;
 
 	time = clock() / CLOCKS_PER_SEC;
-	printf("time per second : [%f]\n", time);
+	// printf("time per second : [%f]\n", time);
 	if ((time - sprite->last_time) >= DELAY_ANIMATION)
 	{
 		sprite->last_time = time;
