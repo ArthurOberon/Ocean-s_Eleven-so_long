@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/27 20:22:26 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/27 21:51:56 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,15 +162,33 @@ typedef struct s_images_assets
 	t_img	*wall_inside;
 }	t_images_assets;
 
+typedef struct s_sprites_assets
+{
+	t_sprite	player;
+	t_sprite	exit;
+	t_sprite	collect;
+	t_sprite	ground;
+	t_sprite	wall_corner_n_o;
+	t_sprite	wall_corner_n_e;
+	t_sprite	wall_corner_s_e;
+	t_sprite	wall_corner_s_o;
+	t_sprite	wall_side_up;
+	t_sprite	wall_side_down;
+	t_sprite	wall_side_left;
+	t_sprite	wall_side_right;
+	t_sprite	wall_inside;
+}	t_sprites_assets;
+
 typedef struct s_game
 {
-	t_level			level;
-	t_window		window;
-	t_images_assets	assets;
-	t_vector_2		player_pos;
-	t_vector_2		*chunks_pos;
+	t_level				level;
+	t_window			window;
+	t_sprites_assets	assets;
+	t_vector_2			player_pos;
+	t_vector_2			*chunks_pos;
 }	t_game;
 
+	// t_images_assets		assets;
 	// int		bpp; /* bits per pixel */
 
 // |================================================|
@@ -242,6 +260,9 @@ char				*get_next_line(int fd);
 // |			INIT_IMAGES_ASSETS			|
 // |----------------------------------------|
 
+void				init_sprites_assets(void *ptr, t_game *game,
+						t_sprites_assets *assets);
+
 void				init_images_assets(void *ptr, t_game *game);
 
 // |--------------------------------|
@@ -271,8 +292,10 @@ void				init_sprite(t_img *image_asset, t_sprite *sprite, int size);
 // |			SPRITES_ARRENGEMENT			|
 // |----------------------------------------|
 
-void				get_wall_image(t_game *game, t_images_assets assets,
-						t_sprite *sprite, int pos);
+// void				get_wall_image(t_game *game, t_images_assets assets,
+// 						t_sprite *sprite, int pos);
+
+void				get_wall_image(t_game *game, t_sprite *sprite, int pos);
 
 // |================================================|
 // |					SRC_PARSING					|

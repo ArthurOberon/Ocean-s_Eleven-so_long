@@ -41,6 +41,7 @@ SRC_INIT_MLX	=	$(addprefix src_init_mlx/, \
 					init_images.c \
 					init_sprites.c \
 					init_images_assets.c \
+					init_sprites_assets.c \
 					sprites_arrengement.c \
 					)
 
