@@ -47,7 +47,7 @@ make all
 - [x] bzero_path_map struct instead of free/malloc
 
 ### OTHERS
-- [ ] Implement my printf
+- [x] Implement my printf and replace all printf by ft_printf
 - [x] Free t_sprite map_sprites + free map_sprites[i].sprite_img
 - [x] Replace all mallocs by callocs
 - [x] Sort so_long.h by alphabetic
@@ -58,3 +58,4 @@ make all
 
 #### TOOLS
 `find . -name '*.c' | xargs wc -l`
+`env -i valgrind ./so_long assets/maps/test_map.ber`

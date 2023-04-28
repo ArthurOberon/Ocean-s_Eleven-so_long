@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:30:54 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/28 14:53:25 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/28 22:01:03 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,11 @@ void	parse_map(char *file_name, char **map, t_vector_2 *map_vector)
 	int		y;
 	char	**map_2d;
 
-	map_2d = NULL;
 	if (!is_ber(file_name))
-		exit_map_error(map_2d, y);
+		exit_map_error(NULL, 0);
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
-		exit_map_error(map_2d, y);
+		exit_map_error(NULL, 0);
 	map_2d = read_map(fd, &x, &y);
 	if (!map_2d)
 		exit_map_error(map_2d, y);

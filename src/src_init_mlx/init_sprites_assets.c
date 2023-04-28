@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 20:56:08 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/28 19:00:35 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/28 19:48:11 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,20 @@ static int	get_number_of_tile(t_game *game, char tile)
 		i++;
 	}
 	return (number_tile);
+}
+
+static void	get_stat_tiles_map(t_game *game)
+{
+	t_stat_tiles	stat_tiles;
+
+	stat_tiles.exit = get_number_of_tile(game, 'E');
+	stat_tiles.wall = get_number_of_tile(game, '1');
+	stat_tiles.ground = get_number_of_tile(game, '0');
+	stat_tiles.player = get_number_of_tile(game, 'P');
+	stat_tiles.collect = get_number_of_tile(game, 'C');
+	game->level.stat_tiles = stat_tiles;
+	if (IS_DEBUG)
+		debug_stat_tiles(stat_tiles);
 }
 
 static char	*find_sprite_path(t_game *game, char *start_path, int frame)
@@ -52,20 +66,6 @@ static char	*find_sprite_path(t_game *game, char *start_path, int frame)
 		free_game(*game, "Error of malloc\n");
 	free(frame_path);
 	return (complet_path);
-}
-
-static void	get_stat_tiles_map(t_game *game)
-{
-	t_stat_tiles	stat_tiles;
-
-	stat_tiles.exit = get_number_of_tile(game, 'E');
-	stat_tiles.wall = get_number_of_tile(game, '1');
-	stat_tiles.ground = get_number_of_tile(game, '0');
-	stat_tiles.player = get_number_of_tile(game, 'P');
-	stat_tiles.collect = get_number_of_tile(game, 'C');
-	game->level.stat_tiles = stat_tiles;
-	if (IS_DEBUG)
-		debug_stat_tiles(stat_tiles);
 }
 
 static void	sprite_to_assets(t_game *game, t_sprite *sprite, char *path,

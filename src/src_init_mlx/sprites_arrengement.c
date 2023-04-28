@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:03:04 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/27 21:51:56 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/28 22:20:13 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,4 @@ void	get_wall_image(t_game *game, t_sprite *sprite, int pos)
 		*sprite = game->assets.wall_inside;
 }
 
-	// printf("pos : [%d] x : [%d] y : [%d]\n\n", pos, x, y);
+	// ft_printf("pos : [%d] x : [%d] y : [%d]\n\n", pos, x, y);
