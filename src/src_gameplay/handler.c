@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:34:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/27 13:51:59 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/28 15:08:26 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,34 @@ int	close_window(t_window *window)
 	return (0);
 }
 
+static void	handle_player_move(int keysym, t_game *game)
+{
+	if (keysym == XK_W || keysym == XK_w)
+	{
+		game->player_pos.y -= 1;
+		if (IS_DEBUG)
+			printf("UP\n");
+	}
+	if (keysym == XK_S || keysym == XK_s)
+	{
+		game->player_pos.y += 1;
+		if (IS_DEBUG)
+			printf("DOWN\n");
+	}
+	if (keysym == XK_A || keysym == XK_a)
+	{
+		game->player_pos.x -= 1;
+		if (IS_DEBUG)
+			printf("LEFT\n");
+	}
+	if (keysym == XK_D || keysym == XK_d)
+	{
+		game->player_pos.x += 1;
+		if (IS_DEBUG)
+			printf("RIGHT\n");
+	}
+}
+
 int	handle_keypress(int keysym, t_game *game)
 {
 	if (keysym == XK_Escape || keysym == XK_Q || keysym == XK_q)
@@ -26,10 +54,6 @@ int	handle_keypress(int keysym, t_game *game)
 		close_window(&game->window);
 		return (1);
 	}
+	handle_player_move(keysym, game);
 	return (0);
 }
-
-	// if (keysym == XK_D || keysym == XK_d)
-	// {
-	// 	game->player_pos.x += 1;
-	// }
