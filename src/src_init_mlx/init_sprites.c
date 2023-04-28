@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:40:38 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/27 22:03:02 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/28 14:55:51 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ void	init_sprites(t_game *game)
 	t_sprite	*map_sprites;
 
 	i = 0;
-	map_sprites = malloc(sizeof(t_sprite) * (game->level.nb_cases + 1));
+	map_sprites = ft_calloc(sizeof(t_sprite), game->level.nb_cases + 1);
 	if (!map_sprites)
-		printf("PANIC ! free and exit.\n");
+		free_game(*game, "Error of malloc\n");
 	while (i < game->level.nb_cases)
 	{
 		get_sprite(game, &map_sprites[i], i);

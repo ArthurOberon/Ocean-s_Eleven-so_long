@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:30:54 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/20 14:27:10 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/28 14:53:25 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	**list_to_map(t_lst_map *lst, int *x, int *y)
 	*x = ft_strlen(lst->line);
 	if ((*x < 3 || *y < 3) || !is_rectangle(lst, *x))
 		return (NULL);
-	map = malloc(sizeof(char *) * *y);
+	map = ft_calloc(sizeof(char *), *y);
 	if (!map)
 		return (NULL);
 	i = -1;
@@ -33,7 +33,7 @@ char	**list_to_map(t_lst_map *lst, int *x, int *y)
 	{
 		map[i] = line_to_tab(lst->line);
 		if (!map[i])
-			return (printf("PANIC ! Free tab 2D !\n"), NULL);
+			return (free_2d_char_tab(map, *y), NULL);
 		lst = lst->next;
 	}
 	ft_lstclear(&lst_free_addr);
@@ -68,29 +68,30 @@ char	**read_map(int fd, int *x, int *y)
 	return (list_to_map(lst_map, x, y));
 }
 
-int	parse_map(char *file_name, char **map, t_vector_2 *map_vector)
+void	parse_map(char *file_name, char **map, t_vector_2 *map_vector)
 {
 	int		fd;
 	int		x;
 	int		y;
 	char	**map_2d;
 
+	map_2d = NULL;
 	if (!is_ber(file_name))
-		return (0);
+		exit_map_error(map_2d, y);
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
-		return (0);
+		exit_map_error(map_2d, y);
 	map_2d = read_map(fd, &x, &y);
 	if (!map_2d)
-		return (0);
+		exit_map_error(map_2d, y);
 	if (!is_closed(map_2d, x, y))
-		return (free_2d_char_tab(map_2d, y), 0);
+		exit_map_error(map_2d, y);
 	if (!has_all_characters(map_2d, x, y))
-		return (free_2d_char_tab(map_2d, y), 0);
+		exit_map_error(map_2d, y);
 	*map = char_2d_to_1d(map_2d, x, y);
 	if (!map)
-		return (free_2d_char_tab(map_2d, y), 0);
+		exit_map_error(map_2d, y);
 	*map_vector = (t_vector_2){x, y};
-	return (free_2d_char_tab(map_2d, y), 1);
+	free_2d_char_tab(map_2d, y);
 }
 	// ft_print_map(map_2d, x, y);

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 19:26:47 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/29 14:48:40 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/28 13:51:40 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_path_map	*init_path_map(t_level level)
 	int			i;
 	t_path_map	*path_map;
 
-	path_map = malloc(sizeof(t_path_map) * level.nb_cases);
+	path_map = ft_calloc(sizeof(t_path_map), level.nb_cases);
 	if (!path_map)
 		return (NULL);
 	i = 0;

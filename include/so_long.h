@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/27 21:51:56 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/28 14:47:18 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,8 +260,7 @@ char				*get_next_line(int fd);
 // |			INIT_IMAGES_ASSETS			|
 // |----------------------------------------|
 
-void				init_sprites_assets(void *ptr, t_game *game,
-						t_sprites_assets *assets);
+void				init_sprites_assets(t_game *game, t_sprites_assets *assets);
 
 void				init_images_assets(void *ptr, t_game *game);
 
@@ -275,11 +274,13 @@ void				init_window(t_game *game);
 // |			INIT_IMAGES			|
 // |--------------------------------|
 
-void				init_xpm_file(void *ptr, char *path, t_img *img);
-void				init_new_resize_img(void *ptr, t_img *new_img,
+void				init_xpm_file(t_game *game, void *ptr, char *path,
+						t_img *img);
+void				init_new_resize_img(t_game *game, void *ptr, t_img *new_img,
 						t_vector_2 new_size);
 
-t_img				resize_img(void *ptr, t_img *src, t_vector_2 dst_size);
+t_img				resize_img(t_game *game, void *ptr, t_img *src,
+						t_vector_2 dst_size);
 
 // |------------------------------------|
 // |			INIT_SPRITES			|
@@ -335,7 +336,7 @@ int					has_all_characters(char **map, int x, int y);
 // |			PARSE_MAPS			|
 // |--------------------------------|
 
-int					parse_map(char *file_name, char **map,
+void				parse_map(char *file_name, char **map,
 						t_vector_2 *map_vector);
 
 // |====================================================|
@@ -362,7 +363,7 @@ t_path_map			*init_path_map(t_level level);
 // |			PATHFINDING			|
 // |--------------------------------|
 
-int					pathfinding(t_game *game);
+void				pathfinding(t_game *game);
 
 // |================================================|
 // |					SRC_TOOLS					|
@@ -373,14 +374,15 @@ int					pathfinding(t_game *game);
 // |----------------------------|
 
 void				exit_arg_error(void);
-void				exit_map_error(void);
-void				exit_pathfinding(t_level level, char flag, int pos_error);
+void				exit_map_error(char **map_2d, int y);
+void				exit_pathfinding_error(t_level level, char flag,
+						int pos_error);
 
 // |----------------------------|
 // |			FREE			|
 // |----------------------------|
 
-void				free_game(t_game game);
+void				free_game(t_game game, const char *error);
 
 // |------------------------------------|
 // |			MEM_FUNCTIONS			|

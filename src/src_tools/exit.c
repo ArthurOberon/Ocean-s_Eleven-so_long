@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 15:13:50 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/29 14:03:27 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/28 14:08:23 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ void	exit_arg_error(void)
 	exit(EXIT_FAILURE);
 }
 
-void	exit_map_error(void)
+void	exit_map_error(char **map_2d, int y)
 {
+	if (map_2d)
+		free_2d_char_tab(map_2d, y);
 	ft_putstr("Error\n");
 	ft_putstr("Not a valid map.\n");
 	ft_putstr("Please use a map : with .ber extenstion, rectangular, ");
@@ -34,7 +36,7 @@ void	exit_map_error(void)
 
 	// ft_putstr("1111\n1P01\n1CE1\n1111\n");
 
-void	exit_pathfinding(t_level level, char flag, int pos_error)
+void	exit_pathfinding_error(t_level level, char flag, int pos_error)
 {
 	free(level.map);
 	free(level.path_map);

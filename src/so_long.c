@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:21:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/27 12:34:28 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/28 14:22:30 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		exit_arg_error();
-	if (!parse_map(argv[1], &(game.level.map), &(game.level.map_vector)))
-		exit_map_error();
+	parse_map(argv[1], &(game.level.map), &(game.level.map_vector));
 	game.level.nb_cases = game.level.map_vector.x * game.level.map_vector.y;
 	if (IS_DEBUG)
 	{
@@ -28,6 +27,6 @@ int	main(int argc, char **argv)
 	}
 	pathfinding(&game);
 	display(&game);
-	free_game(game);
+	free_game(game, NULL);
 	return (0);
 }

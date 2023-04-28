@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:24:32 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/26 15:30:00 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/28 14:57:35 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*ft_itoa(int n)
 	else
 		tmp = n;
 	size = (ft_nbrlen(tmp) + (n < 0));
-	result = malloc(sizeof(char) * (size + 1));
+	result = ft_calloc(sizeof(char), size + 1);
 	if (!result)
 		return (NULL);
 	result[size--] = '\0';
@@ -85,7 +85,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	result = NULL;
 	s1_size = ft_strlen(s1);
 	size = s1_size + ft_strlen(s2);
-	result = malloc(sizeof(char) * (size + 1));
+	result = ft_calloc(sizeof(char), size + 1);
 	if (!result)
 		return (NULL);
 	while (i < size)

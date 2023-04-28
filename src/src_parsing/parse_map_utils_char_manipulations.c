@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:43:07 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/20 15:47:03 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/28 14:57:23 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*line_to_tab(char *line)
 	char	*tab;
 
 	size = ft_strlen(line);
-	tab = malloc(sizeof(char) * size + 1);
+	tab = ft_calloc(sizeof(char), size + 1);
 	if (!tab)
 		return (NULL);
 	i = -1;
@@ -35,10 +35,13 @@ void	free_2d_char_tab(char **tab, int y)
 {
 	int	i;
 
+	if (!tab)
+		return ;
 	i = 0;
 	while (i < y)
 	{
-		free(tab[i]);
+		if (tab[i])
+			free(tab[i]);
 		i++;
 	}
 	free(tab);
@@ -53,7 +56,7 @@ char	*char_2d_to_1d(char **map_2d, int x, int y)
 	char	*map;
 
 	size = (x * y) + 1;
-	map = malloc(sizeof(char) * size);
+	map = ft_calloc(sizeof(char), size);
 	if (map)
 	{
 		i = -1;

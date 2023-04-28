@@ -49,7 +49,7 @@ make all
 ### OTHERS
 - [ ] Implement my printf
 - [x] Free t_sprite map_sprites + free map_sprites[i].sprite_img
-- [ ] Replace all mallocs by callocs
+- [x] Replace all mallocs by callocs
 - [x] Sort so_long.h by alphabetic
 - [ ] Write Comments to functions with extension doxygen
 - [x] Protect init_xpm_file
