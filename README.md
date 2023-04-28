@@ -51,7 +51,7 @@ make all
 - [x] Free t_sprite map_sprites + free map_sprites[i].sprite_img
 - [x] Replace all mallocs by callocs
 - [x] Sort so_long.h by alphabetic
-- [ ] Write Comments to functions with extension doxygen
+- [ ] Write Comments to functions with the extension doxygen
 - [x] Protect init_xpm_file
 - [ ] Create new image with size of the total image or init data->img at the size of the total image -> Create camera->img with window size and data->img get size of the total image
 - [ ] For now, stat_tiles is useless
