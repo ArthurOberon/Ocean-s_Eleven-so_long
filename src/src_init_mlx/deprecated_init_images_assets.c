@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:03:08 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/28 22:20:13 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/28 22:38:47 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,18 @@
 // 	file_path = SPRITES_PATH;
 // 	file_path = ft_strjoin(file_path, start_path);
 // 	if (!file_path)
-// 		ft_printf("PANIC ! free and exit.\n");
+// 		printf("PANIC ! free and exit.\n");
 // 	str_itoa = ft_itoa(frame);
 // 	if (!str_itoa)
-// 		ft_printf("PANIC ! free and exit.\n");
+// 		printf("PANIC ! free and exit.\n");
 // 	frame_path = ft_strjoin(file_path, str_itoa);
 // 	if (!frame_path)
-// 		ft_printf("PANIC ! free and exit.\n");
+// 		printf("PANIC ! free and exit.\n");
 // 	free(file_path);
 // 	free(str_itoa);
 // 	complet_path = ft_strjoin(frame_path, ".xpm");
 // 	if (!complet_path)
-// 		ft_printf("PANIC ! free and exit.\n");
+// 		printf("PANIC ! free and exit.\n");
 // 	free(frame_path);
 // 	return (complet_path);
 // }
@@ -77,7 +77,7 @@
 // 	i = 0;
 // 	img = malloc(sizeof(t_img) * size);
 // 	if (!img)
-// 		ft_printf("PANIC ! free and exit.\n");
+// 		printf("PANIC ! free and exit.\n");
 // 	while (i < size)
 // 	{
 // 		complet_path = find_sprite_path(path, i);

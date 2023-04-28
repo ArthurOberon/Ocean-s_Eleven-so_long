@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:21:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/28 22:20:13 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/28 22:38:47 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 	game.level.nb_cases = game.level.map_vector.x * game.level.map_vector.y;
 	if (IS_DEBUG)
 	{
-		ft_printf("Map 1 line : %s\n", game.level.map);
+		printf("Map 1 line : %s\n", game.level.map);
 		ft_print_1d_to_2d(game.level);
 	}
 	pathfinding(&game);

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/28 22:20:13 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/28 22:38:47 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	display_player(t_game *game)
 	[game->window.map_sprites[game->level.nb_cases].frame]);
 }
 
-	// ft_printf("pos player : x : [%d] y : [%d]\n", game->player_pos.x,
+	// printf("pos player : x : [%d] y : [%d]\n", game->player_pos.x,
 		// game->player_pos.y);
 
 static void	update_frame(t_sprite *sprite)
@@ -51,7 +51,7 @@ static void	update_frame(t_sprite *sprite)
 
 	time = clock() / CLOCKS_PER_SEC;
 	if (IS_DEBUG_TIME)
-		ft_printf("time per second : [%f]\n", time);
+		printf("time per second : [%f]\n", time);
 	if ((time - sprite->last_time) >= DELAY_ANIMATION)
 	{
 		sprite->last_time = time;
@@ -59,7 +59,7 @@ static void	update_frame(t_sprite *sprite)
 	}
 }
 
-	// ft_printf("last_time : [%f]\n", sprite->last_time);
+	// printf("last_time : [%f]\n", sprite->last_time);
 
 void	display_sprites(t_game *game)
 {

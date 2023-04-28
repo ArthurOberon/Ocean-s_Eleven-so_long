@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/28 22:22:58 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/28 22:39:42 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <X11/keysym.h>
 # include <time.h>
 
-# include "../lib/ft_printf/include/ft_printf.h"
+// # include "../lib/ft_printf/include/ft_printf.h"
 
 // CAUTION /!/\/
 # include <stdio.h>

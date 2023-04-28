@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:10:14 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/28 22:22:07 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/28 22:38:47 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	ft_print_chunk_pos(t_vector_2 *chunk_pos, int c_count)
 	i = 0;
 	while (i < c_count)
 	{
-		ft_printf("chunk %d : x : [%d]  y : [%d]\n", i + 1,
+		printf("chunk %d : x : [%d]  y : [%d]\n", i + 1,
 			chunk_pos[i].x, chunk_pos[i].y);
 		i++;
 	}
-	ft_printf("\n");
+	printf("\n");
 }
 
 void	ft_print_1d_to_2d(t_level level)
@@ -37,13 +37,13 @@ void	ft_print_1d_to_2d(t_level level)
 		i = 0;
 		while (i < level.map_vector.x)
 		{
-			ft_printf("%c ", level.map[i + j]);
+			printf("%c ", level.map[i + j]);
 			i++;
 		}
 		j += level.map_vector.x;
-		ft_printf("\n");
+		printf("\n");
 	}
-	ft_printf("\n");
+	printf("\n");
 }
 
 void	debug_chunk_pos(t_game *game)
@@ -54,9 +54,9 @@ void	debug_chunk_pos(t_game *game)
 
 void	debug_stat_tiles(t_stat_tiles stat)
 {
-	ft_printf("Number of :\nexit :[%d]\nwall :[%d]\n", stat.exit, stat.wall);
-	ft_printf("ground : [%d] \nplayer : [%d]\n", stat.ground, stat.player);
-	ft_printf("collectibles : [%d]\n", stat.player);
-	ft_printf("TOTAL : [%d]\n", stat.exit + stat.wall + stat.ground + stat.player
+	printf("Number of :\nexit :[%d]\nwall :[%d]\n", stat.exit, stat.wall);
+	printf("ground : [%d] \nplayer : [%d]\n", stat.ground, stat.player);
+	printf("collectibles : [%d]\n", stat.player);
+	printf("TOTAL : [%d]\n", stat.exit + stat.wall + stat.ground + stat.player
 		+ stat.collect);
 }
