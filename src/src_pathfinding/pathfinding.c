@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 12:49:01 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/28 14:05:45 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/28 18:52:05 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	pathfinding(t_game *game)
 	game->level.player_pos_tab = find_character(game->level, 'P');
 	game->level.exit_pos = find_character(game->level, 'E');
 	c_count = collectibles_count(game->level);
+	game->level.nb_collect = c_count;
 	c_pos = collectibles_pos(game->level, c_count);
 	game->level.path_map = init_path_map(game->level);
 	if (!game->level.path_map)

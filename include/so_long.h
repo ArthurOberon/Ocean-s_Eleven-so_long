@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/28 15:14:03 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/28 19:14:14 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,10 +130,11 @@ typedef struct s_sprite
 typedef struct s_level
 {
 	char			*map;
-	int				exit_pos;
-	int				nb_cases;
-	int				player_pos_tab;
 	t_path_map		*path_map;
+	int				nb_cases;
+	int				nb_collect;
+	int				exit_pos;
+	int				player_pos_tab;
 	t_vector_2		map_vector;
 	t_stat_tiles	stat_tiles;
 }	t_level;
