@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:52:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 19:43:46 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 22:43:30 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,20 +171,16 @@ void	debug_stat_tiles(t_stat_tiles stat)
 
 void	debug_player_box_collider(t_game *game)
 {
-	printf("player pos : x : %d y : %d\n", game->gameplay->player_pos->x,
-		game->gameplay->player_pos->y);
+	printf("player pos : x : %d y : %d\n", game->gameplay->player_pos.x,
+		game->gameplay->player_pos.y);
 	printf("collider player : \n");
-	printf("N_O : x : %d y : %d\n",
-		game->gameplay->player_pos->x * CHUNK_SIZE,
-			game->gameplay->player_pos->y * CHUNK_SIZE);
-	printf("N_E : x : %d y : %d\n",
-		(game->gameplay->player_pos->x * CHUNK_SIZE) + CHUNK_SIZE,
-		game->gameplay->player_pos->y * CHUNK_SIZE);
-	printf("S_O : x : %d y : %d\n",
-		game->gameplay->player_pos->x * CHUNK_SIZE,
-		(game->gameplay->player_pos->y * CHUNK_SIZE) + CHUNK_SIZE);
-	printf("S_E : x : %d y : %d\n\n",
-		(game->gameplay->player_pos->x * CHUNK_SIZE) + CHUNK_SIZE,
-		(game->gameplay->player_pos->y * CHUNK_SIZE) + CHUNK_SIZE);
+	printf("N_O : x : %d y : %d\n", game->gameplay->player_pos.x,
+			game->gameplay->player_pos.y);
+	printf("N_E : x : %d y : %d\n", (game->gameplay->player_pos.x + CHUNK_SIZE),
+		game->gameplay->player_pos.y);
+	printf("S_O : x : %d y : %d\n", game->gameplay->player_pos.x,
+		(game->gameplay->player_pos.y + CHUNK_SIZE));
+	printf("S_E : x : %d y : %d\n\n", (game->gameplay->player_pos.x + CHUNK_SIZE),
+		(game->gameplay->player_pos.y + CHUNK_SIZE));
 }
 /**/

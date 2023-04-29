@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 19:53:32 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 23:42:57 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <time.h>
-
-// # include "../lib/ft_printf/include/ft_printf.h"
 
 // CAUTION /!/\/
 # include <stdio.h>
@@ -55,7 +53,7 @@
 
 # define DELAY_ANIMATION 2
 
-# define IS_DEBUG 0
+# define IS_DEBUG 1
 # define IS_DEBUG_TIME 0
 
 # define RED 0xFF0000
@@ -110,6 +108,14 @@ typedef struct s_stat_tiles
 	int	player;
 	int	collect;
 }	t_stat_tiles;
+
+typedef struct s_dir_press
+{
+	int	up;
+	int	down;
+	int	left;
+	int	right;
+}	t_dir_press;
 
 typedef struct s_img
 {
@@ -168,8 +174,12 @@ typedef struct s_sprites_assets
 
 typedef struct s_gameplay
 {
-	t_vector_2			*player_pos;
+	int					fps;
+	double				delta_time;
+	t_vector_2			player_pos;
+	t_vector_2			player_chunk_pos;
 	t_vector_2			*chunks_pos;
+	t_dir_press			dir_player;
 }	t_gameplay;
 
 typedef struct s_game
@@ -183,6 +193,8 @@ typedef struct s_game
 	// t_images_assets		assets;
 	// int		bpp; /* bits per pixel */
 
+void				bzero_dir_press(t_dir_press *dir);
+
 // |================================================|
 // |					SRC_DEBUG					|
 // |================================================|
@@ -194,7 +206,8 @@ typedef struct s_game
 void				display_map(t_img *img, t_game game);
 void				display_debug(t_img *img, int color,
 						t_vector_2 *chunk_pos, int size);
-
+void				display_player_box_collider(t_img *img, t_vector_2 pos,
+						int color);
 // |--------------------------------|
 // |			DEBUG_PRINT			|
 // |--------------------------------|
@@ -392,7 +405,7 @@ void				free_one_sprite(void *ptr, t_sprite *sprite);
 // |------------------------------------|
 void				ft_bzero(void *s, size_t n);
 
-void				ft_memset(void *addr, size_t n, int value);
+void				ft_memset(void *addr, int value, size_t n);
 
 void				*ft_calloc(size_t nmemb, size_t size);
 void				*ft_memcpy(void *dest, const void *src, size_t n);

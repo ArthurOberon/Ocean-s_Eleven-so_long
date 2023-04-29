@@ -10,11 +10,6 @@ INCLUDES_H		=	-I./$(INCLUDES_DIR) -I./$(LIB_DIR)
 MLX_FLAGS 		=	-L$(LIB_DIR) -lmlx -lX11 -lXext
 DEPS 			=	$(INCLUDES_DIR)so_long.h Makefile
 
-# PRINTF			=	$(LIB_DIR)ft_printf
-# PRINTF_A		=	$(PRINTF)/libftprintf.a
-# DEPS_PRINTF	= $(PRINTF)/include/ft_printf.h $(PRINTF)/Makefile
-
-
 # SOURCES USE WHEN IS_DEBUG == 1
 SRC_DEBUG		=	$(addprefix src_debug/, \
 					debug_print.c \
@@ -101,19 +96,16 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(DEPS)
 
 $(SO_LONG): $(PS_OBJ)
 	@echo "\e[36mMaking $(SO_LONG)...\e[0m"
-# @make -C $(PRINTF)
 	@$(CC) $(CFLAGS) $(INCLUDES_H) $(PS_OBJ) $(MLX_FLAGS) -o $(SO_LONG)
 	@echo "\e[32mDone !\e[0m"
 
 bonus: all
 
 clean:
-# @make clean -C $(PRINTF)
 	@rm -rf $(OBJ_DIR)
 	@echo "\e[31mObject files removed.\e[0m"
 
 fclean:	clean
-# @make fclean -C $(PRINTF)
 	@rm -f $(SO_LONG)
 	@echo "\e[31m$(SO_LONG) removed.\e[0m"
 

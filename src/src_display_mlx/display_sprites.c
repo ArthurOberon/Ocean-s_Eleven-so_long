@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 19:32:43 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 22:15:24 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,19 @@ void	put_image_to_image(t_window *window, t_vector_2 pos, t_img *img)
 static void	display_player(t_game *game)
 {
 	put_image_to_image(game->window,
-		(t_vector_2){game->gameplay->player_pos->x * CHUNK_SIZE,
-		game->gameplay->player_pos->y * CHUNK_SIZE},
+		(t_vector_2){game->gameplay->player_pos.x,
+		game->gameplay->player_pos.y},
 		&(game->window->map_sprites[game->level->nb_cases]->sprite_img)
 	[game->window->map_sprites[game->level->nb_cases]->frame]);
 }
 
-	// printf("pos player : x : [%d] y : [%d]\n", game->player_pos->x,
-		// game->player_pos->y);
+	// put_image_to_image(game->window,
+	// 	(t_vector_2){game->gameplay->player_chunk_pos.x * CHUNK_SIZE,
+	// 	game->gameplay->player_chunk_pos.y * CHUNK_SIZE},
+	// 	&(game->window->map_sprites[game->level->nb_cases]->sprite_img)
+	// [game->window->map_sprites[game->level->nb_cases]->frame]);
+	// printf("pos player : x : [%d] y : [%d]\n", game->player_chunk_pos.x,
+		// game->player_chunk_pos.y);
 
 static void	update_frame(t_sprite *sprite)
 {

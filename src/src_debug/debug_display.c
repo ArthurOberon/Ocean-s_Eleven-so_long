@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 13:09:46 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 19:27:53 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 22:38:38 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,24 @@ void	display_map(t_img *img, t_game game)
 			display_square(img, game.gameplay->chunks_pos[i], BLUE);
 		i ++;
 	}
+}
+
+void	display_player_box_collider(t_img *img, t_vector_2 pos, int color)
+{
+	img_pix_put(img, pos.x, pos.y, color);
+	img_pix_put(img, pos.x + 1, pos.y, color);
+	img_pix_put(img, pos.x, pos.y + 1, color);
+	img_pix_put(img, pos.x + 1, pos.y + 1, color);
+	img_pix_put(img, pos.x, pos.y + CHUNK_SIZE, color);
+	img_pix_put(img, pos.x + 1, pos.y + CHUNK_SIZE, color);
+	img_pix_put(img, pos.x, pos.y + CHUNK_SIZE + 1, color);
+	img_pix_put(img, pos.x + 1, pos.y + CHUNK_SIZE + 1, color);
+	img_pix_put(img, pos.x + CHUNK_SIZE, pos.y, color);
+	img_pix_put(img, pos.x + CHUNK_SIZE + 1, pos.y, color);
+	img_pix_put(img, pos.x + CHUNK_SIZE, pos.y + 1, color);
+	img_pix_put(img, pos.x + CHUNK_SIZE + 1, pos.y + 1, color);
+	img_pix_put(img, (pos.x) + CHUNK_SIZE, pos.y + CHUNK_SIZE, color);
+	img_pix_put(img, (pos.x) + CHUNK_SIZE + 1, pos.y + CHUNK_SIZE, color);
+	img_pix_put(img, (pos.x) + CHUNK_SIZE, pos.y + CHUNK_SIZE + 1, color);
+	img_pix_put(img, (pos.x) + CHUNK_SIZE + 1, pos.y + CHUNK_SIZE + 1, color);
 }

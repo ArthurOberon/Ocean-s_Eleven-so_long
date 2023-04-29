@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 19:31:25 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 23:43:26 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 static void	init_player_pos(t_game *game, t_gameplay *gameplay)
 {
-	gameplay->player_pos = ft_calloc(sizeof(t_vector_2), 1);
-	if (!gameplay->player_pos)
-		free_game(*game, "Error of malloc\n");
-	gameplay->player_pos->x = game->level->player_pos_tab
+	gameplay->player_chunk_pos.x = game->level->player_pos_tab
 		- game->level->map_vector.x;
-	gameplay->player_pos->y = game->level->player_pos_tab
+	gameplay->player_chunk_pos.y = game->level->player_pos_tab
 		/ game->level->map_vector.y;
+	gameplay->player_pos.x = gameplay->player_chunk_pos.x * CHUNK_SIZE;
+	gameplay->player_pos.y = gameplay->player_chunk_pos.y * CHUNK_SIZE;
 }
 
 static void	get_chunk_positions(t_game *game, t_vector_2 **chunk_pos,
@@ -62,6 +61,7 @@ void	init_gameplay(t_game *game)
 	get_chunk_positions(game, &gameplay->chunks_pos, game->level->map_vector,
 		game->level->nb_cases);
 	init_player_pos(game, gameplay);
+	bzero_dir_press(&gameplay->dir_player);
 	if (IS_DEBUG)
 		debug_chunk_pos(game);
 }
