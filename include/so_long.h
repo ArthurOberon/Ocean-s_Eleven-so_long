@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 23:42:57 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/30 00:14:59 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@
 # define WINDOW_HEIGHT 800
 
 # define CHUNK_SIZE 128
+
+# define SPEED 300
+
+# define FPS_CAP 125
+// -> 0.008
 
 # define SPRITES_PATH "assets/sprites/xpm/"
 
@@ -109,14 +114,6 @@ typedef struct s_stat_tiles
 	int	collect;
 }	t_stat_tiles;
 
-typedef struct s_dir_press
-{
-	int	up;
-	int	down;
-	int	left;
-	int	right;
-}	t_dir_press;
-
 typedef struct s_img
 {
 	void		*mlx_img;
@@ -179,7 +176,7 @@ typedef struct s_gameplay
 	t_vector_2			player_pos;
 	t_vector_2			player_chunk_pos;
 	t_vector_2			*chunks_pos;
-	t_dir_press			dir_player;
+	t_vector_2			dir_player;
 }	t_gameplay;
 
 typedef struct s_game
@@ -192,8 +189,6 @@ typedef struct s_game
 
 	// t_images_assets		assets;
 	// int		bpp; /* bits per pixel */
-
-void				bzero_dir_press(t_dir_press *dir);
 
 // |================================================|
 // |					SRC_DEBUG					|
@@ -250,6 +245,7 @@ void				display(t_game *game);
 
 int					close_window(t_window *window);
 int					handle_keypress(int keysym, t_game	*game);
+int					handle_keyrelease(int keysym, t_game *game);
 
 // |============================================|
 // |					SRC_GNL					|

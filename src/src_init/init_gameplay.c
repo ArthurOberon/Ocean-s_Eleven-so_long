@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 23:43:26 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/30 00:06:04 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	init_gameplay(t_game *game)
 	get_chunk_positions(game, &gameplay->chunks_pos, game->level->map_vector,
 		game->level->nb_cases);
 	init_player_pos(game, gameplay);
-	bzero_dir_press(&gameplay->dir_player);
+	gameplay->dir_player.x = 0;
+	gameplay->dir_player.y = 0;
 	if (IS_DEBUG)
 		debug_chunk_pos(game);
 }

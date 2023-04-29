@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 23:42:43 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/30 00:14:37 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	calculate_fps(int *fps, double *delta_time)
 		last_time = clock();
 	now = clock();
 	*delta_time = (now - last_time) / CLOCKS_PER_SEC;
-	while (*delta_time < 0.008)
+	while (*delta_time < (1 / FPS_CAP))
 	{
 		now = clock();
 		*delta_time = (now - last_time) / CLOCKS_PER_SEC;
@@ -30,25 +30,24 @@ static void	calculate_fps(int *fps, double *delta_time)
 	last_time = now;
 }
 
-void	bzero_dir_press(t_dir_press *dir)
-{
-	dir->up = 0;
-	dir->down = 0;
-	dir->left = 0;
-	dir->right = 0;
-}
-
 static void	check_move_player(t_game *game)
 {
-	if (game->gameplay->dir_player.up)
-		game->gameplay->player_pos.y -= 300 * game->gameplay->delta_time;
-	if (game->gameplay->dir_player.down)
-		game->gameplay->player_pos.y += 300 * game->gameplay->delta_time;
-	if (game->gameplay->dir_player.left)
-		game->gameplay->player_pos.x -= 300 * game->gameplay->delta_time;
-	if (game->gameplay->dir_player.right)
-		game->gameplay->player_pos.x += 300 * game->gameplay->delta_time;
-	bzero_dir_press(&game->gameplay->dir_player);
+	if (game->gameplay->dir_player.y == -1)
+	{
+		game->gameplay->player_pos.y -= SPEED * game->gameplay->delta_time;
+	}
+	if (game->gameplay->dir_player.y == 1)
+	{
+		game->gameplay->player_pos.y += SPEED * game->gameplay->delta_time;
+	}
+	if (game->gameplay->dir_player.x == -1)
+	{
+		game->gameplay->player_pos.x -= SPEED * game->gameplay->delta_time;
+	}
+	if (game->gameplay->dir_player.x == 1)
+	{
+		game->gameplay->player_pos.x += SPEED * game->gameplay->delta_time;
+	}
 }
 
 static int	on_update(t_game *game)
@@ -80,6 +79,8 @@ void	display(t_game *game)
 		&game->window);
 	mlx_hook(game->window->win_ptr, KeyPress, KeyPressMask, &handle_keypress,
 		game);
+	mlx_hook(game->window->win_ptr, KeyRelease, KeyReleaseMask,
+		&handle_keyrelease, game);
 	mlx_loop_hook(game->window->mlx_ptr, &on_update, game);
 	mlx_loop(game->window->mlx_ptr);
 	mlx_destroy_image(game->window->mlx_ptr, game->window->img.mlx_img);
