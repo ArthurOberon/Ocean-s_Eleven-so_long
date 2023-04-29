@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:34:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 17:09:59 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 19:29:14 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,19 @@ static void	handle_player_move(int keysym, t_game *game)
 {
 	if (keysym == XK_W || keysym == XK_w)
 	{
-		game->player_pos.y -= 1;
+		game->gameplay->player_pos->y -= 1;
 	}
 	if (keysym == XK_S || keysym == XK_s)
 	{
-		game->player_pos.y += 1;
+		game->gameplay->player_pos->y += 1;
 	}
 	if (keysym == XK_A || keysym == XK_a)
 	{
-		game->player_pos.x -= 1;
+		game->gameplay->player_pos->x -= 1;
 	}
 	if (keysym == XK_D || keysym == XK_d)
 	{
-		game->player_pos.x += 1;
+		game->gameplay->player_pos->x += 1;
 	}
 	if (IS_DEBUG)
 		debug_player_box_collider(game);

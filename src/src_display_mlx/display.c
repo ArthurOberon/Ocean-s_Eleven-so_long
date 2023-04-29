@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 17:44:54 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 19:39:09 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	on_update(t_game *game)
 	background(&game->window->img, 0xE0E0E0);
 	display_sprites(game);
 	if (IS_DEBUG)
-		display_debug(&game->window->img, GREEN, game->chunks_pos,
+		display_debug(&game->window->img, GREEN, game->gameplay->chunks_pos,
 			game->level->nb_cases);
 	mlx_put_image_to_window(game->window->mlx_ptr, game->window->win_ptr,
 		game->window->img.mlx_img, 0, 0);
@@ -28,9 +28,6 @@ static int	on_update(t_game *game)
 
 void	display(t_game *game)
 {
-	init_window(game);
-	init_sprites_assets(game);
-	init_sprites(game);
 	mlx_hook(game->window->win_ptr, DestroyNotify, KeyPressMask, close_window,
 		&game->window);
 	mlx_hook(game->window->win_ptr, KeyPress, KeyPressMask, &handle_keypress,

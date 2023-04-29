@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:52:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 17:03:24 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 19:32:26 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ void	ft_print_1d_to_2d(t_level *level)
 
 void	debug_chunk_pos(t_game *game)
 {
-	ft_print_chunk_pos(game->chunks_pos, game->level->nb_cases);
+	ft_print_chunk_pos(game->gameplay->chunks_pos, game->level->nb_cases);
 	ft_print_1d_to_2d(game->level);
 }
 
@@ -171,19 +171,19 @@ void	debug_stat_tiles(t_stat_tiles stat)
 
 void	debug_player_box_collider(t_game *game)
 {
-	printf("player pos : x : %d y : %d\n", game->player_pos.x,
-		game->player_pos.y);
+	printf("player pos : x : %d y : %d\n", game->gameplay->player_pos->x,
+		game->gameplay->player_pos->y);
 	printf("collider player : \n");
 	printf("N_O : x : %d y : %d\n",
-		game->player_pos.x * CHUNK_SIZE, game->player_pos.y * CHUNK_SIZE);
+		game->gameplay->player_pos->x * CHUNK_SIZE, game->gameplay->player_pos->y * CHUNK_SIZE);
 	printf("N_E : x : %d y : %d\n",
-		(game->player_pos.x * CHUNK_SIZE) + CHUNK_SIZE,
-		game->player_pos.y * CHUNK_SIZE);
+		(game->gameplay->player_pos->x * CHUNK_SIZE) + CHUNK_SIZE,
+		game->gameplay->player_pos->y * CHUNK_SIZE);
 	printf("S_O : x : %d y : %d\n",
-		game->player_pos.x * CHUNK_SIZE,
-		(game->player_pos.y * CHUNK_SIZE) + CHUNK_SIZE);
+		game->gameplay->player_pos->x * CHUNK_SIZE,
+		(game->gameplay->player_pos->y * CHUNK_SIZE) + CHUNK_SIZE);
 	printf("S_E : x : %d y : %d\n\n",
-		(game->player_pos.x * CHUNK_SIZE) + CHUNK_SIZE,
-		(game->player_pos.y * CHUNK_SIZE) + CHUNK_SIZE);
+		(game->gameplay->player_pos->x * CHUNK_SIZE) + CHUNK_SIZE,
+		(game->gameplay->player_pos->y * CHUNK_SIZE) + CHUNK_SIZE);
 }
 /**/

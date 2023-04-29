@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 19:17:43 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 18:53:53 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 19:34:12 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,19 +70,26 @@ void	free_window(t_window *window)
 	free(window);
 }
 
+void	free_gameplay(t_gameplay *gameplay)
+{
+	if (gameplay->player_pos)
+		free(gameplay->player_pos);
+	if (gameplay->chunks_pos)
+		free(gameplay->chunks_pos);
+	free(gameplay);
+}
+
 void	free_game(t_game game, const char *error)
 {
 	if (game.level)
 	{
 		free_level(game.level);
+		if (game.assets)
+			free_assets(game.window->mlx_ptr, game.assets);
 		if (game.window)
-		{
-			if (game.assets)
-				free_assets(game.window->mlx_ptr, game.assets);
 			free_window(game.window);
-			if (game.chunks_pos)
-				free(game.chunks_pos);
-		}
+		if (game.gameplay)
+			free_gameplay(game.gameplay);
 	}
 	if (error)
 	{

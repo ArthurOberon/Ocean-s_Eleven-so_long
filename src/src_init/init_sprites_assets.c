@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 20:56:08 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 18:54:40 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 19:11:38 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,14 @@ static void	sprite_to_assets(t_game *game, t_sprite **asset, char *path,
 	sprite->sprite_img = ft_calloc(sizeof(t_img), size);
 	if (!sprite->sprite_img)
 		free_game(*game, "Error of malloc.\n");
-	i = 0;
-	while (i < size)
+	i = -1;
+	while (++i < size)
 	{
 		complet_path = find_sprite_path(game, path, i);
 		init_xpm_file(game, ptr, complet_path, &(sprite->sprite_img)[i]);
 		(sprite->sprite_img)[i] = resize_img(game, ptr,
 				&(sprite->sprite_img)[i], (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
 		free(complet_path);
-		i++;
 	}
 	*asset = sprite;
 }
@@ -107,6 +106,7 @@ void	init_sprites_assets(t_game *game)
 	assets = ft_calloc(sizeof(t_sprites_assets), 1);
 	if (!assets)
 		free_game(*game, "Error of malloc.\n");
+	game->assets = assets;
 	sprite_to_assets(game, &assets->player, PATH_PLAYER, FRAME_PLAYER);
 	sprite_to_assets(game, &assets->exit, PATH_EXIT, FRAME_EXIT);
 	sprite_to_assets(game, &assets->collect, PATH_COLLECT, FRAME_COLLECT);
@@ -120,5 +120,4 @@ void	init_sprites_assets(t_game *game)
 	sprite_to_assets(game, &assets->wall_side_left, PATH_WALL_SIDE_LEFT, 1);
 	sprite_to_assets(game, &assets->wall_side_right, PATH_WALL_SIDE_RIGHT, 1);
 	sprite_to_assets(game, &assets->wall_inside, PATH_WALL_INSIDE, 1);
-	game->assets = assets;
 }

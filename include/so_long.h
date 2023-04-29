@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 18:31:25 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 19:39:45 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,13 +166,18 @@ typedef struct s_sprites_assets
 	t_sprite	*wall_inside;
 }	t_sprites_assets;
 
+typedef struct s_gameplay
+{
+	t_vector_2			*player_pos;
+	t_vector_2			*chunks_pos;
+}	t_gameplay;
+
 typedef struct s_game
 {
 	t_level				*level;
 	t_window			*window;
 	t_sprites_assets	*assets;
-	t_vector_2			player_pos;
-	t_vector_2			*chunks_pos;
+	t_gameplay			*gameplay;
 }	t_game;
 
 	// t_images_assets		assets;
@@ -239,9 +244,22 @@ int					handle_keypress(int keysym, t_game	*game);
 
 char				*get_next_line(int fd);
 
-// |====================================================|
-// |					SRC_INIT_MLX					|
-// |====================================================|
+// |================================================|
+// |					SRC_INIT					|
+// |================================================|
+
+// |--------------------------------|
+// |			INIT_GAME			|
+// |--------------------------------|
+
+void				init_game(t_game *game);
+void				bzero_game(t_game *game);
+
+// |------------------------------------|
+// |			INIT_GAMEPLAY			|
+// |------------------------------------|
+
+void				init_gameplay(t_game *game);
 
 // |----------------------------------------|
 // |			INIT_IMAGES_ASSETS			|

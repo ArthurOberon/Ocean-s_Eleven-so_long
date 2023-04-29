@@ -40,10 +40,12 @@ SRC_GNL			=	$(addprefix src_gnl/, \
 					)
 
 # SOURCES USE TO INIT VARIABLES FOR DISPLAY
-SRC_INIT_MLX	=	$(addprefix src_init_mlx/, \
+SRC_INIT	=	$(addprefix src_init/, \
+					init_game.c \
 					init_window.c \
 					init_images.c \
 					init_sprites.c \
+					init_gameplay.c \
 					init_sprites_assets.c \
 					sprites_arrengement.c \
 					)
@@ -78,7 +80,7 @@ SL_SRCS 		=	$(addprefix $(SRC_DIR), \
 					$(SRC_DISPLAY) \
 					$(SRC_GAMEPLAY) \
 					$(SRC_GNL) \
-					$(SRC_INIT_MLX) \
+					$(SRC_INIT) \
 					$(SRC_PARSING) \
 					$(SRC_PATH) \
 					$(SRC_TOOLS) \
