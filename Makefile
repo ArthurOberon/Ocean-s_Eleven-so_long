@@ -46,8 +46,6 @@ SRC_INIT_MLX	=	$(addprefix src_init_mlx/, \
 					init_sprites.c \
 					init_sprites_assets.c \
 					sprites_arrengement.c \
-					\
-					deprecated_init_images_assets.c \
 					)
 
 # SOURCES USE TO READ AND PARSE THE MAP

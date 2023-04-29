@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 20:56:08 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 17:06:36 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 18:24:53 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,17 @@ static char	*find_sprite_path(t_game *game, char *start_path, int frame)
 	return (complet_path);
 }
 
-static void	sprite_to_assets(t_game *game, t_sprite *sprite, char *path,
+static void	sprite_to_assets(t_game *game, t_sprite **asset, char *path,
 	int size)
 {
-	int		i;
-	char	*complet_path;
-	void	*ptr;
+	int			i;
+	char		*complet_path;
+	void		*ptr;
+	t_sprite	*sprite;
 
+	sprite = ft_calloc(sizeof(t_sprite), 1);
+	if (!sprite)
+		free_game(*game, "Error of malloc\n");
 	ptr = game->window->mlx_ptr;
 	sprite->frame = 0;
 	sprite->size = size;
@@ -92,11 +96,17 @@ static void	sprite_to_assets(t_game *game, t_sprite *sprite, char *path,
 		free(complet_path);
 		i++;
 	}
+	*asset = sprite;
 }
 
-void	init_sprites_assets(t_game *game, t_sprites_assets *assets)
+void	init_sprites_assets(t_game *game)
 {
+	t_sprites_assets	*assets;
+
 	get_stat_tiles_map(game);
+	assets = ft_calloc(sizeof(t_sprites_assets), 1);
+	if (!assets)
+		free_game(*game, "Error of malloc\n");
 	sprite_to_assets(game, &assets->player, PATH_PLAYER, FRAME_PLAYER);
 	sprite_to_assets(game, &assets->exit, PATH_EXIT, FRAME_EXIT);
 	sprite_to_assets(game, &assets->collect, PATH_COLLECT, FRAME_COLLECT);
@@ -110,4 +120,5 @@ void	init_sprites_assets(t_game *game, t_sprites_assets *assets)
 	sprite_to_assets(game, &assets->wall_side_left, PATH_WALL_SIDE_LEFT, 1);
 	sprite_to_assets(game, &assets->wall_side_right, PATH_WALL_SIDE_RIGHT, 1);
 	sprite_to_assets(game, &assets->wall_inside, PATH_WALL_INSIDE, 1);
+	game->assets = assets;
 }

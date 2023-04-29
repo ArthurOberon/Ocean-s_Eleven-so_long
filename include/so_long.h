@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 17:00:02 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 18:22:55 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@
 
 # define DELAY_ANIMATION 2
 
-# define IS_DEBUG 1
+# define IS_DEBUG 0
 # define IS_DEBUG_TIME 0
 
 # define RED 0xFF0000
@@ -149,45 +149,28 @@ typedef struct s_window
 	t_sprite	*map_sprites;
 }	t_window;
 
-typedef struct s_images_assets
-{
-	t_img	*player;
-	t_img	*exit;
-	t_img	*collect;
-	t_img	*ground;
-	t_img	*wall_corner_n_o;
-	t_img	*wall_corner_n_e;
-	t_img	*wall_corner_s_e;
-	t_img	*wall_corner_s_o;
-	t_img	*wall_side_up;
-	t_img	*wall_side_down;
-	t_img	*wall_side_left;
-	t_img	*wall_side_right;
-	t_img	*wall_inside;
-}	t_images_assets;
-
 typedef struct s_sprites_assets
 {
-	t_sprite	player;
-	t_sprite	exit;
-	t_sprite	collect;
-	t_sprite	ground;
-	t_sprite	wall_corner_n_o;
-	t_sprite	wall_corner_n_e;
-	t_sprite	wall_corner_s_e;
-	t_sprite	wall_corner_s_o;
-	t_sprite	wall_side_up;
-	t_sprite	wall_side_down;
-	t_sprite	wall_side_left;
-	t_sprite	wall_side_right;
-	t_sprite	wall_inside;
+	t_sprite	*player;
+	t_sprite	*exit;
+	t_sprite	*collect;
+	t_sprite	*ground;
+	t_sprite	*wall_corner_n_o;
+	t_sprite	*wall_corner_n_e;
+	t_sprite	*wall_corner_s_e;
+	t_sprite	*wall_corner_s_o;
+	t_sprite	*wall_side_up;
+	t_sprite	*wall_side_down;
+	t_sprite	*wall_side_left;
+	t_sprite	*wall_side_right;
+	t_sprite	*wall_inside;
 }	t_sprites_assets;
 
 typedef struct s_game
 {
 	t_level				*level;
 	t_window			*window;
-	t_sprites_assets	assets;
+	t_sprites_assets	*assets;
 	t_vector_2			player_pos;
 	t_vector_2			*chunks_pos;
 }	t_game;
@@ -264,7 +247,7 @@ char				*get_next_line(int fd);
 // |			INIT_IMAGES_ASSETS			|
 // |----------------------------------------|
 
-void				init_sprites_assets(t_game *game, t_sprites_assets *assets);
+void				init_sprites_assets(t_game *game);
 
 void				init_images_assets(void *ptr, t_game *game);
 
@@ -296,9 +279,6 @@ void				init_sprite(t_img *image_asset, t_sprite *sprite, int size);
 // |----------------------------------------|
 // |			SPRITES_ARRENGEMENT			|
 // |----------------------------------------|
-
-// void				get_wall_image(t_game *game, t_images_assets assets,
-// 						t_sprite *sprite, int pos);
 
 void				get_wall_image(t_game *game, t_sprite *sprite, int pos);
 
