@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:40:38 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 16:44:39 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 17:06:29 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ void	init_sprites(t_game *game)
 		i++;
 	}
 	map_sprites[i] = game->assets.player;
-	game->window.map_sprites = map_sprites;
+	game->window->map_sprites = map_sprites;
 }

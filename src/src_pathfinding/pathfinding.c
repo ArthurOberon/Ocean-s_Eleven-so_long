@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 12:49:01 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 16:46:06 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 17:04:08 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ static t_vector_2	*collectibles_pos(t_level *level, int c_count)
 		if (level->map[i] == 'C')
 		{
 			collectibles_pos[k]
-				= (t_vector_2){i % level->map_vector.x, i / level->map_vector.x};
+				= (t_vector_2){i % level->map_vector.x, i
+				/ level->map_vector.x};
 			k++;
 		}
 		i++;
@@ -96,6 +97,7 @@ void	pathfinding(t_game *game)
 	}
 	a_star_collectibles(game, c_pos, c_count);
 	ft_bzero(game->level->path_map, sizeof(t_path_map) * game->level->nb_cases);
-	if (!a_star(game->level, game->level->player_pos_tab, game->level->exit_pos))
+	if (!a_star(game->level, game->level->player_pos_tab,
+			game->level->exit_pos))
 		exit_pathfinding_error(game->level, 'E', game->level->exit_pos);
 }

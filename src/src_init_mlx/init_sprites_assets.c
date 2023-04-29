@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 20:56:08 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 16:44:49 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 17:06:36 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	sprite_to_assets(t_game *game, t_sprite *sprite, char *path,
 	char	*complet_path;
 	void	*ptr;
 
-	ptr = game->window.mlx_ptr;
+	ptr = game->window->mlx_ptr;
 	sprite->frame = 0;
 	sprite->size = size;
 	sprite->last_time = 0;

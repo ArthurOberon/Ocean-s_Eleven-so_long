@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 16:42:19 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 17:00:02 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ typedef struct s_sprites_assets
 typedef struct s_game
 {
 	t_level				*level;
-	t_window			window;
+	t_window			*window;
 	t_sprites_assets	assets;
 	t_vector_2			player_pos;
 	t_vector_2			*chunks_pos;
@@ -432,10 +432,11 @@ long unsigned int	ft_abs(long n);
 // |================================================|
 
 void				ft_print_1d_to_2d(t_level *level);
-void				ft_print_path_map(t_level *level, int end_pos);
 void				ft_print_lst_map(t_lst_map *lst_map);
 void				ft_print_map(char **map, int x, int y);
+void				debug_player_box_collider(t_game *game);
 void				ft_print_path_map_status(t_level *level);
+void				ft_print_path_map(t_level *level, int end_pos);
 void				ft_print_chunk_pos(t_vector_2 *chunk_pos, int c_count);
 void				ft_print_collectibles_pos(t_vector_2 *c_pos, int c_count);
 

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:52:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 16:47:01 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 17:03:24 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,4 +120,70 @@ void	ft_print_collectibles_pos(t_vector_2 *c_pos, int c_count)
 	}
 }
 
+void	ft_print_chunk_pos(t_vector_2 *chunk_pos, int c_count)
+{
+	int	i;
+
+	i = 0;
+	while (i < c_count)
+	{
+		printf("chunk %d : x : [%d]  y : [%d]\n", i + 1,
+			chunk_pos[i].x, chunk_pos[i].y);
+		i++;
+	}
+	printf("\n");
+}
+
+void	ft_print_1d_to_2d(t_level *level)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	while (j < level->map_vector.y * level->map_vector.x)
+	{
+		i = 0;
+		while (i < level->map_vector.x)
+		{
+			printf("%c ", level->map[i + j]);
+			i++;
+		}
+		j += level->map_vector.x;
+		printf("\n");
+	}
+	printf("\n");
+}
+
+void	debug_chunk_pos(t_game *game)
+{
+	ft_print_chunk_pos(game->chunks_pos, game->level->nb_cases);
+	ft_print_1d_to_2d(game->level);
+}
+
+void	debug_stat_tiles(t_stat_tiles stat)
+{
+	printf("Number of :\nexit :[%d]\nwall :[%d]\n", stat.exit, stat.wall);
+	printf("ground : [%d] \nplayer : [%d]\n", stat.ground, stat.player);
+	printf("collectibles : [%d]\n", stat.player);
+	printf("TOTAL : [%d]\n", stat.exit + stat.wall + stat.ground + stat.player
+		+ stat.collect);
+}
+
+void	debug_player_box_collider(t_game *game)
+{
+	printf("player pos : x : %d y : %d\n", game->player_pos.x,
+		game->player_pos.y);
+	printf("collider player : \n");
+	printf("N_O : x : %d y : %d\n",
+		game->player_pos.x * CHUNK_SIZE, game->player_pos.y * CHUNK_SIZE);
+	printf("N_E : x : %d y : %d\n",
+		(game->player_pos.x * CHUNK_SIZE) + CHUNK_SIZE,
+		game->player_pos.y * CHUNK_SIZE);
+	printf("S_O : x : %d y : %d\n",
+		game->player_pos.x * CHUNK_SIZE,
+		(game->player_pos.y * CHUNK_SIZE) + CHUNK_SIZE);
+	printf("S_E : x : %d y : %d\n\n",
+		(game->player_pos.x * CHUNK_SIZE) + CHUNK_SIZE,
+		(game->player_pos.y * CHUNK_SIZE) + CHUNK_SIZE);
+}
 /**/
