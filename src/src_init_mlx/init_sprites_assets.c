@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 20:56:08 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 18:24:53 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 18:54:40 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,18 @@ static char	*find_sprite_path(t_game *game, char *start_path, int frame)
 	file_path = SPRITES_PATH;
 	file_path = ft_strjoin(file_path, start_path);
 	if (!file_path)
-		free_game(*game, "Error of malloc\n");
+		free_game(*game, "Error of malloc.\n");
 	str_itoa = ft_itoa(frame);
 	if (!str_itoa)
-		free_game(*game, "Error of malloc\n");
+		free_game(*game, "Error of malloc.\n");
 	frame_path = ft_strjoin(file_path, str_itoa);
 	free(str_itoa);
 	free(file_path);
 	if (!frame_path)
-		free_game(*game, "Error of malloc\n");
+		free_game(*game, "Error of malloc.\n");
 	complet_path = ft_strjoin(frame_path, ".xpm");
 	if (!complet_path)
-		free_game(*game, "Error of malloc\n");
+		free_game(*game, "Error of malloc.\n");
 	free(frame_path);
 	return (complet_path);
 }
@@ -78,14 +78,14 @@ static void	sprite_to_assets(t_game *game, t_sprite **asset, char *path,
 
 	sprite = ft_calloc(sizeof(t_sprite), 1);
 	if (!sprite)
-		free_game(*game, "Error of malloc\n");
+		free_game(*game, "Error of malloc.\n");
 	ptr = game->window->mlx_ptr;
 	sprite->frame = 0;
 	sprite->size = size;
 	sprite->last_time = 0;
 	sprite->sprite_img = ft_calloc(sizeof(t_img), size);
 	if (!sprite->sprite_img)
-		free_game(*game, "Error of malloc\n");
+		free_game(*game, "Error of malloc.\n");
 	i = 0;
 	while (i < size)
 	{
@@ -106,7 +106,7 @@ void	init_sprites_assets(t_game *game)
 	get_stat_tiles_map(game);
 	assets = ft_calloc(sizeof(t_sprites_assets), 1);
 	if (!assets)
-		free_game(*game, "Error of malloc\n");
+		free_game(*game, "Error of malloc.\n");
 	sprite_to_assets(game, &assets->player, PATH_PLAYER, FRAME_PLAYER);
 	sprite_to_assets(game, &assets->exit, PATH_EXIT, FRAME_EXIT);
 	sprite_to_assets(game, &assets->collect, PATH_COLLECT, FRAME_COLLECT);

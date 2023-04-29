@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:02:17 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/28 19:48:11 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 18:54:26 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	init_xpm_file(t_game *game, void *ptr, char *path, t_img *img)
 {
 	img->mlx_img = mlx_xpm_file_to_image(ptr, path, &img->size.x, &img->size.y);
 	if (!img->mlx_img)
-		free_game(*game, "Error of mlx_xpm_file_to_image\n");
+		free_game(*game, "Error of mlx_xpm_file_to_image.\n");
 	img->addr = mlx_get_data_addr(img->mlx_img, &img->bpp, &img->line_len,
 			&img->endian);
 }
@@ -26,7 +26,7 @@ void	init_new_resize_img(t_game *game, void *ptr, t_img *new_img,
 {
 	new_img->mlx_img = mlx_new_image(ptr, new_size.x, new_size.y);
 	if (!new_img->mlx_img)
-		free_game(*game, "Error of mlx_xpm_file_to_image\n");
+		free_game(*game, "Error of mlx_xpm_file_to_image.\n");
 	new_img->addr = mlx_get_data_addr(new_img->mlx_img, &new_img->bpp,
 			&new_img->line_len, &new_img->endian);
 	new_img->size = new_size;

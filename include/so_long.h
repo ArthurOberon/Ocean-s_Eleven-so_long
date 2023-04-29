@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 18:22:55 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 18:31:25 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ typedef struct s_window
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_img		img;
-	t_sprite	*map_sprites;
+	t_sprite	**map_sprites;
 }	t_window;
 
 typedef struct s_sprites_assets
@@ -280,7 +280,7 @@ void				init_sprite(t_img *image_asset, t_sprite *sprite, int size);
 // |			SPRITES_ARRENGEMENT			|
 // |----------------------------------------|
 
-void				get_wall_image(t_game *game, t_sprite *sprite, int pos);
+void				get_wall_image(t_game *game, t_sprite **sprite, int pos);
 
 // |================================================|
 // |					SRC_PARSING					|
