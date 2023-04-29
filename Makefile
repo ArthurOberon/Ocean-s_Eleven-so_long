@@ -69,6 +69,7 @@ SRC_PATH 		=	$(addprefix src_pathfinding/, \
 SRC_TOOLS		=	$(addprefix src_tools/, \
 					exit.c \
 					free.c \
+					free_utils.c \
 					mem_functions.c \
 					print_functions.c \
 					utils.c \

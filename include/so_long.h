@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 19:39:45 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 19:53:32 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -385,6 +385,7 @@ void				exit_pathfinding_error(t_level *level, char flag,
 // |----------------------------|
 
 void				free_game(t_game game, const char *error);
+void				free_one_sprite(void *ptr, t_sprite *sprite);
 
 // |------------------------------------|
 // |			MEM_FUNCTIONS			|
