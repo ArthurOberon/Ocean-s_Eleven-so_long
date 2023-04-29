@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:10:14 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/28 22:38:47 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 16:39:59 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,21 @@ void	ft_print_chunk_pos(t_vector_2 *chunk_pos, int c_count)
 	printf("\n");
 }
 
-void	ft_print_1d_to_2d(t_level level)
+void	ft_print_1d_to_2d(t_level *level)
 {
 	int	i;
 	int	j;
 
 	j = 0;
-	while (j < level.map_vector.y * level.map_vector.x)
+	while (j < level->map_vector.y * level->map_vector.x)
 	{
 		i = 0;
-		while (i < level.map_vector.x)
+		while (i < level->map_vector.x)
 		{
-			printf("%c ", level.map[i + j]);
+			printf("%c ", level->map[i + j]);
 			i++;
 		}
-		j += level.map_vector.x;
+		j += level->map_vector.x;
 		printf("\n");
 	}
 	printf("\n");
@@ -48,7 +48,7 @@ void	ft_print_1d_to_2d(t_level level)
 
 void	debug_chunk_pos(t_game *game)
 {
-	ft_print_chunk_pos(game->chunks_pos, game->level.nb_cases);
+	ft_print_chunk_pos(game->chunks_pos, game->level->nb_cases);
 	ft_print_1d_to_2d(game->level);
 }
 

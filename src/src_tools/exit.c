@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 15:13:50 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/28 22:38:47 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 16:46:35 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,18 @@ void	exit_map_error(char **map_2d, int y)
 
 	// ft_putstr("1111\n1P01\n1CE1\n1111\n");
 
-void	exit_pathfinding_error(t_level level, char flag, int pos_error)
+void	exit_pathfinding_error(t_level *level, char flag, int pos_error)
 {
-	free(level.map);
-	free(level.path_map);
+	free(level->map);
+	free(level->path_map);
 	printf("Error\n");
 	printf("Not a valid map.\n");
 	if (flag == 'E')
 		printf("The Exit (E) at position x : [%d] y : [%d] ",
-			pos_error % level.map_vector.x, pos_error / level.map_vector.y);
+			pos_error % level->map_vector.x, pos_error / level->map_vector.y);
 	else if (flag == 'C')
 		printf("The Collectible (C) at position x : [%d] y : [%d] ",
-			pos_error % level.map_vector.x, pos_error / level.map_vector.y);
+			pos_error % level->map_vector.x, pos_error / level->map_vector.y);
 	printf("is not reachable.\n");
 	printf("Please make the Exit and all the Collectibles ");
 	printf("reachable from the Player P.\n");

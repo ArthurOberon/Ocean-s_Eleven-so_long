@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 13:09:46 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/27 14:11:17 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 16:43:45 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,17 @@ void	display_map(t_img *img, t_game game)
 	int	i;
 
 	i = 0;
-	while (i < game.level.nb_cases)
+	while (i < game.level->nb_cases)
 	{
-		if (game.level.map[i] == '0')
+		if (game.level->map[i] == '0')
 			display_square(img, game.chunks_pos[i], WHITE);
-		else if (game.level.map[i] == '1')
+		else if (game.level->map[i] == '1')
 			display_square(img, game.chunks_pos[i], RED);
-		else if (game.level.map[i] == 'C')
+		else if (game.level->map[i] == 'C')
 			display_square(img, game.chunks_pos[i], GREEN);
-		else if (game.level.map[i] == 'E')
+		else if (game.level->map[i] == 'E')
 			display_square(img, game.chunks_pos[i], BLACK);
-		else if (game.level.map[i] == 'P')
+		else if (game.level->map[i] == 'P')
 			display_square(img, game.chunks_pos[i], BLUE);
 		i ++;
 	}

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:03:04 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/28 22:38:47 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 16:45:07 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	get_wall_image(t_game *game, t_sprite *sprite, int pos)
 	t_vector_2	value;
 	t_vector_2	value_max;
 
-	value_max.x = game->level.map_vector.x;
-	value_max.y = game->level.map_vector.y;
+	value_max.x = game->level->map_vector.x;
+	value_max.y = game->level->map_vector.y;
 	value.x = pos % (value_max.x--);
 	value.y = pos / ((value_max.y--) - 1);
 	if (value.x == 0 && value.y == 0)

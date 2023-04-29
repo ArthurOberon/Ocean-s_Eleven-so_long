@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/28 22:38:47 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 16:44:16 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ static void	display_player(t_game *game)
 	put_image_to_image(&game->window,
 		(t_vector_2){game->player_pos.x * CHUNK_SIZE,
 		game->player_pos.y * CHUNK_SIZE},
-		&(game->window.map_sprites[game->level.nb_cases].sprite_img)
-	[game->window.map_sprites[game->level.nb_cases].frame]);
+		&(game->window.map_sprites[game->level->nb_cases].sprite_img)
+	[game->window.map_sprites[game->level->nb_cases].frame]);
 }
 
 	// printf("pos player : x : [%d] y : [%d]\n", game->player_pos.x,
@@ -69,10 +69,10 @@ void	display_sprites(t_game *game)
 
 	j = 0;
 	y = 0;
-	while (j < game->level.map_vector.y)
+	while (j < game->level->map_vector.y)
 	{
 		i = 0;
-		while (i < game->level.map_vector.x)
+		while (i < game->level->map_vector.x)
 		{
 			update_frame(&game->window.map_sprites[i + y]);
 			put_image_to_image(&game->window,
@@ -82,7 +82,7 @@ void	display_sprites(t_game *game)
 			i++;
 		}
 		j++;
-		y += game->level.map_vector.x;
+		y += game->level->map_vector.x;
 	}
 	display_player(game);
 }

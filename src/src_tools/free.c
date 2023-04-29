@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 19:17:43 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/28 19:59:38 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 16:48:12 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,16 @@ static void	free_assets(void *ptr, t_sprites_assets assets)
 	free_one_sprite(ptr, assets.wall_inside);
 }
 
-static void	free_level(t_level level)
+static void	free_level(t_level *level)
 {
-	if (level.map)
-		free(level.map);
-	if (level.path_map)
-		free(level.path_map);
+	if (level)
+	{
+		if (level->map)
+			free(level->map);
+		if (level->path_map)
+			free(level->path_map);
+		free(level);
+	}
 }
 
 void	free_window(t_window window)

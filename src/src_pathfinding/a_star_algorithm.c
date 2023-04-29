@@ -6,13 +6,13 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:53:34 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/28 22:38:47 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 16:46:26 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	calculate_four_dir(t_level level, t_path_map *path_map,
+static int	calculate_four_dir(t_level *level, t_path_map *path_map,
 	int pos, int end_pos)
 {
 	int	dir;
@@ -21,8 +21,8 @@ static int	calculate_four_dir(t_level level, t_path_map *path_map,
 	dir = 0;
 	while (++dir <= 4)
 	{
-		dir_pos = calculate_dir_pos(dir, pos, level.map_vector.x);
-		if (level.map[dir_pos] == '1')
+		dir_pos = calculate_dir_pos(dir, pos, level->map_vector.x);
+		if (level->map[dir_pos] == '1')
 		{
 			path_map[dir_pos].has_been_check = 1;
 			path_map[dir_pos].f = -1;
@@ -31,7 +31,7 @@ static int	calculate_four_dir(t_level level, t_path_map *path_map,
 		{
 			path_map[dir_pos].dst_to_start = path_map[pos].dst_to_start + 1;
 			path_map[dir_pos].dst_to_end
-				= dst_to_end(dir_pos, end_pos, level.map_vector.x);
+				= dst_to_end(dir_pos, end_pos, level->map_vector.x);
 			path_map[dir_pos].f = path_map[dir_pos].dst_to_start
 				+ path_map[dir_pos].dst_to_end;
 			path_map[dir_pos].parent = pos;
@@ -66,20 +66,20 @@ static int	find_lower_f(t_path_map *path_map, int nb_cases)
 	return (lower_f_pos);
 }
 
-int	a_star(t_level level, int pos, int end_pos)
+int	a_star(t_level *level, int pos, int end_pos)
 {
 	int			bool_end;
 
 	bool_end = 0;
-	level.path_map[pos].dst_to_end = dst_to_end(pos,
-			end_pos, level.map_vector.x);
-	level.path_map[pos].f = level.path_map[pos].dst_to_end;
+	level->path_map[pos].dst_to_end = dst_to_end(pos,
+			end_pos, level->map_vector.x);
+	level->path_map[pos].f = level->path_map[pos].dst_to_end;
 	while (!bool_end)
 	{
-		pos = find_lower_f(level.path_map, level.nb_cases);
+		pos = find_lower_f(level->path_map, level->nb_cases);
 		if (pos == -1)
 			break ;
-		bool_end = calculate_four_dir(level, level.path_map, pos, end_pos);
+		bool_end = calculate_four_dir(level, level->path_map, pos, end_pos);
 		if (IS_DEBUG)
 			ft_print_path_map(level, end_pos);
 	}

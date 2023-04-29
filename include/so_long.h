@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/28 22:39:42 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 16:42:19 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,7 @@ typedef struct s_sprites_assets
 
 typedef struct s_game
 {
-	t_level				level;
+	t_level				*level;
 	t_window			window;
 	t_sprites_assets	assets;
 	t_vector_2			player_pos;
@@ -351,7 +351,7 @@ void				parse_map(char *file_name, char **map,
 // |			A_STAR_ALGORITHM			|
 // |----------------------------------------|
 
-int					a_star(t_level level, int pos, int end_pos);
+int					a_star(t_level *level, int pos, int end_pos);
 
 // |------------------------------------|
 // |			A_STAR_UTILS			|
@@ -359,9 +359,9 @@ int					a_star(t_level level, int pos, int end_pos);
 
 int					dst_to_end(int pos, int end, int x);
 int					calculate_dir_pos(int dir, int pos, int x);
-int					find_character(t_level level, char searched_char);
+int					find_character(t_level *level, char searched_char);
 
-t_path_map			*init_path_map(t_level level);
+t_path_map			*init_path_map(t_level *level);
 
 // |--------------------------------|
 // |			PATHFINDING			|
@@ -379,7 +379,7 @@ void				pathfinding(t_game *game);
 
 void				exit_arg_error(void);
 void				exit_map_error(char **map_2d, int y);
-void				exit_pathfinding_error(t_level level, char flag,
+void				exit_pathfinding_error(t_level *level, char flag,
 						int pos_error);
 
 // |----------------------------|
@@ -431,11 +431,11 @@ long unsigned int	ft_abs(long n);
 // |					TEMPORARY					|
 // |================================================|
 
-void				ft_print_1d_to_2d(t_level level);
-void				ft_print_path_map(t_level level, int end_pos);
+void				ft_print_1d_to_2d(t_level *level);
+void				ft_print_path_map(t_level *level, int end_pos);
 void				ft_print_lst_map(t_lst_map *lst_map);
 void				ft_print_map(char **map, int x, int y);
-void				ft_print_path_map_status(t_level level);
+void				ft_print_path_map_status(t_level *level);
 void				ft_print_chunk_pos(t_vector_2 *chunk_pos, int c_count);
 void				ft_print_collectibles_pos(t_vector_2 *c_pos, int c_count);
 

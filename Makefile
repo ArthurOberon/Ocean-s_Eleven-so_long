@@ -1,6 +1,6 @@
 SO_LONG 		=	so_long
 
-CC 				=	cc
+CC 				=	gcc
 CFLAGS 			=	-g -Wall -Wextra #-Werror
 INCLUDES_DIR 	=	include/
 SRC_DIR 		=	src/
@@ -8,9 +8,11 @@ OBJ_DIR 		=	obj/
 LIB_DIR 		=	lib/
 INCLUDES_H		=	-I./$(INCLUDES_DIR) -I./$(LIB_DIR)
 MLX_FLAGS 		=	-L$(LIB_DIR) -lmlx -lX11 -lXext
+DEPS 			=	$(INCLUDES_DIR)so_long.h Makefile
+
 # PRINTF			=	$(LIB_DIR)ft_printf
 # PRINTF_A		=	$(PRINTF)/libftprintf.a
-# DEPS 			=	$(INCLUDES_DIR)so_long.h Makefile $(PRINTF)/include/ft_printf.h $(PRINTF)/Makefile
+# DEPS_PRINTF	= $(PRINTF)/include/ft_printf.h $(PRINTF)/Makefile
 
 
 # SOURCES USE WHEN IS_DEBUG == 1

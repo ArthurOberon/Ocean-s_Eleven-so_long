@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:52:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/28 22:38:47 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/29 16:47:01 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,63 +44,63 @@ void	ft_print_lst_map(t_lst_map *lst_map)
 	}
 }
 
-void	ft_print_path_map(t_level level, int end_pos)
+void	ft_print_path_map(t_level *level, int end_pos)
 {
 	int	i;
 
 	i = 0;
-	while (i < level.nb_cases)
+	while (i < level->nb_cases)
 	{
-		if (i == end_pos && level.map[i] == 'E')
+		if (i == end_pos && level->map[i] == 'E')
 			printf("E!");
-		else if (i == end_pos && level.map[i] == 'C')
+		else if (i == end_pos && level->map[i] == 'C')
 			printf("C!");
-		else if (level.path_map[i].has_been_check == 1 && level.map[i] == 'C')
+		else if (level->path_map[i].has_been_check == 1 && level->map[i] == 'C')
 			printf("CK");
-		else if (level.path_map[i].has_been_check == 1 && level.map[i] == 'E')
+		else if (level->path_map[i].has_been_check == 1 && level->map[i] == 'E')
 			printf("EK");
-		else if (level.map[i] == 'P')
+		else if (level->map[i] == 'P')
 			printf("P_");
-		else if (level.map[i] == 'E')
+		else if (level->map[i] == 'E')
 			printf("E_");
-		else if (level.map[i] == 'C')
+		else if (level->map[i] == 'C')
 			printf("C_");
-		else if (level.path_map[i].f == -1)
+		else if (level->path_map[i].f == -1)
 			printf("##");
-		else if (level.path_map[i].has_been_check == 1)
+		else if (level->path_map[i].has_been_check == 1)
 			printf("OK");
-		else if (level.path_map[i].f != 0)
+		else if (level->path_map[i].f != 0)
 			printf("??");
 		else
 			printf("__");
 		printf(" ");
 		i++;
-		if (i % level.map_vector.x == 0)
+		if (i % level->map_vector.x == 0)
 			printf("\n");
 	}
 	printf("\n");
 }
 
-void	ft_print_path_map_status(t_level level)
+void	ft_print_path_map_status(t_level *level)
 {
 	int	i;
 
 	i = 0;
-	while (i < level.nb_cases)
+	while (i < level->nb_cases)
 	{
-		if (level.path_map[i].has_been_check == 0
-			&& level.path_map[i].dst_to_start == 0)
+		if (level->path_map[i].has_been_check == 0
+			&& level->path_map[i].dst_to_start == 0)
 			printf("Box [%d] is empty\n", i);
 		else
 		{
 			printf("\n");
 			printf("Box number : [%d]\n", i);
 			printf("	has been check : [%d]\n",
-				level.path_map[i].has_been_check);
-			printf("	dst_to_start :[%d]\n", level.path_map[i].dst_to_start);
-			printf("	dst_to_end : [%d]\n", level.path_map[i].dst_to_end);
-			printf("	f : [%d]\n", level.path_map[i].f);
-			printf("	parent : [%d]\n", level.path_map[i].parent);
+				level->path_map[i].has_been_check);
+			printf("	dst_to_start :[%d]\n", level->path_map[i].dst_to_start);
+			printf("	dst_to_end : [%d]\n", level->path_map[i].dst_to_end);
+			printf("	f : [%d]\n", level->path_map[i].f);
+			printf("	parent : [%d]\n", level->path_map[i].parent);
 			printf("\n");
 		}
 		i++;
