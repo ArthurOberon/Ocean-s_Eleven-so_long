@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:52:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 22:43:30 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/30 17:36:34 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,5 +182,15 @@ void	debug_player_box_collider(t_game *game)
 		(game->gameplay->player_pos.y + CHUNK_SIZE));
 	printf("S_E : x : %d y : %d\n\n", (game->gameplay->player_pos.x + CHUNK_SIZE),
 		(game->gameplay->player_pos.y + CHUNK_SIZE));
+}
+
+void	debug_fps(t_game *game)
+{
+	char	*string_fps;
+
+	string_fps = ft_itoa(game->gameplay->fps);
+	mlx_string_put(game->window->mlx_ptr, game->window->win_ptr, 10, 22, RED,
+		string_fps);
+	free(string_fps);
 }
 /**/

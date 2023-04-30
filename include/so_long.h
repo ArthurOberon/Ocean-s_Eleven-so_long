@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/30 00:14:59 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/30 21:04:44 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,6 +239,12 @@ void				display(t_game *game);
 // |					SRC_GAMEPLAY					|
 // |====================================================|
 
+// |------------------------------------|
+// |			GAMEPLAY_TOOLS			|
+// |------------------------------------|
+
+void				calculate_fps(int *fps, double *delta_time);
+
 // |----------------------------|
 // |			HANDLER			|
 // |----------------------------|
@@ -246,6 +252,12 @@ void				display(t_game *game);
 int					close_window(t_window *window);
 int					handle_keypress(int keysym, t_game	*game);
 int					handle_keyrelease(int keysym, t_game *game);
+
+// |--------------------------------|
+// |			MOVE_PLAYER			|
+// |--------------------------------|
+
+void				check_move_player(t_game *game);
 
 // |============================================|
 // |					SRC_GNL					|
@@ -439,6 +451,7 @@ long unsigned int	ft_abs(long n);
 // |					TEMPORARY					|
 // |================================================|
 
+void				debug_fps(t_game *game);
 void				ft_print_1d_to_2d(t_level *level);
 void				ft_print_lst_map(t_lst_map *lst_map);
 void				ft_print_map(char **map, int x, int y);

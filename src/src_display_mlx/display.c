@@ -6,49 +6,11 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/30 00:14:37 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/04/30 20:20:15 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-static void	calculate_fps(int *fps, double *delta_time)
-{
-	static double	last_time = 0;
-	double			now;
-
-	if (last_time == 0)
-		last_time = clock();
-	now = clock();
-	*delta_time = (now - last_time) / CLOCKS_PER_SEC;
-	while (*delta_time < (1 / FPS_CAP))
-	{
-		now = clock();
-		*delta_time = (now - last_time) / CLOCKS_PER_SEC;
-	}
-	*fps = (int)(1.0 / *delta_time);
-	last_time = now;
-}
-
-static void	check_move_player(t_game *game)
-{
-	if (game->gameplay->dir_player.y == -1)
-	{
-		game->gameplay->player_pos.y -= SPEED * game->gameplay->delta_time;
-	}
-	if (game->gameplay->dir_player.y == 1)
-	{
-		game->gameplay->player_pos.y += SPEED * game->gameplay->delta_time;
-	}
-	if (game->gameplay->dir_player.x == -1)
-	{
-		game->gameplay->player_pos.x -= SPEED * game->gameplay->delta_time;
-	}
-	if (game->gameplay->dir_player.x == 1)
-	{
-		game->gameplay->player_pos.x += SPEED * game->gameplay->delta_time;
-	}
-}
 
 static int	on_update(t_game *game)
 {
@@ -68,8 +30,7 @@ static int	on_update(t_game *game)
 		game->window->img.mlx_img, 0, 0);
 	calculate_fps(&game->gameplay->fps, &game->gameplay->delta_time);
 	if (IS_DEBUG)
-		mlx_string_put(game->window->mlx_ptr, game->window->win_ptr,
-			12, 22, RED, ft_itoa(game->gameplay->fps));
+		debug_fps(game);
 	return (0);
 }
 

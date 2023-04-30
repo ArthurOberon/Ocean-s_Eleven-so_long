@@ -40,19 +40,9 @@ make all
 
 **[Road/MindMap](https://www.figma.com/file/9b6RaE8ybtQWJs5uYydCCP/So_long?node-id=0%3A1&t=GJjjdQKJ2lWbG2y5-0)**
 
-### A_STAR ALGO FOR COLLECTIBLE
-- [x] Number of collectibles
-- [x] Positions of all collectibles
-- [x] a_star with each collectible position
-- [x] bzero_path_map struct instead of free/malloc
-
 ### OTHERS
-- [x] Implement my printf and replace all printf by ft_printf
-- [x] Free t_sprite map_sprites + free map_sprites[i].sprite_img
-- [x] Replace all mallocs by callocs
-- [x] Sort so_long.h by alphabetic
+- [ ] Implement my printf and replace all printf by ft_printf
 - [ ] Write Comments to functions with the extension doxygen
-- [x] Protect init_xpm_file
 - [ ] Create new image with size of the total image or init data->img at the size of the total image -> Create camera->img with window size and data->img get size of the total image
 - [ ] For now, stat_tiles is useless
 

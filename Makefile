@@ -26,6 +26,8 @@ SRC_DISPLAY		=	$(addprefix src_display_mlx/, \
 # SOURCES USE FOR THE GAMEPLAY
 SRC_GAMEPLAY	=	$(addprefix src_gameplay/, \
 					handler.c \
+					move_player.c \
+					gameplay_tools.c \
 					)
 
 # SOURCES USE FOR GET_NEXT_LINE
