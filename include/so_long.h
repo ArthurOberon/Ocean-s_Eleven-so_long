@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/01 22:11:07 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/01 23:10:03 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,7 @@ typedef struct s_player
 
 typedef struct s_gameplay
 {
+	int					nb_collect;
 	int					fps;
 	double				delta_time;
 	t_vector_2			*chunks_pos;
@@ -261,7 +262,11 @@ void				check_collider(t_f_vector_2 *move, t_game *game,
 // |			COLLIDER_TOOLS			|
 // |------------------------------------|
 
+// get_tile -> not use
 char				get_tile(int x, int y, char *map, int x_max);
+
+void				get_tile_number(int *pos_tile, int x, int y, int x_max);
+void				check_tile(char tile, int pos, double *move, t_game *game);
 
 double				double_modulo(double x, double y);
 

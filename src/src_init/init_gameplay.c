@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/01 22:10:06 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/01 23:09:35 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static void	init_player(t_game *game, t_player *player)
 		free_game(*game, "Error of malloc.\n");
 	player->size.x = (CHUNK_SIZE * RATIO_PLAYER_SIZE_X);
 	player->size.y = (CHUNK_SIZE * (RATIO_PLAYER_SIZE_Y));
-	printf("\n\nPLAYER SIZE : x : [%d] y : [%d]\n\n\n", player->size.x, player->size.y);
 	player->dir_player.x = 0;
 	player->dir_player.y = 0;
 	player->player_chunk_pos.x = game->level->player_pos_tab
@@ -71,6 +70,7 @@ void	init_gameplay(t_game *game)
 	game->gameplay = gameplay;
 	gameplay->fps = 0;
 	gameplay->delta_time = 0;
+	gameplay->nb_collect = game->level->nb_collect;
 	get_chunk_positions(game, &gameplay->chunks_pos, game->level->map_vector,
 		game->level->nb_cases);
 	init_player(game, gameplay->player);

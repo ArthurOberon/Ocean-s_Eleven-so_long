@@ -1,7 +1,7 @@
 SO_LONG 		=	so_long
 
 CC 				=	gcc
-CFLAGS 			=	-g -fsanitize=address -Wall -Wextra #-Werror
+CFLAGS 			=	-g -Wall -Wextra -fsanitize=address #-Werror
 INCLUDES_DIR 	=	include/
 SRC_DIR 		=	src/
 OBJ_DIR 		=	obj/
