@@ -1,7 +1,7 @@
 SO_LONG 		=	so_long
 
 CC 				=	gcc
-CFLAGS 			=	-g -Wall -Wextra #-Werror
+CFLAGS 			=	-g -fsanitize=address -Wall -Wextra #-Werror
 INCLUDES_DIR 	=	include/
 SRC_DIR 		=	src/
 OBJ_DIR 		=	obj/
@@ -26,7 +26,9 @@ SRC_DISPLAY		=	$(addprefix src_display_mlx/, \
 # SOURCES USE FOR THE GAMEPLAY
 SRC_GAMEPLAY	=	$(addprefix src_gameplay/, \
 					handler.c \
+					collider.c \
 					move_player.c \
+					collider_tools.c \
 					gameplay_tools.c \
 					)
 

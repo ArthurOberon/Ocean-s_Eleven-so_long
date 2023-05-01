@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/30 20:20:15 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/01 17:08:42 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ static int	on_update(t_game *game)
 	if (!game->window->win_ptr)
 		return (0);
 	background(&game->window->img, 0xE0E0E0);
-	check_move_player(game);
+	check_move_player(game, game->gameplay->player);
 	display_sprites(game);
 	if (IS_DEBUG)
 	{
 		display_debug(&game->window->img, GREEN, game->gameplay->chunks_pos,
 			game->level->nb_cases);
-		display_player_box_collider(&game->window->img,
-			game->gameplay->player_pos, 0x800080);
+		display_player_box_collider(&game->window->img, game->gameplay->player,
+			0x800080);
 	}
 	mlx_put_image_to_window(game->window->mlx_ptr, game->window->win_ptr,
 		game->window->img.mlx_img, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 13:09:46 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/30 22:27:13 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/01 19:25:41 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,22 +70,26 @@ void	display_map(t_img *img, t_game game)
 	}
 }
 
-void	display_player_box_collider(t_img *img, t_vector_2 pos, int color)
+void	display_player_box_collider(t_img *img, t_player *player, int color)
 {
-	img_pix_put(img, pos.x, pos.y, color);
-	img_pix_put(img, pos.x + 1, pos.y, color);
-	img_pix_put(img, pos.x, pos.y + 1, color);
-	img_pix_put(img, pos.x + 1, pos.y + 1, color);
-	img_pix_put(img, pos.x, pos.y + CHUNK_SIZE, color);
-	img_pix_put(img, pos.x + 1, pos.y + CHUNK_SIZE, color);
-	img_pix_put(img, pos.x, pos.y + CHUNK_SIZE + 1, color);
-	img_pix_put(img, pos.x + 1, pos.y + CHUNK_SIZE + 1, color);
-	img_pix_put(img, pos.x + CHUNK_SIZE, pos.y, color);
-	img_pix_put(img, pos.x + CHUNK_SIZE + 1, pos.y, color);
-	img_pix_put(img, pos.x + CHUNK_SIZE, pos.y + 1, color);
-	img_pix_put(img, pos.x + CHUNK_SIZE + 1, pos.y + 1, color);
-	img_pix_put(img, (pos.x) + CHUNK_SIZE, pos.y + CHUNK_SIZE, color);
-	img_pix_put(img, (pos.x) + CHUNK_SIZE + 1, pos.y + CHUNK_SIZE, color);
-	img_pix_put(img, (pos.x) + CHUNK_SIZE, pos.y + CHUNK_SIZE + 1, color);
-	img_pix_put(img, (pos.x) + CHUNK_SIZE + 1, pos.y + CHUNK_SIZE + 1, color);
+// N_O
+	img_pix_put(img, player->player_f_pos.x, player->player_f_pos.y, color);
+	img_pix_put(img, player->player_f_pos.x + 1, player->player_f_pos.y, color);
+	img_pix_put(img, player->player_f_pos.x, player->player_f_pos.y + 1, color);
+	img_pix_put(img, player->player_f_pos.x + 1, player->player_f_pos.y + 1, color);
+// N_E
+	img_pix_put(img, player->player_f_pos.x + PLAYER_SIZE, player->player_f_pos.y, color);
+	img_pix_put(img, player->player_f_pos.x + PLAYER_SIZE + 1, player->player_f_pos.y, color);
+	img_pix_put(img, player->player_f_pos.x + PLAYER_SIZE, player->player_f_pos.y + 1, color);
+	img_pix_put(img, player->player_f_pos.x + PLAYER_SIZE + 1, player->player_f_pos.y + 1, color);
+// S_O
+	img_pix_put(img, player->player_f_pos.x, player->player_f_pos.y + PLAYER_SIZE, color);
+	img_pix_put(img, player->player_f_pos.x + 1, player->player_f_pos.y + PLAYER_SIZE, color);
+	img_pix_put(img, player->player_f_pos.x, player->player_f_pos.y + PLAYER_SIZE + 1, color);
+	img_pix_put(img, player->player_f_pos.x + 1, player->player_f_pos.y + PLAYER_SIZE + 1, color);
+// S_E
+	img_pix_put(img, (player->player_f_pos.x) + PLAYER_SIZE, player->player_f_pos.y + PLAYER_SIZE, color);
+	img_pix_put(img, (player->player_f_pos.x) + PLAYER_SIZE + 1, player->player_f_pos.y + PLAYER_SIZE, color);
+	img_pix_put(img, (player->player_f_pos.x) + PLAYER_SIZE, player->player_f_pos.y + PLAYER_SIZE + 1, color);
+	img_pix_put(img, (player->player_f_pos.x) + PLAYER_SIZE + 1, player->player_f_pos.y + PLAYER_SIZE + 1, color);
 }

@@ -6,20 +6,29 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/30 00:06:04 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/01 18:06:02 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	init_player_pos(t_game *game, t_gameplay *gameplay)
+static void	init_player(t_game *game, t_player *player)
 {
-	gameplay->player_chunk_pos.x = game->level->player_pos_tab
+	player = ft_calloc(sizeof(t_player), 1);
+	if (!player)
+		free_game(*game, "Error of malloc.\n");
+	player->size = CHUNK_SIZE;
+	player->dir_player.x = 0;
+	player->dir_player.y = 0;
+	player->player_chunk_pos.x = game->level->player_pos_tab
 		- game->level->map_vector.x;
-	gameplay->player_chunk_pos.y = game->level->player_pos_tab
+	player->player_chunk_pos.y = game->level->player_pos_tab
 		/ game->level->map_vector.y;
-	gameplay->player_pos.x = gameplay->player_chunk_pos.x * CHUNK_SIZE;
-	gameplay->player_pos.y = gameplay->player_chunk_pos.y * CHUNK_SIZE;
+	player->player_pos.x = player->player_chunk_pos.x * CHUNK_SIZE;
+	player->player_pos.y = player->player_chunk_pos.y * CHUNK_SIZE;
+	player->player_f_pos.x = player->player_chunk_pos.x * CHUNK_SIZE;
+	player->player_f_pos.y = player->player_chunk_pos.y * CHUNK_SIZE;
+	game->gameplay->player = player;
 }
 
 static void	get_chunk_positions(t_game *game, t_vector_2 **chunk_pos,
@@ -58,11 +67,11 @@ void	init_gameplay(t_game *game)
 	if (!gameplay)
 		free_game(*game, "Error of malloc\n");
 	game->gameplay = gameplay;
+	gameplay->fps = 0;
+	gameplay->delta_time = 0;
 	get_chunk_positions(game, &gameplay->chunks_pos, game->level->map_vector,
 		game->level->nb_cases);
-	init_player_pos(game, gameplay);
-	gameplay->dir_player.x = 0;
-	gameplay->dir_player.y = 0;
+	init_player(game, gameplay->player);
 	if (IS_DEBUG)
 		debug_chunk_pos(game);
 }

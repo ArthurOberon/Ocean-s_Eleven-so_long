@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/30 22:27:23 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/01 19:32:51 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define WINDOW_HEIGHT 800
 
 # define CHUNK_SIZE 128
+# define PLAYER_SIZE 105
 
 # define SPEED 300
 
@@ -53,7 +54,7 @@
 
 # define FRAME_EXIT 1
 # define FRAME_PLAYER 1
-# define FRAME_GROUND 2
+# define FRAME_GROUND 1
 # define FRAME_COLLECT 1
 
 # define DELAY_ANIMATION 2
@@ -169,14 +170,21 @@ typedef struct s_sprites_assets
 	t_sprite	*wall_inside;
 }	t_sprites_assets;
 
+typedef struct s_player
+{
+	int					size;
+	t_vector_2			dir_player;	
+	t_vector_2			player_pos;
+	t_vector_2			player_chunk_pos;
+	t_f_vector_2		player_f_pos;
+}	t_player;
+
 typedef struct s_gameplay
 {
 	int					fps;
 	double				delta_time;
-	t_vector_2			player_pos;
-	t_vector_2			player_chunk_pos;
 	t_vector_2			*chunks_pos;
-	t_vector_2			dir_player;
+	t_player			*player;
 }	t_gameplay;
 
 typedef struct s_game
@@ -201,8 +209,9 @@ typedef struct s_game
 void				display_map(t_img *img, t_game game);
 void				display_debug(t_img *img, int color,
 						t_vector_2 *chunk_pos, int size);
-void				display_player_box_collider(t_img *img, t_vector_2 pos,
+void				display_player_box_collider(t_img *img, t_player *player,
 						int color);
+
 // |--------------------------------|
 // |			DEBUG_PRINT			|
 // |--------------------------------|
@@ -239,6 +248,22 @@ void				display(t_game *game);
 // |					SRC_GAMEPLAY					|
 // |====================================================|
 
+// |--------------------------------|
+// |			COLLIDER			|
+// |--------------------------------|
+
+void				check_collider(t_f_vector_2 *move, t_player *player,
+						char *map, int x_max);
+
+// |------------------------------------|
+// |			COLLIDER_TOOLS			|
+// |------------------------------------|
+
+
+char				get_tile(int x, int y, char *map, int x_max);
+
+double				double_modulo(double x, double y);
+
 // |------------------------------------|
 // |			GAMEPLAY_TOOLS			|
 // |------------------------------------|
@@ -257,7 +282,7 @@ int					handle_keyrelease(int keysym, t_game *game);
 // |			MOVE_PLAYER			|
 // |--------------------------------|
 
-void				check_move_player(t_game *game);
+void				check_move_player(t_game *game, t_player *player);
 
 // |============================================|
 // |					SRC_GNL					|
@@ -455,8 +480,8 @@ void				debug_fps(t_game *game);
 void				ft_print_1d_to_2d(t_level *level);
 void				ft_print_lst_map(t_lst_map *lst_map);
 void				ft_print_map(char **map, int x, int y);
-void				debug_player_box_collider(t_game *game);
 void				ft_print_path_map_status(t_level *level);
+void				debug_player_box_collider(t_player *player);
 void				ft_print_path_map(t_level *level, int end_pos);
 void				ft_print_chunk_pos(t_vector_2 *chunk_pos, int c_count);
 void				ft_print_collectibles_pos(t_vector_2 *c_pos, int c_count);

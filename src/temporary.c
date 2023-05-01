@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:52:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/30 17:36:34 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/01 17:55:00 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,26 +169,30 @@ void	debug_stat_tiles(t_stat_tiles stat)
 		+ stat.collect);
 }
 
-void	debug_player_box_collider(t_game *game)
+void	debug_player_box_collider(t_player *player)
 {
-	printf("player pos : x : %d y : %d\n", game->gameplay->player_pos.x,
-		game->gameplay->player_pos.y);
+	printf("player pos : x : %f y : %f\n", player->player_f_pos.x,
+		player->player_f_pos.y);
 	printf("collider player : \n");
-	printf("N_O : x : %d y : %d\n", game->gameplay->player_pos.x,
-			game->gameplay->player_pos.y);
-	printf("N_E : x : %d y : %d\n", (game->gameplay->player_pos.x + CHUNK_SIZE),
-		game->gameplay->player_pos.y);
-	printf("S_O : x : %d y : %d\n", game->gameplay->player_pos.x,
-		(game->gameplay->player_pos.y + CHUNK_SIZE));
-	printf("S_E : x : %d y : %d\n\n", (game->gameplay->player_pos.x + CHUNK_SIZE),
-		(game->gameplay->player_pos.y + CHUNK_SIZE));
+	printf("N_O : x : %f y : %f\n", player->player_f_pos.x,
+			player->player_f_pos.y);
+	printf("N_E : x : %f y : %f\n", (player->player_f_pos.x + CHUNK_SIZE),
+		player->player_f_pos.y);
+	printf("S_O : x : %f y : %f\n", player->player_f_pos.x,
+		(player->player_f_pos.y + CHUNK_SIZE));
+	printf("S_E : x : %f y : %f\n\n", (player->player_f_pos.x + CHUNK_SIZE),
+		(player->player_f_pos.y + CHUNK_SIZE));
 }
 
 void	debug_fps(t_game *game)
 {
 	char	*string_fps;
 
+	if (game->gameplay->fps < 0)
+		return ;
 	string_fps = ft_itoa(game->gameplay->fps);
+	if (!string_fps)
+		free_game(*game, "Error of malloc.\n");
 	mlx_string_put(game->window->mlx_ptr, game->window->win_ptr, 10, 22, RED,
 		string_fps);
 	free(string_fps);

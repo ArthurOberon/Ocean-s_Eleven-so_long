@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 19:17:43 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 22:09:54 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/01 17:37:14 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	free_gameplay(t_gameplay *gameplay)
 {
 	if (gameplay->chunks_pos)
 		free(gameplay->chunks_pos);
+	if (gameplay->player)
+		free(gameplay->player);
 	free(gameplay);
 }
 
