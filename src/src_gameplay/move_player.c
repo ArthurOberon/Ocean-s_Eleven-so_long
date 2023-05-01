@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 17:30:47 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/01 19:31:11 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/01 21:53:05 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	check_move_player(t_game *game, t_player *player)
 	calculate_ideal_move(&move, player->dir_player,
 		game->gameplay->delta_time);
 	limit_move_at_chunk_size(&move);
-	check_collider(&move, player, game->level->map, game->level->map_vector.x);
+	check_collider(&move, game, player);
 	player->player_f_pos.x += move.x;
 	player->player_f_pos.y += move.y;
 }

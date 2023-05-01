@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/01 19:32:51 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/01 22:11:07 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@
 # define WINDOW_HEIGHT 800
 
 # define CHUNK_SIZE 128
-# define PLAYER_SIZE 105
+# define RATIO_PLAYER_SIZE_X 0.75
+# define RATIO_PLAYER_SIZE_Y 0.90
+// Size player = chunk size - X % chunk size
 
 # define SPEED 300
 
@@ -172,7 +174,7 @@ typedef struct s_sprites_assets
 
 typedef struct s_player
 {
-	int					size;
+	t_vector_2			size;
 	t_vector_2			dir_player;	
 	t_vector_2			player_pos;
 	t_vector_2			player_chunk_pos;
@@ -252,13 +254,12 @@ void				display(t_game *game);
 // |			COLLIDER			|
 // |--------------------------------|
 
-void				check_collider(t_f_vector_2 *move, t_player *player,
-						char *map, int x_max);
+void				check_collider(t_f_vector_2 *move, t_game *game,
+						t_player *player);
 
 // |------------------------------------|
 // |			COLLIDER_TOOLS			|
 // |------------------------------------|
-
 
 char				get_tile(int x, int y, char *map, int x_max);
 

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 13:09:46 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/01 19:25:41 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/01 22:09:26 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,26 +70,22 @@ void	display_map(t_img *img, t_game game)
 	}
 }
 
+static void	display_pixel_four(t_img *img, int x, int y, int color)
+{
+	img_pix_put(img, x, y, color);
+	img_pix_put(img, x + 1, y, color);
+	img_pix_put(img, x, y + 1, color);
+	img_pix_put(img, x + 1, y + 1, color);
+}
+
 void	display_player_box_collider(t_img *img, t_player *player, int color)
 {
-// N_O
-	img_pix_put(img, player->player_f_pos.x, player->player_f_pos.y, color);
-	img_pix_put(img, player->player_f_pos.x + 1, player->player_f_pos.y, color);
-	img_pix_put(img, player->player_f_pos.x, player->player_f_pos.y + 1, color);
-	img_pix_put(img, player->player_f_pos.x + 1, player->player_f_pos.y + 1, color);
-// N_E
-	img_pix_put(img, player->player_f_pos.x + PLAYER_SIZE, player->player_f_pos.y, color);
-	img_pix_put(img, player->player_f_pos.x + PLAYER_SIZE + 1, player->player_f_pos.y, color);
-	img_pix_put(img, player->player_f_pos.x + PLAYER_SIZE, player->player_f_pos.y + 1, color);
-	img_pix_put(img, player->player_f_pos.x + PLAYER_SIZE + 1, player->player_f_pos.y + 1, color);
-// S_O
-	img_pix_put(img, player->player_f_pos.x, player->player_f_pos.y + PLAYER_SIZE, color);
-	img_pix_put(img, player->player_f_pos.x + 1, player->player_f_pos.y + PLAYER_SIZE, color);
-	img_pix_put(img, player->player_f_pos.x, player->player_f_pos.y + PLAYER_SIZE + 1, color);
-	img_pix_put(img, player->player_f_pos.x + 1, player->player_f_pos.y + PLAYER_SIZE + 1, color);
-// S_E
-	img_pix_put(img, (player->player_f_pos.x) + PLAYER_SIZE, player->player_f_pos.y + PLAYER_SIZE, color);
-	img_pix_put(img, (player->player_f_pos.x) + PLAYER_SIZE + 1, player->player_f_pos.y + PLAYER_SIZE, color);
-	img_pix_put(img, (player->player_f_pos.x) + PLAYER_SIZE, player->player_f_pos.y + PLAYER_SIZE + 1, color);
-	img_pix_put(img, (player->player_f_pos.x) + PLAYER_SIZE + 1, player->player_f_pos.y + PLAYER_SIZE + 1, color);
+	display_pixel_four(img, player->player_f_pos.x,
+		player->player_f_pos.y, color);
+	display_pixel_four(img, player->player_f_pos.x + player->size.x,
+		player->player_f_pos.y, color);
+	display_pixel_four(img, player->player_f_pos.x,
+		player->player_f_pos.y + player->size.y, color);
+	display_pixel_four(img, player->player_f_pos.x + player->size.x,
+		player->player_f_pos.y + player->size.y, color);
 }
