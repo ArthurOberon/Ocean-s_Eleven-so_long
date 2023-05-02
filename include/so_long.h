@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/02 19:00:51 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/02 21:57:17 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@
 
 # define DELAY_ANIMATION 2
 
-# define IS_DEBUG 1
+# define IS_DEBUG 0
 # define IS_DEBUG_TIME 0
 
 # define RED 0xFF0000
@@ -239,6 +239,9 @@ void				debug_stat_tiles(t_stat_tiles stat);
 // |----------------------------|
 // |			CAMERA			|
 // |----------------------------|
+
+int					check_inside_area(t_vector_2 pos, t_vector_2 pos_size,
+						t_vector_2 area, t_vector_2 size_area);
 
 void				camera(t_game *game);
 

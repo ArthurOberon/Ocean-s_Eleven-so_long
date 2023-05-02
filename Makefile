@@ -1,6 +1,6 @@
 SO_LONG 		=	so_long
 
-CC 				=	gcc
+CC 				=	cc
 CFLAGS 			=	-g -Wall -Wextra #-fsanitize=address #-Werror
 INCLUDES_DIR 	=	include/
 SRC_DIR 		=	src/

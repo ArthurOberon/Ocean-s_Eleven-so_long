@@ -6,22 +6,39 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 13:37:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/02 19:14:39 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/02 21:45:23 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	check_inside_area(t_vector_2 pos, t_vector_2 area,
-	t_vector_2 size_area)
+int	check_inside_area(t_vector_2 pos, t_vector_2 pos_size,
+t_vector_2 area, t_vector_2 size_area)
 {
 	if ((pos.x >= area.x && pos.x <= area.x + size_area.x)
 		&& (pos.y >= area.y && pos.y <= area.y + size_area.y))
 	{
-		// printf("IN\n");
 		return (1);
 	}
-	// printf("OUT\n");
+	if ((pos.x + pos_size.x >= area.x
+			&& pos.x + pos_size.x <= area.x + size_area.x)
+		&& (pos.y >= area.y && pos.y <= area.y + size_area.y))
+	{
+		return (1);
+	}
+	if ((pos.x >= area.x && pos.x <= area.x + size_area.x)
+		&& (pos.y + pos_size.y >= area.y
+			&& pos.y + pos_size.y <= area.y + size_area.y))
+	{
+		return (1);
+	}
+	if ((pos.x + pos_size.x >= area.x
+			&& pos.x + pos_size.x <= area.x + size_area.x)
+		&& (pos.y + pos_size.y >= area.y
+			&& pos.y + pos_size.y <= area.y + size_area.y))
+	{
+		return (1);
+	}
 	return (0);
 }
 
@@ -37,6 +54,6 @@ void	camera(t_game *game)
 	// printf("player : x : [%d] y : [%d]\n", game->gameplay->player->player_pos.x, game->gameplay->player->player_pos.y);
 	// printf("area : x : [%d] y : [%d]\n", zero.x, zero.y);
 	// printf("size : x : [%d] y : [%d]\n", size.x, size.y);
-	check_inside_area(game->gameplay->player->player_pos, zero, size);
+	check_inside_area(game->gameplay->player->player_pos, zero, zero, size);
 	// printf("\n\n");
 }

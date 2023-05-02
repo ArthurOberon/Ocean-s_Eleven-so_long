@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/02 19:02:11 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/02 23:06:01 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ static int	on_update(t_game *game)
 {
 	if (!game->window->win_ptr)
 		return (0);
-	background(&game->camera->img, 0xE0E0E0);
+	game->camera->camera_pos.x = game->gameplay->player->player_pos.x - (WINDOW_WIDTH / 2);
+	game->camera->camera_pos.y = game->gameplay->player->player_pos.y - (WINDOW_HEIGHT / 2);
+	// background(&game->camera->img, 0xE0E0E0);
 	check_move_player(game, game->gameplay->player);
 	if (game->gameplay->nb_collect == 0)
 		game->window->map_sprites[game->level->exit_pos]
@@ -42,8 +44,8 @@ static int	on_update(t_game *game)
 
 void	display(t_game *game)
 {
-	mlx_hook(game->window->win_ptr, DestroyNotify, KeyPressMask, close_window,
-		&game->window);
+	mlx_hook(game->window->win_ptr, DestroyNotify, KeyPressMask, &close_window,
+		game->window);
 	mlx_hook(game->window->win_ptr, KeyPress, KeyPressMask, &handle_keypress,
 		game);
 	mlx_hook(game->window->win_ptr, KeyRelease, KeyReleaseMask,
