@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:31:49 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/02 12:39:18 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/02 18:36:29 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,18 @@ void	get_tile_number(int *pos_tile, int x, int y, int x_max)
 	*pos_tile = x + (y * x_max);
 }
 
-void	check_tile(char tile, int pos, double *move, t_game *game)
+void	check_tile_wall(char tile, double *move)
 {
 	if (tile == '1')
 	{
 		if (move != NULL)
 			*move = *move - double_modulo(*move, CHUNK_SIZE);
 	}
-	else if (tile == 'C')
+}
+
+void	check_tile(char tile, int pos, t_game *game)
+{
+	if (tile == 'C')
 	{
 		game->level->map[pos] = '0';
 		if (game->gameplay->nb_collect > 0)

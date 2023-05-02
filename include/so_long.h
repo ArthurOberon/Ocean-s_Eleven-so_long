@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/02 13:38:13 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/02 19:00:51 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@
 
 # define DELAY_ANIMATION 2
 
-# define IS_DEBUG 0
+# define IS_DEBUG 1
 # define IS_DEBUG_TIME 0
 
 # define RED 0xFF0000
@@ -196,6 +196,7 @@ typedef struct s_camera
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_img		img;
+	t_vector_2	camera_pos;
 }	t_camera;
 
 typedef struct s_game
@@ -239,6 +240,8 @@ void				debug_stat_tiles(t_stat_tiles stat);
 // |			CAMERA			|
 // |----------------------------|
 
+void				camera(t_game *game);
+
 // |------------------------------------|
 // |			DISPLAY_SPRITES			|
 // |------------------------------------|
@@ -278,8 +281,9 @@ void				check_collider(t_f_vector_2 *move, t_game *game,
 // get_tile -> not use
 char				get_tile(int x, int y, char *map, int x_max);
 
+void				check_tile_wall(char tile, double *move);
+void				check_tile(char tile, int pos, t_game *game);
 void				get_tile_number(int *pos_tile, int x, int y, int x_max);
-void				check_tile(char tile, int pos, double *move, t_game *game);
 
 double				double_modulo(double x, double y);
 

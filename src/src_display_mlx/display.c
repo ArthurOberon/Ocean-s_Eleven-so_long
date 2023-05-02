@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/02 13:13:29 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/02 19:02:11 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static int	on_update(t_game *game)
 		game->window->map_sprites[game->level->exit_pos]
 			= game->assets->collect;
 	display_sprites(game);
+	camera(game);
 	if (IS_DEBUG)
 	{
 		display_debug(&game->window->img, GREEN, game->gameplay->chunks_pos,
