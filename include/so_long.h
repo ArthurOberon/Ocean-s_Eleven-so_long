@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/02 12:38:49 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/02 13:06:15 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -309,6 +309,12 @@ char				*get_next_line(int fd);
 // |================================================|
 
 // |--------------------------------|
+// |			INIT_CAMERA			|
+// |--------------------------------|
+
+void				init_camera(t_game *game);
+
+// |--------------------------------|
 // |			INIT_GAME			|
 // |--------------------------------|
 
@@ -440,12 +446,18 @@ void				exit_map_error(char **map_2d, int y);
 void				exit_pathfinding_error(t_level *level, char flag,
 						int pos_error);
 
+// |--------------------------------|
+// |			FREE_UTILS			|
+// |--------------------------------|
+
+void				free_one_sprite(void *ptr, t_sprite *sprite);
+void				free_assets(void *ptr, t_sprites_assets *assets);
+
 // |----------------------------|
 // |			FREE			|
 // |----------------------------|
 
 void				free_game(t_game game, const char *error);
-void				free_one_sprite(void *ptr, t_sprite *sprite);
 
 // |------------------------------------|
 // |			MEM_FUNCTIONS			|

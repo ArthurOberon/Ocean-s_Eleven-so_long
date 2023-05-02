@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 12:01:27 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/02 12:12:44 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/02 13:07:41 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init_camera(t_game *game)
 	if (!camera)
 		free_game(*game, "Error of malloc.\n");
 	game->camera = camera;
-	camera->win_ptr = mlx_init();
+	camera->mlx_ptr = mlx_init();
 	if (!camera->mlx_ptr)
 		free_game(*game, "Error of mlx_init().\n");
 	camera->win_ptr = mlx_new_window(camera->mlx_ptr,

@@ -6,29 +6,11 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 19:17:43 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/01 23:07:35 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/02 13:12:06 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-static void	free_assets(void *ptr, t_sprites_assets *assets)
-{
-	free_one_sprite(ptr, assets->player);
-	free_one_sprite(ptr, assets->exit);
-	free_one_sprite(ptr, assets->collect);
-	free_one_sprite(ptr, assets->ground);
-	free_one_sprite(ptr, assets->wall_corner_n_o);
-	free_one_sprite(ptr, assets->wall_corner_n_e);
-	free_one_sprite(ptr, assets->wall_corner_s_e);
-	free_one_sprite(ptr, assets->wall_corner_s_o);
-	free_one_sprite(ptr, assets->wall_side_up);
-	free_one_sprite(ptr, assets->wall_side_down);
-	free_one_sprite(ptr, assets->wall_side_left);
-	free_one_sprite(ptr, assets->wall_side_right);
-	free_one_sprite(ptr, assets->wall_inside);
-	free(assets);
-}
 
 static void	free_level(t_level *level)
 {
@@ -53,6 +35,21 @@ void	free_window(t_window *window)
 	free(window);
 }
 
+void	free_camera(t_camera *camera)
+{
+	mlx_destroy_window(camera->mlx_ptr, camera->win_ptr);
+	camera->win_ptr = NULL;
+	mlx_destroy_image(camera->mlx_ptr, camera->img.mlx_img);
+	if (camera->mlx_ptr)
+	{
+		mlx_destroy_display(camera->mlx_ptr);
+		free(camera->mlx_ptr);
+	}
+	if (camera->win_ptr)
+		free(camera->win_ptr);
+	free(camera);
+}
+
 void	free_gameplay(t_gameplay *gameplay)
 {
 	if (gameplay->chunks_pos)
@@ -73,6 +70,8 @@ void	free_game(t_game game, const char *error)
 			free_window(game.window);
 		if (game.gameplay)
 			free_gameplay(game.gameplay);
+		if (game.camera)
+			free_camera(game.camera);
 	}
 	if (error)
 	{

@@ -1,7 +1,7 @@
 SO_LONG 		=	so_long
 
 CC 				=	gcc
-CFLAGS 			=	-g -Wall -Wextra -fsanitize=address #-Werror
+CFLAGS 			=	-g -Wall -Wextra #-fsanitize=address #-Werror
 INCLUDES_DIR 	=	include/
 SRC_DIR 		=	src/
 OBJ_DIR 		=	obj/
@@ -41,6 +41,7 @@ SRC_GNL			=	$(addprefix src_gnl/, \
 # SOURCES USE TO INIT VARIABLES FOR DISPLAY
 SRC_INIT	=	$(addprefix src_init/, \
 					init_game.c \
+					init_camera.c \
 					init_window.c \
 					init_images.c \
 					init_sprites.c \
