@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 17:30:47 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/02 12:39:10 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/02 13:49:28 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,6 @@ void	check_move_player(t_game *game, t_player *player)
 		check_collider(&move, game, player);
 	player->player_f_pos.x += move.x;
 	player->player_f_pos.y += move.y;
+	player->player_pos.x = (int)player->player_f_pos.x;
+	player->player_pos.y = (int)player->player_f_pos.y;
 }

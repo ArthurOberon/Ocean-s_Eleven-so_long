@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/02 13:06:15 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/02 13:38:13 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define WINDOW_HEIGHT 800
 
 # define CHUNK_SIZE 128
+
 # define RATIO_PLAYER_SIZE_X 0.75
 # define RATIO_PLAYER_SIZE_Y 0.90
 // Size player = chunk size - X % chunk size
@@ -233,6 +234,10 @@ void				debug_stat_tiles(t_stat_tiles stat);
 // |====================================================|
 // |					SRC_DISPLAY_MLX					|
 // |====================================================|
+
+// |----------------------------|
+// |			CAMERA			|
+// |----------------------------|
 
 // |------------------------------------|
 // |			DISPLAY_SPRITES			|

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/02 11:52:50 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/02 13:53:57 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,10 @@ void	put_image_to_image(t_window *window, t_vector_2 pos, t_img *img)
 	}
 }
 
-static void	display_player(t_game *game)
+static void	display_player(t_window *window, t_player *player, t_sprite *sprite)
 {
-	put_image_to_image(game->window,
-		(t_vector_2){(int)game->gameplay->player->player_f_pos.x,
-		(int)game->gameplay->player->player_f_pos.y},
-		&(game->window->map_sprites[game->level->nb_cases]->sprite_img)
-	[game->window->map_sprites[game->level->nb_cases]->frame]);
+	put_image_to_image(window, player->player_pos,
+		&(sprite->sprite_img)[sprite->frame]);
 }
 
 static void	update_frame(t_sprite *sprite)
@@ -81,5 +78,6 @@ void	display_sprites(t_game *game)
 		j++;
 		y += game->level->map_vector.x;
 	}
-	display_player(game);
+	display_player(game->window, game->gameplay->player,
+		game->window->map_sprites[y]);
 }

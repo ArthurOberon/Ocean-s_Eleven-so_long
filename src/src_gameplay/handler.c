@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:34:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/02 13:13:54 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/02 13:35:21 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	handle_keypress(int keysym, t_game *game)
 		close_window(game->window);
 		return (1);
 	}
-	printf("patate\n");
 	handle_player_move(keysym, game);
 	return (0);
 }

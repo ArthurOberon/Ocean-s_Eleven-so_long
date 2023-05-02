@@ -18,6 +18,7 @@ SRC_DEBUG		=	$(addprefix src_debug/, \
 
 # SOURCES USE TO DISPLAY THE GAME WITH THE MLX
 SRC_DISPLAY		=	$(addprefix src_display_mlx/, \
+				 	camera.c \
 				 	display.c \
 				 	display_tools.c \
 				 	display_sprites.c \
