@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:17:13 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 22:03:20 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/02 12:11:28 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 
 void	background(t_img *img, int color)
 {
-	ft_memset(img->addr, color, WINDOW_HEIGHT * WINDOW_WIDTH * 4);
+	ft_memset(img->addr, color, img->size.x * img->size.y * 4);
 }

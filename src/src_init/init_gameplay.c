@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/01 23:09:35 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/02 12:51:43 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,16 @@ static void	init_player(t_game *game, t_player *player)
 	player->dir_player.x = 0;
 	player->dir_player.y = 0;
 	player->player_chunk_pos.x = game->level->player_pos_tab
-		- game->level->map_vector.x;
+		% game->level->map_vector.x;
 	player->player_chunk_pos.y = game->level->player_pos_tab
-		/ game->level->map_vector.y;
+		/ game->level->map_vector.x;
 	player->player_pos.x = player->player_chunk_pos.x * CHUNK_SIZE;
 	player->player_pos.y = player->player_chunk_pos.y * CHUNK_SIZE;
 	player->player_f_pos.x = player->player_chunk_pos.x * CHUNK_SIZE;
 	player->player_f_pos.y = player->player_chunk_pos.y * CHUNK_SIZE;
+	printf("int : [%d] p : [%c]\n", game->level->player_pos_tab, game->level->map[game->level->player_pos_tab]);
+	printf("x : [%d] y : [%d]\n", player->player_pos.x, player->player_pos.y);
+	printf("x : [%d] y : [%d]\n", player->player_pos.x / CHUNK_SIZE, player->player_pos.y / CHUNK_SIZE);
 	game->gameplay->player = player;
 }
 

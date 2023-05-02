@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/01 23:10:03 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/02 12:38:49 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@
 
 # define DELAY_ANIMATION 2
 
-# define IS_DEBUG 1
+# define IS_DEBUG 0
 # define IS_DEBUG_TIME 0
 
 # define RED 0xFF0000
@@ -190,12 +190,20 @@ typedef struct s_gameplay
 	t_player			*player;
 }	t_gameplay;
 
+typedef struct s_camera
+{
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_img		img;
+}	t_camera;
+
 typedef struct s_game
 {
 	t_level				*level;
 	t_window			*window;
 	t_sprites_assets	*assets;
 	t_gameplay			*gameplay;
+	t_camera			*camera;
 }	t_game;
 
 	// t_images_assets		assets;

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:31:49 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/01 23:13:15 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/02 12:39:18 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	check_tile(char tile, int pos, double *move, t_game *game)
 		{
 			ft_putstr("SUCCESS !\n");
 			close_window(game->window);
-			mlx_destroy_image(game->window->mlx_ptr, game->window->img.mlx_img);
 			free_game(*game, NULL);
 			exit(EXIT_SUCCESS);
 		}

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/01 23:09:16 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/02 11:47:06 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,4 @@ void	display(t_game *game)
 		&handle_keyrelease, game);
 	mlx_loop_hook(game->window->mlx_ptr, &on_update, game);
 	mlx_loop(game->window->mlx_ptr);
-	mlx_destroy_image(game->window->mlx_ptr, game->window->img.mlx_img);
 }
