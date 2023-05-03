@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/03 23:07:02 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/03 23:20:18 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	init_gameplay(t_game *game)
 	gameplay->fps = 0;
 	gameplay->delta_time = 0;
 	gameplay->nb_collect = game->level->nb_collect;
-	printf("nb collect : [%d]\n", gameplay->nb_collect);
 	gameplay->nb_move = 0;
 	get_chunk_positions(game, &gameplay->chunks_pos, game->level->map_vector,
 		game->level->nb_cases);

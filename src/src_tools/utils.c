@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:24:32 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/01 17:55:53 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/03 23:30:58 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	*ft_itoa(int n)
 		return (NULL);
 	result[size--] = '\0';
 	if (n == 0)
-		result[0] = 0;
+		result[0] = '0';
 	while (tmp > 0)
 	{
 		result[size] = (tmp % 10) + '0';

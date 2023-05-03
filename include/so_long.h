@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/03 23:02:36 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/04 00:15:30 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -299,6 +299,7 @@ t_collider			get_collider_on_move(t_f_vector_2 *move, t_player *player,
 // |			GAMEPLAY_TOOLS			|
 // |------------------------------------|
 
+void				display_nb_move(t_game *game);
 void				calculate_fps(int *fps, double *delta_time);
 
 // |----------------------------|
