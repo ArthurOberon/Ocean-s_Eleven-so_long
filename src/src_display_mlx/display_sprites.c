@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/03 16:00:55 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/03 17:51:11 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,6 @@ void	display_sprites(t_game *game)
 	if (game->gameplay->nb_collect == 0)
 		game->window->map_sprites[game->level->exit_pos]
 			= game->assets->collect;
+	// printf("player : x : [%f] y : [%f]\n\n", game->gameplay->player->player_f_pos.x, game->gameplay->player->player_f_pos.y);
 	// printf("camera : x : [%f] y : [%f]\n\n", game->camera->camera_f_pos.x, game->camera->camera_f_pos.y);
 }

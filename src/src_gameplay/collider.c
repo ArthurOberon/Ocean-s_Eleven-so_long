@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:01:54 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/02 18:28:49 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/03 18:16:54 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ static void	check_collider_up(t_f_vector_2 *move,
 	x_max = game->level->map_vector.x;
 	player_size = game->gameplay->player->size;
 	map = game->level->map;
-	get_tile_number(&pos_tile, hypothetical_pos.x / CHUNK_SIZE,
+	get_tile_number(&pos_tile, hypothetical_pos.y / CHUNK_SIZE,
 		hypothetical_pos.y / CHUNK_SIZE, x_max);
 	tile = map[pos_tile];
-	check_tile_wall(tile, &move->y);
+	check_tile_wall(tile, hypothetical_pos.y, &move->y);
 	get_tile_number(&pos_tile,
 		(hypothetical_pos.x + player_size.x) / CHUNK_SIZE,
 		hypothetical_pos.y / CHUNK_SIZE, x_max);
 	tile = map[pos_tile];
-	check_tile_wall(tile, &move->y);
+	check_tile_wall(tile, hypothetical_pos.y, &move->y);
 }
 
 static void	check_collider_down(t_f_vector_2 *move,
@@ -50,12 +50,12 @@ static void	check_collider_down(t_f_vector_2 *move,
 	get_tile_number(&pos_tile, hypothetical_pos.x / CHUNK_SIZE,
 		(hypothetical_pos.y + player_size.y) / CHUNK_SIZE, x_max);
 	tile = map[pos_tile];
-	check_tile_wall(tile, &move->y);
+	check_tile_wall(tile, hypothetical_pos.y, &move->y);
 	get_tile_number(&pos_tile,
 		(hypothetical_pos.x + player_size.x) / CHUNK_SIZE,
 		(hypothetical_pos.y + player_size.y) / CHUNK_SIZE, x_max);
 	tile = map[pos_tile];
-	check_tile_wall(tile, &move->y);
+	check_tile_wall(tile, hypothetical_pos.y, &move->y);
 }
 
 static void	check_collider_left(t_f_vector_2 *move,
@@ -73,11 +73,11 @@ static void	check_collider_left(t_f_vector_2 *move,
 	get_tile_number(&pos_tile, hypothetical_pos.x / CHUNK_SIZE,
 		hypothetical_pos.y / CHUNK_SIZE, x_max);
 	tile = map[pos_tile];
-	check_tile_wall(tile, &move->x);
+	check_tile_wall(tile, hypothetical_pos.x, &move->x);
 	get_tile_number(&pos_tile, hypothetical_pos.x / CHUNK_SIZE,
 		(hypothetical_pos.y + player_size.y) / CHUNK_SIZE, x_max);
 	tile = map[pos_tile];
-	check_tile_wall(tile, &move->x);
+	check_tile_wall(tile, hypothetical_pos.x, &move->x);
 }
 
 static void	check_collider_right(t_f_vector_2 *move,
@@ -96,12 +96,12 @@ static void	check_collider_right(t_f_vector_2 *move,
 		(hypothetical_pos.x + player_size.x) / CHUNK_SIZE,
 		hypothetical_pos.y / CHUNK_SIZE, x_max);
 	tile = map[pos_tile];
-	check_tile_wall(tile, &move->x);
+	check_tile_wall(tile, hypothetical_pos.x, &move->x);
 	get_tile_number(&pos_tile,
 		(hypothetical_pos.x + player_size.x) / CHUNK_SIZE,
 		(hypothetical_pos.y + player_size.y) / CHUNK_SIZE, x_max);
 	tile = map[pos_tile];
-	check_tile_wall(tile, &move->x);
+	check_tile_wall(tile, hypothetical_pos.x, &move->x);
 }
 
 void	check_collider(t_f_vector_2 *move, t_game *game, t_player *player)

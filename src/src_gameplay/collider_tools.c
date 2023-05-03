@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:31:49 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/02 18:36:29 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/03 18:31:29 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 double	double_modulo(double x, double y)
 {
+	printf("modulo : [%f]\n", x - ((int)(x / y) *x));
 	return (x - ((int)(x / y) *x));
 }
 
@@ -28,14 +29,28 @@ void	get_tile_number(int *pos_tile, int x, int y, int x_max)
 	*pos_tile = x + (y * x_max);
 }
 
-void	check_tile_wall(char tile, double *move)
+void	check_tile_wall(char tile, double pos, double *move)
 {
+	int		sign;
+	double	mod;
+
 	if (tile == '1')
 	{
-		if (move != NULL)
-			*move = *move - double_modulo(*move, CHUNK_SIZE);
+		sign = 1;
+		if (*move < 0)
+			sign = -1;
+		printf("sign : [%d]\nmove : [%f]\n", sign, *move);
+		printf("pos : [%f]\n", pos);
+		mod = double_modulo(pos, (double)CHUNK_SIZE);
+		if (mod >= 1)
+			*move = ((double)CHUNK_SIZE
+					- ((int)(pos / CHUNK_SIZE) *CHUNK_SIZE)) * sign;
+		else
+			*move = 0;
+		printf("move : %f\n\n", *move);
 	}
 }
+		// *move = *move - double_modulo(*move, CHUNK_SIZE);
 
 void	check_tile(char tile, int pos, t_game *game)
 {

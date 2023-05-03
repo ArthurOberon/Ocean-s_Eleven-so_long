@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/03 15:29:24 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/03 18:04:02 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@
 
 # define DELAY_ANIMATION 2
 
-# define IS_DEBUG 0
+# define IS_DEBUG 1
 # define IS_DEBUG_TIME 0
 
 # define RED 0xFF0000
@@ -282,8 +282,8 @@ void				check_collider(t_f_vector_2 *move, t_game *game,
 // get_tile -> not use
 char				get_tile(int x, int y, char *map, int x_max);
 
-void				check_tile_wall(char tile, double *move);
 void				check_tile(char tile, int pos, t_game *game);
+void				check_tile_wall(char tile, double pos, double *move);
 void				get_tile_number(int *pos_tile, int x, int y, int x_max);
 
 double				double_modulo(double x, double y);
