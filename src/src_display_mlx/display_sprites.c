@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/03 17:51:11 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/03 20:37:32 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,15 @@ static void	update_frame(t_sprite *sprite)
 static void	display_one_sprite(t_window *window, t_camera *camera,
 t_sprite *sprite, t_f_vector_2 pos)
 {
-	if (check_inside_area(pos, (t_f_vector_2){CHUNK_SIZE, CHUNK_SIZE},
-		camera->camera_f_pos, (t_f_vector_2){WINDOW_WIDTH, WINDOW_HEIGHT}))
-	{
+	// if (check_inside_area(pos, (t_f_vector_2){CHUNK_SIZE, CHUNK_SIZE},
+		// camera->camera_f_pos, (t_f_vector_2){WINDOW_WIDTH, WINDOW_HEIGHT}))
+	// {
 		// printf("pos : x : [%f] y : [%f]\n", pos.x, pos.y);
 		// printf("camera : x : [%f] y : [%f]\n\n", camera->camera_f_pos.x, camera->camera_f_pos.y);
 		update_frame(sprite);
 		put_image_to_image(window, (t_vector_2){pos.x, pos.y},
 			&sprite->sprite_img[sprite->frame]);
-	}
+	// }
 }
 
 void	display_sprites(t_game *game)

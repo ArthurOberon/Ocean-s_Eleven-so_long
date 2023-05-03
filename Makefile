@@ -28,9 +28,9 @@ SRC_DISPLAY		=	$(addprefix src_display_mlx/, \
 SRC_GAMEPLAY	=	$(addprefix src_gameplay/, \
 					handler.c \
 					collider.c \
-					move_player.c \
-					collider_tools.c \
+					move_player.c\
 					gameplay_tools.c \
+					move_player_tools.c\
 					)
 
 # SOURCES USE FOR GET_NEXT_LINE

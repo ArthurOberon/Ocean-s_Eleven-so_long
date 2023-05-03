@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/03 18:04:02 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/03 22:39:53 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,14 @@ typedef struct s_f_vector_2
 	double	y;
 }	t_f_vector_2;
 
+typedef struct s_collider
+{
+	int	n_w;
+	int	n_e;
+	int	s_w;
+	int	s_e;
+}	t_collider;
+
 typedef struct s_stat_tiles
 {
 	int	exit;
@@ -185,6 +193,7 @@ typedef struct s_player
 typedef struct s_gameplay
 {
 	int					nb_collect;
+	int					nb_move;
 	int					fps;
 	double				delta_time;
 	t_vector_2			*chunks_pos;
@@ -272,21 +281,13 @@ void				display(t_game *game);
 // |			COLLIDER			|
 // |--------------------------------|
 
-void				check_collider(t_f_vector_2 *move, t_game *game,
-						t_player *player);
+int					pos_to_chunk(int x, int y, int x_max);
+int					check_wall_collider(char *map, t_collider chunks);
 
-// |------------------------------------|
-// |			COLLIDER_TOOLS			|
-// |------------------------------------|
+t_vector_2			chunk_to_pixel_pos(int chunk, int x_max);
 
-// get_tile -> not use
-char				get_tile(int x, int y, char *map, int x_max);
-
-void				check_tile(char tile, int pos, t_game *game);
-void				check_tile_wall(char tile, double pos, double *move);
-void				get_tile_number(int *pos_tile, int x, int y, int x_max);
-
-double				double_modulo(double x, double y);
+t_collider			check_collision(t_f_vector_2 *move, t_player *player,
+						int x_max);
 
 // |------------------------------------|
 // |			GAMEPLAY_TOOLS			|
@@ -302,11 +303,21 @@ int					close_window(t_window *window);
 int					handle_keypress(int keysym, t_game	*game);
 int					handle_keyrelease(int keysym, t_game *game);
 
+// |----------------------------------------|
+// |			MOVE_PLAYER_TOOLS			|
+// |----------------------------------------|
+
+void				get_move_player(t_player *player, t_f_vector_2 *move,
+						double delta_time, t_vector_2 axe);
+void				set_player_pos(t_player *player, t_f_vector_2 move);
+void				restrict_move(t_f_vector_2 *move, t_player *player,
+						t_vector_2 collider, t_vector_2 axe);
+
 // |--------------------------------|
 // |			MOVE_PLAYER			|
 // |--------------------------------|
 
-void				check_move_player(t_game *game, t_player *player);
+void				move_player(t_game *game, t_player *player);
 
 // |============================================|
 // |					SRC_GNL					|
