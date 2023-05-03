@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 12:01:27 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/02 19:15:06 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/03 14:08:09 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 void	init_camera_pos(t_camera *camera, t_game *game)
 {
-	t_vector_2	player_pos;
+	t_f_vector_2	player_pos;
 
-	player_pos = game->gameplay->player->player_pos;
-	camera->camera_pos.x = player_pos.x - (WINDOW_WIDTH / 2);
-	camera->camera_pos.y = player_pos.y - (WINDOW_HEIGHT / 2);
-	printf("player : x : [%d] y : [%d]\n", player_pos.x, player_pos.y);
-	printf("camera : x : [%d] y : [%d]\n", camera->camera_pos.x, camera->camera_pos.y);
+	player_pos = game->gameplay->player->player_f_pos;
+	// camera->camera_f_pos.x = player_pos.x - (WINDOW_WIDTH / 2);
+	// camera->camera_f_pos.y = player_pos.y - (WINDOW_HEIGHT / 2);
+	camera->camera_f_pos.x = player_pos.x - (CHUNK_SIZE);
+	camera->camera_f_pos.x = player_pos.y - (CHUNK_SIZE);
+	printf("player : x : [%f] y : [%f]\n", player_pos.x, player_pos.y);
+	printf("camera : x : [%f] y : [%f]\n", camera->camera_f_pos.x, camera->camera_f_pos.y);
 }
 
 void	init_camera(t_game *game)
