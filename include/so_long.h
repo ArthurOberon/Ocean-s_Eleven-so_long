@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/03 14:03:26 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/03 15:29:24 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,10 +193,8 @@ typedef struct s_gameplay
 
 typedef struct s_camera
 {
-	void			*mlx_ptr;
-	void			*win_ptr;
-	t_img			img;
 	t_f_vector_2	camera_f_pos;
+	t_f_vector_2	camera_f_size;
 }	t_camera;
 
 typedef struct s_game
@@ -243,7 +241,7 @@ void				debug_stat_tiles(t_stat_tiles stat);
 int					check_inside_area(t_f_vector_2 pos, t_f_vector_2 pos_size,
 						t_f_vector_2 area, t_f_vector_2 size_area);
 
-void				camera(t_game *game);
+void				camera(t_camera *camera, t_player *player);
 
 // |------------------------------------|
 // |			DISPLAY_SPRITES			|

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/03 14:40:36 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/03 15:29:53 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,10 @@ static int	on_update(t_game *game)
 {
 	if (!game->window->win_ptr)
 		return (0);
-	// game->camera->camera_f_pos.x = game->gameplay->player->player_f_pos.x - (WINDOW_WIDTH / 2);
-	// game->camera->camera_f_pos.y = game->gameplay->player->player_f_pos.y - (WINDOW_HEIGHT / 2);
 	background(&game->window->img, 0xE0E0E0);
 	check_move_player(game, game->gameplay->player);
-	if (game->gameplay->nb_collect == 0)
-		game->window->map_sprites[game->level->exit_pos]
-			= game->assets->collect;
-	game->camera->camera_f_pos.x = game->gameplay->player->player_f_pos.x - (CHUNK_SIZE);
-	game->camera->camera_f_pos.y = game->gameplay->player->player_f_pos.y - (CHUNK_SIZE);
 	display_sprites(game);
-	camera(game);
+	camera(game->camera, game->gameplay->player);
 	if (IS_DEBUG)
 	{
 		display_debug(&game->window->img, GREEN, game->gameplay->chunks_pos,
@@ -36,8 +29,6 @@ static int	on_update(t_game *game)
 	}
 	mlx_put_image_to_window(game->window->mlx_ptr, game->window->win_ptr,
 		game->window->img.mlx_img, 0, 0);
-	mlx_put_image_to_window(game->camera->mlx_ptr, game->camera->win_ptr,
-		game->camera->img.mlx_img, 0, 0);
 	calculate_fps(&game->gameplay->fps, &game->gameplay->delta_time);
 	if (IS_DEBUG)
 		debug_fps(game);

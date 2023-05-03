@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 19:17:43 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/02 13:12:06 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/03 15:30:21 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,6 @@ void	free_window(t_window *window)
 
 void	free_camera(t_camera *camera)
 {
-	mlx_destroy_window(camera->mlx_ptr, camera->win_ptr);
-	camera->win_ptr = NULL;
-	mlx_destroy_image(camera->mlx_ptr, camera->img.mlx_img);
-	if (camera->mlx_ptr)
-	{
-		mlx_destroy_display(camera->mlx_ptr);
-		free(camera->mlx_ptr);
-	}
-	if (camera->win_ptr)
-		free(camera->win_ptr);
 	free(camera);
 }
 

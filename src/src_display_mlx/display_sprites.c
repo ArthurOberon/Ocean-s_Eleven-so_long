@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/03 14:48:37 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/03 16:00:55 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static void	update_frame(t_sprite *sprite)
 {
 	double			time;
 
+	if (sprite->frame == 1)
+		return ;
 	time = clock() / CLOCKS_PER_SEC;
 	if (IS_DEBUG_TIME)
 		printf("time per second : [%f]\n", time);
@@ -59,8 +61,10 @@ static void	display_one_sprite(t_window *window, t_camera *camera,
 t_sprite *sprite, t_f_vector_2 pos)
 {
 	if (check_inside_area(pos, (t_f_vector_2){CHUNK_SIZE, CHUNK_SIZE},
-		camera->camera_f_pos, (t_f_vector_2){300, 300}))
+		camera->camera_f_pos, (t_f_vector_2){WINDOW_WIDTH, WINDOW_HEIGHT}))
 	{
+		// printf("pos : x : [%f] y : [%f]\n", pos.x, pos.y);
+		// printf("camera : x : [%f] y : [%f]\n\n", camera->camera_f_pos.x, camera->camera_f_pos.y);
 		update_frame(sprite);
 		put_image_to_image(window, (t_vector_2){pos.x, pos.y},
 			&sprite->sprite_img[sprite->frame]);
@@ -90,4 +94,8 @@ void	display_sprites(t_game *game)
 	}
 	display_player(game->window, game->gameplay->player,
 		game->window->map_sprites[y]);
+	if (game->gameplay->nb_collect == 0)
+		game->window->map_sprites[game->level->exit_pos]
+			= game->assets->collect;
+	// printf("camera : x : [%f] y : [%f]\n\n", game->camera->camera_f_pos.x, game->camera->camera_f_pos.y);
 }
