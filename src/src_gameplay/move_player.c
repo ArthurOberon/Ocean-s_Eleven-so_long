@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:25:07 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/03 22:40:31 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/03 22:59:03 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	move_player_on_x(t_game *game, t_player *player, t_f_vector_2 *move)
 
 	get_move_player(player, move,
 		game->gameplay->delta_time, (t_vector_2){1, 0});
-	chunks = check_collision(move, player, game->level->map_vector.x);
+	chunks = get_collider_on_move(move, player, game->level->map_vector.x);
 	collider_chunk = check_wall_collider(game->level->map, chunks);
 	if (collider_chunk != -1)
 	{
@@ -38,7 +38,7 @@ void	move_player_on_y(t_game *game, t_player *player, t_f_vector_2 *move)
 
 	get_move_player(player, move,
 		game->gameplay->delta_time, (t_vector_2){0, 1});
-	chunks = check_collision(move, player, game->level->map_vector.x);
+	chunks = get_collider_on_move(move, player, game->level->map_vector.x);
 	collider_chunk = check_wall_collider(game->level->map, chunks);
 	if (collider_chunk != -1)
 	{

@@ -6,25 +6,11 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 22:33:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/03 22:35:01 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/03 23:19:10 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	pos_to_chunk(int x, int y, int x_max)
-{
-	return ((x / CHUNK_SIZE) + ((y / CHUNK_SIZE) * x_max));
-}
-
-t_vector_2	chunk_to_pixel_pos(int chunk, int x_max)
-{
-	t_vector_2	pos;
-
-	pos.x = (chunk % x_max) * CHUNK_SIZE;
-	pos.y = (chunk / x_max) * CHUNK_SIZE;
-	return (pos);
-}
 
 int	check_wall_collider(char *map, t_collider chunks)
 {
@@ -39,7 +25,7 @@ int	check_wall_collider(char *map, t_collider chunks)
 	return (-1);
 }
 
-t_collider	check_collision(t_f_vector_2 *move, t_player *player,
+t_collider	get_collider_on_move(t_f_vector_2 *move, t_player *player,
 	int x_max)
 {
 	t_f_vector_2	hypothetical_pos;
@@ -55,4 +41,53 @@ t_collider	check_collision(t_f_vector_2 *move, t_player *player,
 	chunks.s_e = pos_to_chunk(hypothetical_pos.x + player->size.x,
 			hypothetical_pos.y + player->size.y, x_max);
 	return (chunks);
+}
+
+static t_collider	get_collider(t_player *player, int x_max)
+{
+	t_collider		chunks;
+
+	chunks.n_w = pos_to_chunk(player->player_f_pos.x,
+			player->player_f_pos.y, x_max);
+	chunks.n_e = pos_to_chunk(player->player_f_pos.x + player->size.x,
+			player->player_f_pos.y, x_max);
+	chunks.s_w = pos_to_chunk(player->player_f_pos.x,
+			player->player_f_pos.y + player->size.y, x_max);
+	chunks.s_e = pos_to_chunk(player->player_f_pos.x + player->size.x,
+			player->player_f_pos.y + player->size.y, x_max);
+	return (chunks);
+}
+
+static void	check_tile(t_game *game, char tile, int pos)
+{
+	if (tile == 'C')
+	{
+		game->level->map[pos] = '0';
+		if (game->gameplay->nb_collect > 0)
+			game->gameplay->nb_collect -= 1;
+		game->window->map_sprites[pos] = game->assets->ground;
+	}
+	else if (tile == 'E')
+	{
+		if (game->gameplay->nb_collect == 0)
+		{
+			ft_putstr("SUCCESS !\n");
+			close_window(game->window);
+			free_game(*game, NULL);
+			exit(EXIT_SUCCESS);
+		}
+	}
+}
+
+void	check_collider(t_game *game, t_player *player)
+{
+	int			x_max;
+	t_collider	chunks;
+
+	x_max = game->level->map_vector.x;
+	chunks = get_collider(player, x_max);
+	check_tile(game, game->level->map[chunks.n_w], chunks.n_w);
+	check_tile(game, game->level->map[chunks.n_e], chunks.n_e);
+	check_tile(game, game->level->map[chunks.s_w], chunks.s_w);
+	check_tile(game, game->level->map[chunks.s_e], chunks.s_e);
 }

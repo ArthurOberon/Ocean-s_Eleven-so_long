@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/03 22:39:53 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/03 23:02:36 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -277,16 +277,22 @@ void				display(t_game *game);
 // |					SRC_GAMEPLAY					|
 // |====================================================|
 
-// |--------------------------------|
-// |			COLLIDER			|
-// |--------------------------------|
+// |------------------------------------|
+// |			COLLIDER_TOOLS			|
+// |------------------------------------|
 
 int					pos_to_chunk(int x, int y, int x_max);
 int					check_wall_collider(char *map, t_collider chunks);
 
+// |--------------------------------|
+// |			COLLIDER			|
+// |--------------------------------|
+
+void				check_collider(t_game *game, t_player *player);
+
 t_vector_2			chunk_to_pixel_pos(int chunk, int x_max);
 
-t_collider			check_collision(t_f_vector_2 *move, t_player *player,
+t_collider			get_collider_on_move(t_f_vector_2 *move, t_player *player,
 						int x_max);
 
 // |------------------------------------|

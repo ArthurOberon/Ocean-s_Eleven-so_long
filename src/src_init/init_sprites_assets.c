@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 20:56:08 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 21:04:48 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/03 23:09:22 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static int	get_number_of_tile(t_game *game, char tile)
 			number_tile++;
 		i++;
 	}
+	if (tile == 'C')
+		printf("C : [%d]\n", number_tile);
 	return (number_tile);
 }
 
@@ -102,7 +104,6 @@ void	init_sprites_assets(t_game *game)
 {
 	t_sprites_assets	*assets;
 
-	get_stat_tiles_map(game);
 	assets = ft_calloc(sizeof(t_sprites_assets), 1);
 	if (!assets)
 		free_game(*game, "Error of malloc.\n");
@@ -121,3 +122,5 @@ void	init_sprites_assets(t_game *game)
 	sprite_to_assets(game, &assets->wall_side_right, PATH_WALL_SIDE_RIGHT, 1);
 	sprite_to_assets(game, &assets->wall_inside, PATH_WALL_INSIDE, 1);
 }
+
+	// get_stat_tiles_map(game);
