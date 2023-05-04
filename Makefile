@@ -10,6 +10,12 @@ INCLUDES_H		=	-I./$(INCLUDES_DIR) -I./$(LIB_DIR)
 MLX_FLAGS 		=	-L$(LIB_DIR) -lmlx -lX11 -lXext
 DEPS 			=	$(INCLUDES_DIR)so_long.h Makefile
 
+SRC_CAMERA		= $(addprefix src_camera/, \
+					camera.c\
+					camera_chunks.c\
+					camera_chunks_out_map.c\
+					)
+
 # SOURCES USE WHEN IS_DEBUG == 1
 SRC_DEBUG		=	$(addprefix src_debug/, \
 					debug_print.c \
@@ -18,7 +24,6 @@ SRC_DEBUG		=	$(addprefix src_debug/, \
 
 # SOURCES USE TO DISPLAY THE GAME WITH THE MLX
 SRC_DISPLAY		=	$(addprefix src_display_mlx/, \
-				 	camera.c \
 				 	display.c \
 				 	display_tools.c \
 				 	display_sprites.c \
@@ -79,6 +84,7 @@ SRC_TOOLS		=	$(addprefix src_tools/, \
 
 # ALL SOURCES FOR SO_LONG
 SL_SRCS 		=	$(addprefix $(SRC_DIR), \
+					$(SRC_CAMERA) \
 					$(SRC_DEBUG) \
 					$(SRC_DISPLAY) \
 					$(SRC_GAMEPLAY) \

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/04 20:30:39 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/04 23:10:42 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,6 +222,33 @@ typedef struct s_game
 	// int		bpp; /* bits per pixel */
 
 // |================================================|
+// |					SRC_CAMERA					|
+// |================================================|
+
+// |--------------------------------------------|
+// |			CAMERA_CHUNKS_OUT_MAP			|
+// |--------------------------------------------|
+
+void				camera_out_of_map(t_game *game, t_camera *camera);
+
+// |------------------------------------|
+// |			CAMERA_CHUNKS			|
+// |------------------------------------|
+
+void				get_chunks_in_camera(t_game *game, t_camera *camera);
+
+// |----------------------------|
+// |			CAMERA			|
+// |----------------------------|
+
+int					check_inside_area(t_f_vector_2 pos, t_f_vector_2 pos_size,
+						t_f_vector_2 area, t_f_vector_2 size_area);
+
+void				camera(t_game *game, t_camera *camera, t_player *player);
+
+
+
+// |================================================|
 // |					SRC_DEBUG					|
 // |================================================|
 
@@ -245,15 +272,6 @@ void				debug_stat_tiles(t_stat_tiles stat);
 // |====================================================|
 // |					SRC_DISPLAY_MLX					|
 // |====================================================|
-
-// |----------------------------|
-// |			CAMERA			|
-// |----------------------------|
-
-int					check_inside_area(t_f_vector_2 pos, t_f_vector_2 pos_size,
-						t_f_vector_2 area, t_f_vector_2 size_area);
-
-void				camera(t_game *game, t_camera *camera, t_player *player);
 
 // |------------------------------------|
 // |			DISPLAY_SPRITES			|
