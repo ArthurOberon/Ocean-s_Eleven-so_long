@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/04 21:16:29 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/04 23:56:55 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,15 @@ static void	update_frame(t_sprite *sprite)
 static void	display_one_sprite(t_window *window, t_camera *camera,
 t_sprite *sprite, t_f_vector_2 pos)
 {
-	if (check_inside_area(pos, (t_f_vector_2){CHUNK_SIZE, CHUNK_SIZE},
-		camera->camera_f_pos, (t_f_vector_2){WINDOW_WIDTH, WINDOW_HEIGHT}))
-	{
+	// if (check_inside_area(pos, (t_f_vector_2){CHUNK_SIZE, CHUNK_SIZE},
+	// 	camera->camera_f_pos, (t_f_vector_2){WINDOW_WIDTH, WINDOW_HEIGHT}))
+	// {
 		// printf("pos : x : [%f] y : [%f]\n", pos.x, pos.y);
 		// printf("camera : x : [%f] y : [%f]\n\n", camera->camera_f_pos.x, camera->camera_f_pos.y);
 		update_frame(sprite);
 		put_image_to_image(window, (t_vector_2){pos.x, pos.y},
 			&sprite->sprite_img[sprite->frame]);
-	}
+	// }
 }
 
 void	display_sprites(t_game *game)
@@ -99,4 +99,36 @@ void	display_sprites(t_game *game)
 			= game->assets->collect;
 	// printf("player : x : [%f] y : [%f]\n\n", game->gameplay->player->player_f_pos.x, game->gameplay->player->player_f_pos.y);
 	// printf("camera : x : [%f] y : [%f]\n\n", game->camera->camera_f_pos.x, game->camera->camera_f_pos.y);
+}
+
+static t_f_vector_2	chunk_to_pixel_f_pos(int chunk, int x_max)
+{
+	t_f_vector_2	pos;
+
+	pos.x = (chunk % x_max) * CHUNK_SIZE;
+	pos.y = (chunk / x_max) * CHUNK_SIZE;
+	return (pos);
+}
+
+
+void	display_sprites_2(t_game *game)
+{
+	int	i;
+	t_f_vector_2 tmp;
+
+	i = 0;
+	while (i < game->camera->nb_chunks_in_camera_total)
+	{
+		printf("%d : [%d] / [%d]\n", i, game->camera->chunks_to_display[i], game->camera->nb_chunks_in_camera_total);
+		tmp = chunk_to_pixel_f_pos(game->camera->chunks_to_display[i], game->level->map_vector.x);
+		printf("vector : x : [%f] y : [%f]\n\n", tmp.x, tmp.y);
+		if (game->camera->chunks_to_display[i] == -1)
+			break ;
+		display_one_sprite(game->window, game->camera,
+			game->window->map_sprites[game->camera->chunks_to_display[i]], tmp);
+		i++;
+	}
+	printf("\n");
+	display_player(game->window, game->gameplay->player,
+		game->window->map_sprites[game->level->nb_cases]);
 }

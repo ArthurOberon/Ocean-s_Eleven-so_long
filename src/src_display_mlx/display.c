@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/04 19:44:09 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/04 23:40:45 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static int	on_update(t_game *game)
 	// background(&game->window->img, 0xE0E0E0);
 	move_player(game, game->gameplay->player);
 	check_collider(game, game->gameplay->player);
-	display_sprites(game);
 	camera(game, game->camera, game->gameplay->player);
+	display_sprites(game);
 	if (IS_DEBUG)
 	{
 		display_debug(&game->window->img, GREEN, game->gameplay->chunks_pos,

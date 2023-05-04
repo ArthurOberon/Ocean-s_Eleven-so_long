@@ -6,13 +6,13 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 23:02:48 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/04 23:11:45 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/05 00:42:09 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	camera_in_of_map(t_game *game, t_camera *camera)
+static void	camera_in_of_map(t_game *game, t_camera *camera, int *chunks)
 {
 	int	i;
 	int	j;
@@ -29,13 +29,13 @@ static void	camera_in_of_map(t_game *game, t_camera *camera)
 			+ ((j > 0) * (j * game->level->map_vector.x));
 		while (i < camera->nb_chunks_in_camera.x)
 		{
-			printf("IN display chunk : [%d]\n", chunk_tmp);
+			chunks[i + (j * camera->nb_chunks_in_camera.x)] = chunk_tmp;
 			chunk_tmp++;
 			i++;
 		}
 		j++;
 	}
-	printf("\n");
+	chunks[i + (j * camera->nb_chunks_in_camera.x)] = -1;
 }
 
 static int	is_camera_out_of_map(t_game *game, t_camera *camera)
@@ -61,7 +61,7 @@ static int	is_camera_out_of_map(t_game *game, t_camera *camera)
 	return (0);
 }
 
-void	get_chunks_in_camera(t_game *game, t_camera *camera)
+void	get_chunks_to_display(t_game *game, t_camera *camera)
 {
 	if (is_camera_out_of_map(game, camera))
 	{
@@ -69,6 +69,20 @@ void	get_chunks_in_camera(t_game *game, t_camera *camera)
 	}
 	else
 	{
-		camera_in_of_map(game, camera);
+		camera_in_of_map(game, camera, camera->chunks_to_display);
 	}
+	// int	i = 0;
+	// while (i < camera->nb_chunks_in_camera_total)
+	// {
+	// 	if (camera->chunks_to_display[i] == -1)
+	// 	{
+	// 		printf("STOP ===> -1 !\n");
+	// 		break ;
+	// 	}
+	// 	printf("%d : [%d]\n", i, camera->chunks_to_display[i]);
+	// 	i++;
+	// }
+	// printf("\n");
 }
+
+// printf("totale  : [%d]\n", camera->nb_chunks_in_camera_total);

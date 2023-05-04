@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/04 23:10:42 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/04 23:17:49 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,6 +207,7 @@ typedef struct s_camera
 	t_f_vector_2	camera_f_size;
 	t_vector_2		nb_chunks_in_camera;
 	int				nb_chunks_in_camera_total;
+	int				*chunks_to_display;
 }	t_camera;
 
 typedef struct s_game
@@ -235,7 +236,7 @@ void				camera_out_of_map(t_game *game, t_camera *camera);
 // |			CAMERA_CHUNKS			|
 // |------------------------------------|
 
-void				get_chunks_in_camera(t_game *game, t_camera *camera);
+void				get_chunks_to_display(t_game *game, t_camera *camera);
 
 // |----------------------------|
 // |			CAMERA			|
