@@ -101,7 +101,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(DEPS)
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INCLUDES_H) -c -o $@ $<
 
-$(SO_LONG): $(PS_OBJ)
+$(SO_LONG): $(PS_OBJ) $(DEPS)
 	@echo "\e[36mMaking $(SO_LONG)...\e[0m"
 	@$(CC) $(CFLAGS) $(INCLUDES_H) $(PS_OBJ) $(MLX_FLAGS) -o $(SO_LONG)
 	@echo "\e[32mDone !\e[0m"

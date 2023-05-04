@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/04 00:15:30 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/04 20:30:39 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@
 # define RATIO_PLAYER_SIZE_Y 0.90
 // Size player = chunk size - X % chunk size
 
-# define SPEED 300
+# define SPEED 700
+// 300
 
 # define FPS_CAP 125
 // -> 0.008
@@ -204,6 +205,8 @@ typedef struct s_camera
 {
 	t_f_vector_2	camera_f_pos;
 	t_f_vector_2	camera_f_size;
+	t_vector_2		nb_chunks_in_camera;
+	int				nb_chunks_in_camera_total;
 }	t_camera;
 
 typedef struct s_game
@@ -250,7 +253,7 @@ void				debug_stat_tiles(t_stat_tiles stat);
 int					check_inside_area(t_f_vector_2 pos, t_f_vector_2 pos_size,
 						t_f_vector_2 area, t_f_vector_2 size_area);
 
-void				camera(t_camera *camera, t_player *player);
+void				camera(t_game *game, t_camera *camera, t_player *player);
 
 // |------------------------------------|
 // |			DISPLAY_SPRITES			|
