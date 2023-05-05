@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/05 13:55:43 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/05 17:23:04 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@
 
 # define DELAY_ANIMATION 2
 
-# define IS_DEBUG 0
+# define IS_DEBUG 1
 # define IS_DEBUG_TIME 0
 
 # define RED 0xFF0000
@@ -226,12 +226,6 @@ typedef struct s_game
 // |					SRC_CAMERA					|
 // |================================================|
 
-// |--------------------------------------------|
-// |			CAMERA_CHUNKS_OUT_MAP			|
-// |--------------------------------------------|
-
-void				camera_out_of_map(t_game *game, t_camera *camera);
-
 // |------------------------------------|
 // |			CAMERA_CHUNKS			|
 // |------------------------------------|
@@ -242,12 +236,7 @@ void				get_chunks_to_display(t_game *game, t_camera *camera);
 // |			CAMERA			|
 // |----------------------------|
 
-int					check_inside_area(t_f_vector_2 pos, t_f_vector_2 pos_size,
-						t_f_vector_2 area, t_f_vector_2 size_area);
-
 void				camera(t_game *game, t_camera *camera, t_player *player);
-
-
 
 // |================================================|
 // |					SRC_DEBUG					|
@@ -278,7 +267,8 @@ void				debug_stat_tiles(t_stat_tiles stat);
 // |			DISPLAY_SPRITES			|
 // |------------------------------------|
 
-void				display_sprites(t_game *game);
+void				display_sprites(t_game *game, t_camera *camera,
+						t_window *window);
 
 // |------------------------------------|
 // |			DISPLAY_TOOLS			|
@@ -299,20 +289,13 @@ void				display(t_game *game);
 // |					SRC_GAMEPLAY					|
 // |====================================================|
 
-// |------------------------------------|
-// |			COLLIDER_TOOLS			|
-// |------------------------------------|
-
-int					pos_to_chunk(int x, int y, int x_max);
-int					check_wall_collider(char *map, t_collider chunks);
-
 // |--------------------------------|
 // |			COLLIDER			|
 // |--------------------------------|
 
-void				check_collider(t_game *game, t_player *player);
+int					check_wall_collider(char *map, t_collider chunks);
 
-t_vector_2			chunk_to_pixel_pos(int chunk, int x_max);
+void				check_collider(t_game *game, t_player *player);
 
 t_collider			get_collider_on_move(t_f_vector_2 *move, t_player *player,
 						int x_max);
@@ -347,6 +330,15 @@ void				restrict_move(t_f_vector_2 *move, t_player *player,
 // |--------------------------------|
 
 void				move_player(t_game *game, t_player *player);
+
+// |------------------------------------|
+// |			POSITIONS_TOOLS			|
+// |------------------------------------|
+
+int					pos_to_chunk(int x, int y, int x_max);
+
+t_vector_2			chunk_to_pixel_pos(int chunk, int x_max);
+t_f_vector_2		chunk_to_pixel_f_pos(int chunk, int x_max);
 
 // |============================================|
 // |					SRC_GNL					|

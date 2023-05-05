@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:34:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/05 13:50:31 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/05 17:14:33 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 int	close_game(t_game *game)
 {
-	// mlx_destroy_window(window->mlx_ptr, window->win_ptr);
-	// window->win_ptr = NULL;
-	// mlx_destroy_image(window->mlx_ptr, window->img.mlx_img);
 	free_game(*game, NULL);
 	exit(EXIT_SUCCESS);
 	return (0);

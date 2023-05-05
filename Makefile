@@ -11,9 +11,9 @@ MLX_FLAGS 		=	-L$(LIB_DIR) -lmlx -lX11 -lXext
 DEPS 			=	$(INCLUDES_DIR)so_long.h Makefile
 
 SRC_CAMERA		= $(addprefix src_camera/, \
-					camera.c\
+					camera.c \
+					camera_chunks.c \
 					)
-# camera_chunks.c
 # camera_chunks_out_map.c
 
 # SOURCES USE WHEN IS_DEBUG == 1
@@ -34,7 +34,7 @@ SRC_GAMEPLAY	=	$(addprefix src_gameplay/, \
 					handler.c \
 					collider.c \
 					move_player.c\
-					collider_tools.c \
+					positions_tools.c \
 					gameplay_tools.c \
 					move_player_tools.c\
 					)

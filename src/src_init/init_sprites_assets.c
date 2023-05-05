@@ -6,43 +6,43 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 20:56:08 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/03 23:32:32 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/05 17:23:56 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	get_number_of_tile(t_game *game, char tile)
-{
-	int	i;
-	int	number_tile;
+// static int	get_number_of_tile(t_game *game, char tile)
+// {
+// 	int	i;
+// 	int	number_tile;
 
-	i = 0;
-	number_tile = 0;
-	while (i < game->level->nb_cases)
-	{
-		if (game->level->map[i] == tile)
-			number_tile++;
-		i++;
-	}
-	if (tile == 'C')
-		printf("C : [%d]\n", number_tile);
-	return (number_tile);
-}
+// 	i = 0;
+// 	number_tile = 0;
+// 	while (i < game->level->nb_cases)
+// 	{
+// 		if (game->level->map[i] == tile)
+// 			number_tile++;
+// 		i++;
+// 	}
+// 	if (tile == 'C')
+// 		printf("C : [%d]\n", number_tile);
+// 	return (number_tile);
+// }
 
-static void	get_stat_tiles_map(t_game *game)
-{
-	t_stat_tiles	stat_tiles;
+// static void	get_stat_tiles_map(t_game *game)
+// {
+// 	t_stat_tiles	stat_tiles;
 
-	stat_tiles.exit = get_number_of_tile(game, 'E');
-	stat_tiles.wall = get_number_of_tile(game, '1');
-	stat_tiles.ground = get_number_of_tile(game, '0');
-	stat_tiles.player = get_number_of_tile(game, 'P');
-	stat_tiles.collect = get_number_of_tile(game, 'C');
-	game->level->stat_tiles = stat_tiles;
-	if (IS_DEBUG)
-		debug_stat_tiles(stat_tiles);
-}
+// 	stat_tiles.exit = get_number_of_tile(game, 'E');
+// 	stat_tiles.wall = get_number_of_tile(game, '1');
+// 	stat_tiles.ground = get_number_of_tile(game, '0');
+// 	stat_tiles.player = get_number_of_tile(game, 'P');
+// 	stat_tiles.collect = get_number_of_tile(game, 'C');
+// 	game->level->stat_tiles = stat_tiles;
+// 	if (IS_DEBUG)
+// 		debug_stat_tiles(stat_tiles);
+// }
 
 static char	*find_sprite_path(t_game *game, char *start_path, int frame)
 {

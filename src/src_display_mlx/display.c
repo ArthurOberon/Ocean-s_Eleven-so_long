@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/05 13:50:31 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/05 17:20:12 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ static int	on_update(t_game *game)
 {
 	if (!game->window->win_ptr)
 		return (0);
-	// background(&game->window->img, 0xE0E0E0);
+	background(&game->window->img, 0xE0E0E0);
 	move_player(game, game->gameplay->player);
 	check_collider(game, game->gameplay->player);
 	camera(game, game->camera, game->gameplay->player);
-	display_sprites(game);
+	display_sprites(game, game->camera, game->window);
 	if (IS_DEBUG)
 	{
 		display_debug(&game->window->img, GREEN, game->gameplay->chunks_pos,
@@ -28,8 +28,6 @@ static int	on_update(t_game *game)
 		display_player_box_collider(&game->window->img, game->gameplay->player,
 			0x800080);
 	}
-	// mlx_put_image_to_window(game->window->mlx_ptr, game->window->win_ptr,
-		// game->window->img.mlx_img, 0, 0);
 	mlx_put_image_to_window(game->window->mlx_ptr, game->window->win_ptr,
 		game->window->img.mlx_img, -(int)game->camera->camera_f_pos.x,
 		-(int)game->camera->camera_f_pos.y);

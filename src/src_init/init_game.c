@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:35:23 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/02 19:02:02 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/05 16:46:33 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ void	bzero_game(t_game *game)
 
 void	init_game(t_game *game)
 {
+	game->window = NULL;
+	game->assets = NULL;
+	game->gameplay = NULL;
+	game->camera = NULL;
 	init_window(game);
 	init_sprites_assets(game);
 	init_sprites(game);
