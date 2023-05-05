@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/04 23:40:45 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/05 13:50:31 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ static int	on_update(t_game *game)
 
 void	display(t_game *game)
 {
-	mlx_hook(game->window->win_ptr, DestroyNotify, KeyPressMask, &close_window,
-		game->window);
+	mlx_hook(game->window->win_ptr, DestroyNotify, KeyPressMask, &close_game,
+		game);
 	mlx_hook(game->window->win_ptr, KeyPress, KeyPressMask, &handle_keypress,
 		game);
 	mlx_hook(game->window->win_ptr, KeyRelease, KeyReleaseMask,

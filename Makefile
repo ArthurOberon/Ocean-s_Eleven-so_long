@@ -1,7 +1,7 @@
 SO_LONG 		=	so_long
 
 CC 				=	cc
-CFLAGS 			=	-g -Wall -Wextra -fsanitize=address #-Werror
+CFLAGS 			=	-g -Wall -Wextra #-fsanitize=address #-Werror
 INCLUDES_DIR 	=	include/
 SRC_DIR 		=	src/
 OBJ_DIR 		=	obj/
@@ -10,11 +10,11 @@ INCLUDES_H		=	-I./$(INCLUDES_DIR) -I./$(LIB_DIR)
 MLX_FLAGS 		=	-L$(LIB_DIR) -lmlx -lX11 -lXext
 DEPS 			=	$(INCLUDES_DIR)so_long.h Makefile
 
-SRC_CAMERA		= $(addprefix deprecated_src_camera/, \
+SRC_CAMERA		= $(addprefix src_camera/, \
 					camera.c\
-					camera_chunks.c\
-					camera_chunks_out_map.c\
 					)
+# camera_chunks.c
+# camera_chunks_out_map.c
 
 # SOURCES USE WHEN IS_DEBUG == 1
 SRC_DEBUG		=	$(addprefix src_debug/, \

@@ -6,17 +6,19 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:34:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/02 23:06:04 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/05 13:50:31 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	close_window(t_window *window)
+int	close_game(t_game *game)
 {
-	mlx_destroy_window(window->mlx_ptr, window->win_ptr);
-	window->win_ptr = NULL;
-	mlx_destroy_image(window->mlx_ptr, window->img.mlx_img);
+	// mlx_destroy_window(window->mlx_ptr, window->win_ptr);
+	// window->win_ptr = NULL;
+	// mlx_destroy_image(window->mlx_ptr, window->img.mlx_img);
+	free_game(*game, NULL);
+	exit(EXIT_SUCCESS);
 	return (0);
 }
 
@@ -46,7 +48,7 @@ int	handle_keypress(int keysym, t_game *game)
 {
 	if (keysym == XK_Escape || keysym == XK_Q || keysym == XK_q)
 	{
-		close_window(game->window);
+		close_game(game);
 		return (1);
 	}
 	handle_player_move(keysym, game);

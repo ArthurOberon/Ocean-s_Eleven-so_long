@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/04 23:17:49 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/05 13:55:43 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@
 
 # define DELAY_ANIMATION 2
 
-# define IS_DEBUG 1
+# define IS_DEBUG 0
 # define IS_DEBUG_TIME 0
 
 # define RED 0xFF0000
@@ -328,7 +328,7 @@ void				calculate_fps(int *fps, double *delta_time);
 // |			HANDLER			|
 // |----------------------------|
 
-int					close_window(t_window *window);
+int					close_game(t_game *game);
 int					handle_keypress(int keysym, t_game	*game);
 int					handle_keyrelease(int keysym, t_game *game);
 

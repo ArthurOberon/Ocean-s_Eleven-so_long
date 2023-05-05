@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:25:07 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/03 22:59:03 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/05 14:06:02 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	move_player(t_game *game, t_player *player)
 			game->level->map_vector.x);
 	if (player->dir_player.x == 0 && player->dir_player.y == 0)
 		return ;
+	move.x = 0;
+	move.y = 0;
 	move_player_on_x(game, player, &move);
 	move_player_on_y(game, player, &move);
 	set_player_pos(player, move);

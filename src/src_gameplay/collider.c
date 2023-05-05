@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 22:33:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/03 23:19:10 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/05 14:02:51 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ t_collider	get_collider_on_move(t_f_vector_2 *move, t_player *player,
 
 	hypothetical_pos.x = player->player_f_pos.x + move->x;
 	hypothetical_pos.y = player->player_f_pos.y + move->y;
-	chunks.n_w = pos_to_chunk(hypothetical_pos.x, hypothetical_pos.y, x_max);
-	chunks.n_e = pos_to_chunk(hypothetical_pos.x + player->size.x,
-			hypothetical_pos.y, x_max);
-	chunks.s_w = pos_to_chunk(hypothetical_pos.x,
-			hypothetical_pos.y + player->size.y, x_max);
-	chunks.s_e = pos_to_chunk(hypothetical_pos.x + player->size.x,
-			hypothetical_pos.y + player->size.y, x_max);
+	chunks.n_w = pos_to_chunk((int)hypothetical_pos.x, (int)hypothetical_pos.y, x_max);
+	chunks.n_e = pos_to_chunk((int)hypothetical_pos.x + player->size.x,
+			(int)hypothetical_pos.y, x_max);
+	chunks.s_w = pos_to_chunk((int)hypothetical_pos.x,
+			(int)hypothetical_pos.y + player->size.y, x_max);
+	chunks.s_e = pos_to_chunk((int)hypothetical_pos.x + player->size.x,
+			(int)hypothetical_pos.y + player->size.y, x_max);
 	return (chunks);
 }
 
@@ -72,9 +72,7 @@ static void	check_tile(t_game *game, char tile, int pos)
 		if (game->gameplay->nb_collect == 0)
 		{
 			ft_putstr("SUCCESS !\n");
-			close_window(game->window);
-			free_game(*game, NULL);
-			exit(EXIT_SUCCESS);
+			close_game(game);
 		}
 	}
 }

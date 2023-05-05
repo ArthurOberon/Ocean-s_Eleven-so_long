@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 13:37:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/04 23:17:49 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/05 13:38:37 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,5 @@ void	camera(t_game *game, t_camera *camera, t_player *player)
 		= player->player_f_pos.x - (camera->camera_f_size.x / 2);
 	camera->camera_f_pos.y
 		= player->player_f_pos.y - (camera->camera_f_size.y / 2);
-	get_chunks_to_display(game, camera);
+	// get_chunks_to_display(game, camera);
 }
