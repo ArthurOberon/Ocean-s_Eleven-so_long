@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/07 13:50:29 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/07 14:47:17 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	update_frame(t_sprite *sprite)
 {
 	double			time;
 
-	if (sprite->frame == 1)
+	if (sprite->size == 1)
 		return ;
 	time = clock() / CLOCKS_PER_SEC;
 	if (IS_DEBUG_TIME)
