@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:19:28 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 22:03:02 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/07 16:44:05 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,6 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	return (result);
 }
 
-void	ft_memset(void *addr, int value, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < n)
-	{
-		*(unsigned int *)(addr + i) = value;
-		++i;
-	}
-}
-
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	size_t	i;
@@ -64,4 +52,16 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 		++i;
 	}
 	return (dest);
+}
+
+void	ft_memset(void *addr, int value, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		*(unsigned int *)(addr + i) = value;
+		++i;
+	}
 }

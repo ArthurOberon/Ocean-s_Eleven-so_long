@@ -6,17 +6,18 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/05 17:20:12 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/07 17:07:19 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+// background(&game->window->img, 0xE0E0E0);
+
 static int	on_update(t_game *game)
 {
 	if (!game->window->win_ptr)
 		return (0);
-	background(&game->window->img, 0xE0E0E0);
 	move_player(game, game->gameplay->player);
 	check_collider(game, game->gameplay->player);
 	camera(game, game->camera, game->gameplay->player);

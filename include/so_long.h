@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/07 13:48:43 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/07 17:07:23 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 
 # define CHUNK_SIZE 128
 
-# define RATIO_PLAYER_SIZE_X 0.70
+# define RATIO_PLAYER_SIZE_X 0.75
 # define RATIO_PLAYER_SIZE_Y 0.90
 // Size player = chunk size - X % chunk size
 

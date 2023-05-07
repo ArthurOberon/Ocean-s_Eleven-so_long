@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:08:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/07 13:38:06 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/07 16:50:28 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_f_vector_2 camera_f_size, t_vector_2 nb_chunks_in_camera, t_window *window)
 	if (camera_f_pos.y < 0)
 		limit.y = (int)(camera_f_pos.y + camera_f_size.y) / CHUNK_SIZE;
 	if ((camera_f_pos.x + camera_f_size.x) > window->img.size.x)
-		limit.x = (int)(window->img.size.x - (camera_f_pos.x)) / CHUNK_SIZE;
+		limit.x = ((int)(window->img.size.x - camera_f_pos.x)) / CHUNK_SIZE;
 	if ((camera_f_pos.y + camera_f_size.y) > window->img.size.y)
 		limit.y = ((int)(window->img.size.y - camera_f_pos.y)) / CHUNK_SIZE;
 	limit.x += 1;
