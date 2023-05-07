@@ -43,7 +43,6 @@ make all
 ### OTHERS
 - [ ] Implement my printf and replace all printf by ft_printf
 - [ ] Write Comments to functions with the extension doxygen
-- [ ] Create new image with size of the total image or init data->img at the size of the total image -> Create camera->img with window size and data->img get size of the total image
 - [ ] For now, stat_tiles is useless
 
 #### TOOLS
