@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/05 17:19:48 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/07 13:50:29 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,15 @@ static void	put_image_to_image(t_window *window, t_vector_2 pos, t_img *img)
 		j++;
 	}
 }
+
+	// t_vector_2	player_shift;
+
+	// player_shift.x = player->player_pos.x
+	// 	- ((CHUNK_SIZE * (1 - RATIO_PLAYER_SIZE_X)) / 2);
+	// player_shift.y = player->player_pos.y
+	// 	- ((CHUNK_SIZE * (1 - RATIO_PLAYER_SIZE_Y)) / 2);
+	// put_image_to_image(window, player_shift,
+	// 	&(sprite->sprite_img)[sprite->frame]);
 
 static void	display_player(t_window *window, t_player *player, t_sprite *sprite)
 {

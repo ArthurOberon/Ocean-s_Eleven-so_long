@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 12:01:27 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/05 17:14:42 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/07 13:37:16 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void	init_camera_nb_chunks(t_game *game, t_vector_2 *nb_chunks)
 		nb_chunks->x = game->level->map_vector.x;
 	if (nb_chunks->y > game->level->map_vector.y)
 		nb_chunks->y = game->level->map_vector.y;
+	nb_chunks->x++;
+	nb_chunks->y++;
 }
 
 void	init_camera(t_game *game)
