@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/03 23:20:18 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/08 15:51:21 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	init_player(t_game *game, t_player *player)
 	player = ft_calloc(sizeof(t_player), 1);
 	if (!player)
 		free_game(*game, "Error of malloc.\n");
+	game->gameplay->player = player;
 	player->size.x = (CHUNK_SIZE * RATIO_PLAYER_SIZE_X);
 	player->size.y = (CHUNK_SIZE * (RATIO_PLAYER_SIZE_Y));
 	player->dir_player.x = 0;
@@ -29,7 +30,15 @@ static void	init_player(t_game *game, t_player *player)
 	player->player_pos.y = player->player_chunk_pos.y * CHUNK_SIZE;
 	player->player_f_pos.x = player->player_chunk_pos.x * CHUNK_SIZE;
 	player->player_f_pos.y = player->player_chunk_pos.y * CHUNK_SIZE;
-	game->gameplay->player = player;
+	player->player_look_dir.x = 1;
+	player->player_look_dir.y = 0;
+	player->bomb.bomb_total = 1000;
+	player->bomb.bomb_plant = 0;
+	player->bomb.bomb_chunk_pos = -1;
+	player->bomb.bomb_pos.x = -1;
+	player->bomb.bomb_pos.y = -1;
+	player->bomb.time = 0;
+	player->bomb.last_time = 0;
 }
 
 static void	get_chunk_positions(t_game *game, t_vector_2 **chunk_pos,

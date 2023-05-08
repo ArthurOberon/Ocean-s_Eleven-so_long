@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/07 17:07:23 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/08 17:32:16 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,9 +182,21 @@ typedef struct s_sprites_assets
 	t_sprite	*wall_inside;
 }	t_sprites_assets;
 
+typedef struct s_bomb
+{
+	int					bomb_plant;
+	int					bomb_total;
+	int					bomb_chunk_pos;
+	t_vector_2			bomb_pos;
+	double				time;
+	double				last_time;
+}	t_bomb;
+
 typedef struct s_player
 {
+	t_bomb				bomb;
 	t_vector_2			size;
+	t_vector_2			player_look_dir;
 	t_vector_2			dir_player;	
 	t_vector_2			player_pos;
 	t_vector_2			player_chunk_pos;
@@ -219,7 +231,6 @@ typedef struct s_game
 	t_camera			*camera;
 }	t_game;
 
-	// t_images_assets		assets;
 	// int		bpp; /* bits per pixel */
 
 // |================================================|
@@ -263,12 +274,21 @@ void				debug_stat_tiles(t_stat_tiles stat);
 // |					SRC_DISPLAY_MLX					|
 // |====================================================|
 
+// |------------------------------------------------|
+// |			DISPLAY_GAMEPLAY_ELEMENTS			|
+// |------------------------------------------------|
+
+void				display_gameplay_elements(t_game *game,
+						t_window *window);
+
 // |------------------------------------|
 // |			DISPLAY_SPRITES			|
 // |------------------------------------|
 
 void				display_sprites(t_game *game, t_camera *camera,
 						t_window *window);
+void				put_image_to_image(t_window *window,
+						t_vector_2 pos, t_img *img);
 
 // |------------------------------------|
 // |			DISPLAY_TOOLS			|
@@ -312,6 +332,7 @@ void				calculate_fps(int *fps, double *delta_time);
 // |----------------------------|
 
 int					close_game(t_game *game);
+int					secure_lost_focus(t_game *game);
 int					handle_keypress(int keysym, t_game	*game);
 int					handle_keyrelease(int keysym, t_game *game);
 
@@ -424,7 +445,7 @@ void				ft_lstadd_back(t_lst_map **lst, t_lst_map *new);
 t_lst_map			*ft_lstnew(void *content);
 t_lst_map			*ft_lstlast(t_lst_map *lst);
 
-// |--------------------------------------------------------|T
+// |--------------------------------------------------------|
 // |			PARSE_MAP_UTILS_CHAR_MANIPULATIONS			|
 // |--------------------------------------------------------|
 

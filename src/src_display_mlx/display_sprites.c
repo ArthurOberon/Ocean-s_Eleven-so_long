@@ -6,13 +6,13 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/07 14:50:41 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/08 13:37:16 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	put_image_to_image(t_window *window, t_vector_2 pos, t_img *img)
+void	put_image_to_image(t_window *window, t_vector_2 pos, t_img *img)
 {		
 	int			i;
 	int			j;
@@ -74,6 +74,12 @@ static void	display_one_sprite(t_window *window, t_sprite *sprite,
 		&sprite->sprite_img[sprite->frame]);
 }
 
+// bomb_pos.x = game->gameplay->player->player_pos.x + (CHUNK_SIZE * player->look_dir.x);
+// bomb_pos.y = game->gameplay->player->player_pos.y + (CHUNK_SIZE * player->look_dir.y);
+// put_image_to_image(window, bomb_pos,
+	// &(window->map_sprites[game->level->nb_cases]->sprite_img)
+	// [game->gameplay->player->bomb - 1]);
+
 void	display_sprites(t_game *game, t_camera *camera, t_window *window)
 {
 	int				i;
@@ -92,6 +98,5 @@ void	display_sprites(t_game *game, t_camera *camera, t_window *window)
 	}
 	display_player(window, game->gameplay->player,
 		window->map_sprites[game->level->nb_cases]);
-	if (game->gameplay->nb_collect == 0)
-		window->map_sprites[game->level->exit_pos] = game->assets->collect;
+	display_gameplay_elements(game, window);
 }
