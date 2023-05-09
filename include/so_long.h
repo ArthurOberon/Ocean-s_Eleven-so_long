@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/09 14:07:03 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/09 23:01:32 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@
 # define FRAME_COLLECT 1
 
 # define DELAY_ANIMATION 2
+
 # define BOMB_TIMING 1.3
+# define BOMB_NUMBER 5
 
 # define IS_DEBUG 1
 # define IS_DEBUG_TIME 0
@@ -75,6 +77,19 @@
 
 # define INT_MIN -2147483648
 # define INT_MAX 2147483647
+
+enum e_player_character
+{
+	e_main,
+	e_eater,
+	e_thief,
+	e_bomber,
+};
+
+// e_main = danny
+// e_eater = rusty
+// e_thief = linus
+// e_bomber = basher
 
 typedef struct s_lst_map
 {
@@ -195,6 +210,8 @@ typedef struct s_bomb
 
 typedef struct s_player
 {
+	int					player_character;
+	int					hp;
 	t_bomb				bomb;
 	t_vector_2			size;
 	t_vector_2			player_look_dir;
@@ -216,11 +233,12 @@ typedef struct s_gameplay
 
 typedef struct s_camera
 {
+	int				*chunks_to_display;
+	int				nb_chunks_in_camera_total;
+	t_img			img_background;
+	t_vector_2		nb_chunks_in_camera;
 	t_f_vector_2	camera_f_pos;
 	t_f_vector_2	camera_f_size;
-	t_vector_2		nb_chunks_in_camera;
-	int				nb_chunks_in_camera_total;
-	int				*chunks_to_display;
 }	t_camera;
 
 typedef struct s_game
@@ -334,6 +352,7 @@ t_collider			get_collider_on_move(t_f_vector_2 *move, t_player *player,
 
 void				display_nb_move(t_game *game);
 void				calculate_fps(int *fps, double *delta_time);
+void				set_player_to_character(t_player *player, int character);
 
 // |----------------------------------------|
 // |			HANDLER_GAMEPLAY			|
@@ -341,6 +360,8 @@ void				calculate_fps(int *fps, double *delta_time);
 
 void				handle_bomb(int keysym, t_game *game);
 void				handle_player_move(int keysym, t_game *game);
+void				handle_change_character_player(int keysym,
+						t_player *player);
 
 // |----------------------------|
 // |			HANDLER			|
@@ -430,6 +451,12 @@ void				init_new_resize_img(t_game *game, void *ptr, t_img *new_img,
 
 t_img				resize_img(t_game *game, void *ptr, t_img *src,
 						t_vector_2 dst_size);
+
+// |--------------------------------|
+// |			INIT_PLAYER			|
+// |--------------------------------|
+
+void				init_player(t_game *game, t_player *player);
 
 // |------------------------------------|
 // |			INIT_SPRITES			|

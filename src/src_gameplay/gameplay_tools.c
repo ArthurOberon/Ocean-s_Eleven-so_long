@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 17:34:37 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/03 23:36:35 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/09 22:51:34 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,28 @@ void	calculate_fps(int *fps, double *delta_time)
 	}
 	*fps = (int)(1.0 / *delta_time);
 	last_time = now;
+}
+
+void	set_player_to_character(t_player *player, int character)
+{
+	if (character == e_main)
+	{
+		player->hp = 2;
+		player->player_character = e_main;
+	}
+	else if (character == e_eater)
+	{
+		player->hp = 1;
+		player->player_character = e_eater;
+	}
+	else if (character == e_thief)
+	{
+		player->hp = 1;
+		player->player_character = e_thief;
+	}
+	else if (character == e_bomber)
+	{
+		player->hp = 1;
+		player->player_character = e_bomber;
+	}
 }

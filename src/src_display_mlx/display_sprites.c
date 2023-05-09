@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/09 14:01:16 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/09 22:55:45 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,19 @@ void	put_image_to_image(t_window *window, t_vector_2 pos, t_img *img)
 
 static void	display_player(t_window *window, t_player *player, t_sprite *sprite)
 {
+	t_vector_2	bomb_pos;
+
 	put_image_to_image(window, player->player_pos,
 		&(sprite->sprite_img)[sprite->frame]);
+	if (player->player_character == e_bomber)
+	{
+		bomb_pos.x = player->player_pos.x
+			+ (CHUNK_SIZE * player->player_look_dir.x);
+		bomb_pos.y = player->player_pos.y
+			+ (CHUNK_SIZE * player->player_look_dir.y);
+		put_image_to_image(window, bomb_pos,
+			&(sprite->sprite_img)[sprite->frame]);
+	}
 }
 
 static void	update_frame(t_sprite *sprite)

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 13:58:54 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/09 18:24:50 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/09 23:01:16 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	handle_player_move(int keysym, t_game *game)
 
 void	handle_bomb(int keysym, t_game *game)
 {
+	if (game->gameplay->player->player_character != e_bomber)
+		return ;
 	if (keysym == XK_space)
 	{
 		if (game->gameplay->player->bomb.bomb_plant
@@ -56,5 +58,29 @@ void	handle_bomb(int keysym, t_game *game)
 		}
 		printf("remove a bomb. bomb planted : [%d]\n",
 			game->gameplay->player->bomb.bomb_plant);
+	}
+}
+
+void	handle_change_character_player(int keysym, t_player *player)
+{
+	if (keysym == XK_1)
+	{
+		player->player_character = e_main;
+		printf("new player choose : Danny\n");
+	}
+	if (keysym == XK_2)
+	{
+		player->player_character = e_eater;
+		printf("new player choose : Rusty\n");
+	}
+	if (keysym == XK_3)
+	{
+		player->player_character = e_thief;
+		printf("new player choose : Linus\n");
+	}
+	if (keysym == XK_4)
+	{
+		player->player_character = e_bomber;
+		printf("new player choose : Basher\n");
 	}
 }

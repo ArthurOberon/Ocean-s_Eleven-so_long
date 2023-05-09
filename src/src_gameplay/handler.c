@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:34:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/09 14:07:03 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/09 23:01:04 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	handle_keypress(int keysym, t_game *game)
 	}
 	handle_player_move(keysym, game);
 	handle_bomb(keysym, game);
+	handle_change_character_player(keysym, game->gameplay->player);
 	return (0);
 }
 

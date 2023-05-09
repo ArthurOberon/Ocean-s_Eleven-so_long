@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:52:31 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/09 18:45:10 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/09 23:09:25 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,9 @@ static void	make_bomb_explode(t_game *game, t_bomb bomb)
 // bomb->bomb_chunk_pos += player_look_dir.x;
 // bomb->bomb_chunk_pos += player->player_look_dir.y
 	// * game->level->map_vector.x;
-void	display_bomb(t_player *player, t_bomb *bomb, t_game *game,
-	t_window *window)
+
+static void	get_bomb_position(t_bomb *bomb, t_player *player, t_game *game)
 {
-	if (bomb->bomb_plant <= 0)
-		return ;
 	if (bomb->bomb_chunk_pos == -1)
 	{
 		bomb->bomb_chunk_pos = pos_to_chunk(player->player_pos.x
@@ -90,6 +88,15 @@ void	display_bomb(t_player *player, t_bomb *bomb, t_game *game,
 		bomb->bomb_pos = chunk_to_pixel_pos(bomb->bomb_chunk_pos,
 				game->level->map_vector.x);
 	}
+}
+
+void	display_bomb(t_player *player, t_bomb *bomb, t_game *game,
+	t_window *window)
+{
+	if (bomb->bomb_plant <= 0
+		|| (player->player_character != e_bomber && bomb->bomb_chunk_pos == -1))
+		return ;
+	get_bomb_position(bomb, player, game);
 	put_image_to_image(window, bomb->bomb_pos,
 		&(window->map_sprites[game->level->nb_cases]->sprite_img)[0]);
 	bomb->time = clock();

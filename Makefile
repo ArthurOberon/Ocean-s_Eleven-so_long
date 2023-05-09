@@ -4,7 +4,7 @@ CC 				=	cc
 CFLAGS 			=	-g -Wall -Wextra #-fsanitize=address -Werror
 INCLUDES_DIR 	=	include/
 SRC_DIR 		=	src/
-OBJ_DIR 		=	obj/
+OBJ_DIR 		=	.obj/
 LIB_DIR 		=	lib/
 INCLUDES_H		=	-I./$(INCLUDES_DIR) -I./$(LIB_DIR)
 MLX_FLAGS 		=	-L$(LIB_DIR) -lmlx -lX11 -lXext
@@ -51,6 +51,7 @@ SRC_GNL			=	$(addprefix src_gnl/, \
 # SOURCES USE TO INIT VARIABLES FOR DISPLAY
 SRC_INIT	=	$(addprefix src_init/, \
 					init_game.c \
+					init_player.c \
 					init_camera.c \
 					init_window.c \
 					init_images.c \

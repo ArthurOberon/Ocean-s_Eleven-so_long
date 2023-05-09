@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 12:01:27 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/07 13:37:16 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/09 20:53:11 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,19 @@ static void	init_camera_nb_chunks(t_game *game, t_vector_2 *nb_chunks)
 		nb_chunks->y = game->level->map_vector.y;
 	nb_chunks->x++;
 	nb_chunks->y++;
+}
+
+static void	int_background_image(t_game *game, t_camera *camera)
+{
+	camera->img_background.size.x = WINDOW_WIDTH;
+	camera->img_background.size.y = WINDOW_HEIGHT;
+	camera->img_background.mlx_img = mlx_new_image(game->window->mlx_ptr,
+			WINDOW_WIDTH, WINDOW_HEIGHT);
+	if (!camera->img_background.mlx_img)
+		free_game(*game, "Error of mlx_new_image on the window.\n");
+	camera->img_background.addr = mlx_get_data_addr(
+			camera->img_background.mlx_img, &camera->img_background.bpp,
+			&camera->img_background.line_len, &camera->img_background.endian);
 }
 
 void	init_camera(t_game *game)
@@ -45,4 +58,5 @@ void	init_camera(t_game *game)
 			camera->nb_chunks_in_camera_total + 1);
 	if (!camera->chunks_to_display)
 		free_game(*game, "Error of malloc.\n");
+	int_background_image(game, camera);
 }

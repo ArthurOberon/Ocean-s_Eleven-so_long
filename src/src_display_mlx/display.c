@@ -6,13 +6,17 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/09 14:01:05 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/09 21:31:48 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+// 0xC6BF92
 // background(&game->window->img, 0xE0E0E0);
+
+	// mlx_put_image_to_window(game->window->mlx_ptr, game->window->win_ptr,
+		// game->camera->img_background.mlx_img, 0, 0);
 
 static int	on_update(t_game *game)
 {
