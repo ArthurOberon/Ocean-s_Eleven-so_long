@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 22:34:29 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/05 14:05:30 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/09 14:07:03 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ double delta_time, t_vector_2 axe)
 {
 	if (axe.x == 1)
 	{
-		move->x = (double)player->dir_player.x * SPEED * delta_time;
+		move->x = (double)player->player_dir.x * SPEED * delta_time;
 		if (move->x > CHUNK_SIZE || move->x < -CHUNK_SIZE)
-			move->x = (CHUNK_SIZE - 1) * player->dir_player.x;
+			move->x = (CHUNK_SIZE - 1) * player->player_dir.x;
 	}
 	if (axe.y)
 	{
-		move->y = (double)player->dir_player.y * SPEED * delta_time;
+		move->y = (double)player->player_dir.y * SPEED * delta_time;
 		if (move->y > CHUNK_SIZE || move->y < -CHUNK_SIZE)
-			move->y = (CHUNK_SIZE - 1) * player->dir_player.y;
+			move->y = (CHUNK_SIZE - 1) * player->player_dir.y;
 	}
 }
 

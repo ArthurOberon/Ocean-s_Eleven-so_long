@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/08 14:58:23 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/09 14:01:05 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	display(t_game *game)
 		game);
 	mlx_hook(game->window->win_ptr, KeyRelease, KeyReleaseMask,
 		&handle_keyrelease, game);
-	mlx_hook(game->window->win_ptr, FocusOut, FocusChangeMask, &secure_lost_focus, game);
+	mlx_hook(game->window->win_ptr, FocusOut, FocusChangeMask,
+		&secure_lost_focus, game);
 	mlx_loop_hook(game->window->mlx_ptr, &on_update, game);
 	mlx_loop(game->window->mlx_ptr);
 }

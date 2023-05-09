@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/08 13:37:16 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/09 14:01:16 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,10 @@ static void	display_one_sprite(t_window *window, t_sprite *sprite,
 		&sprite->sprite_img[sprite->frame]);
 }
 
-// bomb_pos.x = game->gameplay->player->player_pos.x + (CHUNK_SIZE * player->look_dir.x);
-// bomb_pos.y = game->gameplay->player->player_pos.y + (CHUNK_SIZE * player->look_dir.y);
+// bomb_pos.x = game->gameplay->player->player_pos.x
+	// + (CHUNK_SIZE * player->look_dir.x);
+// bomb_pos.y = game->gameplay->player->player_pos.y
+	// + (CHUNK_SIZE * player->look_dir.y);
 // put_image_to_image(window, bomb_pos,
 	// &(window->map_sprites[game->level->nb_cases]->sprite_img)
 	// [game->gameplay->player->bomb - 1]);
@@ -98,5 +100,5 @@ void	display_sprites(t_game *game, t_camera *camera, t_window *window)
 	}
 	display_player(window, game->gameplay->player,
 		window->map_sprites[game->level->nb_cases]);
-	display_gameplay_elements(game, window);
+	display_gameplay_elements(game, game->gameplay, window);
 }

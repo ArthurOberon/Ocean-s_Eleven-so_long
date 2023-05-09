@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/08 17:32:16 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/09 14:07:03 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@
 # define FRAME_COLLECT 1
 
 # define DELAY_ANIMATION 2
+# define BOMB_TIMING 1.3
 
 # define IS_DEBUG 1
 # define IS_DEBUG_TIME 0
@@ -197,7 +198,7 @@ typedef struct s_player
 	t_bomb				bomb;
 	t_vector_2			size;
 	t_vector_2			player_look_dir;
-	t_vector_2			dir_player;	
+	t_vector_2			player_dir;	
 	t_vector_2			player_pos;
 	t_vector_2			player_chunk_pos;
 	t_f_vector_2		player_f_pos;
@@ -279,7 +280,7 @@ void				debug_stat_tiles(t_stat_tiles stat);
 // |------------------------------------------------|
 
 void				display_gameplay_elements(t_game *game,
-						t_window *window);
+						t_gameplay *gameplay, t_window *window);
 
 // |------------------------------------|
 // |			DISPLAY_SPRITES			|
@@ -309,6 +310,13 @@ void				display(t_game *game);
 // |					SRC_GAMEPLAY					|
 // |====================================================|
 
+// |----------------------------|
+// |			BOMB			|
+// |----------------------------|
+
+void				display_bomb(t_player *player, t_bomb *bomb,
+						t_game *game, t_window *window);
+
 // |--------------------------------|
 // |			COLLIDER			|
 // |--------------------------------|
@@ -326,6 +334,13 @@ t_collider			get_collider_on_move(t_f_vector_2 *move, t_player *player,
 
 void				display_nb_move(t_game *game);
 void				calculate_fps(int *fps, double *delta_time);
+
+// |----------------------------------------|
+// |			HANDLER_GAMEPLAY			|
+// |----------------------------------------|
+
+void				handle_bomb(int keysym, t_game *game);
+void				handle_player_move(int keysym, t_game *game);
 
 // |----------------------------|
 // |			HANDLER			|

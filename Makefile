@@ -32,11 +32,13 @@ SRC_DISPLAY		=	$(addprefix src_display_mlx/, \
 
 # SOURCES USE FOR THE GAMEPLAY
 SRC_GAMEPLAY	=	$(addprefix src_gameplay/, \
+					bomb.c \
 					handler.c \
 					collider.c \
 					move_player.c\
 					positions_tools.c \
 					gameplay_tools.c \
+					handler_gameplay.c \
 					move_player_tools.c\
 					)
 
