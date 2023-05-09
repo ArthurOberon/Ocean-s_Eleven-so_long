@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:52:31 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/09 14:07:39 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/09 18:45:10 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	explode_chunk(t_game *game, t_bomb bomb, int i, int j)
 	int	pos;
 
 	pos = bomb.bomb_chunk_pos - (i - (j * game->level->map_vector.x));
-	if (game->level->map[pos] == '1')
+	if (game->level->map[pos] == '2')
 	{
 		game->level->map[pos] = '0';
 		game->window->map_sprites[pos] = game->assets->ground;
@@ -60,8 +60,12 @@ static void	make_bomb_explode(t_game *game, t_bomb bomb)
 	i = 0;
 	if (bomb.bomb_plant == 1)
 	{
-		game->level->map[bomb.bomb_chunk_pos] = '0';
-		game->window->map_sprites[bomb.bomb_chunk_pos] = game->assets->ground;
+		if (game->level->map[bomb.bomb_chunk_pos] == '2')
+		{
+			game->level->map[bomb.bomb_chunk_pos] = '0';
+			game->window->map_sprites[bomb.bomb_chunk_pos]
+				= game->assets->ground;
+		}
 		return ;
 	}
 	bomb_pattern_circle(game, bomb, bomb.bomb_plant);
@@ -73,31 +77,30 @@ static void	make_bomb_explode(t_game *game, t_bomb bomb)
 void	display_bomb(t_player *player, t_bomb *bomb, t_game *game,
 	t_window *window)
 {
-	if (bomb->bomb_plant > 0)
+	if (bomb->bomb_plant <= 0)
+		return ;
+	if (bomb->bomb_chunk_pos == -1)
 	{
-		if (bomb->bomb_chunk_pos == -1)
-		{
-			bomb->bomb_chunk_pos = pos_to_chunk(player->player_pos.x
-					+ (player->size.x / 2), player->player_pos.y
-					+ (player->size.y / 2), game->level->map_vector.x);
-			bomb->bomb_chunk_pos += player->player_look_dir.x;
-			bomb->bomb_chunk_pos += player->player_look_dir.y
-				* game->level->map_vector.x;
-			bomb->bomb_pos = chunk_to_pixel_pos(bomb->bomb_chunk_pos,
-					game->level->map_vector.x);
-		}
-		put_image_to_image(window, bomb->bomb_pos,
-			&(window->map_sprites[game->level->nb_cases]->sprite_img)[0]);
-		bomb->time = clock();
-		if (((bomb->time - bomb->last_time) / CLOCKS_PER_SEC) >= BOMB_TIMING)
-		{
-			make_bomb_explode(game, *bomb);
-			bomb->bomb_total -= bomb->bomb_plant;
-			bomb->bomb_plant = 0;
-			bomb->bomb_chunk_pos = -1;
-			bomb->bomb_pos.x = -1;
-			bomb->bomb_pos.y = -1;
-		}
+		bomb->bomb_chunk_pos = pos_to_chunk(player->player_pos.x
+				+ (player->size.x / 2), player->player_pos.y
+				+ (player->size.y / 2), game->level->map_vector.x);
+		bomb->bomb_chunk_pos += player->player_look_dir.x;
+		bomb->bomb_chunk_pos += player->player_look_dir.y
+			* game->level->map_vector.x;
+		bomb->bomb_pos = chunk_to_pixel_pos(bomb->bomb_chunk_pos,
+				game->level->map_vector.x);
+	}
+	put_image_to_image(window, bomb->bomb_pos,
+		&(window->map_sprites[game->level->nb_cases]->sprite_img)[0]);
+	bomb->time = clock();
+	if (((bomb->time - bomb->last_time) / CLOCKS_PER_SEC) >= BOMB_TIMING)
+	{
+		make_bomb_explode(game, *bomb);
+		bomb->bomb_total -= bomb->bomb_plant;
+		bomb->bomb_plant = 0;
+		bomb->bomb_chunk_pos = -1;
+		bomb->bomb_pos.x = -1;
+		bomb->bomb_pos.y = -1;
 	}
 }
 

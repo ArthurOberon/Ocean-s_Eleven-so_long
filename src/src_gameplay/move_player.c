@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:25:07 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/09 14:11:38 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/09 18:24:59 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	move_player_on_y(t_game *game, t_player *player, t_f_vector_2 *move)
 		restrict_move(move, player, collider, (t_vector_2){0, 1});
 	}
 }
-	
+
 void	move_player(t_game *game, t_player *player)
 {
 	int				chunk_before;
@@ -62,6 +62,12 @@ void	move_player(t_game *game, t_player *player)
 	move.y = 0;
 	move_player_on_x(game, player, &move);
 	move_player_on_y(game, player, &move);
+	player->player_look_dir.x = 0;
+	player->player_look_dir.y = 0;
+	if (player->player_dir.x != 0)
+		player->player_look_dir.x = -1 + (2 * (player->player_dir.x > 0));
+	if (player->player_dir.y != 0)
+		player->player_look_dir.y = -1 + (2 * (player->player_dir.y > 0));
 	set_player_pos(player, move);
 	if (chunk_before != pos_to_chunk(player->player_pos.x, player->player_pos.y,
 			game->level->map_vector.x))

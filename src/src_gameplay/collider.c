@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 22:33:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/05 17:14:22 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/09 18:45:05 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	check_wall_collider(char *map, t_collider chunks)
 {
-	if (map[chunks.n_w] == '1')
+	if (map[chunks.n_w] == '1' || map[chunks.n_w] == '2')
 		return (chunks.n_w);
-	if (map[chunks.n_e] == '1')
+	if (map[chunks.n_e] == '1' || map[chunks.n_e] == '2')
 		return (chunks.n_e);
-	if (map[chunks.s_w] == '1')
+	if (map[chunks.s_w] == '1' || map[chunks.s_w] == '2')
 		return (chunks.s_w);
-	if (map[chunks.s_e] == '1')
+	if (map[chunks.s_e] == '1' || map[chunks.s_e] == '2')
 		return (chunks.s_e);
 	return (-1);
 }
