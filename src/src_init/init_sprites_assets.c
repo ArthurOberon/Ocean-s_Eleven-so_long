@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 20:56:08 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/05 17:23:56 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 15:07:36 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void	init_sprites_assets(t_game *game)
 	sprite_to_assets(game, &assets->exit, PATH_EXIT, FRAME_EXIT);
 	sprite_to_assets(game, &assets->collect, PATH_COLLECT, FRAME_COLLECT);
 	sprite_to_assets(game, &assets->ground, PATH_GROUND, FRAME_GROUND);
+	sprite_to_assets(game, &assets->guard, PATH_GUARD, FRAME_GUARD);
 	sprite_to_assets(game, &assets->wall_corner_n_e, PATH_WALL_CORNER_N_E, 1);
 	sprite_to_assets(game, &assets->wall_corner_n_o, PATH_WALL_CORNER_N_O, 1);
 	sprite_to_assets(game, &assets->wall_corner_s_o, PATH_WALL_CORNER_S_O, 1);

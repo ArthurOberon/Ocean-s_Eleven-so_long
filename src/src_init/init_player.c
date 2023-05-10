@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 21:36:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/09 22:52:01 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 19:07:54 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,10 @@ static void	init_player_positioning(t_game *game, t_player *player)
 		/ game->level->map_vector.x;
 	player->player_pos.x = player->player_chunk_pos.x * CHUNK_SIZE;
 	player->player_pos.y = player->player_chunk_pos.y * CHUNK_SIZE;
-	player->player_f_pos.x = player->player_chunk_pos.x * CHUNK_SIZE;
-	player->player_f_pos.y = player->player_chunk_pos.y * CHUNK_SIZE;
+	player->player_f_pos.x = player->player_pos.x;
+	player->player_f_pos.y = player->player_pos.y;
 	player->player_look_dir.x = 1;
 	player->player_look_dir.y = 0;
-	player->player_character = e_main;
-	player->hp = 2;
 }
 
 static void	init_bomb(t_player *player)
@@ -51,4 +49,10 @@ void	init_player(t_game *game, t_player *player)
 	player->size.y = (CHUNK_SIZE * (RATIO_PLAYER_SIZE_Y));
 	init_player_positioning(game, player);
 	init_bomb(player);
+	player->player_character = e_main;
+	player->hp = 2;
+	player->iframes = false;
+	player->iframes_flashing = 0;
+	player->iframes_start_time = 0;
+	player->iframes_time = 0;
 }

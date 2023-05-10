@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/09 22:55:45 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 19:22:05 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,33 +33,7 @@ void	put_image_to_image(t_window *window, t_vector_2 pos, t_img *img)
 	}
 }
 
-	// t_vector_2	player_shift;
-
-	// player_shift.x = player->player_pos.x
-	// 	- ((CHUNK_SIZE * (1 - RATIO_PLAYER_SIZE_X)) / 2);
-	// player_shift.y = player->player_pos.y
-	// 	- ((CHUNK_SIZE * (1 - RATIO_PLAYER_SIZE_Y)) / 2);
-	// put_image_to_image(window, player_shift,
-	// 	&(sprite->sprite_img)[sprite->frame]);
-
-static void	display_player(t_window *window, t_player *player, t_sprite *sprite)
-{
-	t_vector_2	bomb_pos;
-
-	put_image_to_image(window, player->player_pos,
-		&(sprite->sprite_img)[sprite->frame]);
-	if (player->player_character == e_bomber)
-	{
-		bomb_pos.x = player->player_pos.x
-			+ (CHUNK_SIZE * player->player_look_dir.x);
-		bomb_pos.y = player->player_pos.y
-			+ (CHUNK_SIZE * player->player_look_dir.y);
-		put_image_to_image(window, bomb_pos,
-			&(sprite->sprite_img)[sprite->frame]);
-	}
-}
-
-static void	update_frame(t_sprite *sprite)
+void	update_frame(t_sprite *sprite)
 {
 	double			time;
 
@@ -75,7 +49,34 @@ static void	update_frame(t_sprite *sprite)
 	}
 }
 
-	// printf("last_time : [%f]\n", sprite->last_time);
+static void	display_player(t_window *window, t_player *player, t_sprite *sprite)
+{
+	t_vector_2	bomb_pos;
+
+	if (player->iframes == true)
+	{
+		if (player->iframes_flashing == 0)
+		{
+			put_image_to_image(window, player->player_pos,
+				&(sprite->sprite_img)[sprite->frame]);
+			player->iframes_flashing = 1;
+		}
+		else
+			player->iframes_flashing = 0;
+	}
+	else
+		put_image_to_image(window, player->player_pos,
+			&(sprite->sprite_img)[sprite->frame]);
+	if (player->player_character == e_bomber)
+	{
+		bomb_pos.x = player->player_pos.x
+			+ (CHUNK_SIZE * player->player_look_dir.x);
+		bomb_pos.y = player->player_pos.y
+			+ (CHUNK_SIZE * player->player_look_dir.y);
+		put_image_to_image(window, bomb_pos,
+			&(sprite->sprite_img)[sprite->frame]);
+	}
+}
 
 static void	display_one_sprite(t_window *window, t_sprite *sprite,
 	t_f_vector_2 pos)
@@ -84,14 +85,6 @@ static void	display_one_sprite(t_window *window, t_sprite *sprite,
 	put_image_to_image(window, (t_vector_2){pos.x, pos.y},
 		&sprite->sprite_img[sprite->frame]);
 }
-
-// bomb_pos.x = game->gameplay->player->player_pos.x
-	// + (CHUNK_SIZE * player->look_dir.x);
-// bomb_pos.y = game->gameplay->player->player_pos.y
-	// + (CHUNK_SIZE * player->look_dir.y);
-// put_image_to_image(window, bomb_pos,
-	// &(window->map_sprites[game->level->nb_cases]->sprite_img)
-	// [game->gameplay->player->bomb - 1]);
 
 void	display_sprites(t_game *game, t_camera *camera, t_window *window)
 {

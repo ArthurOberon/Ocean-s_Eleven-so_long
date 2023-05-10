@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:40:38 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/10 14:40:30 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 16:01:22 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,14 @@ void	init_sprites(t_game *game)
 	t_sprite	**map_sprites;
 
 	i = 0;
-	map_sprites = ft_calloc(sizeof(t_sprite *), game->level->nb_cases + 1);
+	map_sprites = ft_calloc(sizeof(t_sprite *), game->level->nb_cases + 2);
 	if (!map_sprites)
 		free_game(*game, "Error of malloc.\n");
+	game->window->map_sprites = map_sprites;
 	while (i < game->level->nb_cases)
 	{
-		if (game->level->map[i] == '0' || game->level->map[i] == 'P')
+		if (game->level->map[i] == '0' || game->level->map[i] == 'P'
+			|| game->level->map[i] == 'G')
 			map_sprites[i] = game->assets->ground;
 		else if (game->level->map[i] == '1' || game->level->map[i] == '2')
 			get_wall_image(game, &map_sprites[i], i);
@@ -45,6 +47,6 @@ void	init_sprites(t_game *game)
 			map_sprites[i] = game->assets->exit;
 		i++;
 	}
-	map_sprites[i] = game->assets->player;
-	game->window->map_sprites = map_sprites;
+	map_sprites[i++] = game->assets->player;
+	map_sprites[i] = game->assets->guard;
 }

@@ -6,11 +6,27 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:08:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/07 16:50:28 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 18:10:53 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	is_in_chunks_to_display(int *chunks_to_display, int size, int chunk)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (chunks_to_display[i] == -1)
+			break ;
+		if (chunks_to_display[i] == chunk)
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 static t_vector_2	define_limit_of_camera(t_f_vector_2 camera_f_pos,
 t_f_vector_2 camera_f_size, t_vector_2 nb_chunks_in_camera, t_window *window)

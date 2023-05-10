@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:53:34 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/29 16:46:26 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 15:04:24 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	calculate_four_dir(t_level *level, t_path_map *path_map,
 	while (++dir <= 4)
 	{
 		dir_pos = calculate_dir_pos(dir, pos, level->map_vector.x);
-		if (level->map[dir_pos] == '1')
+		if (level->map[dir_pos] == '1' || level->map[dir_pos] == 'G')
 		{
 			path_map[dir_pos].has_been_check = 1;
 			path_map[dir_pos].f = -1;

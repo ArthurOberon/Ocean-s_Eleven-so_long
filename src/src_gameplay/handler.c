@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:34:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/10 14:42:49 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 14:47:25 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,29 +44,7 @@ int	handle_keypress(int keysym, t_game *game)
 	}
 	if (keysym == XK_R || keysym == XK_r)
 	{
-		int	i;
-
-		i = 0;
-		ft_print_1d_to_2d(game->level);
-		free(game->level->map);
-		game->level->map = ft_strdup(game->gameplay->map_start_state);
-		ft_print_1d_to_2d(game->level);
-		init_player(game, game->gameplay->player);
-		game->gameplay->nb_collect = game->level->nb_collect;
-		game->gameplay->nb_move = 0;
-		mlx_clear_window(game->window->mlx_ptr, game->window->win_ptr);
-		while (i < game->level->nb_cases)
-		{
-			if (game->level->map[i] == '0' || game->level->map[i] == 'P')
-				game->window->map_sprites[i] = game->assets->ground;
-			else if (game->level->map[i] == '1' || game->level->map[i] == '2')
-				get_wall_image(game, &game->window->map_sprites[i], i);
-			else if (game->level->map[i] == 'C')
-				game->window->map_sprites[i] = game->assets->collect;
-			else if (game->level->map[i] == 'E')
-				game->window->map_sprites[i] = game->assets->exit;
-			i++;
-		}
+		restart(game);
 	}
 	handle_player_move(keysym, game);
 	if (game->gameplay->is_pause == false)

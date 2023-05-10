@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/10 14:31:35 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 16:08:56 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	init_gameplay(t_game *game)
 		game->level->nb_cases);
 	gameplay->map_start_state = ft_strdup(game->level->map);
 	init_player(game, gameplay->player);
+	init_guards(game, gameplay->guards);
 	if (IS_DEBUG)
 		debug_chunk_pos(game);
 }

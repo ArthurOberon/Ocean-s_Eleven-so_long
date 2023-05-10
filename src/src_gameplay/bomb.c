@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:52:31 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/09 23:09:25 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 19:15:11 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	explode_chunk(t_game *game, t_bomb bomb, int i, int j)
 {
+	int	k;
 	int	pos;
 
 	pos = bomb.bomb_chunk_pos - (i - (j * game->level->map_vector.x));
@@ -21,6 +22,14 @@ static void	explode_chunk(t_game *game, t_bomb bomb, int i, int j)
 	{
 		game->level->map[pos] = '0';
 		game->window->map_sprites[pos] = game->assets->ground;
+	}
+	k = 0;
+	while (k < game->gameplay->nb_guard)
+	{
+		if (game->gameplay->guards[k].is_alive == true
+			&& pos == game->gameplay->guards[k].guard_pos_tab)
+			game->gameplay->guards[k].is_alive = false;
+		k++;
 	}
 }
 

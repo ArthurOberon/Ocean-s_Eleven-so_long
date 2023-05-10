@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/10 14:31:16 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 19:23:55 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,24 @@
 # define PATH_COLLECT			"debug/test_32px"
 # define PATH_EXIT				"debug/test"
 # define PATH_PLAYER			"player/player_64px"
+# define PATH_GUARD				"player/player_64px"
 
-# define FRAME_EXIT 1
-# define FRAME_PLAYER 1
 # define FRAME_GROUND 1
 # define FRAME_COLLECT 1
+# define FRAME_EXIT 1
+# define FRAME_PLAYER 1
+# define FRAME_GUARD 1
 
 # define DELAY_ANIMATION 2
+
+# define DELAY_TURN_GUARD 2.5
+
+# define DELAY_IFRAMES 2
 
 # define BOMB_TIMING 1.3
 # define BOMB_NUMBER 5
 
-# define IS_DEBUG 1
+# define IS_DEBUG 0
 # define IS_DEBUG_TIME 0
 
 # define RED 0xFF0000
@@ -102,7 +108,7 @@ typedef struct s_map_flag
 {
 	int	bool_p;
 	int	bool_e;
-	int	bool_c;
+	int	number_c;
 	int	bool_error;
 }	t_map_flag;
 
@@ -188,6 +194,7 @@ typedef struct s_sprites_assets
 	t_sprite	*exit;
 	t_sprite	*collect;
 	t_sprite	*ground;
+	t_sprite	*guard;
 	t_sprite	*wall_corner_n_o;
 	t_sprite	*wall_corner_n_e;
 	t_sprite	*wall_corner_s_e;
@@ -213,6 +220,10 @@ typedef struct s_player
 {
 	int					player_character;
 	int					hp;
+	bool				iframes;
+	int					iframes_flashing;
+	double				iframes_start_time;
+	double				iframes_time;
 	t_bomb				bomb;
 	t_vector_2			size;
 	t_vector_2			player_look_dir;
@@ -221,17 +232,38 @@ typedef struct s_player
 	t_vector_2			player_chunk_pos;
 	t_f_vector_2		player_f_pos;
 }	t_player;
+// iframe -> Invincibility Frames
+
+typedef struct s_guard
+{
+	bool			following_player;
+	bool			is_alive;
+	int				guard_pos_tab;
+	t_vector_2		guard_look_dir;
+	t_vector_2		guard_chunk_pos;
+	t_vector_2		guard_pos;
+	t_f_vector_2	guard_f_pos;
+	t_vector_2		guard_fov_pos_1;
+	t_vector_2		guard_fov_pos_2;
+	t_f_vector_2	guard_fov_f_pos_1;
+	t_f_vector_2	guard_fov_f_pos_2;
+	double			time;
+	double			last_time;
+}	t_guard;
+// fov -> Field Of View
 
 typedef struct s_gameplay
 {
 	bool				is_pause;
 	int					nb_collect;
+	int					nb_guard;
 	int					nb_move;
 	int					fps;
 	char				*map_start_state;
 	double				delta_time;
 	t_vector_2			*chunks_pos;
 	t_player			*player;
+	t_guard				*guards;
 }	t_gameplay;
 
 typedef struct s_camera
@@ -263,6 +295,8 @@ typedef struct s_game
 // |			CAMERA_CHUNKS			|
 // |------------------------------------|
 
+int					is_in_chunks_to_display(int *chunks_to_display,
+						int size, int chunk);
 void				get_chunks_to_display(t_game *game, t_camera *camera);
 
 // |----------------------------|
@@ -304,9 +338,17 @@ void				display_gameplay_elements(t_game *game,
 						t_gameplay *gameplay, t_window *window);
 
 // |------------------------------------|
+// |			DISPLAY_GUARDS			|
+// |------------------------------------|
+
+void				display_guards(t_game *game, t_gameplay *gameplay,
+						t_window *window, t_guard *guards);
+
+// |------------------------------------|
 // |			DISPLAY_SPRITES			|
 // |------------------------------------|
 
+void				update_frame(t_sprite *sprite);
 void				display_sprites(t_game *game, t_camera *camera,
 						t_window *window);
 void				put_image_to_image(t_window *window,
@@ -338,24 +380,40 @@ void				display(t_game *game);
 void				display_bomb(t_player *player, t_bomb *bomb,
 						t_game *game, t_window *window);
 
+// |----------------------------------------|
+// |			COLLIDER_POSITIONS			|
+// |----------------------------------------|
+
+void				check_collider_positions(t_game *game,
+						t_player *player, t_guard *guards);
+
 // |--------------------------------|
 // |			COLLIDER			|
 // |--------------------------------|
 
 int					check_wall_collider(char *map, t_collider chunks);
 
-void				check_collider(t_game *game, t_player *player);
+void				check_collider(t_game *game, t_player *player,
+						t_guard *guards);
 
 t_collider			get_collider_on_move(t_f_vector_2 *move, t_player *player,
 						int x_max);
+
+// |----------------------------------------|
+// |			GAMEPLAY_ELEMENTS			|
+// |----------------------------------------|
+
+void				gameplay_elements(t_game *game, t_gameplay *gameplay);
 
 // |------------------------------------|
 // |			GAMEPLAY_TOOLS			|
 // |------------------------------------|
 
+void				restart(t_game *game);
 void				display_nb_move(t_game *game);
 void				calculate_fps(int *fps, double *delta_time);
 void				set_player_to_character(t_player *player, int character);
+void				display_hp(t_window *window, t_player *player, int color);
 
 // |----------------------------------------|
 // |			HANDLER_GAMEPLAY			|
@@ -430,19 +488,12 @@ void				bzero_game(t_game *game);
 
 void				init_gameplay(t_game *game);
 
-// |----------------------------------------|
-// |			INIT_IMAGES_ASSETS			|
-// |----------------------------------------|
-
-void				init_sprites_assets(t_game *game);
-
-void				init_images_assets(void *ptr, t_game *game);
-
 // |--------------------------------|
-// |			INIT_WINDOW			|
+// |			INIT_GUARD			|
 // |--------------------------------|
 
-void				init_window(t_game *game);
+void				set_guard_direction(t_guard *guard);
+void				init_guards(t_game *game, t_guard *guards);
 
 // |--------------------------------|
 // |			INIT_IMAGES			|
@@ -462,12 +513,24 @@ t_img				resize_img(t_game *game, void *ptr, t_img *src,
 
 void				init_player(t_game *game, t_player *player);
 
+// |----------------------------------------|
+// |			INIT_SPRITES_ASSETS			|
+// |----------------------------------------|
+
+void				init_sprites_assets(t_game *game);
+
 // |------------------------------------|
 // |			INIT_SPRITES			|
 // |------------------------------------|
 
 void				init_sprites(t_game *game);
 void				init_sprite(t_img *image_asset, t_sprite *sprite, int size);
+
+// |--------------------------------|
+// |			INIT_WINDOW			|
+// |--------------------------------|
+
+void				init_window(t_game *game);
 
 // |----------------------------------------|
 // |			SPRITES_ARRENGEMENT			|

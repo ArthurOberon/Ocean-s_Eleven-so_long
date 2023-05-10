@@ -26,6 +26,7 @@ SRC_DEBUG		=	$(addprefix src_debug/, \
 SRC_DISPLAY		=	$(addprefix src_display_mlx/, \
 				 	display.c \
 				 	display_tools.c \
+				 	display_guards.c \
 				 	display_sprites.c \
 				 	display_gameplay_elements.c \
 					)
@@ -35,11 +36,13 @@ SRC_GAMEPLAY	=	$(addprefix src_gameplay/, \
 					bomb.c \
 					handler.c \
 					collider.c \
-					move_player.c\
-					positions_tools.c \
+					move_player.c \
 					gameplay_tools.c \
+					positions_tools.c \
 					handler_gameplay.c \
-					move_player_tools.c\
+					gameplay_elements.c \
+					move_player_tools.c \
+					collider_positions.c \
 					)
 
 # SOURCES USE FOR GET_NEXT_LINE
@@ -51,6 +54,7 @@ SRC_GNL			=	$(addprefix src_gnl/, \
 # SOURCES USE TO INIT VARIABLES FOR DISPLAY
 SRC_INIT	=	$(addprefix src_init/, \
 					init_game.c \
+					init_guard.c \
 					init_player.c \
 					init_camera.c \
 					init_window.c \

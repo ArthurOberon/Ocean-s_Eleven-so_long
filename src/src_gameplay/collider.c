@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 22:33:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/09 18:45:05 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 18:21:47 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	check_tile(t_game *game, char tile, int pos)
 	}
 }
 
-void	check_collider(t_game *game, t_player *player)
+void	check_collider(t_game *game, t_player *player, t_guard *guards)
 {
 	int			x_max;
 	t_collider	chunks;
@@ -89,4 +89,5 @@ void	check_collider(t_game *game, t_player *player)
 	check_tile(game, game->level->map[chunks.n_e], chunks.n_e);
 	check_tile(game, game->level->map[chunks.s_w], chunks.s_w);
 	check_tile(game, game->level->map[chunks.s_e], chunks.s_e);
+	check_collider_positions(game, player, guards);
 }

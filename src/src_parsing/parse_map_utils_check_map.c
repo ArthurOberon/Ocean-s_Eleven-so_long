@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:55:43 by aoberon           #+#    #+#             */
-/*   Updated: 2023/03/15 16:18:28 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 15:06:07 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ static void	save_characters(t_map_flag *flag, char c)
 	else if (c == 'E')
 		flag->bool_e += 1;
 	else if (c == 'C')
-		flag->bool_c += 1;
-	else if (c != '0' && c != '1')
+		flag->number_c += 1;
+	else if (c != '0' && c != '1' && c != 'G')
 		flag->bool_error += 1;
 }
 
@@ -80,7 +80,7 @@ int	has_all_characters(char **map, int x, int y)
 
 	flag.bool_p = 0;
 	flag.bool_e = 0;
-	flag.bool_c = 0;
+	flag.number_c = 0;
 	flag.bool_error = 0;
 	i = 0;
 	while (i < y)
@@ -94,7 +94,7 @@ int	has_all_characters(char **map, int x, int y)
 		i++;
 	}
 	if (flag.bool_p != 1 || flag.bool_e != 1
-		|| flag.bool_c == 0 || flag.bool_error != 0)
+		|| flag.number_c == 0 || flag.bool_error != 0)
 		return (0);
 	return (1);
 }
