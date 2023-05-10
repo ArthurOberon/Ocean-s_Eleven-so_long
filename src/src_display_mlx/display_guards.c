@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 17:28:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/10 19:12:41 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 20:16:06 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static void	display_one_guard_fov(t_window *window, t_guard guard,
 
 static void	change_guard_direction(t_guard *guard)
 {
+	if (guard->following_player == true)
+		return ;
 	if (guard->guard_look_dir.x == -1 && guard->guard_look_dir.y == 0)
 	{
 		guard->guard_look_dir.x = 0;

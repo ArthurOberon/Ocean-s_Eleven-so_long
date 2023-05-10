@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/10 19:23:55 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 20:14:03 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@
 
 # define DELAY_TURN_GUARD 2.5
 
-# define DELAY_IFRAMES 2
+# define DELAY_IFRAMES 1
 
 # define BOMB_TIMING 1.3
 # define BOMB_NUMBER 5
