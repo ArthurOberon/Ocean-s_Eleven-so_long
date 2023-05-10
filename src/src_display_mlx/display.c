@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/09 21:31:48 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 13:55:20 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ static int	on_update(t_game *game)
 {
 	if (!game->window->win_ptr)
 		return (0);
+	if (game->gameplay->is_pause == true)
+	{
+		mlx_string_put(game->window->mlx_ptr, game->window->win_ptr,
+			WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, GREEN, "PAUSE");
+		return (0);
+	}
 	move_player(game, game->gameplay->player);
 	check_collider(game, game->gameplay->player);
 	camera(game, game->camera, game->gameplay->player);

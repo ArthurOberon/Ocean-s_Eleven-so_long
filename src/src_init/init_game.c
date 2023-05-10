@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:35:23 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/09 18:42:12 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 14:40:13 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ void	init_game(t_game *game)
 	game->assets = NULL;
 	game->gameplay = NULL;
 	game->camera = NULL;
+	get_breakable_wall(game->level->map, game->level->nb_cases,
+		game->level->map_vector);
 	init_window(game);
 	init_sprites_assets(game);
 	init_sprites(game);
 	init_gameplay(game);
 	init_camera(game);
-	get_breakable_wall(game->level->map, game->level->nb_cases,
-		game->level->map_vector);
 }

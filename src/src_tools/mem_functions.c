@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:19:28 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/09 20:50:10 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 14:30:45 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,25 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	if (result == NULL)
 		return (NULL);
 	ft_bzero(result, (nmemb * size));
+	return (result);
+}
+
+char	*ft_strdup(const char *s)
+{
+	int		length;
+	char	*result;
+
+	length = ft_strlen(s);
+	result = malloc(sizeof(char) * (length + 1));
+	if (result == NULL)
+		return (NULL);
+	length = 0;
+	while (s[length])
+	{
+		result[length] = s[length];
+		length++;
+	}
+	result[length] = '\0';
 	return (result);
 }
 

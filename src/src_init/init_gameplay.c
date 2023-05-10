@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/09 21:37:15 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 14:31:35 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,14 @@ void	init_gameplay(t_game *game)
 	if (!gameplay)
 		free_game(*game, "Error of malloc\n");
 	game->gameplay = gameplay;
+	gameplay->is_pause = false;
 	gameplay->fps = 0;
 	gameplay->delta_time = 0;
 	gameplay->nb_collect = game->level->nb_collect;
 	gameplay->nb_move = 0;
 	get_chunk_positions(game, &gameplay->chunks_pos, game->level->map_vector,
 		game->level->nb_cases);
+	gameplay->map_start_state = ft_strdup(game->level->map);
 	init_player(game, gameplay->player);
 	if (IS_DEBUG)
 		debug_chunk_pos(game);

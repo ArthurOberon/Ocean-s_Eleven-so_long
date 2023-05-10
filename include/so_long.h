@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/09 23:01:32 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 14:31:16 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdbool.h>
 # include <fcntl.h>
 # include <mlx.h>
 # include <X11/X.h>
@@ -223,9 +224,11 @@ typedef struct s_player
 
 typedef struct s_gameplay
 {
+	bool				is_pause;
 	int					nb_collect;
 	int					nb_move;
 	int					fps;
+	char				*map_start_state;
 	double				delta_time;
 	t_vector_2			*chunks_pos;
 	t_player			*player;
@@ -360,6 +363,7 @@ void				set_player_to_character(t_player *player, int character);
 
 void				handle_bomb(int keysym, t_game *game);
 void				handle_player_move(int keysym, t_game *game);
+void				handle_player_move_release(int keysym, t_game *game);
 void				handle_change_character_player(int keysym,
 						t_player *player);
 
@@ -567,8 +571,10 @@ void				free_game(t_game game, const char *error);
 // |------------------------------------|
 // |			MEM_FUNCTIONS			|
 // |------------------------------------|
-void				ft_bzero(void *s, size_t n);
 
+char				*ft_strdup(const char *s);
+
+void				ft_bzero(void *s, size_t n);
 void				ft_memset(void *addr, int value, size_t n);
 
 void				*ft_calloc(size_t nmemb, size_t size);

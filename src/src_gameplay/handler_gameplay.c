@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 13:58:54 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/09 23:01:16 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 14:23:33 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,26 @@ void	handle_player_move(int keysym, t_game *game)
 }
 	// if (IS_DEBUG)
 		// debug_player_box_collider(game);
+
+void	handle_player_move_release(int keysym, t_game *game)
+{
+	if (keysym == XK_W || keysym == XK_w || keysym == XK_Up)
+	{
+		game->gameplay->player->player_dir.y += 1;
+	}
+	if (keysym == XK_S || keysym == XK_s || keysym == XK_Down)
+	{
+		game->gameplay->player->player_dir.y += -1;
+	}
+	if (keysym == XK_A || keysym == XK_a || keysym == XK_Left)
+	{
+		game->gameplay->player->player_dir.x += 1;
+	}
+	if (keysym == XK_D || keysym == XK_d || keysym == XK_Right)
+	{
+		game->gameplay->player->player_dir.x += -1;
+	}
+}
 
 void	handle_bomb(int keysym, t_game *game)
 {
