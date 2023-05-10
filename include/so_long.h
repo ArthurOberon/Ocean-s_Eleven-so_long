@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/10 20:14:03 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 23:16:28 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 
 # define SPEED 700
 // 300
+
+# define SPEED_GUARD 500
 
 # define FPS_CAP 125
 // -> 0.008
@@ -239,7 +241,9 @@ typedef struct s_guard
 	bool			following_player;
 	bool			is_alive;
 	int				guard_pos_tab;
+	t_vector_2		size;
 	t_vector_2		guard_look_dir;
+	t_vector_2		guard_dir;
 	t_vector_2		guard_chunk_pos;
 	t_vector_2		guard_pos;
 	t_f_vector_2	guard_f_pos;
@@ -434,6 +438,12 @@ int					secure_lost_focus(t_game *game);
 int					handle_keypress(int keysym, t_game	*game);
 int					handle_keyrelease(int keysym, t_game *game);
 
+// |--------------------------------|
+// |			MOVE_GUARD			|
+// |--------------------------------|
+
+void				move_guard(t_game *game, t_guard *guard);
+
 // |----------------------------------------|
 // |			MOVE_PLAYER_TOOLS			|
 // |----------------------------------------|
@@ -492,7 +502,7 @@ void				init_gameplay(t_game *game);
 // |			INIT_GUARD			|
 // |--------------------------------|
 
-void				set_guard_direction(t_guard *guard);
+void				set_guard_fov_direction(t_guard *guard);
 void				init_guards(t_game *game, t_guard *guards);
 
 // |--------------------------------|

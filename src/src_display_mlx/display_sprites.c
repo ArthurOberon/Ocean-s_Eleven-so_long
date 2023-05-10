@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/10 19:22:05 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 22:26:28 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,14 @@ static void	display_player(t_window *window, t_player *player, t_sprite *sprite)
 
 	if (player->iframes == true)
 	{
-		if (player->iframes_flashing == 0)
+		if (player->iframes_flashing == 2)
 		{
 			put_image_to_image(window, player->player_pos,
 				&(sprite->sprite_img)[sprite->frame]);
-			player->iframes_flashing = 1;
+			player->iframes_flashing = 0;
 		}
 		else
-			player->iframes_flashing = 0;
+			player->iframes_flashing++;
 	}
 	else
 		put_image_to_image(window, player->player_pos,

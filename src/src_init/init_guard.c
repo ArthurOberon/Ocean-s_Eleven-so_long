@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 15:39:49 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/10 19:09:43 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 23:16:28 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,11 @@ static void	init_one_guard_variables(t_game *game, t_guard *guard, int number)
 	guard->guard_f_pos.y = guard->guard_pos.y;
 	guard->guard_look_dir.x = -1;
 	guard->guard_look_dir.y = 0;
-	set_guard_direction(guard);
+	guard->guard_dir.x = 0;
+	guard->guard_dir.y = 0;
+	guard->size.x = CHUNK_SIZE;
+	guard->size.y = CHUNK_SIZE;
+	set_guard_fov_direction(guard);
 	guard->following_player = false;
 	guard->is_alive = true;
 	guard->time = 0;
@@ -68,7 +72,7 @@ static void	init_one_guard(t_game *game, t_guard *guard, int number, char *map)
 	}
 }
 
-void	set_guard_direction(t_guard *guard)
+void	set_guard_fov_direction(t_guard *guard)
 {
 	guard->guard_fov_pos_1.x = guard->guard_pos.x
 		+ (guard->guard_look_dir.x * CHUNK_SIZE);

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 17:28:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/10 20:16:06 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 23:16:28 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	turn_guards(t_guard *guard)
 	if (((guard->time - guard->last_time) / CLOCKS_PER_SEC) >= DELAY_TURN_GUARD)
 	{
 		change_guard_direction(guard);
-		set_guard_direction(guard);
+		set_guard_fov_direction(guard);
 		guard->last_time = guard->time;
 	}
 }

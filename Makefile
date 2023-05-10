@@ -36,6 +36,7 @@ SRC_GAMEPLAY	=	$(addprefix src_gameplay/, \
 					bomb.c \
 					handler.c \
 					collider.c \
+					move_guard.c \
 					move_player.c \
 					gameplay_tools.c \
 					positions_tools.c \

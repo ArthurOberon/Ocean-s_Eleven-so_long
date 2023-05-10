@@ -6,13 +6,13 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:25:07 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/10 14:24:19 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 22:31:42 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	move_player_on_x(t_game *game, t_player *player, t_f_vector_2 *move)
+static void	move_player_on_x(t_game *game, t_player *player, t_f_vector_2 *move)
 {
 	int				collider_chunk;
 	t_collider		chunks;
@@ -30,7 +30,7 @@ void	move_player_on_x(t_game *game, t_player *player, t_f_vector_2 *move)
 	}
 }
 
-void	move_player_on_y(t_game *game, t_player *player, t_f_vector_2 *move)
+static void	move_player_on_y(t_game *game, t_player *player, t_f_vector_2 *move)
 {
 	int				collider_chunk;
 	t_collider		chunks;

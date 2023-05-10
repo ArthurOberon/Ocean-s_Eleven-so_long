@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:32:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/10 19:19:52 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/11 00:06:22 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,32 @@ static void	game_over(t_game *game)
 	close_game(game);
 }
 
-static void	guard_follow_player(t_player *player, t_guard *guard)
+static void	guard_follow_player(t_game *game, t_player *player, t_guard *guard)
 {
-	;
+	if (player->player_pos.x > guard->guard_pos.x)
+	{
+		guard->guard_dir.x = 1;
+	}
+	else if (player->player_pos.x < guard->guard_pos.x)
+	{
+		guard->guard_dir.x = -1;
+	}
+	else
+		guard->guard_dir.x = 0;
+	if (player->player_pos.y > guard->guard_pos.y)
+	{
+		guard->guard_dir.y = 1;
+	}
+	else if (player->player_pos.y < guard->guard_pos.y)
+	{
+		guard->guard_dir.y = -1;
+	}
+	else
+		guard->guard_dir.y = 0;
+	printf("player : x [%f] y [%f]\n", player->player_f_pos.x,player->player_f_pos.y);
+	printf("guard : x [%f] y : [%f]\n", guard->guard_f_pos.x, guard->guard_f_pos.y);
+	printf("guard dir : x [%d] y : [%d]\n\n", guard->guard_dir.x, guard->guard_dir.y);
+	move_guard(game, guard);
 }
 
 static void	get_iframes(t_player *player)
@@ -34,6 +57,7 @@ static void	get_iframes(t_player *player)
 		>= DELAY_IFRAMES)
 	{
 		player->iframes = false;
+		player->iframes_start_time = 0;
 	}
 }
 
@@ -49,7 +73,7 @@ void	gameplay_elements(t_game *game, t_gameplay *gameplay)
 	{
 		if (gameplay->guards[i].following_player == true
 			&& gameplay->guards[i].is_alive == true)
-			guard_follow_player(gameplay->player, gameplay->guards);
+			guard_follow_player(game, gameplay->player, gameplay->guards);
 		i++;
 	}
 }

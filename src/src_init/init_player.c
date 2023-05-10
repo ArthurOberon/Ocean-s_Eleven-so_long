@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 21:36:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/10 19:07:54 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/10 23:58:17 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	init_player(t_game *game, t_player *player)
 	init_player_positioning(game, player);
 	init_bomb(player);
 	player->player_character = e_main;
-	player->hp = 2;
+	player->hp = 10000;
 	player->iframes = false;
 	player->iframes_flashing = 0;
 	player->iframes_start_time = 0;
