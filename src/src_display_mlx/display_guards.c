@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 17:28:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/11 23:55:50 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/11 23:59:09 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,31 +31,7 @@ static void	display_one_guard_fov(t_window *window, t_guard guard,
 			&(sprite->sprite_img)[sprite->frame]);
 }
 
-static void	change_guard_f_d
-static void	guard_chase_player(t_game *game, t_player *player, t_guard *guard)
-{
-	double			delay;
-
-	if (guard->chase_start_time.tv_sec == 0)
-		gettimeofday(&guard->chase_start_time, NULL);
-	gettimeofday(&guard->chase_time, NULL);
-	delay = (((double)(guard->chase_time.tv_usec
-					- guard->chase_start_time.tv_usec)
-				/ CLOCKS_PER_SEC) + guard->chase_time.tv_sec
-			- guard->chase_start_time.tv_sec);
-	if (delay >= DELAY_GUARD_CHASE_PLAYER)
-	{
-		guard->chasing_player = false;
-		guard->chase_start_time = (struct timeval){0, 0};
-	}
-	else if (guard->is_in_player == false)
-	{
-		guard->guard_f_dir = direction_normalized(guard->guard_pos,
-				player->player_pos);
-		move_guard(game, guard);
-	}
-}
-irection(t_guard *guard)
+static void	change_guard_f_direction(t_guard *guard)
 {
 	if (guard->chasing_player == true || guard->is_in_player == true)
 		return ;
