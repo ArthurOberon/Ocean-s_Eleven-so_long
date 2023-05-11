@@ -90,7 +90,7 @@ int	mlx_loop (void *mlx_ptr);
 int mlx_loop_end (void *mlx_ptr);
 
 /*
-**  hook funct are called as follow :
+**  hook funct are called as chase :
 **
 **   expose_hook(void *param);
 **   key_hook(int keycode, void *param);

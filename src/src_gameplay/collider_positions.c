@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:05:45 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/11 16:18:16 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/11 23:45:40 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,25 @@ void	check_collider_positions(t_game *game,
 				game->camera->nb_chunks_in_camera_total,
 				guards[i].guard_pos_tab))
 		{
-			if ((is_inside_area(player->player_f_pos,
-						(t_f_vector_2){(double)player->size.x,
-						(double)player->size.y}, guards[i].guard_f_pos,
-					(t_f_vector_2){CHUNK_SIZE, CHUNK_SIZE})
-				&& player->iframes == false))
+			if (is_inside_area(player->player_f_pos,
+					(t_f_vector_2){(double)player->size.x,
+					(double)player->size.y}, guards[i].guard_f_pos,
+				(t_f_vector_2){CHUNK_SIZE, CHUNK_SIZE}))
 			{
-				player->hp -= 1;
-				player->iframes = true;
+				guards[i].is_in_player = true;
+				if (player->iframes == false)
+				{
+					player->hp -= 1;
+					player->iframes = true;
+				}
+				if (guards[i].chasing_player == true)
+					guards[i].chasing_player = false;
+				else
+					guards[i].chasing_player = true;
+			}
+			else
+			{
+				guards[i].is_in_player = false;
 			}
 			if (is_inside_area(player->player_f_pos,
 					(t_f_vector_2){(double)player->size.x,
@@ -70,7 +81,7 @@ void	check_collider_positions(t_game *game,
 				guards[i].guard_fov_f_pos_1,
 				(t_f_vector_2){CHUNK_SIZE, CHUNK_SIZE}))
 			{
-				guards[i].following_player = true;
+				guards[i].chasing_player = true;
 			}
 			else if (is_inside_area(player->player_f_pos,
 					(t_f_vector_2){(double)player->size.x,
@@ -78,13 +89,15 @@ void	check_collider_positions(t_game *game,
 				guards[i].guard_fov_f_pos_2,
 				(t_f_vector_2){CHUNK_SIZE, CHUNK_SIZE}))
 			{
-				guards[i].following_player = true;
+				guards[i].chasing_player = true;
 			}
 			else
 			{
-				guards[i].guard_f_dir.x = 0;
-				guards[i].guard_f_dir.y = 0;
-				// guards[i].following_player = false;
+				if (guards[i].chasing_player == false)
+				{
+					guards[i].guard_f_dir.x = 0;
+					guards[i].guard_f_dir.y = 0;
+				}
 			}
 		}
 		i++;

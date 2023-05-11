@@ -1,13 +1,13 @@
 SO_LONG 		=	so_long
 
 CC 				=	cc
-CFLAGS 			=	-g -Wall -Wextra -fsanitize=address #-Werror #-03
+CFLAGS 			=	-g -Wall -Wextra #-fsanitize=address #-Werror #-03
 INCLUDES_DIR 	=	include/
 SRC_DIR 		=	src/
 OBJ_DIR 		=	.obj/
 LIB_DIR 		=	lib/
 INCLUDES_H		=	-I./$(INCLUDES_DIR) -I./$(LIB_DIR)
-MLX_FLAGS 		=	-L$(LIB_DIR) -lmlx -lX11 -lXext
+MLX_FLAGS 		=	-L$(LIB_DIR) -lmlx -lX11 -lXext -lm
 DEPS 			=	$(INCLUDES_DIR)so_long.h Makefile
 
 SRC_CAMERA		= $(addprefix src_camera/, \
@@ -40,6 +40,7 @@ SRC_GAMEPLAY	=	$(addprefix src_gameplay/, \
 					gameplay_tools.c \
 					positions_tools.c \
 					handler_gameplay.c \
+					move_guard_tools.c \
 					gameplay_elements.c \
 					move_player_tools.c \
 					collider_positions.c \

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:25:07 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/11 13:49:42 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/11 23:44:33 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static void	move_player_on_y(t_game *game, t_player *player, t_f_vector_2 *move)
 	}
 }
 
+// mlx_clear_window(game->window->mlx_ptr, game->window->win_ptr);
 void	move_player(t_game *game, t_player *player)
 {
 	int				chunk_before;
@@ -57,7 +58,6 @@ void	move_player(t_game *game, t_player *player)
 			game->level->map_vector.x);
 	if (player->player_dir.x == 0 && player->player_dir.y == 0)
 		return ;
-	// mlx_clear_window(game->window->mlx_ptr, game->window->win_ptr);
 	move.x = 0;
 	move.y = 0;
 	move_player_on_x(game, player, &move);

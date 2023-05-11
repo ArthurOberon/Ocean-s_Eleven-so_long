@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/11 18:54:48 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/11 23:55:03 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 # include <mlx.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
-# include <sys/time.h>
-
 # include <time.h>
+# include <sys/time.h>
+# include <math.h>
 
 // CAUTION /!/\/
 # include <stdio.h>
@@ -39,7 +39,7 @@
 # define SPEED 700
 // 300
 
-# define SPEED_GUARD 400
+# define SPEED_GUARD 450
 
 # define FPS_CAP 125
 // -> 0.008
@@ -71,6 +71,7 @@
 # define DELAY_ANIMATION 2
 
 # define DELAY_TURN_GUARD 2.5
+# define DELAY_GUARD_CHASE_PLAYER 6
 
 # define DELAY_IFRAMES 1.5
 
@@ -240,8 +241,9 @@ typedef struct s_player
 
 typedef struct s_guard
 {
-	bool			following_player;
+	bool			chasing_player;
 	bool			is_alive;
+	bool			is_in_player;
 	int				guard_pos_tab;
 	t_vector_2		size;
 	t_vector_2		guard_look_dir;
@@ -255,6 +257,8 @@ typedef struct s_guard
 	t_f_vector_2	guard_fov_f_pos_2;
 	struct timeval	time;
 	struct timeval	last_time;
+	struct timeval	chase_start_time;
+	struct timeval	chase_time;
 }	t_guard;
 // fov -> Field Of View
 
@@ -440,6 +444,20 @@ int					close_game(t_game *game);
 int					secure_lost_focus(t_game *game);
 int					handle_keypress(int keysym, t_game	*game);
 int					handle_keyrelease(int keysym, t_game *game);
+
+// |----------------------------------------|
+// |			MOVE_GUARD_TOOLS			|
+// |----------------------------------------|
+
+void				set_guard_pos(t_game *game, t_guard *guard,
+						t_f_vector_2 move);
+void				get_move_guard(t_guard *guard, t_f_vector_2 *move,
+						double delta_time, t_vector_2 axe);
+void				restrict_move_guard(t_f_vector_2 *move, t_guard *guard,
+						t_vector_2 collider, t_vector_2 axe);
+
+t_collider			get_collider_guard_on_move(t_f_vector_2 *move,
+						t_guard *guard, int x_max);
 
 // |--------------------------------|
 // |			MOVE_GUARD			|
@@ -676,6 +694,13 @@ char				*ft_itoa(int n);
 char				*ft_strjoin(char const *s1, char const *s2);
 
 long unsigned int	ft_abs(long n);
+
+// |----------------------------------------|
+// |			VECTOR_FUNCTIONS			|
+// |----------------------------------------|
+
+t_f_vector_2		normalize(t_vector_2 vector);
+t_f_vector_2		direction_normalized(t_vector_2 src, t_vector_2 dest);
 
 //========================================
 

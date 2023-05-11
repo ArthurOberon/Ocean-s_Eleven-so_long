@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:32:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/11 19:07:18 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/11 23:55:19 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,48 +16,6 @@ static void	game_over(t_game *game)
 {
 	ft_putstr("GAME OVER\n");
 	close_game(game);
-}
-
-// Get guard_f_dir in t_f_vector_2
-static void	guard_follow_player(t_game *game, t_player *player, t_guard *guard)
-{
-	guard->guard_f_dir.x = player->player_f_pos.x - guard->guard_f_pos.x;
-	printf("guard dir : x [%f]\n", guard->guard_f_dir.x);
-	if (guard->guard_f_dir.x > 1)
-		guard->guard_f_dir.x = 1;
-	else if (guard->guard_f_dir.x < -1)
-		guard->guard_f_dir.x = -1;
-	guard->guard_f_dir.y = player->player_f_pos.y - guard->guard_f_pos.y;
-	printf("guard dir : y [%f]\n", guard->guard_f_dir.y);
-	if (guard->guard_f_dir.y > 1)
-		guard->guard_f_dir.y = 1;
-	else if (guard->guard_f_dir.y < -1)
-		guard->guard_f_dir.y = -1;
-	printf("guard dir : x [%f] y : [%f]\n\n", guard->guard_f_dir.x, guard->guard_f_dir.y);
-	// if (player->player_pos.x > guard->guard_pos.x)
-	// {
-	// 	guard->guard_f_dir.x = 1;
-	// }
-	// else if (player->player_pos.x < guard->guard_pos.x)
-	// {
-	// 	guard->guard_f_dir.x = -1;
-	// }
-	// else
-	// 	guard->guard_f_dir.x = 0;
-	// if (player->player_pos.y > guard->guard_pos.y)
-	// {
-	// 	guard->guard_f_dir.y = 1;
-	// }
-	// else if (player->player_pos.y < guard->guard_pos.y)
-	// {
-	// 	guard->guard_f_dir.y = -1;
-	// }
-	// else
-		// guard->guard_f_dir.y = 0;
-	// printf("player : x [%f] y [%f]\n", player->player_f_pos.x,player->player_f_pos.y);
-	// printf("guard : x [%f] y : [%f]\n", guard->guard_f_pos.x, guard->guard_f_pos.y);
-	// printf("guard dir : x [%d] y : [%d]\n\n", guard->guard_f_dir.x, guard->guard_f_dir.y);
-	move_guard(game, guard);
 }
 
 static void	get_iframes(t_player *player)
@@ -80,6 +38,30 @@ static void	get_iframes(t_player *player)
 	}
 }
 
+static void	guard_chase_player(t_game *game, t_player *player, t_guard *guard)
+{
+	double			delay;
+
+	if (guard->chase_start_time.tv_sec == 0)
+		gettimeofday(&guard->chase_start_time, NULL);
+	gettimeofday(&guard->chase_time, NULL);
+	delay = (((double)(guard->chase_time.tv_usec
+					- guard->chase_start_time.tv_usec)
+				/ CLOCKS_PER_SEC) + guard->chase_time.tv_sec
+			- guard->chase_start_time.tv_sec);
+	if (delay >= DELAY_GUARD_CHASE_PLAYER)
+	{
+		guard->chasing_player = false;
+		guard->chase_start_time = (struct timeval){0, 0};
+	}
+	else if (guard->is_in_player == false)
+	{
+		guard->guard_f_dir = direction_normalized(guard->guard_pos,
+				player->player_pos);
+		move_guard(game, guard);
+	}
+}
+
 void	gameplay_elements(t_game *game, t_gameplay *gameplay)
 {
 	int	i;
@@ -90,9 +72,9 @@ void	gameplay_elements(t_game *game, t_gameplay *gameplay)
 	i = 0;
 	while (i < gameplay->nb_guard)
 	{
-		if (gameplay->guards[i].following_player == true
+		if (gameplay->guards[i].chasing_player == true
 			&& gameplay->guards[i].is_alive == true)
-			guard_follow_player(game, gameplay->player, gameplay->guards);
+			guard_chase_player(game, gameplay->player, gameplay->guards);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/11 15:49:32 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/11 23:47:37 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,6 @@ void	put_image_to_image(t_window *window, t_vector_2 pos, t_img *img)
 	j = 0;
 	while (j < img->size.y)
 	{
-		// memcpy(window->img.addr + img->size.y * window->img.line_len,
-		// 	img->addr + j * img->line_len, img->line_len);
-		// j++;
 		i = 0;
 		while (i < img->size.x)
 		{
@@ -111,6 +108,4 @@ void	display_sprites(t_game *game, t_camera *camera, t_window *window)
 	display_player(window, game->gameplay->player,
 		window->map_sprites[game->level->nb_cases]);
 	display_gameplay_elements(game, game->gameplay, window);
-	// memcpy_img(window, &window->map_sprites[game->level->nb_cases]->sprite_img[0],
-		// (t_vector_2){100, 100});
 }

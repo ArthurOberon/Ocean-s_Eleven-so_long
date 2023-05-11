@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 22:34:29 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/11 14:19:48 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/11 23:46:01 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ double delta_time, t_vector_2 axe)
 
 void	set_player_pos(t_player *player, t_f_vector_2 move)
 {
-	// printf("deplx : %f\n", move.x);
 	player->player_f_pos.x += move.x;
 	player->player_f_pos.y += move.y;
 	player->player_pos.x = (int)player->player_f_pos.x;
