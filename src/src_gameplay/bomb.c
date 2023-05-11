@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:52:31 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/10 19:15:11 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/11 15:06:32 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,14 +102,19 @@ static void	get_bomb_position(t_bomb *bomb, t_player *player, t_game *game)
 void	display_bomb(t_player *player, t_bomb *bomb, t_game *game,
 	t_window *window)
 {
+	double			delay;
+
 	if (bomb->bomb_plant <= 0
 		|| (player->player_character != e_bomber && bomb->bomb_chunk_pos == -1))
 		return ;
 	get_bomb_position(bomb, player, game);
 	put_image_to_image(window, bomb->bomb_pos,
 		&(window->map_sprites[game->level->nb_cases]->sprite_img)[0]);
-	bomb->time = clock();
-	if (((bomb->time - bomb->last_time) / CLOCKS_PER_SEC) >= BOMB_TIMING)
+	gettimeofday(&bomb->time, NULL);
+	delay = (((double)(bomb->time.tv_usec - bomb->last_time.tv_usec)
+				/ CLOCKS_PER_SEC) + bomb->time.tv_sec
+			- bomb->last_time.tv_sec);
+	if (delay >= BOMB_TIMING)
 	{
 		make_bomb_explode(game, *bomb);
 		bomb->bomb_total -= bomb->bomb_plant;

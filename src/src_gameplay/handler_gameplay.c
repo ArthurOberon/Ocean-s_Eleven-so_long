@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 13:58:54 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/10 14:23:33 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/11 15:07:13 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	handle_bomb(int keysym, t_game *game)
 			< game->gameplay->player->bomb.bomb_total)
 		{
 			game->gameplay->player->bomb.bomb_plant += 1;
-			game->gameplay->player->bomb.last_time = clock();
+			gettimeofday(&game->gameplay->player->bomb.last_time, NULL);
 		}
 		printf("plant a bomb. bomb planted : [%d]\n",
 			game->gameplay->player->bomb.bomb_plant);
@@ -74,7 +74,7 @@ void	handle_bomb(int keysym, t_game *game)
 		if (game->gameplay->player->bomb.bomb_plant > 0)
 		{
 			game->gameplay->player->bomb.bomb_plant -= 1;
-			game->gameplay->player->bomb.last_time = clock();
+			gettimeofday(&game->gameplay->player->bomb.last_time, NULL);
 		}
 		printf("remove a bomb. bomb planted : [%d]\n",
 			game->gameplay->player->bomb.bomb_plant);

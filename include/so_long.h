@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/10 23:16:28 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/11 16:19:01 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <mlx.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <sys/time.h>
+
 # include <time.h>
 
 // CAUTION /!/\/
@@ -70,7 +72,7 @@
 
 # define DELAY_TURN_GUARD 2.5
 
-# define DELAY_IFRAMES 1
+# define DELAY_IFRAMES 1.5
 
 # define BOMB_TIMING 1.3
 # define BOMB_NUMBER 5
@@ -164,10 +166,10 @@ typedef struct s_img
 
 typedef struct s_sprite
 {
-	t_img	*sprite_img;
-	int		frame;
-	int		size;
-	double	last_time;
+	t_img			*sprite_img;
+	int				frame;
+	int				size;
+	struct timeval	last_time;
 }	t_sprite;
 
 typedef struct s_level
@@ -214,8 +216,8 @@ typedef struct s_bomb
 	int					bomb_total;
 	int					bomb_chunk_pos;
 	t_vector_2			bomb_pos;
-	double				time;
-	double				last_time;
+	struct timeval		time;
+	struct timeval		last_time;
 }	t_bomb;
 
 typedef struct s_player
@@ -224,8 +226,8 @@ typedef struct s_player
 	int					hp;
 	bool				iframes;
 	int					iframes_flashing;
-	double				iframes_start_time;
-	double				iframes_time;
+	struct timeval		iframes_start_time;
+	struct timeval		iframes_time;
 	t_bomb				bomb;
 	t_vector_2			size;
 	t_vector_2			player_look_dir;
@@ -251,8 +253,8 @@ typedef struct s_guard
 	t_vector_2		guard_fov_pos_2;
 	t_f_vector_2	guard_fov_f_pos_1;
 	t_f_vector_2	guard_fov_f_pos_2;
-	double			time;
-	double			last_time;
+	struct timeval	time;
+	struct timeval	last_time;
 }	t_guard;
 // fov -> Field Of View
 
@@ -364,6 +366,7 @@ void				put_image_to_image(t_window *window,
 
 void				background(t_img *img, int color);
 void				img_pix_put(t_img *img, int x, int y, int color);
+void				memcpy_img(t_window *window, t_img *img, t_vector_2 pos);
 
 __uint32_t			get_color_pixel(t_img *img, int i, int j);
 

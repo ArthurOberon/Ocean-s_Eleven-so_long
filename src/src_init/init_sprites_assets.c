@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 20:56:08 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/10 15:07:36 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/11 15:10:18 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void	sprite_to_assets(t_game *game, t_sprite **asset, char *path,
 	ptr = game->window->mlx_ptr;
 	sprite->frame = 0;
 	sprite->size = size;
-	sprite->last_time = 0;
+	sprite->last_time = (struct timeval){0, 0};
 	sprite->sprite_img = ft_calloc(sizeof(t_img), size);
 	if (!sprite->sprite_img)
 		free_game(*game, "Error of malloc.\n");

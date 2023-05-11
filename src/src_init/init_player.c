@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 21:36:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/10 23:58:17 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/11 16:18:22 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static void	init_bomb(t_player *player)
 	player->bomb.bomb_chunk_pos = -1;
 	player->bomb.bomb_pos.x = -1;
 	player->bomb.bomb_pos.y = -1;
-	player->bomb.time = 0;
-	player->bomb.last_time = 0;
+	player->bomb.time = (struct timeval){0, 0};
+	player->bomb.last_time = (struct timeval){0, 0};
 }
 
 void	init_player(t_game *game, t_player *player)
@@ -50,9 +50,9 @@ void	init_player(t_game *game, t_player *player)
 	init_player_positioning(game, player);
 	init_bomb(player);
 	player->player_character = e_main;
-	player->hp = 10000;
+	player->hp = 100000;
 	player->iframes = false;
 	player->iframes_flashing = 0;
-	player->iframes_start_time = 0;
-	player->iframes_time = 0;
+	player->iframes_start_time = (struct timeval){0, 0};
+	player->iframes_time = (struct timeval){0, 0};
 }

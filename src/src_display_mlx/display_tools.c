@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:17:13 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/09 20:50:14 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/11 15:49:48 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,20 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 
 	pixel = img->addr + (y * img->line_len + x * 4);
 	*(unsigned int *)pixel = color;
+}
+
+void	memcpy_img(t_window *window, t_img *img, t_vector_2 pos)
+{
+	int	j;
+
+	j = 0;
+	while (j < img->size.y)
+	{
+		ft_memcpy(window->img.addr + (pos.y + j) * window->img.line_len
+			+ pos.x * 4,
+			img->addr + j * img->line_len, img->line_len);
+		j++;
+	}
 }
 
 void	background(t_img *img, int color)

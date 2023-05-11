@@ -6,11 +6,13 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/10 22:26:28 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/11 15:49:32 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+#include <string.h>
 
 void	put_image_to_image(t_window *window, t_vector_2 pos, t_img *img)
 {		
@@ -21,6 +23,9 @@ void	put_image_to_image(t_window *window, t_vector_2 pos, t_img *img)
 	j = 0;
 	while (j < img->size.y)
 	{
+		// memcpy(window->img.addr + img->size.y * window->img.line_len,
+		// 	img->addr + j * img->line_len, img->line_len);
+		// j++;
 		i = 0;
 		while (i < img->size.x)
 		{
@@ -35,14 +40,15 @@ void	put_image_to_image(t_window *window, t_vector_2 pos, t_img *img)
 
 void	update_frame(t_sprite *sprite)
 {
-	double			time;
+	struct timeval	time;
+	double			delay;
 
 	if (sprite->size == 1)
 		return ;
-	time = clock() / CLOCKS_PER_SEC;
-	if (IS_DEBUG_TIME)
-		printf("time per second : [%f]\n", time);
-	if ((time - sprite->last_time) >= DELAY_ANIMATION)
+	gettimeofday(&time, NULL);
+	delay = (((double)(time.tv_usec - sprite->last_time.tv_usec)
+				/ CLOCKS_PER_SEC) + time.tv_sec - sprite->last_time.tv_sec);
+	if (delay >= DELAY_ANIMATION)
 	{
 		sprite->last_time = time;
 		sprite->frame = (sprite->frame + 1) % sprite->size;
@@ -82,8 +88,8 @@ static void	display_one_sprite(t_window *window, t_sprite *sprite,
 	t_f_vector_2 pos)
 {
 	update_frame(sprite);
-	put_image_to_image(window, (t_vector_2){pos.x, pos.y},
-		&sprite->sprite_img[sprite->frame]);
+	memcpy_img(window, &sprite->sprite_img[sprite->frame],
+		(t_vector_2){pos.x, pos.y});
 }
 
 void	display_sprites(t_game *game, t_camera *camera, t_window *window)
@@ -105,4 +111,6 @@ void	display_sprites(t_game *game, t_camera *camera, t_window *window)
 	display_player(window, game->gameplay->player,
 		window->map_sprites[game->level->nb_cases]);
 	display_gameplay_elements(game, game->gameplay, window);
+	// memcpy_img(window, &window->map_sprites[game->level->nb_cases]->sprite_img[0],
+		// (t_vector_2){100, 100});
 }

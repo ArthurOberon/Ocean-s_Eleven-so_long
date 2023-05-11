@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 17:34:37 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/10 19:21:04 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/11 16:11:35 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,21 @@ void	display_nb_move(t_game *game)
 
 void	calculate_fps(int *fps, double *delta_time)
 {
-	static double	last_time = 0;
-	double			now;
+	static struct timeval	last_time = {0, 0};
+	struct timeval			now;
 
-	if (last_time == 0)
-		last_time = clock();
-	now = clock();
-	*delta_time = (now - last_time) / CLOCKS_PER_SEC;
-	while (*delta_time < (1 / FPS_CAP))
+	if (!last_time.tv_sec)
+		gettimeofday(&last_time, NULL);
+	gettimeofday(&now, NULL);
+	*delta_time = (((double)(now.tv_usec - last_time.tv_usec) / CLOCKS_PER_SEC)
+			+ now.tv_sec - last_time.tv_sec);
+	while (*delta_time <= (1.f / FPS_CAP) * 0)
 	{
-		now = clock();
-		*delta_time = (now - last_time) / CLOCKS_PER_SEC;
+		gettimeofday(&now, NULL);
+		*delta_time = (((double)(now.tv_usec - last_time.tv_usec)
+					/ CLOCKS_PER_SEC) + now.tv_sec - last_time.tv_sec);
 	}
-	*fps = (int)(1.0 / *delta_time);
+	*fps = (int)(1.f / *delta_time);
 	last_time = now;
 }
 

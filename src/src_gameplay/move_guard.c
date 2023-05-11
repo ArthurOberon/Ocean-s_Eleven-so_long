@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 22:27:25 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/11 00:07:06 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/11 16:17:32 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,31 +92,31 @@ void	restrict_move_guard(t_f_vector_2 *move, t_guard *guard,
 
 // && player->iframes -> not good !
 // ADD t_vector_2 axe !
-void	reached_player(t_player *player, t_guard *guard, t_f_vector_2 *move)
-{
-	if (guard->guard_dir.x == -1 && guard->guard_pos.x > player->player_pos.x
-		&& player->iframes)
-	{
-		move->x = (player->player_pos.x + player->size.x) - guard->guard_pos.x;
-	}
-	if (guard->guard_dir.x == 1 && guard->guard_pos.x < player->player_pos.x
-		&& player->iframes)
-	{
-		move->x = player->player_pos.x
-			- (guard->guard_pos.x + player->size.x) - 1;
-	}
-	if (guard->guard_dir.y == -1 && guard->guard_pos.y > player->player_pos.y
-		&& player->iframes)
-	{
-		move->y = (player->player_pos.y + player->size.y) - guard->guard_pos.y;
-	}
-	if (guard->guard_dir.y == 1 && guard->guard_pos.y < player->player_pos.y
-		&& player->iframes)
-	{
-		move->y = player->player_pos.y
-			- (guard->guard_pos.y + player->size.y) - 1;
-	}
-}
+// void	reached_player(t_player *player, t_guard *guard, t_f_vector_2 *move)
+// {
+// 	if (guard->guard_dir.x == -1 && guard->guard_pos.x > player->player_pos.x
+// 		&& player->iframes)
+// 	{
+// 		move->x = (player->player_pos.x + player->size.x) - guard->guard_pos.x;
+// 	}
+// 	if (guard->guard_dir.x == 1 && guard->guard_pos.x < player->player_pos.x
+// 		&& player->iframes)
+// 	{
+// 		move->x = player->player_pos.x
+// 			- (guard->guard_pos.x + player->size.x) - 1;
+// 	}
+// 	if (guard->guard_dir.y == -1 && guard->guard_pos.y > player->player_pos.y
+// 		&& player->iframes)
+// 	{
+// 		move->y = (player->player_pos.y + player->size.y) - guard->guard_pos.y;
+// 	}
+// 	if (guard->guard_dir.y == 1 && guard->guard_pos.y < player->player_pos.y
+// 		&& player->iframes)
+// 	{
+// 		move->y = player->player_pos.y
+// 			- (guard->guard_pos.y + player->size.y) - 1;
+// 	}
+// }
 
 // move_guard.c
 
@@ -135,7 +135,7 @@ static void	move_guard_on_x(t_game *game, t_guard *guard, t_f_vector_2 *move)
 				game->level->map_vector.x);
 		restrict_move_guard(move, guard, collider, (t_vector_2){1, 0});
 	}
-	reached_player(game->gameplay->player, guard, move);
+	// reached_player(game->gameplay->player, guard, move);
 }
 
 static void	move_guard_on_y(t_game *game, t_guard *guard, t_f_vector_2 *move)
@@ -153,7 +153,7 @@ static void	move_guard_on_y(t_game *game, t_guard *guard, t_f_vector_2 *move)
 				game->level->map_vector.x);
 		restrict_move_guard(move, guard, collider, (t_vector_2){0, 1});
 	}
-	reached_player(game->gameplay->player, guard, move);
+	// reached_player(game->gameplay->player, guard, move);
 }
 
 void	move_guard(t_game *game, t_guard *guard)
@@ -168,19 +168,19 @@ void	move_guard(t_game *game, t_guard *guard)
 	move_guard_on_y(game, guard, &move);
 	guard->guard_look_dir.x = 0;
 	guard->guard_look_dir.y = 0;
-	if (guard->guard_dir.x != 0 && guard->guard_dir.y != 0)
-	{
-		if (rand() % 101 > 50) // replace by biggest between player.x -guard.x & player.y - guard.x
-			guard->guard_look_dir.x = -1 + (2 * (guard->guard_dir.x > 0));
-		else
-			guard->guard_look_dir.y = -1 + (2 * (guard->guard_dir.y > 0));
-	}
-	else
-	{
+	// if (guard->guard_dir.x != 0 && guard->guard_dir.y != 0)
+	// {
+	// 	if (rand() % 101 > 50) // replace by biggest between player.x -guard.x & player.y - guard.x
+	// 		guard->guard_look_dir.x = -1 + (2 * (guard->guard_dir.x > 0));
+	// 	else
+	// 		guard->guard_look_dir.y = -1 + (2 * (guard->guard_dir.y > 0));
+	// }
+	// else
+	// {
 		if (guard->guard_dir.x != 0)
 			guard->guard_look_dir.x = -1 + (2 * (guard->guard_dir.x > 0));
 		if (guard->guard_dir.y != 0)
 			guard->guard_look_dir.y = -1 + (2 * (guard->guard_dir.y > 0));
-	}
+	// }
 	set_guard_pos(game, guard, move);
 }
