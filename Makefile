@@ -24,7 +24,6 @@ SRC_DEBUG		=	$(addprefix src_debug/, \
 
 # SOURCES USE TO DISPLAY THE GAME WITH THE MLX
 SRC_DISPLAY		=	$(addprefix src_display_mlx/, \
-				 	display.c \
 				 	display_tools.c \
 				 	display_guards.c \
 				 	display_sprites.c \
@@ -102,6 +101,7 @@ SL_SRCS 		=	$(addprefix $(SRC_DIR), \
 					$(SRC_PARSING) \
 					$(SRC_PATH) \
 					$(SRC_TOOLS) \
+				 	game.c \
 					so_long.c \
 					\
 					temporary.c \

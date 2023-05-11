@@ -39,8 +39,8 @@ static void	init_one_guard_variables(t_game *game, t_guard *guard, int number)
 	guard->guard_f_pos.y = guard->guard_pos.y;
 	guard->guard_look_dir.x = -1;
 	guard->guard_look_dir.y = 0;
-	guard->guard_dir.x = 0;
-	guard->guard_dir.y = 0;
+	guard->guard_f_dir.x = 0;
+	guard->guard_f_dir.y = 0;
 	guard->size.x = CHUNK_SIZE;
 	guard->size.y = CHUNK_SIZE;
 	set_guard_fov_direction(guard);

@@ -82,8 +82,8 @@ void	check_collider_positions(t_game *game,
 			}
 			else
 			{
-				guards[i].guard_dir.x = 0;
-				guards[i].guard_dir.y = 0;
+				guards[i].guard_f_dir.x = 0;
+				guards[i].guard_f_dir.y = 0;
 				// guards[i].following_player = false;
 			}
 		}

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.c                                          :+:      :+:    :+:   */
+/*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/11 16:20:08 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/11 18:54:37 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	on_update(t_game *game)
 		// game->assets->player->sprite_img[0].mlx_img, 0, 0);
 	// printf("fps : [%d]\n", game->gameplay->fps);
 
-void	display(t_game *game)
+void	start_game(t_game *game)
 {
 	mlx_hook(game->window->win_ptr, DestroyNotify, KeyPressMask, &close_game,
 		game);

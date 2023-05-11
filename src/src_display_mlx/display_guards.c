@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 17:28:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/11 15:00:05 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/11 18:52:26 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,13 @@ static void	display_one_guard_fov(t_window *window, t_guard guard,
 {
 	put_image_to_image(window, guard.guard_fov_pos_1,
 		&(sprite->sprite_img)[sprite->frame]);
-	put_image_to_image(window, guard.guard_fov_pos_2,
-		&(sprite->sprite_img)[sprite->frame]);
+	if (guard.guard_fov_pos_2.x + CHUNK_SIZE < window->img.size.x
+		&& guard.guard_fov_pos_2.y + CHUNK_SIZE < window->img.size.y)
+		put_image_to_image(window, guard.guard_fov_pos_2,
+			&(sprite->sprite_img)[sprite->frame]);
 }
 
-static void	change_guard_direction(t_guard *guard)
+static void	change_guard_f_direction(t_guard *guard)
 {
 	if (guard->following_player == true)
 		return ;
@@ -64,7 +66,7 @@ static void	turn_guards(t_guard *guard)
 			- guard->last_time.tv_sec);
 	if (delay >= DELAY_TURN_GUARD)
 	{
-		change_guard_direction(guard);
+		change_guard_f_direction(guard);
 		set_guard_fov_direction(guard);
 		guard->last_time = guard->time;
 	}

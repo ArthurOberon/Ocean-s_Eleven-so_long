@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/11 16:19:01 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/11 18:54:48 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define SPEED 700
 // 300
 
-# define SPEED_GUARD 500
+# define SPEED_GUARD 400
 
 # define FPS_CAP 125
 // -> 0.008
@@ -245,7 +245,7 @@ typedef struct s_guard
 	int				guard_pos_tab;
 	t_vector_2		size;
 	t_vector_2		guard_look_dir;
-	t_vector_2		guard_dir;
+	t_f_vector_2	guard_f_dir;
 	t_vector_2		guard_chunk_pos;
 	t_vector_2		guard_pos;
 	t_f_vector_2	guard_f_pos;
@@ -374,7 +374,7 @@ __uint32_t			get_color_pixel(t_img *img, int i, int j);
 // |			DISPLAY			|
 // |----------------------------|
 
-void				display(t_game *game);
+void				start_game(t_game *game);
 
 // |====================================================|
 // |					SRC_GAMEPLAY					|
