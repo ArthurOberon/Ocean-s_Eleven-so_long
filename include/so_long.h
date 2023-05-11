@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/11 23:55:03 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/12 00:10:12 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@
 # define BOMB_TIMING 1.3
 # define BOMB_NUMBER 5
 
-# define IS_DEBUG 0
+# define IS_DEBUG 1
 # define IS_DEBUG_TIME 0
 
 # define RED 0xFF0000
