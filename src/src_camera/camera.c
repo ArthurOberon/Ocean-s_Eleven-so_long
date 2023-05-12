@@ -6,31 +6,29 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 13:37:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/12 12:03:15 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/12 13:38:28 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-
 // memcpy_img(&game->window->background, &camera->img_background,
 		// (t_vector_2){0, 0});
 void	display_background(t_window *window, t_camera *camera, t_img *img)
 {
-	int	i;
-	int	limit;
-	int	start;
-	int	end;
+	// int	i;
+	// int	limit;
+	// int	start;
+	// int	end;
 
-	i = 0;
-	if (camera->camera_f_pos.x < 0 && camera->camera_f_pos.y < 0)
-	{
-		start = 0;
-		end = (int)-camera->camera_f_pos.y * img->size.x;
-		memcpy_img(&window->background, &camera->img_background, (t_vector_2){0, 0});
-
+	memcpy_img(&window->background, &camera->img_background, (t_vector_2){0, 0});
+	// i = 0;
+	// if (camera->camera_f_pos.x < 0 && camera->camera_f_pos.y < 0)
+	// {
+		// start = 0;
+		// end = (int)-camera->camera_f_pos.y * img->size.x;
 		// ft_memset(img->addr + start, color, end * 4);
-	}
+	// }
 	// if (camera->camera_f_pos.x < 0)
 	// {
 	// 	end = (int)-camera->camera_f_pos.x;

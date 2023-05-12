@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:17:13 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/12 11:29:45 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/12 12:10:53 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)pixel = color;
 }
 
+// OPTI : type unsigned int -> size_t -> have to protect if smallest than size_t
 void	memcpy_img(t_img *img_dst, t_img *img_src, t_vector_2 pos)
 {
 	int	j;
