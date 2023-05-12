@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 22:27:25 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/11 23:48:48 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/12 11:24:21 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	move_guard_on_y(t_game *game, t_guard *guard, t_f_vector_2 *move)
 	}
 }
 
-void	move_guard(t_game *game, t_guard *guard)
+void	move_guard(t_game *game, t_guard *guard, t_player *player)
 {
 	t_f_vector_2	move;
 
@@ -60,9 +60,18 @@ void	move_guard(t_game *game, t_guard *guard)
 	move_guard_on_y(game, guard, &move);
 	guard->guard_look_dir.x = 0;
 	guard->guard_look_dir.y = 0;
-	if (guard->guard_f_dir.x != 0)
-		guard->guard_look_dir.x = -1 + (2 * (guard->guard_f_dir.x > 0));
-	if (guard->guard_f_dir.y != 0)
+	if ((int)((guard->guard_f_pos.x + move.x) / CHUNK_SIZE)
+		== player->player_chunk_pos.x)
 		guard->guard_look_dir.y = -1 + (2 * (guard->guard_f_dir.y > 0));
+	else if ((int)((guard->guard_f_pos.y + move.y) / CHUNK_SIZE)
+		== player->player_chunk_pos.y)
+		guard->guard_look_dir.x = -1 + (2 * (guard->guard_f_dir.x > 0));
+	else
+	{
+		if (guard->guard_f_dir.x != 0)
+			guard->guard_look_dir.x = -1 + (2 * (guard->guard_f_dir.x > 0));
+		if (guard->guard_f_dir.y != 0)
+			guard->guard_look_dir.y = -1 + (2 * (guard->guard_f_dir.y > 0));
+	}
 	set_guard_pos(game, guard, move);
 }

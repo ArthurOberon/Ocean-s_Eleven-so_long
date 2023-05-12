@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:52:31 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/11 15:06:32 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/12 12:05:36 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static void	explode_chunk(t_game *game, t_bomb bomb, int i, int j)
 	int	pos;
 
 	pos = bomb.bomb_chunk_pos - (i - (j * game->level->map_vector.x));
+	if (pos < 0 || pos > game->level->nb_cases)
+		return ;
 	if (game->level->map[pos] == '2')
 	{
 		game->level->map[pos] = '0';

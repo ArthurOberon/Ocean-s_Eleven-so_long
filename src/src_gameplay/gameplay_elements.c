@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:32:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/11 23:55:19 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/12 11:24:16 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	guard_chase_player(t_game *game, t_player *player, t_guard *guard)
 	{
 		guard->guard_f_dir = direction_normalized(guard->guard_pos,
 				player->player_pos);
-		move_guard(game, guard);
+		move_guard(game, guard, player);
 	}
 }
 

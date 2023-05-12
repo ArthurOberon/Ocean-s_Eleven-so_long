@@ -6,14 +6,16 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 13:37:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/10 18:06:01 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/12 12:03:15 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// ft_memset(img->addr, color, img->size.x * img->size.y * 4);
-void	display_background(t_camera *camera, t_img *img, int color)
+
+// memcpy_img(&game->window->background, &camera->img_background,
+		// (t_vector_2){0, 0});
+void	display_background(t_window *window, t_camera *camera, t_img *img)
 {
 	int	i;
 	int	limit;
@@ -25,28 +27,30 @@ void	display_background(t_camera *camera, t_img *img, int color)
 	{
 		start = 0;
 		end = (int)-camera->camera_f_pos.y * img->size.x;
-		ft_memset(img->addr + start, color, end * 4);
+		memcpy_img(&window->background, &camera->img_background, (t_vector_2){0, 0});
+
+		// ft_memset(img->addr + start, color, end * 4);
 	}
-	if (camera->camera_f_pos.x < 0)
-	{
-		end = (int)-camera->camera_f_pos.x;
-		limit = WINDOW_HEIGHT - (int)camera->camera_f_pos.y;
-		start = WINDOW_WIDTH * camera->camera_f_pos.y;
-		if (camera->camera_f_pos.y < 0)
-		{
-			start = WINDOW_WIDTH * -camera->camera_f_pos.y;
-			limit = WINDOW_HEIGHT - -(int)camera->camera_f_pos.y;
-		}
-		ft_memset(img->addr + (start * 4), color, end * 4);
-		while (i < limit)
-		{
-			printf("limit : [%d]\n", limit);
-			printf("start : [%d]\n", start);
-			printf("end : [%d]\n", end);
-			start += WINDOW_WIDTH;
-			i++;
-		}
-	}
+	// if (camera->camera_f_pos.x < 0)
+	// {
+	// 	end = (int)-camera->camera_f_pos.x;
+	// 	limit = WINDOW_HEIGHT - (int)camera->camera_f_pos.y;
+	// 	start = WINDOW_WIDTH * camera->camera_f_pos.y;
+	// 	if (camera->camera_f_pos.y < 0)
+	// 	{
+	// 		start = WINDOW_WIDTH * -camera->camera_f_pos.y;
+	// 		limit = WINDOW_HEIGHT - -(int)camera->camera_f_pos.y;
+	// 	}
+	// 	ft_memset(img->addr + (start * 4), color, end * 4);
+	// 	while (i < limit)
+	// 	{
+	// 		printf("limit : [%d]\n", limit);
+	// 		printf("start : [%d]\n", start);
+	// 		printf("end : [%d]\n", end);
+	// 		start += WINDOW_WIDTH;
+	// 		i++;
+	// 	}
+	// }
 }
 
 void	camera(t_game *game, t_camera *camera, t_player *player)
@@ -56,5 +60,5 @@ void	camera(t_game *game, t_camera *camera, t_player *player)
 	camera->camera_f_pos.y
 		= player->player_f_pos.y - (camera->camera_f_size.y / 2);
 	get_chunks_to_display(game, camera);
+	display_background(game->window, camera, &camera->img_background);
 }
-	// display_background(camera, &camera->img_background, 0xC6BF92);

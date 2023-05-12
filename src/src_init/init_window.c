@@ -6,11 +6,24 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 12:15:53 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/09 20:30:24 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/12 11:45:43 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static void	init_window_background(t_game *game, t_window *window)
+{
+	window->background.size.x = window->img.size.x;
+	window->background.size.y = window->img.size.y;
+		window->background.mlx_img = mlx_new_image(window->mlx_ptr,
+			window->background.size.x, window->background.size.y);
+	if (!window->background.mlx_img)
+		free_game(*game, "Error of mlx_new_image.\n");
+	window->background.addr = mlx_get_data_addr(window->background.mlx_img,
+			&window->background.bpp, &window->background.line_len,
+			&window->background.endian);
+}
 
 void	init_window(t_game *game)
 {
@@ -22,8 +35,6 @@ void	init_window(t_game *game)
 	game->window = window;
 	window->img.size.x = game->level->map_vector.x * CHUNK_SIZE;
 	window->img.size.y = game->level->map_vector.y * CHUNK_SIZE;
-	printf("SIZE IMG : [%d] [%d]\n", window->img.size.x, window->img.size.y);
-	printf("SIZE WIN : [%d] [%d]\n\n", WINDOW_WIDTH, WINDOW_HEIGHT);
 	window->mlx_ptr = mlx_init();
 	if (!window->mlx_ptr)
 		free_game(*game, "Error of mlx_init().\n");
@@ -37,4 +48,5 @@ void	init_window(t_game *game)
 		free_game(*game, "Error of mlx_new_image.\n");
 	window->img.addr = mlx_get_data_addr(window->img.mlx_img, &window->img.bpp,
 			&window->img.line_len, &window->img.endian);
+	init_window_background(game, window);
 }

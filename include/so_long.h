@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/12 00:10:12 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/12 11:48:20 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@
 # define PATH_EXIT				"debug/test"
 # define PATH_PLAYER			"player/player_64px"
 # define PATH_GUARD				"player/player_64px"
+
+# define PATH_BACKGROUND		"ground/carpet_64px"
 
 # define FRAME_GROUND 1
 # define FRAME_COLLECT 1
@@ -190,6 +192,7 @@ typedef struct s_window
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_img		img;
+	t_img		background;
 	t_sprite	**map_sprites;
 }	t_window;
 
@@ -370,7 +373,7 @@ void				put_image_to_image(t_window *window,
 
 void				background(t_img *img, int color);
 void				img_pix_put(t_img *img, int x, int y, int color);
-void				memcpy_img(t_window *window, t_img *img, t_vector_2 pos);
+void				memcpy_img(t_img *img_dst, t_img *img_src, t_vector_2 pos);
 
 __uint32_t			get_color_pixel(t_img *img, int i, int j);
 
@@ -463,7 +466,7 @@ t_collider			get_collider_guard_on_move(t_f_vector_2 *move,
 // |			MOVE_GUARD			|
 // |--------------------------------|
 
-void				move_guard(t_game *game, t_guard *guard);
+void				move_guard(t_game *game, t_guard *guard, t_player *player);
 
 // |----------------------------------------|
 // |			MOVE_PLAYER_TOOLS			|
@@ -547,6 +550,9 @@ void				init_player(t_game *game, t_player *player);
 // |----------------------------------------|
 // |			INIT_SPRITES_ASSETS			|
 // |----------------------------------------|
+
+char				*find_sprite_path(t_game *game, char *start_path,
+						int frame);
 
 void				init_sprites_assets(t_game *game);
 
