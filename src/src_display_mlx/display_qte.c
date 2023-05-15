@@ -6,68 +6,11 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 15:30:42 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/15 23:50:50 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/15 23:53:41 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-// void	start_qte(t_game *game, t_qte *qte, t_player *player, t_guard *guard)
-// {
-// 	double			delay;
-
-// 	if (qte->start_time.tv_sec == 0)
-// 		gettimeofday(&qte->start_time, NULL);
-// 	gettimeofday(&qte->time, NULL);
-// 	delay = (((double)(qte->time.tv_usec - qte->start_time.tv_usec)
-// 				/ CLOCKS_PER_SEC) + qte->time.tv_sec
-// 			- qte->start_time.tv_sec);
-// 	// printf("DELAY : [%f]\n", delay);
-// 	if (delay <= DELAY_QTE)
-// 	{
-// 		put_image_to_image(game->window,
-// 			(t_vector_2){guard->guard_f_pos.x, guard->guard_f_pos.y - CHUNK_SIZE},
-// 		&(game->window->map_sprites[game->level->nb_cases + e_qte]->sprite_img)[0]);
-// 	}
-// 	else if (delay <= DELAY_QTE + DELAY_REACTION)
-// 	{
-// 		if (qte->pressed_in_time == false)
-// 			qte->time_to_press = true;
-// 		put_image_to_image(game->window,
-// 			(t_vector_2){guard->guard_f_pos.x, guard->guard_f_pos.y - CHUNK_SIZE},
-// 			&(game->window->map_sprites[game->level->nb_cases + e_qte]->sprite_img)[1]);
-// 		if (qte->pressed_in_time == true)
-// 		{
-// 			qte->time_to_press = false;
-// 			printf("PRESSED\n");
-// 		}
-// 	}
-// 	else if (delay <= DELAY_QTE + DELAY_REACTION + 1)
-// 	{
-// 		qte->time_to_press = false;
-// 		if (qte->pressed_in_time == true)
-// 			put_image_to_image(game->window,
-// 			(t_vector_2){guard->guard_f_pos.x, guard->guard_f_pos.y - CHUNK_SIZE},
-// 			&(game->window->map_sprites[game->level->nb_cases + e_qte]->sprite_img)[2]);
-// 		else
-// 			put_image_to_image(game->window,
-// 				(t_vector_2){guard->guard_f_pos.x, guard->guard_f_pos.y - CHUNK_SIZE},
-// 			&(game->window->map_sprites[game->level->nb_cases + e_qte]->sprite_img)[3]);
-// 	}
-// 	else
-// 	{
-// 		if (qte->pressed_in_time == true)
-// 		{
-// 			game->gameplay->nb_collect_remain -= 1;
-// 			guard->is_pickpocketable = false;
-// 		}
-// 		else
-// 			guard->chasing_player = true;
-// 		qte->pressed_in_time = false;
-// 		qte->is_pickpokecting = false;
-// 		qte->start_time = (struct timeval){0, 0};
-// 	}
-// }
 
 void	start_qte(t_game *game, t_qte *qte, t_guard *guard)
 {
