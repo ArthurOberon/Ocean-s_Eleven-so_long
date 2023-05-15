@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 21:36:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/11 16:18:22 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/15 22:43:02 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,19 @@ static void	init_bomb(t_player *player)
 	player->bomb.last_time = (struct timeval){0, 0};
 }
 
+static void	init_qte(t_player *player)
+{
+	player->qte.is_pickpokecting = false;
+	player->qte.time_to_press = false;
+	player->qte.pressed_in_time = false;
+	player->qte.pockpocket_area.x = player->player_pos.x - CHUNK_SIZE;
+	player->qte.pockpocket_area.y = player->player_pos.y - CHUNK_SIZE;
+	player->qte.pockpocket_size.x = CHUNK_SIZE * 3;
+	player->qte.pockpocket_size.y = CHUNK_SIZE * 3;
+	player->qte.start_time = (struct timeval){0, 0};
+	player->qte.time = (struct timeval){0, 0};
+}
+
 void	init_player(t_game *game, t_player *player)
 {
 	player = ft_calloc(sizeof(t_player), 1);
@@ -48,9 +61,10 @@ void	init_player(t_game *game, t_player *player)
 	player->size.x = (CHUNK_SIZE * RATIO_PLAYER_SIZE_X);
 	player->size.y = (CHUNK_SIZE * (RATIO_PLAYER_SIZE_Y));
 	init_player_positioning(game, player);
+	init_qte(player);
 	init_bomb(player);
 	player->player_character = e_main;
-	player->hp = 100000;
+	player->hp = 10000;
 	player->iframes = false;
 	player->iframes_flashing = 0;
 	player->iframes_start_time = (struct timeval){0, 0};

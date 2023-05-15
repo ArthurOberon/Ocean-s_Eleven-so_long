@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 17:28:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/11 23:59:09 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/15 22:05:41 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,12 @@ void	display_guards(t_game *game, t_gameplay *gameplay, t_window *window,
 				game->camera->nb_chunks_in_camera_total,
 				guards[i].guard_pos_tab))
 		{
-			turn_guards(&guards[i]);
+			if (gameplay->is_stop == false)
+				turn_guards(&guards[i]);
 			display_one_guard(window, guards[i],
-				window->map_sprites[game->level->nb_cases + 1]);
+				window->map_sprites[game->level->nb_cases + e_guards]);
 			display_one_guard_fov(window, guards[i],
-				window->map_sprites[game->level->nb_cases + 1]);
+				window->map_sprites[game->level->nb_cases + e_guards]);
 		}
 		i++;
 	}

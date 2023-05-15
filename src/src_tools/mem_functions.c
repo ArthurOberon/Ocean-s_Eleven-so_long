@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:19:28 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/10 16:24:44 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/15 18:44:46 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,45 @@ char	*ft_strdup(const char *s)
 	return (result);
 }
 
+// void	*ft_memcpy(void *dest, const void *src, size_t n)
+// {
+// 	size_t	i;
+// 	size_t	size;
+
+// 	size = sizeof(size_t);
+// 	i = 0;
+// 	if (n > size)
+// 	{
+// 		while (i < n - size)
+// 		{
+// 			*(size_t *)(dest + i) = *(size_t *)(src + i);
+// 			i += size;
+// 		}
+// 	}
+// 	while (i != n)
+// 	{
+// 		*(unsigned char *)(dest + i) = *(unsigned char *)(src + i);
+// 		i++;
+// 	}
+// 	return (dest);
+// }
+
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	size_t	i;
+	size_t	offset;
 
 	i = 0;
-	if (!dest && !src)
-		return (NULL);
-	while (i != n)
+	offset = sizeof(size_t);
+	while (i + offset < n)
 	{
-		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
-		++i;
+		*(size_t *)(dest + i) = *(size_t *)(src + i);
+		i += offset;
+	}
+	while (i < n)
+	{
+		*(char *)(dest + i) = *(char *)(src + i);
+		i++;
 	}
 	return (dest);
 }

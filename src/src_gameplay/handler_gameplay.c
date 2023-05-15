@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 13:58:54 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/11 15:07:13 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/15 23:36:22 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,27 @@ void	handle_change_character_player(int keysym, t_player *player)
 	{
 		player->player_character = e_bomber;
 		printf("new player choose : Basher\n");
+	}
+}
+
+void	handle_pickpocket(int keysym, t_game *game)
+{
+	if (game->gameplay->player->player_character != e_thief)
+		return ;
+	if (keysym == XK_space)
+	{
+		if (game->gameplay->player->qte.time_to_press == false)
+		{
+			game->gameplay->player->qte.pressed_in_time = false;
+			game->gameplay->player->qte.is_pickpokecting = true;
+		}
+		else
+			game->gameplay->player->qte.pressed_in_time = true;
+	}
+	if (keysym == XK_Delete)
+	{
+		game->gameplay->player->qte.time_to_press = false;
+		game->gameplay->player->qte.pressed_in_time = false;
+		game->gameplay->player->qte.is_pickpokecting = false;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 15:39:49 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/11 23:18:57 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/15 22:50:42 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static void	init_one_guard_variables(t_game *game, t_guard *guard, int number)
 	set_guard_fov_direction(guard);
 	guard->chasing_player = false;
 	guard->is_alive = true;
+	guard->is_pickpocketable = true;
 	guard->is_in_player = false;
 	guard->time = (struct timeval){0, 0};
 	guard->last_time = (struct timeval){0, 0};

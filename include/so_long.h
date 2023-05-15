@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/12 11:48:20 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/15 23:21:56 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@
 # define PATH_PLAYER			"player/player_64px"
 # define PATH_GUARD				"player/player_64px"
 
+# define PATH_QTE				"qte/now"
+
 # define PATH_BACKGROUND		"ground/carpet_64px"
 
 # define FRAME_GROUND 1
@@ -70,12 +72,17 @@
 # define FRAME_PLAYER 1
 # define FRAME_GUARD 1
 
+# define FRAME_QTE 4
+
 # define DELAY_ANIMATION 2
 
 # define DELAY_TURN_GUARD 2.5
 # define DELAY_GUARD_CHASE_PLAYER 6
 
 # define DELAY_IFRAMES 1.5
+
+# define DELAY_QTE	3
+# define DELAY_REACTION 1
 
 # define BOMB_TIMING 1.3
 # define BOMB_NUMBER 5
@@ -91,6 +98,13 @@
 
 # define INT_MIN -2147483648
 # define INT_MAX 2147483647
+
+enum e_assets_pos
+{
+	e_player,
+	e_guards,
+	e_qte,
+};
 
 enum e_player_character
 {
@@ -212,7 +226,19 @@ typedef struct s_sprites_assets
 	t_sprite	*wall_side_left;
 	t_sprite	*wall_side_right;
 	t_sprite	*wall_inside;
+	t_sprite	*qte;
 }	t_sprites_assets;
+
+typedef struct s_qte
+{
+	bool				time_to_press;
+	bool				pressed_in_time;
+	bool				is_pickpokecting;
+	t_vector_2			pockpocket_area;
+	t_vector_2			pockpocket_size;
+	struct timeval		start_time;
+	struct timeval		time;
+}	t_qte;
 
 typedef struct s_bomb
 {
@@ -232,6 +258,7 @@ typedef struct s_player
 	int					iframes_flashing;
 	struct timeval		iframes_start_time;
 	struct timeval		iframes_time;
+	t_qte				qte;
 	t_bomb				bomb;
 	t_vector_2			size;
 	t_vector_2			player_look_dir;
@@ -246,6 +273,7 @@ typedef struct s_guard
 {
 	bool			chasing_player;
 	bool			is_alive;
+	bool			is_pickpocketable;
 	bool			is_in_player;
 	int				guard_pos_tab;
 	t_vector_2		size;
@@ -268,7 +296,8 @@ typedef struct s_guard
 typedef struct s_gameplay
 {
 	bool				is_pause;
-	int					nb_collect;
+	bool				is_stop;
+	int					nb_collect_remain;
 	int					nb_guard;
 	int					nb_move;
 	int					fps;
@@ -297,8 +326,7 @@ typedef struct s_game
 	t_gameplay			*gameplay;
 	t_camera			*camera;
 }	t_game;
-
-	// int		bpp; /* bits per pixel */
+// int		bpp; /* bits per pixel */
 
 // |================================================|
 // |					SRC_CAMERA					|
@@ -343,12 +371,21 @@ void				debug_stat_tiles(t_stat_tiles stat);
 // |					SRC_DISPLAY_MLX					|
 // |====================================================|
 
+// |------------------------------------|
+// |			DISPLAY_BOMB			|
+// |------------------------------------|
+
+void				display_bomb(t_player *player, t_bomb *bomb,
+						t_game *game, t_window *window);
+
 // |------------------------------------------------|
 // |			DISPLAY_GAMEPLAY_ELEMENTS			|
 // |------------------------------------------------|
 
+void				display_nb_move(t_game *game);
 void				display_gameplay_elements(t_game *game,
 						t_gameplay *gameplay, t_window *window);
+void				display_hp(t_window *window, t_player *player, int color);
 
 // |------------------------------------|
 // |			DISPLAY_GUARDS			|
@@ -356,6 +393,20 @@ void				display_gameplay_elements(t_game *game,
 
 void				display_guards(t_game *game, t_gameplay *gameplay,
 						t_window *window, t_guard *guards);
+
+// |------------------------------------|
+// |			DISPLAY_PLAYER			|
+// |------------------------------------|
+
+void				display_player(t_game *game, t_window *window,
+						t_player *player, t_sprite *sprite);
+
+// |--------------------------------|
+// |			DISPLAY_QTE			|
+// |--------------------------------|
+
+void				display_qte(t_game *game, t_qte *qte, t_player *player,
+						t_guard *guards);
 
 // |------------------------------------|
 // |			DISPLAY_SPRITES			|
@@ -391,12 +442,16 @@ void				start_game(t_game *game);
 // |			BOMB			|
 // |----------------------------|
 
-void				display_bomb(t_player *player, t_bomb *bomb,
-						t_game *game, t_window *window);
+void				make_bomb_explode(t_game *game, t_bomb bomb);
+void				get_bomb_position(t_bomb *bomb, t_player *player,
+						t_game *game);
 
 // |----------------------------------------|
 // |			COLLIDER_POSITIONS			|
 // |----------------------------------------|
+
+int					is_inside_area(t_f_vector_2 pos, t_f_vector_2 pos_size,
+						t_f_vector_2 area, t_f_vector_2 size_area);
 
 void				check_collider_positions(t_game *game,
 						t_player *player, t_guard *guards);
@@ -424,16 +479,15 @@ void				gameplay_elements(t_game *game, t_gameplay *gameplay);
 // |------------------------------------|
 
 void				restart(t_game *game);
-void				display_nb_move(t_game *game);
 void				calculate_fps(int *fps, double *delta_time);
 void				set_player_to_character(t_player *player, int character);
-void				display_hp(t_window *window, t_player *player, int color);
 
 // |----------------------------------------|
 // |			HANDLER_GAMEPLAY			|
 // |----------------------------------------|
 
 void				handle_bomb(int keysym, t_game *game);
+void				handle_pickpocket(int keysym, t_game *game);
 void				handle_player_move(int keysym, t_game *game);
 void				handle_player_move_release(int keysym, t_game *game);
 void				handle_change_character_player(int keysym,

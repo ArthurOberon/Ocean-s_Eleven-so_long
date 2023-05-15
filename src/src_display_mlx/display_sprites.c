@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/12 11:30:24 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/15 16:40:28 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,35 +52,6 @@ void	update_frame(t_sprite *sprite)
 	}
 }
 
-static void	display_player(t_window *window, t_player *player, t_sprite *sprite)
-{
-	t_vector_2	bomb_pos;
-
-	if (player->iframes == true)
-	{
-		if (player->iframes_flashing == 2)
-		{
-			put_image_to_image(window, player->player_pos,
-				&(sprite->sprite_img)[sprite->frame]);
-			player->iframes_flashing = 0;
-		}
-		else
-			player->iframes_flashing++;
-	}
-	else
-		put_image_to_image(window, player->player_pos,
-			&(sprite->sprite_img)[sprite->frame]);
-	if (player->player_character == e_bomber)
-	{
-		bomb_pos.x = player->player_pos.x
-			+ (CHUNK_SIZE * player->player_look_dir.x);
-		bomb_pos.y = player->player_pos.y
-			+ (CHUNK_SIZE * player->player_look_dir.y);
-		put_image_to_image(window, bomb_pos,
-			&(sprite->sprite_img)[sprite->frame]);
-	}
-}
-
 static void	display_one_sprite(t_window *window, t_sprite *sprite,
 	t_f_vector_2 pos)
 {
@@ -105,7 +76,7 @@ void	display_sprites(t_game *game, t_camera *camera, t_window *window)
 			window->map_sprites[camera->chunks_to_display[i]], tmp);
 		i++;
 	}
-	display_player(window, game->gameplay->player,
+	display_player(game, window, game->gameplay->player,
 		window->map_sprites[game->level->nb_cases]);
 	display_gameplay_elements(game, game->gameplay, window);
 }

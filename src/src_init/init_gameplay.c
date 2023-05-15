@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/10 23:04:30 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/15 23:06:58 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,10 @@ void	init_gameplay(t_game *game)
 	srand(time(NULL));
 	game->gameplay = gameplay;
 	gameplay->is_pause = false;
+	gameplay->is_stop = false;
 	gameplay->fps = 0;
 	gameplay->delta_time = 0;
-	gameplay->nb_collect = game->level->nb_collect;
+	gameplay->nb_collect_remain = game->level->nb_collect;
 	gameplay->nb_move = 0;
 	get_chunk_positions(game, &gameplay->chunks_pos, game->level->map_vector,
 		game->level->nb_cases);

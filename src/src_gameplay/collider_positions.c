@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:05:45 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/11 23:45:40 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/15 15:20:25 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,12 @@ void	check_collider_positions(t_game *game,
 	i = 0;
 	while (i < game->gameplay->nb_guard)
 	{
-		if (guards[i].is_alive == true
-			&& is_in_chunks_to_display(game->camera->chunks_to_display,
-				game->camera->nb_chunks_in_camera_total,
-				guards[i].guard_pos_tab))
+		if (guards[i].is_alive == true && is_in_chunks_to_display(game->camera->chunks_to_display,
+			game->camera->nb_chunks_in_camera_total, guards[i].guard_pos_tab))
 		{
 			if (is_inside_area(player->player_f_pos,
-					(t_f_vector_2){(double)player->size.x,
-					(double)player->size.y}, guards[i].guard_f_pos,
-				(t_f_vector_2){CHUNK_SIZE, CHUNK_SIZE}))
+					(t_f_vector_2){(double)player->size.x, (double)player->size.y},
+				guards[i].guard_f_pos, (t_f_vector_2){CHUNK_SIZE, CHUNK_SIZE}))
 			{
 				guards[i].is_in_player = true;
 				if (player->iframes == false)
@@ -76,20 +73,20 @@ void	check_collider_positions(t_game *game,
 				guards[i].is_in_player = false;
 			}
 			if (is_inside_area(player->player_f_pos,
-					(t_f_vector_2){(double)player->size.x,
-					(double)player->size.y},
-				guards[i].guard_fov_f_pos_1,
-				(t_f_vector_2){CHUNK_SIZE, CHUNK_SIZE}))
+				(t_f_vector_2){(double)player->size.x, (double)player->size.y},
+				guards[i].guard_fov_f_pos_1, (t_f_vector_2){CHUNK_SIZE, CHUNK_SIZE}))
 			{
 				guards[i].chasing_player = true;
 			}
 			else if (is_inside_area(player->player_f_pos,
-					(t_f_vector_2){(double)player->size.x,
-					(double)player->size.y},
+				(t_f_vector_2){(double)player->size.x, (double)player->size.y},
 				guards[i].guard_fov_f_pos_2,
 				(t_f_vector_2){CHUNK_SIZE, CHUNK_SIZE}))
 			{
-				guards[i].chasing_player = true;
+				if (game->level->map[pos_to_chunk(guards[i].guard_fov_pos_1.x, guards[i].guard_fov_pos_1.y, game->level->map_vector.x)] != '2')
+				{
+					guards[i].chasing_player = true;
+				}
 			}
 			else
 			{

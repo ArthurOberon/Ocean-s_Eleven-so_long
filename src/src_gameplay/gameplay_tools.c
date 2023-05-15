@@ -6,36 +6,11 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 17:34:37 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/11 16:11:35 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/15 23:06:58 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	display_hp(t_window *window, t_player *player, int color)
-{
-	if (player->hp == 2)
-		mlx_string_put(window->mlx_ptr, window->win_ptr, WINDOW_WIDTH - 40, 44,
-			color, "HP : 2");
-	if (player->hp == 1)
-		mlx_string_put(window->mlx_ptr, window->win_ptr, WINDOW_WIDTH - 40, 44,
-			color, "HP : 1");
-	if (player->hp == 0)
-		mlx_string_put(window->mlx_ptr, window->win_ptr, WINDOW_WIDTH - 40, 44,
-			color, "HP : 0");
-}
-
-void	display_nb_move(t_game *game)
-{
-	char	*string_nb;
-
-	string_nb = ft_itoa(game->gameplay->nb_move);
-	if (!string_nb)
-		free_game(*game, "Error of malloc.\n");
-	mlx_string_put(game->window->mlx_ptr, game->window->win_ptr, 10, 44, BLUE,
-		string_nb);
-	free(string_nb);
-}
 
 void	calculate_fps(int *fps, double *delta_time)
 {
@@ -93,7 +68,7 @@ void	restart(t_game *game)
 		free_game(*game, "Error of malloc.\n");
 	ft_print_1d_to_2d(game->level);
 	init_player(game, game->gameplay->player);
-	game->gameplay->nb_collect = game->level->nb_collect;
+	game->gameplay->nb_collect_remain = game->level->nb_collect;
 	game->gameplay->nb_move = 0;
 	mlx_clear_window(game->window->mlx_ptr, game->window->win_ptr);
 	while (i < game->level->nb_cases)

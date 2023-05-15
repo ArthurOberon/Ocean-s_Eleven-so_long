@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:40:38 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/12 11:48:44 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/15 22:13:58 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_sprites(t_game *game)
 	t_sprite	**map_sprites;
 
 	i = 0;
-	map_sprites = ft_calloc(sizeof(t_sprite *), game->level->nb_cases + 2);
+	map_sprites = ft_calloc(sizeof(t_sprite *), game->level->nb_cases + 3);
 	if (!map_sprites)
 		free_game(*game, "Error of malloc.\n");
 	game->window->map_sprites = map_sprites;
@@ -36,5 +36,7 @@ void	init_sprites(t_game *game)
 		i++;
 	}
 	map_sprites[i++] = game->assets->player;
-	map_sprites[i] = game->assets->guard;
+	map_sprites[i++] = game->assets->guard;
+	map_sprites[i] = game->assets->qte;
+	printf("%d = %d\n", game->level->nb_cases + e_qte, i);
 }

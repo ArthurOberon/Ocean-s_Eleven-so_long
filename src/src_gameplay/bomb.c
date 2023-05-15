@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:52:31 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/12 12:05:36 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/15 15:06:55 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	bomb_pattern_circle(t_game *game, t_bomb bomb, int size)
 	}
 }
 
-static void	make_bomb_explode(t_game *game, t_bomb bomb)
+void	make_bomb_explode(t_game *game, t_bomb bomb)
 {
 	int	i;
 
@@ -86,7 +86,7 @@ static void	make_bomb_explode(t_game *game, t_bomb bomb)
 // bomb->bomb_chunk_pos += player->player_look_dir.y
 	// * game->level->map_vector.x;
 
-static void	get_bomb_position(t_bomb *bomb, t_player *player, t_game *game)
+void	get_bomb_position(t_bomb *bomb, t_player *player, t_game *game)
 {
 	if (bomb->bomb_chunk_pos == -1)
 	{
@@ -98,32 +98,6 @@ static void	get_bomb_position(t_bomb *bomb, t_player *player, t_game *game)
 			* game->level->map_vector.x;
 		bomb->bomb_pos = chunk_to_pixel_pos(bomb->bomb_chunk_pos,
 				game->level->map_vector.x);
-	}
-}
-
-void	display_bomb(t_player *player, t_bomb *bomb, t_game *game,
-	t_window *window)
-{
-	double			delay;
-
-	if (bomb->bomb_plant <= 0
-		|| (player->player_character != e_bomber && bomb->bomb_chunk_pos == -1))
-		return ;
-	get_bomb_position(bomb, player, game);
-	put_image_to_image(window, bomb->bomb_pos,
-		&(window->map_sprites[game->level->nb_cases]->sprite_img)[0]);
-	gettimeofday(&bomb->time, NULL);
-	delay = (((double)(bomb->time.tv_usec - bomb->last_time.tv_usec)
-				/ CLOCKS_PER_SEC) + bomb->time.tv_sec
-			- bomb->last_time.tv_sec);
-	if (delay >= BOMB_TIMING)
-	{
-		make_bomb_explode(game, *bomb);
-		bomb->bomb_total -= bomb->bomb_plant;
-		bomb->bomb_plant = 0;
-		bomb->bomb_chunk_pos = -1;
-		bomb->bomb_pos.x = -1;
-		bomb->bomb_pos.y = -1;
 	}
 }
 
