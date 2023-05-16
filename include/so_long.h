@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/16 02:53:21 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/16 18:34:41 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@
 # define BOMB_TIMING 1.3
 # define BOMB_NUMBER 5
 
-# define IS_DEBUG 1
+# define IS_DEBUG 0
 # define IS_DEBUG_TIME 0
 
 # define RED 0xFF0000
@@ -212,7 +212,6 @@ typedef struct s_window
 	void		*win_ptr;
 	t_img		img;
 	t_img		background;
-	t_img		ui;
 	t_sprite	**map_sprites;
 }	t_window;
 
@@ -240,9 +239,9 @@ typedef struct s_qte
 {
 	bool				time_to_press;
 	bool				pressed_in_time;
-	bool				is_pickpokecting;
-	t_vector_2			pockpocket_area;
-	t_vector_2			pockpocket_size;
+	bool				is_pickpocketing;
+	t_vector_2			pickpocket_area;
+	t_vector_2			pickpocket_size;
 	struct timeval		start_time;
 	struct timeval		time;
 }	t_qte;

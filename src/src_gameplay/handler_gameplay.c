@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 13:58:54 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/15 23:36:22 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/16 16:44:24 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	handle_pickpocket(int keysym, t_game *game)
 		if (game->gameplay->player->qte.time_to_press == false)
 		{
 			game->gameplay->player->qte.pressed_in_time = false;
-			game->gameplay->player->qte.is_pickpokecting = true;
+			game->gameplay->player->qte.is_pickpocketing = true;
 		}
 		else
 			game->gameplay->player->qte.pressed_in_time = true;
@@ -123,6 +123,6 @@ void	handle_pickpocket(int keysym, t_game *game)
 	{
 		game->gameplay->player->qte.time_to_press = false;
 		game->gameplay->player->qte.pressed_in_time = false;
-		game->gameplay->player->qte.is_pickpokecting = false;
+		game->gameplay->player->qte.is_pickpocketing = false;
 	}
 }

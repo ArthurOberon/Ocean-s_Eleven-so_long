@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:20:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/16 02:52:25 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/16 17:31:58 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,13 @@ static void	display_area_pickpocketable(t_game *game, t_player *player,
 void	display_player(t_game *game, t_window *window, t_player *player,
 	t_sprite *sprite)
 {
+	t_vector_2	pos_tmp;
+
+	pos_tmp = player->player_pos;
+	player->player_pos.x = player->player_pos.x - game->camera->camera_f_pos.x;
+	player->player_pos.y = player->player_pos.y - game->camera->camera_f_pos.y;
 	display_iframes(window, player, sprite);
 	display_aim_bomb(window, player, sprite);
 	display_area_pickpocketable(game, player, sprite);
+	player->player_pos = pos_tmp;
 }

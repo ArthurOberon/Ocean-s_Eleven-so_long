@@ -6,12 +6,12 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:34:28 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/15 23:06:58 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/16 18:37:00 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
+// Not use
 void	display_hp(t_window *window, t_player *player, int color)
 {
 	if (player->hp == 2)

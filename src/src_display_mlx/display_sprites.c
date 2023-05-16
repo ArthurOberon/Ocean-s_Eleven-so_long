@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/16 02:54:03 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/16 18:37:02 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,23 @@ static void	display_one_sprite(t_window *window, t_sprite *sprite,
 void	display_sprites(t_game *game, t_camera *camera, t_window *window)
 {
 	int				i;
-	t_f_vector_2	tmp;
+	t_f_vector_2	pos_tmp;
 
 	i = 0;
 	while (i < camera->nb_chunks_in_camera_total)
 	{
 		if (camera->chunks_to_display[i] == -1)
 			break ;
-		tmp = chunk_to_pixel_f_pos(camera->chunks_to_display[i],
+		pos_tmp = chunk_to_pixel_f_pos(camera->chunks_to_display[i],
 				game->level->map_vector.x);
+		pos_tmp.x = pos_tmp.x - camera->camera_f_pos.x;
+		pos_tmp.y = pos_tmp.y - camera->camera_f_pos.y;
+		if (pos_tmp.x > camera->camera_f_size.x)
+			pos_tmp.x = camera->camera_f_size.x;
+		if (pos_tmp.y > camera->camera_f_size.y)
+			pos_tmp.y = camera->camera_f_size.y;
 		display_one_sprite(window,
-			window->map_sprites[camera->chunks_to_display[i]], tmp);
+			window->map_sprites[camera->chunks_to_display[i]], pos_tmp);
 		i++;
 	}
 	display_player(game, window, game->gameplay->player,

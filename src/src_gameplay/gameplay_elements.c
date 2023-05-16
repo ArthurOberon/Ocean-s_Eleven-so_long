@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:32:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/15 23:53:30 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/16 18:32:41 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	gameplay_elements(t_game *game, t_gameplay *gameplay)
 	{
 		if (gameplay->guards[i].chasing_player == true
 			&& gameplay->guards[i].is_alive == true)
-			guard_chase_player(game, gameplay->player, gameplay->guards);
+			guard_chase_player(game, gameplay->player, &gameplay->guards[i]);
 		i++;
 	}
 }
