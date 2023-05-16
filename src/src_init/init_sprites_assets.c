@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 20:56:08 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/15 22:13:22 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/16 02:36:03 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ void	init_sprites_assets(t_game *game)
 	sprite_to_assets(game, &assets->wall_side_right, PATH_WALL_SIDE_RIGHT, 1);
 	sprite_to_assets(game, &assets->wall_inside, PATH_WALL_INSIDE, 1);
 	sprite_to_assets(game, &assets->qte, PATH_QTE, FRAME_QTE);
+	sprite_to_assets(game, &assets->heart, PATH_HEART, FRAME_HEART);
 }
 
 	// get_stat_tiles_map(game);

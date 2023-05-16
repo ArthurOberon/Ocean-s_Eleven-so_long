@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/15 18:51:50 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/16 02:48:46 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static int	on_update(t_game *game)
 	}
 	camera(game, game->camera, game->gameplay->player);
 	display_sprites(game, game->camera, game->window);
+	display_ui(game, game->window, game->gameplay);
 	if (IS_DEBUG)
 	{
 		display_debug(&game->window->img, GREEN, game->gameplay->chunks_pos,
@@ -54,10 +55,6 @@ static int	on_update(t_game *game)
 	calculate_fps(&game->gameplay->fps, &game->gameplay->delta_time);
 	return (0);
 }
-
-	// mlx_put_image_to_window(game->window->mlx_ptr, game->window->win_ptr,
-		// game->assets->player->sprite_img[0].mlx_img, 0, 0);
-	// printf("fps : [%d]\n", game->gameplay->fps);
 
 void	start_game(t_game *game)
 {

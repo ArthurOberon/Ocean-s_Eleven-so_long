@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/15 23:21:56 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/16 02:45:00 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@
 
 # define PATH_BACKGROUND		"ground/carpet_64px"
 
+# define PATH_HEART				"ui/heart"
+
 # define FRAME_GROUND 1
 # define FRAME_COLLECT 1
 # define FRAME_EXIT 1
@@ -73,6 +75,8 @@
 # define FRAME_GUARD 1
 
 # define FRAME_QTE 4
+
+# define FRAME_HEART 1
 
 # define DELAY_ANIMATION 2
 
@@ -104,6 +108,7 @@ enum e_assets_pos
 	e_player,
 	e_guards,
 	e_qte,
+	e_heart,
 };
 
 enum e_player_character
@@ -227,6 +232,7 @@ typedef struct s_sprites_assets
 	t_sprite	*wall_side_right;
 	t_sprite	*wall_inside;
 	t_sprite	*qte;
+	t_sprite	*heart;
 }	t_sprites_assets;
 
 typedef struct s_qte
@@ -428,11 +434,12 @@ void				memcpy_img(t_img *img_dst, t_img *img_src, t_vector_2 pos);
 
 __uint32_t			get_color_pixel(t_img *img, int i, int j);
 
-// |----------------------------|
-// |			DISPLAY			|
-// |----------------------------|
+// |--------------------------------|
+// |			DISPLAY_UI			|
+// |--------------------------------|
 
-void				start_game(t_game *game);
+void				display_ui(t_game *game, t_window *window,
+						t_gameplay *gameplay);
 
 // |====================================================|
 // |					SRC_GAMEPLAY					|
@@ -763,6 +770,12 @@ t_f_vector_2		normalize(t_vector_2 vector);
 t_f_vector_2		direction_normalized(t_vector_2 src, t_vector_2 dest);
 
 //========================================
+
+// |----------------------------|
+// |			GAME			|
+// |----------------------------|
+
+void				start_game(t_game *game);
 
 // |----------------------------|
 // |			SO_LONG			|
