@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 02:08:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/16 02:49:38 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/16 02:57:41 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ static void	display_heart(t_window *window, t_player *player, t_sprite *sprite)
 	{
 		if (i == 2)
 			break ;
-		put_image_to_image(window,
-			(t_vector_2){WINDOW_WIDTH - (80 - (i * 45)), 44},
+		put_image_to_image(&window->ui,
+			(t_vector_2){WINDOW_WIDTH  - CHUNK_SIZE - ((80 - (i * 45))),
+			44 - CHUNK_SIZE},
 			&(sprite->sprite_img)[sprite->frame]);
 		i++;
 	}

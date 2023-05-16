@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 15:30:42 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/15 23:53:41 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/16 02:52:37 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void	start_qte(t_game *game, t_qte *qte, t_guard *guard)
 			- qte->start_time.tv_sec);
 	if (delay <= DELAY_QTE)
 	{
-		put_image_to_image(game->window,
+		put_image_to_image(&game->window->img,
 			(t_vector_2){guard->guard_f_pos.x, guard->guard_f_pos.y - CHUNK_SIZE},
 		&(game->window->map_sprites[game->level->nb_cases + e_qte]->sprite_img)[0]);
 	}
 	else if (delay <= DELAY_QTE + DELAY_REACTION && is_win == false)
 	{
 		qte->time_to_press = true;
-		put_image_to_image(game->window,
+		put_image_to_image(&game->window->img,
 			(t_vector_2){guard->guard_f_pos.x, guard->guard_f_pos.y - CHUNK_SIZE},
 			&(game->window->map_sprites[game->level->nb_cases + e_qte]->sprite_img)[1]);
 		if (qte->pressed_in_time == true)
@@ -44,11 +44,11 @@ void	start_qte(t_game *game, t_qte *qte, t_guard *guard)
 	else if (delay + is_win <= DELAY_QTE + DELAY_REACTION + 1)
 	{
 		if (is_win == true)
-			put_image_to_image(game->window,
+			put_image_to_image(&game->window->img,
 			(t_vector_2){guard->guard_f_pos.x, guard->guard_f_pos.y - CHUNK_SIZE},
 			&(game->window->map_sprites[game->level->nb_cases + e_qte]->sprite_img)[2]);
 		else
-			put_image_to_image(game->window,
+			put_image_to_image(&game->window->img,
 				(t_vector_2){guard->guard_f_pos.x, guard->guard_f_pos.y - CHUNK_SIZE},
 			&(game->window->map_sprites[game->level->nb_cases + e_qte]->sprite_img)[3]);
 	}

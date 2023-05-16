@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:20:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/15 22:09:37 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/16 02:52:25 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	display_iframes(t_window *window, t_player *player,
 	{
 		if (player->iframes_flashing == 2)
 		{
-			put_image_to_image(window, player->player_pos,
+			put_image_to_image(&window->img, player->player_pos,
 				&(sprite->sprite_img)[sprite->frame]);
 			player->iframes_flashing = 0;
 		}
@@ -27,7 +27,7 @@ static void	display_iframes(t_window *window, t_player *player,
 			player->iframes_flashing++;
 	}
 	else
-		put_image_to_image(window, player->player_pos,
+		put_image_to_image(&window->img, player->player_pos,
 			&(sprite->sprite_img)[sprite->frame]);
 }
 
@@ -42,7 +42,7 @@ static void	display_aim_bomb(t_window *window, t_player *player,
 			+ (CHUNK_SIZE * player->player_look_dir.x);
 		bomb_pos.y = player->player_pos.y
 			+ (CHUNK_SIZE * player->player_look_dir.y);
-		put_image_to_image(window, bomb_pos,
+		put_image_to_image(&window->img, bomb_pos,
 			&(sprite->sprite_img)[sprite->frame]);
 	}
 }
@@ -68,7 +68,7 @@ static void	display_pattern_box(t_game *game, int player_pos,
 					+ (CHUNK_SIZE * i);
 				f_pos.y = game->gameplay->player->player_pos.y
 					+ (CHUNK_SIZE * j);
-				put_image_to_image(game->window,
+				put_image_to_image(&game->window->img,
 					f_pos,
 					&(sprite->sprite_img)[sprite->frame]);
 			}

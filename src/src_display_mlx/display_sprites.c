@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/15 16:40:28 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/16 02:54:03 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include <string.h>
 
-void	put_image_to_image(t_window *window, t_vector_2 pos, t_img *img)
+void	put_image_to_image(t_img *window_img, t_vector_2 pos, t_img *img)
 {		
 	int			i;
 	int			j;
@@ -28,7 +28,7 @@ void	put_image_to_image(t_window *window, t_vector_2 pos, t_img *img)
 		{
 			pixel = get_color_pixel(img, i, j);
 			if (((pixel >> 24)) != 0xFF)
-				img_pix_put(&window->img, i + pos.x, j + pos.y, pixel);
+				img_pix_put(window_img, i + pos.x, j + pos.y, pixel);
 			i++;
 		}
 		j++;

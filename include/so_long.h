@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/16 02:45:00 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/16 02:53:21 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,6 +212,7 @@ typedef struct s_window
 	void		*win_ptr;
 	t_img		img;
 	t_img		background;
+	t_img		ui;
 	t_sprite	**map_sprites;
 }	t_window;
 
@@ -421,7 +422,7 @@ void				display_qte(t_game *game, t_qte *qte, t_player *player,
 void				update_frame(t_sprite *sprite);
 void				display_sprites(t_game *game, t_camera *camera,
 						t_window *window);
-void				put_image_to_image(t_window *window,
+void				put_image_to_image(t_img *window_img,
 						t_vector_2 pos, t_img *img);
 
 // |------------------------------------|

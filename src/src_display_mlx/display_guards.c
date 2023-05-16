@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 17:28:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/15 22:05:41 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/16 02:52:04 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	display_one_guard(t_window *window, t_guard guard, t_sprite *sprite)
 {
-	put_image_to_image(window, guard.guard_pos,
+	put_image_to_image(&window->img, guard.guard_pos,
 		&(sprite->sprite_img)[sprite->frame]);
 }
 
@@ -22,12 +22,12 @@ static void	display_one_guard(t_window *window, t_guard guard, t_sprite *sprite)
 static void	display_one_guard_fov(t_window *window, t_guard guard,
 	t_sprite *sprite)
 {
-	put_image_to_image(window, guard.guard_fov_pos_1,
+	put_image_to_image(&window->img, guard.guard_fov_pos_1,
 		&(sprite->sprite_img)[sprite->frame]);
 	if ((guard.guard_fov_pos_2.x + CHUNK_SIZE < window->img.size.x
 			&& guard.guard_fov_pos_2.y + CHUNK_SIZE < window->img.size.y)
 		&& (guard.guard_fov_pos_2.x > 0 && guard.guard_fov_pos_2.y > 0))
-		put_image_to_image(window, guard.guard_fov_pos_2,
+		put_image_to_image(&window->img, guard.guard_fov_pos_2,
 			&(sprite->sprite_img)[sprite->frame]);
 }
 

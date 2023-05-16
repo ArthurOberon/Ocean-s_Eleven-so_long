@@ -6,11 +6,24 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 12:15:53 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/12 11:45:43 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/16 02:53:46 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static void	init_window_ui(t_game *game, t_window *window)
+{
+	window->ui.size.x = window->img.size.x;
+	window->ui.size.y = window->img.size.y;
+		window->ui.mlx_img = mlx_new_image(window->mlx_ptr,
+			window->ui.size.x, window->ui.size.y);
+	if (!window->ui.mlx_img)
+		free_game(*game, "Error of mlx_new_image.\n");
+	window->ui.addr = mlx_get_data_addr(window->ui.mlx_img,
+			&window->ui.bpp, &window->ui.line_len,
+			&window->ui.endian);
+}
 
 static void	init_window_background(t_game *game, t_window *window)
 {
@@ -49,4 +62,5 @@ void	init_window(t_game *game)
 	window->img.addr = mlx_get_data_addr(window->img.mlx_img, &window->img.bpp,
 			&window->img.line_len, &window->img.endian);
 	init_window_background(game, window);
+	init_window_ui(game, window);
 }
