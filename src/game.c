@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/16 18:36:07 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/17 17:34:20 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ static int	on_update(t_game *game)
 		display_player_box_collider(&game->window->img, game->gameplay->player,
 			0x800080);
 	}
-	// mlx_put_image_to_window(game->window->mlx_ptr, game->window->win_ptr,
-		// game->window->background.mlx_img, 0, 0);
 	mlx_put_image_to_window(game->window->mlx_ptr, game->window->win_ptr,
 		game->window->img.mlx_img, 0, 0);
 	if (IS_DEBUG)

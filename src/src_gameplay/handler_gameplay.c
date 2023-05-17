@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 13:58:54 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/16 16:44:24 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/17 17:17:43 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,11 @@ void	handle_bomb(int keysym, t_game *game)
 
 void	handle_change_character_player(int keysym, t_player *player)
 {
+	if (keysym == XK_1 || keysym == XK_2 || keysym == XK_3 || keysym == XK_4)
+	{
+		set_player_to_character(player, keysym - XK_1);
+		return ;
+	}
 	if (keysym == XK_1)
 	{
 		player->player_character = e_main;
@@ -111,6 +116,7 @@ void	handle_pickpocket(int keysym, t_game *game)
 		return ;
 	if (keysym == XK_space)
 	{
+		game->gameplay->player->qte.pressed = true;
 		if (game->gameplay->player->qte.time_to_press == false)
 		{
 			game->gameplay->player->qte.pressed_in_time = false;

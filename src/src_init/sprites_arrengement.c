@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:03:04 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/02 12:53:33 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/17 14:30:40 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,12 @@ void	get_wall_image(t_game *game, t_sprite **sprite, int pos)
 	else if (value.x == value_max.x && (value.y >= 1 && value.y < value_max.y))
 		*sprite = game->assets->wall_side_right;
 	else
-		*sprite = game->assets->wall_inside;
+	{
+		if (rand() % 101 > 50)
+			*sprite = game->assets->wall_roulette;
+		else
+			*sprite = game->assets->wall_poker;
+	}
 }
 
 // printf("pos max : x : [%d] y : [%d]\n", value_max.x, value_max.y);

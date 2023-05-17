@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 17:34:37 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/15 23:06:58 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/17 17:22:35 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,30 @@ void	set_player_to_character(t_player *player, int character)
 {
 	if (character == e_main)
 	{
-		player->hp = 2;
+		if (player->has_been_hit == false)
+			player->hp = 2;
+		else
+			player->hp = 1;
 		player->player_character = e_main;
+		printf("new player choose : Danny\n");
 	}
 	else if (character == e_eater)
 	{
 		player->hp = 1;
 		player->player_character = e_eater;
+		printf("new player choose : Rusty\n");
 	}
 	else if (character == e_thief)
 	{
 		player->hp = 1;
 		player->player_character = e_thief;
+		printf("new player choose : Linus\n");
 	}
 	else if (character == e_bomber)
 	{
 		player->hp = 1;
 		player->player_character = e_bomber;
+		printf("new player choose : Basher\n");
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/16 18:34:41 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/17 17:34:36 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,21 @@
 # define PATH_WALL_SIDE_DOWN	"wall/column_side_down_64px"
 # define PATH_WALL_SIDE_LEFT	"wall/column_side_left_64px"
 # define PATH_WALL_SIDE_RIGHT	"wall/column_side_right_64px"
-# define PATH_WALL_INSIDE		"wall/roulette_table_64px"
+# define PATH_WALL_ROULETTE		"wall/roulette_table_64px"
+# define PATH_WALL_POKER		"wall/poker_table_64px"
 
 # define PATH_GROUND			"ground/carpet_64px"
 # define PATH_COLLECT			"debug/test_32px"
 # define PATH_EXIT				"debug/test"
-# define PATH_PLAYER			"player/player_64px"
-# define PATH_GUARD				"player/player_64px"
 
+# define PATH_PLAYER			"player/player_64px"
+
+# define PATH_DYNAMITE			"dynamite/dynamite_64px"
+# define PATH_AREA_QTE			"qte/area_64px"
 # define PATH_QTE				"qte/now"
+
+# define PATH_GUARD				"guard/guard_64px"
+# define PATH_GUARD_FOV			"guard/fov_2_64px"
 
 # define PATH_BACKGROUND		"ground/carpet_64px"
 
@@ -71,10 +77,15 @@
 # define FRAME_GROUND 1
 # define FRAME_COLLECT 1
 # define FRAME_EXIT 1
-# define FRAME_PLAYER 1
-# define FRAME_GUARD 1
 
-# define FRAME_QTE 4
+# define FRAME_PLAYER 1
+
+# define FRAME_DYNAMITE 5
+# define FRAME_AREA_QTE 1
+# define FRAME_QTE 5
+
+# define FRAME_GUARD 1
+# define FRAME_GUARD_FOV 1
 
 # define FRAME_HEART 1
 
@@ -106,9 +117,13 @@
 enum e_assets_pos
 {
 	e_player,
-	e_guards,
+	e_dynamite,
+	e_area_qte,
 	e_qte,
+	e_guards,
+	e_guard_fov,
 	e_heart,
+	e_total_assets,
 };
 
 enum e_player_character
@@ -222,6 +237,7 @@ typedef struct s_sprites_assets
 	t_sprite	*collect;
 	t_sprite	*ground;
 	t_sprite	*guard;
+	t_sprite	*guard_fov;
 	t_sprite	*wall_corner_n_o;
 	t_sprite	*wall_corner_n_e;
 	t_sprite	*wall_corner_s_e;
@@ -230,13 +246,17 @@ typedef struct s_sprites_assets
 	t_sprite	*wall_side_down;
 	t_sprite	*wall_side_left;
 	t_sprite	*wall_side_right;
-	t_sprite	*wall_inside;
+	t_sprite	*wall_roulette;
+	t_sprite	*wall_poker;
+	t_sprite	*dynamite;
+	t_sprite	*area_qte;
 	t_sprite	*qte;
 	t_sprite	*heart;
 }	t_sprites_assets;
 
 typedef struct s_qte
 {
+	bool				pressed;
 	bool				time_to_press;
 	bool				pressed_in_time;
 	bool				is_pickpocketing;
@@ -260,6 +280,7 @@ typedef struct s_player
 {
 	int					player_character;
 	int					hp;
+	bool				has_been_hit;
 	bool				iframes;
 	int					iframes_flashing;
 	struct timeval		iframes_start_time;

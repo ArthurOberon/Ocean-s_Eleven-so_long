@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:08:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/10 18:10:53 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/17 17:12:00 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ static void	get_chunks_in_int_tab(int *chunks_to_display, int chunk_start,
 			chunk_tmp++;
 		}
 	}
+	chunks_to_display[i + (--j * limit.x)] = -1;
 }
 
 void	get_chunks_to_display(t_game *game, t_camera *camera)

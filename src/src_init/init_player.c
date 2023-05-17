@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 21:36:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/16 18:34:53 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/17 17:20:41 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void	init_bomb(t_player *player)
 static void	init_qte(t_player *player)
 {
 	player->qte.is_pickpocketing = false;
+	player->qte.pressed = false;
 	player->qte.time_to_press = false;
 	player->qte.pressed_in_time = false;
 	player->qte.pickpocket_area.x = player->player_pos.x - CHUNK_SIZE;
@@ -65,6 +66,7 @@ void	init_player(t_game *game, t_player *player)
 	init_bomb(player);
 	player->player_character = e_main;
 	player->hp = 2;
+	player->has_been_hit = false;
 	player->iframes = false;
 	player->iframes_flashing = 0;
 	player->iframes_start_time = (struct timeval){0, 0};

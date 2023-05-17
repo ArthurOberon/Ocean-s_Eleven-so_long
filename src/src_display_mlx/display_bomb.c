@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 15:05:27 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/16 17:31:15 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/17 15:35:57 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	display_bomb(t_player *player, t_bomb *bomb, t_game *game,
 	bomb->bomb_pos.x = bomb->bomb_pos.x - game->camera->camera_f_pos.x;
 	bomb->bomb_pos.y = bomb->bomb_pos.y - game->camera->camera_f_pos.y;
 	put_image_to_image(&window->img, bomb->bomb_pos,
-		&(window->map_sprites[game->level->nb_cases]->sprite_img)[0]);
+		&(window->map_sprites[game->level->nb_cases + e_dynamite]->sprite_img)
+	[bomb->bomb_plant - 1]);
 	gettimeofday(&bomb->time, NULL);
 	delay = (((double)(bomb->time.tv_usec - bomb->last_time.tv_usec)
 				/ CLOCKS_PER_SEC) + bomb->time.tv_sec

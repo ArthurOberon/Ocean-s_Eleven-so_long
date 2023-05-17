@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:05:45 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/16 18:33:57 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/17 17:21:08 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	check_collider_positions(t_game *game,
 				if (player->iframes == false)
 				{
 					player->hp -= 1;
+					player->has_been_hit = true;
 					player->iframes = true;
 				}
 				if (guards[i].chasing_player == true)

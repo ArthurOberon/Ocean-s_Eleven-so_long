@@ -6,13 +6,11 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/16 18:37:02 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/17 17:26:35 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-#include <string.h>
 
 void	put_image_to_image(t_img *window_img, t_vector_2 pos, t_img *img)
 {		

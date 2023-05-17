@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:40:38 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/16 02:35:10 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/17 15:58:14 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	init_sprites(t_game *game)
 	t_sprite	**map_sprites;
 
 	i = 0;
-	map_sprites = ft_calloc(sizeof(t_sprite *), game->level->nb_cases + 4);
+	map_sprites = ft_calloc(sizeof(t_sprite *), game->level->nb_cases
+			+ e_total_assets);
 	if (!map_sprites)
 		free_game(*game, "Error of malloc.\n");
 	game->window->map_sprites = map_sprites;
@@ -35,8 +36,11 @@ void	init_sprites(t_game *game)
 			map_sprites[i] = game->assets->exit;
 		i++;
 	}
-	map_sprites[i++] = game->assets->player;
-	map_sprites[i++] = game->assets->guard;
-	map_sprites[i++] = game->assets->qte;
-	map_sprites[i] = game->assets->heart;
+	map_sprites[i] = game->assets->player;
+	map_sprites[i + e_dynamite] = game->assets->dynamite;
+	map_sprites[i + e_area_qte] = game->assets->area_qte;
+	map_sprites[i + e_qte] = game->assets->qte;
+	map_sprites[i + e_guards] = game->assets->guard;
+	map_sprites[i + e_guard_fov] = game->assets->guard_fov;
+	map_sprites[i + e_heart] = game->assets->heart;
 }
