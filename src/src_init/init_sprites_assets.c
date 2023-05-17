@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 20:56:08 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/17 15:57:07 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/17 18:33:38 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,8 @@ void	init_sprites_assets(t_game *game)
 	if (!assets)
 		free_game(*game, "Error of malloc.\n");
 	game->assets = assets;
-	sprite_to_assets(game, &assets->player, PATH_PLAYER, FRAME_PLAYER);
+	sprite_to_assets(game, &assets->player_danny, PATH_PLAYER_DANNY, FRAME_PLAYER_DANNY);
+	sprite_to_assets(game, &assets->player_rusty, PATH_PLAYER_RUSTY, FRAME_PLAYER_RUSTY);
 	sprite_to_assets(game, &assets->exit, PATH_EXIT, FRAME_EXIT);
 	sprite_to_assets(game, &assets->collect, PATH_COLLECT, FRAME_COLLECT);
 	sprite_to_assets(game, &assets->ground, PATH_GROUND, FRAME_GROUND);

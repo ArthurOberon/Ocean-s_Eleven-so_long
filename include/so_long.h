@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/17 17:34:36 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/17 18:34:15 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,10 @@
 # define PATH_COLLECT			"debug/test_32px"
 # define PATH_EXIT				"debug/test"
 
-# define PATH_PLAYER			"player/player_64px"
+# define PATH_PLAYER_DANNY		"player/danny/danny_64px"
+# define PATH_PLAYER_RUSTY		"player/rusty/rusty_64px"
+# define PATH_PLAYER_LINUS		"player/linus/linus_64px"
+# define PATH_PLAYER_BASHER		"player/basher/basher_64px"
 
 # define PATH_DYNAMITE			"dynamite/dynamite_64px"
 # define PATH_AREA_QTE			"qte/area_64px"
@@ -78,7 +81,10 @@
 # define FRAME_COLLECT 1
 # define FRAME_EXIT 1
 
-# define FRAME_PLAYER 1
+# define FRAME_PLAYER_DANNY 1
+# define FRAME_PLAYER_RUSTY 1
+# define FRAME_PLAYER_LINUS 1
+# define FRAME_PLAYER_BASHER 1
 
 # define FRAME_DYNAMITE 5
 # define FRAME_AREA_QTE 1
@@ -116,7 +122,10 @@
 
 enum e_assets_pos
 {
-	e_player,
+	e_player_danny,
+	e_player_rusty,
+	e_player_linus,
+	e_player_basher,
 	e_dynamite,
 	e_area_qte,
 	e_qte,
@@ -232,7 +241,11 @@ typedef struct s_window
 
 typedef struct s_sprites_assets
 {
-	t_sprite	*player;
+	// t_sprite	*player;
+	t_sprite	*player_danny;
+	t_sprite	*player_rusty;
+	// t_sprite	*player_linus;
+	// t_sprite	*player_basher;
 	t_sprite	*exit;
 	t_sprite	*collect;
 	t_sprite	*ground;

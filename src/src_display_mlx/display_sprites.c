@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/17 17:26:35 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/17 18:37:09 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	display_sprites(t_game *game, t_camera *camera, t_window *window)
 		i++;
 	}
 	display_player(game, window, game->gameplay->player,
-		window->map_sprites[game->level->nb_cases]);
+		window->map_sprites[game->level->nb_cases
+		+ game->gameplay->player->player_character]);
 	display_gameplay_elements(game, game->gameplay, window);
 }

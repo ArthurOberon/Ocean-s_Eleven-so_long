@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 12:15:53 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/17 17:36:54 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/17 18:14:51 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,5 @@ void	init_window(t_game *game)
 		free_game(*game, "Error of mlx_new_image.\n");
 	window->img.addr = mlx_get_data_addr(window->img.mlx_img, &window->img.bpp,
 			&window->img.line_len, &window->img.endian);
-	init_window_background(game, window);
+	// init_window_background(game, window);
 }
