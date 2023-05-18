@@ -6,20 +6,38 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:52:31 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/15 15:06:55 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/18 17:11:56 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void	set_explosion_position(t_bomb *bomb, t_vector_2 pos)
+{
+	int	i;
+
+	i = 0;
+	while (i < bomb->explosion_tab_size)
+	{
+		if (bomb->explosion_pos[i].x == -1)
+		{
+			bomb->explosion_pos[i] = pos;
+			return ;
+		}
+		i++;
+	}
+}
+
 static void	explode_chunk(t_game *game, t_bomb bomb, int i, int j)
 {
-	int	k;
-	int	pos;
+	int			k;
+	int			pos;
 
 	pos = bomb.bomb_chunk_pos - (i - (j * game->level->map_vector.x));
 	if (pos < 0 || pos > game->level->nb_cases)
 		return ;
+	set_explosion_position(&bomb, chunk_to_pixel_pos(pos,
+			game->level->map_vector.x));
 	if (game->level->map[pos] == '2')
 	{
 		game->level->map[pos] = '0';

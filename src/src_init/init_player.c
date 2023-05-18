@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 21:36:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/17 17:20:41 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/18 17:10:12 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,26 @@ static void	init_player_positioning(t_game *game, t_player *player)
 	player->player_look_dir.y = 0;
 }
 
-static void	init_bomb(t_player *player)
+void	init_explosion_pos(t_game *game, t_bomb *bomb, bool alloc)
+{
+	int	i;
+
+	i = 0;
+	if (alloc == true)
+	{
+		bomb->explosion_pos = ft_calloc(bomb->explosion_tab_size,
+				sizeof(t_vector_2));
+		if (!bomb->explosion_pos)
+			free_game(*game, "Error of malloc.\n");
+	}
+	while (i < bomb->explosion_tab_size)
+	{
+		bomb->explosion_pos[i] = (t_vector_2){-1, -1};
+		i++;
+	}
+}
+
+static void	init_bomb(t_game *game, t_player *player)
 {
 	player->bomb.bomb_total = BOMB_NUMBER;
 	player->bomb.bomb_plant = 0;
@@ -37,6 +56,12 @@ static void	init_bomb(t_player *player)
 	player->bomb.bomb_pos.y = -1;
 	player->bomb.time = (struct timeval){0, 0};
 	player->bomb.last_time = (struct timeval){0, 0};
+	player->bomb.explosion_tab_size
+		= (2 * (BOMB_NUMBER * BOMB_NUMBER)) - (2 * BOMB_NUMBER) + 1;
+	player->bomb.explosion_tab_size += 1;
+	init_explosion_pos(game, &player->bomb, true);
+	player->bomb.time_explosion = (struct timeval){0, 0};
+	player->bomb.start_time_explosion = (struct timeval){0, 0};
 }
 
 static void	init_qte(t_player *player)
@@ -63,7 +88,7 @@ void	init_player(t_game *game, t_player *player)
 	player->size.y = (CHUNK_SIZE * (RATIO_PLAYER_SIZE_Y));
 	init_player_positioning(game, player);
 	init_qte(player);
-	init_bomb(player);
+	init_bomb(game, player);
 	player->player_character = e_main;
 	player->hp = 2;
 	player->has_been_hit = false;

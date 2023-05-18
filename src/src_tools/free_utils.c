@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:49:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/17 18:35:15 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/18 14:44:57 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	free_assets(void *ptr, t_sprites_assets *assets)
 	free_one_sprite(ptr, assets->wall_roulette);
 	free_one_sprite(ptr, assets->wall_poker);
 	free_one_sprite(ptr, assets->dynamite);
+	free_one_sprite(ptr, assets->explosion);
 	free_one_sprite(ptr, assets->area_qte);
 	free_one_sprite(ptr, assets->qte);
 	free_one_sprite(ptr, assets->heart);

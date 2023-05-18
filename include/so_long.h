@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/17 18:34:15 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/18 17:16:51 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@
 # define PATH_PLAYER_BASHER		"player/basher/basher_64px"
 
 # define PATH_DYNAMITE			"dynamite/dynamite_64px"
+# define PATH_EXPLOSION			"dynamite/explosion_64px"
+
 # define PATH_AREA_QTE			"qte/area_64px"
 # define PATH_QTE				"qte/now"
 
@@ -87,6 +89,8 @@
 # define FRAME_PLAYER_BASHER 1
 
 # define FRAME_DYNAMITE 5
+# define FRAME_EXPLOSION 1
+
 # define FRAME_AREA_QTE 1
 # define FRAME_QTE 5
 
@@ -107,6 +111,7 @@
 
 # define BOMB_TIMING 1.3
 # define BOMB_NUMBER 5
+# define DELAY_BOMB_EXPLOSION 0.7
 
 # define IS_DEBUG 0
 # define IS_DEBUG_TIME 0
@@ -127,6 +132,7 @@ enum e_assets_pos
 	e_player_linus,
 	e_player_basher,
 	e_dynamite,
+	e_explosion,
 	e_area_qte,
 	e_qte,
 	e_guards,
@@ -241,7 +247,6 @@ typedef struct s_window
 
 typedef struct s_sprites_assets
 {
-	// t_sprite	*player;
 	t_sprite	*player_danny;
 	t_sprite	*player_rusty;
 	// t_sprite	*player_linus;
@@ -262,6 +267,7 @@ typedef struct s_sprites_assets
 	t_sprite	*wall_roulette;
 	t_sprite	*wall_poker;
 	t_sprite	*dynamite;
+	t_sprite	*explosion;
 	t_sprite	*area_qte;
 	t_sprite	*qte;
 	t_sprite	*heart;
@@ -287,6 +293,10 @@ typedef struct s_bomb
 	t_vector_2			bomb_pos;
 	struct timeval		time;
 	struct timeval		last_time;
+	t_vector_2			*explosion_pos;
+	int					explosion_tab_size;
+	struct timeval		time_explosion;
+	struct timeval		start_time_explosion;
 }	t_bomb;
 
 typedef struct s_player
@@ -641,6 +651,7 @@ t_img				resize_img(t_game *game, void *ptr, t_img *src,
 // |--------------------------------|
 
 void				init_player(t_game *game, t_player *player);
+void				init_explosion_pos(t_game *game, t_bomb *bomb, bool alloc);
 
 // |----------------------------------------|
 // |			INIT_SPRITES_ASSETS			|

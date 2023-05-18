@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 20:56:08 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/17 18:33:38 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/18 14:43:44 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ void	init_sprites_assets(t_game *game)
 	sprite_to_assets(game, &assets->wall_roulette, PATH_WALL_ROULETTE, 1);
 	sprite_to_assets(game, &assets->wall_poker, PATH_WALL_POKER, 1);
 	sprite_to_assets(game, &assets->dynamite, PATH_DYNAMITE, FRAME_DYNAMITE);
+	sprite_to_assets(game, &assets->explosion, PATH_EXPLOSION, FRAME_EXPLOSION);
 	sprite_to_assets(game, &assets->area_qte, PATH_AREA_QTE, FRAME_AREA_QTE);
 	sprite_to_assets(game, &assets->qte, PATH_QTE, FRAME_QTE);
 	sprite_to_assets(game, &assets->heart, PATH_HEART, FRAME_HEART);
