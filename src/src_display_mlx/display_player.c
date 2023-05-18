@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:20:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/18 19:50:43 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/18 22:29:24 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ void	display_player(t_game *game, t_window *window, t_player *player,
 	pos_tmp = player->player_pos;
 	player->player_pos.x = player->player_pos.x - game->camera->camera_f_pos.x;
 	player->player_pos.y = player->player_pos.y - game->camera->camera_f_pos.y;
+	player->player_pos.x = player->player_pos.x - (CHUNK_SIZE - (CHUNK_SIZE * RATIO_PLAYER_SIZE_X)) / 2;
+	player->player_pos.y = player->player_pos.y - (CHUNK_SIZE - (CHUNK_SIZE * RATIO_PLAYER_SIZE_Y)) / 2;
 	display_player_on_window(window, player, sprite);
 	display_aim_bomb(window, player, game->assets->dynamite);
 	display_area_pickpocketable(game, player, game->assets->area_qte);

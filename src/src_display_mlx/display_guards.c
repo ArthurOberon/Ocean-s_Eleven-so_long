@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 17:28:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/18 17:23:10 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/18 22:36:21 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ void	display_guards(t_game *game, t_gameplay *gameplay, t_window *window,
 			pos_tmp = guards[i].guard_pos;
 			guards[i].guard_pos.x -= game->camera->camera_f_pos.x;
 			guards[i].guard_pos.y -= game->camera->camera_f_pos.y;
+			guards[i].guard_pos.x -= (CHUNK_SIZE - (CHUNK_SIZE * RATIO_PLAYER_SIZE_X)) / 2;
+			guards[i].guard_pos.y -= (CHUNK_SIZE - (CHUNK_SIZE * RATIO_PLAYER_SIZE_Y)) / 2;
 			set_guard_fov_direction(&guards[i]);
 			if (gameplay->is_stop == false)
 				turn_guards(&guards[i]);

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 15:39:49 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/16 18:37:54 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/18 22:20:58 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static void	init_one_guard_variables(t_game *game, t_guard *guard, int number)
 	guard->guard_look_dir.y = 0;
 	guard->guard_f_dir.x = 0;
 	guard->guard_f_dir.y = 0;
-	guard->size.x = CHUNK_SIZE;
-	guard->size.y = CHUNK_SIZE;
+	guard->size.x = (CHUNK_SIZE * RATIO_PLAYER_SIZE_X);
+	guard->size.y = (CHUNK_SIZE * (RATIO_PLAYER_SIZE_Y));
 	set_guard_fov_direction(guard);
 	guard->chasing_player = false;
 	guard->is_alive = true;

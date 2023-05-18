@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 17:34:37 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/17 18:30:57 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/18 22:32:44 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	restart(t_game *game)
 	if (!game->level->map)
 		free_game(*game, "Error of malloc.\n");
 	ft_print_1d_to_2d(game->level);
+	free(game->gameplay->player->bomb.explosion_pos);
+	free(game->gameplay->player);
 	init_player(game, game->gameplay->player);
 	game->gameplay->nb_collect_remain = game->level->nb_collect;
 	game->gameplay->nb_move = 0;

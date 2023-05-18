@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 21:36:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/18 17:10:12 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/18 22:27:44 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	init_player(t_game *game, t_player *player)
 		free_game(*game, "Error of malloc.\n");
 	game->gameplay->player = player;
 	player->size.x = (CHUNK_SIZE * RATIO_PLAYER_SIZE_X);
-	player->size.y = (CHUNK_SIZE * (RATIO_PLAYER_SIZE_Y));
+	player->size.y = (CHUNK_SIZE * RATIO_PLAYER_SIZE_Y);
 	init_player_positioning(game, player);
 	init_qte(player);
 	init_bomb(game, player);
