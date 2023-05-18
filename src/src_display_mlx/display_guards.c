@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 17:28:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/17 17:12:08 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/18 17:23:10 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,21 @@ static void	display_one_guard(t_window *window, t_guard guard, t_sprite *sprite)
 
 // fov -> Field Of View
 static void	display_one_guard_fov(t_window *window, t_guard guard,
-	t_sprite *sprite)
+	t_sprite *sprite, t_player *player)
 {
 	if ((guard.guard_fov_pos_1.x + CHUNK_SIZE < window->img.size.x
 			&& guard.guard_fov_pos_1.y + CHUNK_SIZE < window->img.size.y)
 		&& (guard.guard_fov_pos_1.x > 0 && guard.guard_fov_pos_1.y > 0))
 		put_image_to_image(&window->img, guard.guard_fov_pos_1,
 			&(sprite->sprite_img)[sprite->frame]);
-	if ((guard.guard_fov_pos_2.x + CHUNK_SIZE < window->img.size.x
-			&& guard.guard_fov_pos_2.y + CHUNK_SIZE < window->img.size.y)
-		&& (guard.guard_fov_pos_2.x > 0 && guard.guard_fov_pos_2.y > 0))
-		put_image_to_image(&window->img, guard.guard_fov_pos_2,
-			&(sprite->sprite_img)[sprite->frame]);
+	if (player->player_character != e_eater)
+	{
+		if ((guard.guard_fov_pos_2.x + CHUNK_SIZE < window->img.size.x
+				&& guard.guard_fov_pos_2.y + CHUNK_SIZE < window->img.size.y)
+			&& (guard.guard_fov_pos_2.x > 0 && guard.guard_fov_pos_2.y > 0))
+			put_image_to_image(&window->img, guard.guard_fov_pos_2,
+				&(sprite->sprite_img)[sprite->frame]);
+	}
 }
 
 static void	change_guard_f_direction(t_guard *guard)
@@ -110,7 +113,8 @@ void	display_guards(t_game *game, t_gameplay *gameplay, t_window *window,
 			display_one_guard(window, guards[i],
 				window->map_sprites[game->level->nb_cases + e_guards]);
 			display_one_guard_fov(window, guards[i],
-				window->map_sprites[game->level->nb_cases + e_guard_fov]);
+				window->map_sprites[game->level->nb_cases + e_guard_fov],
+				gameplay->player);
 			guards[i].guard_pos = pos_tmp;
 			set_guard_fov_direction(&guards[i]);
 		}

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:05:45 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/17 17:21:08 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/18 17:23:51 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ void	check_collider_positions(t_game *game,
 			{
 				guards[i].chasing_player = true;
 			}
-			else if (is_inside_area(player->player_f_pos,
+			else if (player->player_character != e_eater
+				&& is_inside_area(player->player_f_pos,
 					(t_f_vector_2){(double)player->size.x, (double)player->size.y},
 				guards[i].guard_fov_f_pos_2,
 				(t_f_vector_2){CHUNK_SIZE, CHUNK_SIZE}))
