@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:40:38 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/18 14:44:33 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/18 19:48:00 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	init_sprites(t_game *game)
 	}
 	map_sprites[i + e_player_danny] = game->assets->player_danny;
 	map_sprites[i + e_player_rusty] = game->assets->player_rusty;
-	map_sprites[i + e_player_linus] = game->assets->player_danny;
-	map_sprites[i + e_player_basher] = game->assets->player_rusty;
+	map_sprites[i + e_player_linus] = game->assets->player_linus;
+	map_sprites[i + e_player_basher] = game->assets->player_basher;
 	map_sprites[i + e_dynamite] = game->assets->dynamite;
 	map_sprites[i + e_explosion] = game->assets->explosion;
 	map_sprites[i + e_area_qte] = game->assets->area_qte;

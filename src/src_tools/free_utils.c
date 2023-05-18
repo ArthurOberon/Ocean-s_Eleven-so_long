@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:49:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/18 14:44:57 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/18 19:49:47 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	free_assets(void *ptr, t_sprites_assets *assets)
 {
 	free_one_sprite(ptr, assets->player_danny);
 	free_one_sprite(ptr, assets->player_rusty);
+	free_one_sprite(ptr, assets->player_linus);
+	free_one_sprite(ptr, assets->player_basher);
 	free_one_sprite(ptr, assets->guard);
 	free_one_sprite(ptr, assets->guard_fov);
 	free_one_sprite(ptr, assets->exit);

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:52:31 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/18 17:11:56 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/18 20:10:26 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	make_bomb_explode(t_game *game, t_bomb bomb)
 	i = 0;
 	if (bomb.bomb_plant == 1)
 	{
+		set_explosion_position(&bomb, bomb.bomb_pos);
 		if (game->level->map[bomb.bomb_chunk_pos] == '2')
 		{
 			game->level->map[bomb.bomb_chunk_pos] = '0';

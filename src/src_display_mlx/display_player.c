@@ -6,13 +6,13 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:20:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/17 15:57:46 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/18 19:50:43 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	display_iframes(t_window *window, t_player *player,
+static void	display_player_on_window(t_window *window, t_player *player,
 	t_sprite *sprite)
 {
 	if (player->iframes == true)
@@ -36,7 +36,7 @@ static void	display_aim_bomb(t_window *window, t_player *player,
 {
 	t_vector_2	bomb_pos;
 
-	if (player->player_character == e_bomber)
+	if (player->player_character == e_bomber && player->bomb.bomb_plant == 0)
 	{
 		bomb_pos.x = player->player_pos.x
 			+ (CHUNK_SIZE * player->player_look_dir.x);
@@ -83,7 +83,8 @@ static void	display_area_pickpocketable(t_game *game, t_player *player,
 {
 	int			player_pos;
 
-	if (player->player_character == e_thief)
+	if (player->player_character == e_thief
+		&& player->qte.is_pickpocketing == false)
 	{
 		player_pos = player->player_chunk_pos.x
 			+ (player->player_chunk_pos.y * game->level->map_vector.x);
@@ -99,7 +100,7 @@ void	display_player(t_game *game, t_window *window, t_player *player,
 	pos_tmp = player->player_pos;
 	player->player_pos.x = player->player_pos.x - game->camera->camera_f_pos.x;
 	player->player_pos.y = player->player_pos.y - game->camera->camera_f_pos.y;
-	display_iframes(window, player, sprite);
+	display_player_on_window(window, player, sprite);
 	display_aim_bomb(window, player, game->assets->dynamite);
 	display_area_pickpocketable(game, player, game->assets->area_qte);
 	player->player_pos = pos_tmp;

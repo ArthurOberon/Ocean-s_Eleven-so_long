@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/18 17:16:51 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/18 19:57:15 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@
 # define PATH_EXIT				"debug/test"
 
 # define PATH_PLAYER_DANNY		"player/danny/danny_64px"
-# define PATH_PLAYER_RUSTY		"player/rusty/rusty_64px"
+# define PATH_PLAYER_RUSTY		"player/rusty/rusty_2_64px"
 # define PATH_PLAYER_LINUS		"player/linus/linus_64px"
 # define PATH_PLAYER_BASHER		"player/basher/basher_64px"
 
@@ -249,8 +249,8 @@ typedef struct s_sprites_assets
 {
 	t_sprite	*player_danny;
 	t_sprite	*player_rusty;
-	// t_sprite	*player_linus;
-	// t_sprite	*player_basher;
+	t_sprite	*player_linus;
+	t_sprite	*player_basher;
 	t_sprite	*exit;
 	t_sprite	*collect;
 	t_sprite	*ground;

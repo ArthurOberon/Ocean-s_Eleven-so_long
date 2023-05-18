@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 15:05:27 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/18 17:16:23 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/18 20:08:56 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	display_bomb(t_player *player, t_bomb *bomb, t_game *game,
 	put_image_to_image(&window->img, bomb->bomb_pos,
 		&(window->map_sprites[game->level->nb_cases + e_dynamite]->sprite_img)
 	[bomb->bomb_plant - 1]);
+	bomb->bomb_pos = pos_tmp;
 	gettimeofday(&bomb->time, NULL);
 	delay = (((double)(bomb->time.tv_usec - bomb->last_time.tv_usec)
 				/ CLOCKS_PER_SEC) + bomb->time.tv_sec
@@ -77,5 +78,4 @@ void	display_bomb(t_player *player, t_bomb *bomb, t_game *game,
 		bomb->bomb_pos.x = -1;
 		bomb->bomb_pos.y = -1;
 	}
-	bomb->bomb_pos = pos_tmp;
 }
