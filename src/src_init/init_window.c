@@ -6,24 +6,24 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 12:15:53 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/17 18:14:51 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/19 20:08:17 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	init_window_background(t_game *game, t_window *window)
-{
-	window->background.size.x = window->img.size.x;
-	window->background.size.y = window->img.size.y;
-		window->background.mlx_img = mlx_new_image(window->mlx_ptr,
-			window->background.size.x, window->background.size.y);
-	if (!window->background.mlx_img)
-		free_game(*game, "Error of mlx_new_image.\n");
-	window->background.addr = mlx_get_data_addr(window->background.mlx_img,
-			&window->background.bpp, &window->background.line_len,
-			&window->background.endian);
-}
+// static void	init_window_background(t_game *game, t_window *window)
+// {
+// 	window->background.size.x = window->img.size.x;
+// 	window->background.size.y = window->img.size.y;
+// 		window->background.mlx_img = mlx_new_image(window->mlx_ptr,
+// 			window->background.size.x, window->background.size.y);
+// 	if (!window->background.mlx_img)
+// 		free_game(*game, "Error of mlx_new_image.\n");
+// 	window->background.addr = mlx_get_data_addr(window->background.mlx_img,
+// 			&window->background.bpp, &window->background.line_len,
+// 			&window->background.endian);
+// }
 
 void	init_window(t_game *game)
 {

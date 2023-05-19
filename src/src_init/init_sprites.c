@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:40:38 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/18 19:48:00 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/19 16:25:35 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,6 @@ void	init_sprites(t_game *game)
 	map_sprites[i + e_guards] = game->assets->guard;
 	map_sprites[i + e_guard_fov] = game->assets->guard_fov;
 	map_sprites[i + e_heart] = game->assets->heart;
+	map_sprites[i + e_alphabet] = game->assets->alphabet;
+	map_sprites[i + e_background_text] = game->assets->background_text;
 }

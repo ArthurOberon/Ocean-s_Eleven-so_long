@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 17:34:37 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/18 22:32:44 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/19 20:09:32 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	calculate_fps(int *fps, double *delta_time)
 	last_time = now;
 }
 
-void	set_player_to_character(t_player *player, int character)
+void	set_player_to_character(t_gameplay *gameplay, t_player *player,
+	int character)
 {
 	if (character == e_main)
 	{
@@ -41,6 +42,8 @@ void	set_player_to_character(t_player *player, int character)
 		else
 			player->hp = 1;
 		player->player_character = e_main;
+		gameplay->text_box.text = "lets go";
+		gameplay->text_box.is_diplay = true;
 		printf("new player choose : Danny\n");
 	}
 	else if (character == e_eater)

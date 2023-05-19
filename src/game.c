@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/18 19:20:17 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/19 20:05:19 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static int	on_update(t_game *game)
 	camera(game, game->camera, game->gameplay->player);
 	display_sprites(game, game->camera, game->window);
 	display_ui(game, game->window, game->gameplay);
+	display_text_box(game, game->window, game->gameplay->text_box);
 	if (IS_DEBUG)
 	{
 		display_debug(&game->window->img, GREEN, game->gameplay->chunks_pos,

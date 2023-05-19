@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/18 19:57:15 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/19 20:10:15 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,12 @@
 # define PATH_GUARD				"guard/guard_64px"
 # define PATH_GUARD_FOV			"guard/fov_2_64px"
 
-# define PATH_BACKGROUND		"ground/carpet_64px"
-
 # define PATH_HEART				"ui/heart"
+
+# define PATH_ALPHABET			"text_box/alphabet/alphabet_16px"
+# define PATH_BACKGROUND_TEXT	"text_box/background_text_3_64px"
+
+# define PATH_BACKGROUND		"ground/carpet_64px"
 
 # define FRAME_GROUND 1
 # define FRAME_COLLECT 1
@@ -98,6 +101,9 @@
 # define FRAME_GUARD_FOV 1
 
 # define FRAME_HEART 1
+
+# define FRAME_ALPHABET 26
+# define FRAME_BACKGROUND_TEXT 1
 
 # define DELAY_ANIMATION 2
 
@@ -138,6 +144,8 @@ enum e_assets_pos
 	e_guards,
 	e_guard_fov,
 	e_heart,
+	e_alphabet,
+	e_background_text,
 	e_total_assets,
 };
 
@@ -241,9 +249,9 @@ typedef struct s_window
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_img		img;
-	t_img		background;
 	t_sprite	**map_sprites;
 }	t_window;
+	// t_img		background;
 
 typedef struct s_sprites_assets
 {
@@ -271,7 +279,16 @@ typedef struct s_sprites_assets
 	t_sprite	*area_qte;
 	t_sprite	*qte;
 	t_sprite	*heart;
+	t_sprite	*alphabet;
+	t_sprite	*background_text;
 }	t_sprites_assets;
+
+typedef struct s_text_box
+{
+	bool	is_diplay;
+	int		talking_character;
+	char	*text;
+}	t_text_box;
 
 typedef struct s_qte
 {
@@ -347,6 +364,7 @@ typedef struct s_gameplay
 {
 	bool				is_pause;
 	bool				is_stop;
+	t_text_box			text_box;
 	int					nb_collect_remain;
 	int					nb_guard;
 	int					nb_move;
@@ -468,6 +486,13 @@ void				display_sprites(t_game *game, t_camera *camera,
 void				put_image_to_image(t_img *window_img,
 						t_vector_2 pos, t_img *img);
 
+// |----------------------------------------|
+// |			DISPLAY_TEXT_BOX			|
+// |----------------------------------------|
+
+void				display_text_box(t_game *game, t_window *window,
+						t_text_box text_box);
+
 // |------------------------------------|
 // |			DISPLAY_TOOLS			|
 // |------------------------------------|
@@ -531,7 +556,8 @@ void				gameplay_elements(t_game *game, t_gameplay *gameplay);
 
 void				restart(t_game *game);
 void				calculate_fps(int *fps, double *delta_time);
-void				set_player_to_character(t_player *player, int character);
+void				set_player_to_character(t_gameplay *gameplay,
+						t_player *player, int character);
 
 // |----------------------------------------|
 // |			HANDLER_GAMEPLAY			|
@@ -542,7 +568,7 @@ void				handle_pickpocket(int keysym, t_game *game);
 void				handle_player_move(int keysym, t_game *game);
 void				handle_player_move_release(int keysym, t_game *game);
 void				handle_change_character_player(int keysym,
-						t_player *player);
+						t_gameplay *gameplay, t_player *player);
 
 // |----------------------------|
 // |			HANDLER			|

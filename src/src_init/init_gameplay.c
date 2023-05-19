@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/18 15:52:39 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/19 18:35:59 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ void	init_gameplay(t_game *game)
 	gameplay->map_start_state = ft_strdup(game->level->map);
 	init_player(game, gameplay->player);
 	init_guards(game, gameplay->guards);
+	gameplay->text_box.is_diplay = false;
+	gameplay->text_box.talking_character = gameplay->player->player_character;
+	gameplay->text_box.text = NULL;
 	if (IS_DEBUG)
 		debug_chunk_pos(game);
 }

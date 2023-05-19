@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:34:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/15 14:56:23 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/19 20:03:50 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,20 @@ int	handle_keypress(int keysym, t_game *game)
 		restart(game);
 	}
 	handle_player_move(keysym, game);
-	if (game->gameplay->is_pause == false)
+	if (keysym == XK_space && game->gameplay->text_box.is_diplay == true)
+	{
+		game->gameplay->is_stop = false;
+		game->gameplay->text_box.is_diplay = false;
+		game->gameplay->text_box.talking_character
+			= game->gameplay->player->player_character;
+		game->gameplay->text_box.text = NULL;
+	}
+	if (game->gameplay->is_pause == false
+		&& game->gameplay->is_stop == false)
 	{
 		handle_bomb(keysym, game);
-		handle_change_character_player(keysym, game->gameplay->player);
+		handle_change_character_player(keysym, game->gameplay,
+			game->gameplay->player);
 		handle_pickpocket(keysym, game);
 	}
 	return (0);

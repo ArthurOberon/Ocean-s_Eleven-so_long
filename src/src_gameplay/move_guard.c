@@ -6,13 +6,11 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 22:27:25 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/18 22:03:35 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/19 14:09:40 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-// move_guard_utils.c
 
 static void	move_guard_on_x(t_game *game, t_guard *guard, t_f_vector_2 *move)
 {
@@ -21,9 +19,7 @@ static void	move_guard_on_x(t_game *game, t_guard *guard, t_f_vector_2 *move)
 	t_vector_2	collider;
 
 	get_move_guard(guard, move, game->gameplay->delta_time, (t_vector_2){1, 0});
-	printf("move guard x : [%f]\n", move->x);
 	chunks = get_collider_guard_on_move(move, guard, game->level->map_vector.x);
-	printf("move guard x : [%f]\n", move->x);
 	collider_chunk = check_wall_collider(game->level->map, chunks);
 	if (collider_chunk != -1)
 	{
@@ -31,7 +27,6 @@ static void	move_guard_on_x(t_game *game, t_guard *guard, t_f_vector_2 *move)
 				game->level->map_vector.x);
 		restrict_move_guard(move, guard, collider, (t_vector_2){1, 0});
 	}
-	printf("move guard x : [%f]\n\n", move->x);
 }
 
 static void	move_guard_on_y(t_game *game, t_guard *guard, t_f_vector_2 *move)

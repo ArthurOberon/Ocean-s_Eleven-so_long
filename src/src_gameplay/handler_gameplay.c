@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 13:58:54 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/17 17:17:43 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/19 20:04:21 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,32 +81,13 @@ void	handle_bomb(int keysym, t_game *game)
 	}
 }
 
-void	handle_change_character_player(int keysym, t_player *player)
+void	handle_change_character_player(int keysym, t_gameplay *gameplay,
+	t_player *player)
 {
 	if (keysym == XK_1 || keysym == XK_2 || keysym == XK_3 || keysym == XK_4)
 	{
-		set_player_to_character(player, keysym - XK_1);
+		set_player_to_character(gameplay, player, keysym - XK_1);
 		return ;
-	}
-	if (keysym == XK_1)
-	{
-		player->player_character = e_main;
-		printf("new player choose : Danny\n");
-	}
-	if (keysym == XK_2)
-	{
-		player->player_character = e_eater;
-		printf("new player choose : Rusty\n");
-	}
-	if (keysym == XK_3)
-	{
-		player->player_character = e_thief;
-		printf("new player choose : Linus\n");
-	}
-	if (keysym == XK_4)
-	{
-		player->player_character = e_bomber;
-		printf("new player choose : Basher\n");
 	}
 }
 

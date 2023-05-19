@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 20:56:08 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/18 22:38:20 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/19 18:29:20 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,42 @@ char	*find_sprite_path(t_game *game, char *start_path, int frame)
 		free_game(*game, "Error of malloc.\n");
 	free(frame_path);
 	return (complet_path);
+}
+
+static void	sprite_images_assets_only(t_game *game, t_sprite *sprite,
+	char *path, t_vector_2 size)
+{
+	int		i;
+	char	*complet_path;
+	void	*ptr;
+
+	ptr = game->window->mlx_ptr;
+	i = -1;
+	while (++i < sprite->size)
+	{
+		complet_path = find_sprite_path(game, path, i);
+		init_xpm_file(game, ptr, complet_path, &(sprite->sprite_img)[i]);
+		(sprite->sprite_img)[i] = resize_img(game, ptr,
+				&(sprite->sprite_img)[i], size);
+		free(complet_path);
+	}
+}
+
+static void	sprite_to_assets_no_images_alloc(t_game *game, t_sprite **asset,
+	int size)
+{
+	t_sprite	*sprite;
+
+	sprite = ft_calloc(sizeof(t_sprite), 1);
+	if (!sprite)
+		free_game(*game, "Error of malloc.\n");
+	sprite->frame = 0;
+	sprite->size = size;
+	sprite->last_time = (struct timeval){0, 0};
+	sprite->sprite_img = ft_calloc(sizeof(t_img), size);
+	if (!sprite->sprite_img)
+		free_game(*game, "Error of malloc.\n");
+	*asset = sprite;
 }
 
 static void	sprite_to_assets(t_game *game, t_sprite **asset, char *path,
@@ -132,6 +168,14 @@ void	init_sprites_assets(t_game *game)
 	sprite_to_assets(game, &assets->area_qte, PATH_AREA_QTE, FRAME_AREA_QTE);
 	sprite_to_assets(game, &assets->qte, PATH_QTE, FRAME_QTE);
 	sprite_to_assets(game, &assets->heart, PATH_HEART, FRAME_HEART);
+	sprite_to_assets_no_images_alloc(game, &assets->alphabet, FRAME_ALPHABET);
+	sprite_images_assets_only(game, assets->alphabet, PATH_ALPHABET,(t_vector_2){16, 16});
+	sprite_to_assets_no_images_alloc(game, &assets->background_text, FRAME_BACKGROUND_TEXT);
+	sprite_images_assets_only(game, assets->background_text, PATH_BACKGROUND_TEXT, (t_vector_2){WINDOW_WIDTH - 40, WINDOW_HEIGHT / 4});
 }
+
+	// sprite_to_assets_with_image_size(game, &assets->background_text, PATH_BACKGROUND_TEXT, (t_vector_2){WINDOW_WIDTH, WINDOW_HEIGHT / 4});
+	// sprite_to_assets(game, &assets->alphabet, PATH_ALPHABET, FRAME_ALPHABET);
+	// sprite_to_assets(game, &assets->background, PATH_BACKGROUND_TEXT, FRAME_BACKGROUND_TEXT);
 
 	// get_stat_tiles_map(game);
