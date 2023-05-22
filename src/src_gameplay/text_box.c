@@ -1,0 +1,74 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   text_box.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/22 18:00:00 by aoberon           #+#    #+#             */
+/*   Updated: 2023/05/22 18:40:29 by aoberon          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "so_long.h"
+
+static char	*ft_strncpy(char *src, int n)
+{
+	int		i;
+	char	*dest;
+
+	i = 0;
+	dest = malloc(sizeof(char) * (n + 1));
+	if (!dest)
+		return (0);
+	while (src[i] != '\0' && i < n)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+
+char	**str_n_divide(char *str, int size, int n)
+{
+	int		i;
+	char	**result;
+
+	result = ft_calloc(sizeof(char *), n + 1);
+	if (!result)
+		return (NULL);
+	i = 0;
+	while (i < n)
+	{
+		if (i < n - 1)
+		{
+			result[i] = ft_strncpy(str, size);
+			str += size;
+		}
+		else
+			result[i] = ft_strncpy(str, ft_strlen(str));
+		i++;
+	}
+	return (result);
+}
+
+void	set_text_box(t_text_box *text_box, char *text)
+{
+	int	text_size;
+	int	divide_size;
+
+	text_box->text = text;
+	text_size = ft_strlen(text_box->text);
+	if (text_size > text_box->characters_max_one_box)
+	{
+		divide_size = text_size / text_box->characters_max_one_box
+			+ ((text_size % text_box->characters_max_one_box) != 0);
+		text_box->page_number = divide_size;
+		text_box->page_in = 0;
+		text_box->text_pages = str_n_divide(text,
+				text_box->characters_max_one_box, divide_size);
+	}
+	text_box->is_diplay = true;
+	text_box->read_all = false;
+}

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:34:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/22 16:11:16 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/22 18:41:50 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,18 @@ int	handle_keypress(int keysym, t_game *game)
 	handle_player_move(keysym, game);
 	if (keysym == XK_space && game->gameplay->text_box.is_diplay == true)
 	{
-		if (gameplay->text_box.read_all == true)
+		if (game->gameplay->text_box.read_all == false)
+		{
+			game->gameplay->text_box.page_in += 1;
+			if (game->gameplay->text_box.page_in
+				== game->gameplay->text_box.page_number)
+				game->gameplay->text_box.read_all = true;
+		}
+		if (game->gameplay->text_box.read_all == true)
 		{
 			game->gameplay->is_stop = false;
 			game->gameplay->text_box.is_diplay = false;
-			gameplay->text_box.read_all = false;
+			game->gameplay->text_box.read_all = false;
 			game->gameplay->text_box.talking_character
 				= game->gameplay->player->player_character;
 			game->gameplay->text_box.text = NULL;

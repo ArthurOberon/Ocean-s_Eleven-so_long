@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/22 16:08:51 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/22 18:41:38 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,41 @@ static void	get_chunk_positions(t_game *game, t_vector_2 **chunk_pos,
 	}
 }
 
+static void	init_text_box(t_game *game, t_window *window, t_gameplay *gameplay,
+	t_text_box *text_box)
+{
+	t_sprite	*background;
+	t_sprite	*sprite_face;
+
+	background = window->map_sprites[game->level->nb_cases + e_background_text];
+	sprite_face = game->window->map_sprites[game->level->nb_cases
+		+ game->gameplay->player->player_character];
+	text_box->is_diplay = false;
+	text_box->read_all = false;
+	text_box->pos_display_background = (t_vector_2){20,
+		WINDOW_HEIGHT - 50 - background->sprite_img->size.y};
+	text_box->margin_size.x = 20;
+	text_box->margin_size.y = 30;
+	text_box->pos_display_face.x = text_box->pos_display_background.x + text_box->margin_size.x;
+	text_box->pos_display_face.y = text_box->pos_display_background.y + text_box->margin_size.y;
+	text_box->pos_display_text = text_box->pos_display_face;
+	text_box->pos_display_text.x += sprite_face->sprite_img->size.x;
+	text_box->size_one_alphabet = window->map_sprites[game->level->nb_cases
+		+ e_alphabet]->sprite_img->size.x;
+	text_box->characters_max.x = (background->sprite_img->size.x
+			- text_box->pos_display_text.x) / text_box->size_one_alphabet;
+	text_box->characters_max.y = (background->sprite_img->size.y
+			- (text_box->margin_size.y * 2))
+		/ (text_box->size_one_alphabet + 10);
+	text_box->characters_max_one_box = text_box->characters_max.x
+		* text_box->characters_max.y;
+	text_box->page_number = 0;
+	text_box->page_in = 0;
+	text_box->talking_character = gameplay->player->player_character;
+	text_box->text = NULL;
+	text_box->text_pages = NULL;
+}
+
 void	init_gameplay(t_game *game)
 {
 	t_gameplay	*gameplay;
@@ -60,10 +95,7 @@ void	init_gameplay(t_game *game)
 	gameplay->map_start_state = ft_strdup(game->level->map);
 	init_player(game, gameplay->player);
 	init_guards(game, gameplay->guards);
-	gameplay->text_box.is_diplay = false;
-	gameplay->text_box.read_all = false;
-	gameplay->text_box.talking_character = gameplay->player->player_character;
-	gameplay->text_box.text = NULL;
+	init_text_box(game, game->window, gameplay, &gameplay->text_box);
 	if (IS_DEBUG)
 		debug_chunk_pos(game);
 }

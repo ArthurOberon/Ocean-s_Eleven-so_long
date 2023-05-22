@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/22 16:23:07 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/22 18:01:36 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -285,10 +285,20 @@ typedef struct s_sprites_assets
 
 typedef struct s_text_box
 {
-	bool	is_diplay;
-	bool	read_all;
-	int		talking_character;
-	char	*text;
+	bool		is_diplay;
+	bool		read_all;
+	t_vector_2	pos_display_background;
+	t_vector_2	pos_display_face;
+	t_vector_2	pos_display_text;
+	t_vector_2	margin_size;
+	t_vector_2	characters_max;
+	int			characters_max_one_box;
+	int			size_one_alphabet;
+	int			page_number;
+	int			page_in;
+	int			talking_character;
+	char		*text;
+	char		**text_pages;
 }	t_text_box;
 
 typedef struct s_qte
@@ -624,6 +634,12 @@ int					pos_to_chunk(int x, int y, int x_max);
 
 t_vector_2			chunk_to_pixel_pos(int chunk, int x_max);
 t_f_vector_2		chunk_to_pixel_f_pos(int chunk, int x_max);
+
+// |--------------------------------|
+// |			TEXT_BOX			|
+// |--------------------------------|
+
+void				set_text_box(t_text_box *text_box, char *text);
 
 // |============================================|
 // |					SRC_GNL					|
