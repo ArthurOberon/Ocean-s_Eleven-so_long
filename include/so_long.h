@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/19 20:10:15 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/22 16:23:07 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -286,6 +286,7 @@ typedef struct s_sprites_assets
 typedef struct s_text_box
 {
 	bool	is_diplay;
+	bool	read_all;
 	int		talking_character;
 	char	*text;
 }	t_text_box;

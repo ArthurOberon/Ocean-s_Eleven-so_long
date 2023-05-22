@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/19 18:35:59 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/22 16:08:51 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	init_gameplay(t_game *game)
 	init_player(game, gameplay->player);
 	init_guards(game, gameplay->guards);
 	gameplay->text_box.is_diplay = false;
+	gameplay->text_box.read_all = false;
 	gameplay->text_box.talking_character = gameplay->player->player_character;
 	gameplay->text_box.text = NULL;
 	if (IS_DEBUG)

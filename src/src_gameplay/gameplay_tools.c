@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 17:34:37 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/19 20:09:32 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/22 16:08:41 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ void	set_player_to_character(t_gameplay *gameplay, t_player *player,
 		else
 			player->hp = 1;
 		player->player_character = e_main;
-		gameplay->text_box.text = "lets go";
+		gameplay->text_box.text = "lets golets golets golets golets golets golets golets golets golets golets golets golewlets golets golets golets golets golets golets golets golets golets golets golets golewlets golets golets golets golets golets golets golets golets golets golets golets golewlets golets golets golets golets golets golets golets golets golets golets golets golewlets golets golets golets golets golets golets golets golets golets golets golets golewlets golets golets golets golets golets golets golets golets golets golets golets golewlets golets golets golets golets golets golets golets golets golets golets golets golew";
 		gameplay->text_box.is_diplay = true;
+		gameplay->text_box.read_all = false;
 		printf("new player choose : Danny\n");
 	}
 	else if (character == e_eater)
