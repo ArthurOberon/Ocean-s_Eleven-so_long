@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 15:30:42 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/17 16:42:06 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/23 16:08:32 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	display_qte(t_game *game, t_qte *qte, t_player *player, t_guard *guards)
 
 	if (player->player_character != e_thief || qte->is_pickpocketing == false)
 	{
-		game->gameplay->is_stop = false;
+		game->gameplay->is_stop = game->gameplay->text_box.is_display;
 		return ;
 	}
 	qte->pickpocket_area.x = player->player_pos.x - CHUNK_SIZE;

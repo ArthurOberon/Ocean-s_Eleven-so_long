@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:34:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/23 15:22:35 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/23 16:08:57 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ int	handle_keypress(int keysym, t_game *game)
 	{
 		restart(game);
 	}
-	handle_player_move(keysym, game);
-	if (keysym == XK_space && game->gameplay->text_box.is_diplay == true)
+	if (keysym == XK_space && game->gameplay->text_box.is_display == true)
 	{
 		if (game->gameplay->text_box.read_all == false)
 		{
@@ -59,7 +58,7 @@ int	handle_keypress(int keysym, t_game *game)
 		if (game->gameplay->text_box.read_all == true)
 		{
 			game->gameplay->is_stop = false;
-			game->gameplay->text_box.is_diplay = false;
+			game->gameplay->text_box.is_display = false;
 			game->gameplay->text_box.read_all = false;
 			game->gameplay->text_box.talking_character
 				= game->gameplay->player->player_character;
@@ -67,14 +66,15 @@ int	handle_keypress(int keysym, t_game *game)
 			free_text_box(&game->gameplay->text_box);
 		}
 	}
+	handle_player_move(keysym, game);
 	if (game->gameplay->is_pause == false
 		&& game->gameplay->is_stop == false)
 	{
 		handle_bomb(keysym, game);
 		handle_change_character_player(keysym, game, game->gameplay,
 			game->gameplay->player);
-		handle_pickpocket(keysym, game);
 	}
+	handle_pickpocket(keysym, game);
 	return (0);
 }
 

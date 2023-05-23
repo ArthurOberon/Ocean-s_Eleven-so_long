@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:37:34 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/23 15:32:49 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/23 16:08:57 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	display_text_box(t_game *game, t_window *window, t_text_box text_box)
 {
 	t_sprite	*background;
 
-	if (text_box.is_diplay == false)
+	if (text_box.is_display == false)
 		return ;
 	background = window->map_sprites[game->level->nb_cases + e_background_text];
 	put_image_to_image(&window->img, text_box.pos_display_background,

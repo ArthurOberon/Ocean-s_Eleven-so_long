@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/23 15:22:45 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/23 16:08:57 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -285,7 +285,7 @@ typedef struct s_sprites_assets
 
 typedef struct s_text_box
 {
-	bool		is_diplay;
+	bool		is_display;
 	bool		read_all;
 	t_vector_2	pos_display_background;
 	t_vector_2	pos_display_face;

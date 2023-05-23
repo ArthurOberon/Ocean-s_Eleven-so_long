@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/22 18:41:38 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/23 16:08:57 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	init_text_box(t_game *game, t_window *window, t_gameplay *gameplay,
 	background = window->map_sprites[game->level->nb_cases + e_background_text];
 	sprite_face = game->window->map_sprites[game->level->nb_cases
 		+ game->gameplay->player->player_character];
-	text_box->is_diplay = false;
+	text_box->is_display = false;
 	text_box->read_all = false;
 	text_box->pos_display_background = (t_vector_2){20,
 		WINDOW_HEIGHT - 50 - background->sprite_img->size.y};

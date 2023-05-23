@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 13:58:54 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/23 15:22:25 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/23 15:52:52 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	handle_change_character_player(int keysym, t_game *game,
 {
 	if (keysym == XK_1 || keysym == XK_2 || keysym == XK_3 || keysym == XK_4)
 	{
-		set_player_to_character(gameplay, player, keysym - XK_1);
+		set_player_to_character(game, gameplay, player, keysym - XK_1);
 		return ;
 	}
 }
