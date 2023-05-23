@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/22 18:01:36 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/23 15:22:45 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -567,7 +567,7 @@ void				gameplay_elements(t_game *game, t_gameplay *gameplay);
 
 void				restart(t_game *game);
 void				calculate_fps(int *fps, double *delta_time);
-void				set_player_to_character(t_gameplay *gameplay,
+void				set_player_to_character(t_game *game, t_gameplay *gameplay,
 						t_player *player, int character);
 
 // |----------------------------------------|
@@ -578,7 +578,7 @@ void				handle_bomb(int keysym, t_game *game);
 void				handle_pickpocket(int keysym, t_game *game);
 void				handle_player_move(int keysym, t_game *game);
 void				handle_player_move_release(int keysym, t_game *game);
-void				handle_change_character_player(int keysym,
+void				handle_change_character_player(int keysym, t_game *game,
 						t_gameplay *gameplay, t_player *player);
 
 // |----------------------------|
@@ -639,7 +639,7 @@ t_f_vector_2		chunk_to_pixel_f_pos(int chunk, int x_max);
 // |			TEXT_BOX			|
 // |--------------------------------|
 
-void				set_text_box(t_text_box *text_box, char *text);
+void				set_text_box(t_game *game, t_text_box *text_box, char *text);
 
 // |============================================|
 // |					SRC_GNL					|
@@ -808,6 +808,7 @@ void				exit_pathfinding_error(t_level *level, char flag,
 // |			FREE_UTILS			|
 // |--------------------------------|
 
+void				free_text_box(t_text_box *text_box);
 void				free_one_sprite(void *ptr, t_sprite *sprite);
 void				free_assets(void *ptr, t_sprites_assets *assets);
 

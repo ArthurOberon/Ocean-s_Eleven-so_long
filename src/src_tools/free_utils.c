@@ -6,11 +6,27 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:49:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/19 17:28:42 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/23 15:19:55 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	free_text_box(t_text_box *text_box)
+{
+	int	i;
+
+	if (!text_box->text_pages)
+		return ;
+	i = 0;
+	while (text_box->text_pages[i])
+	{
+		free(text_box->text_pages[i]);
+		i++;
+	}
+	free(text_box->text_pages);
+	text_box->text_pages = NULL;
+}
 
 void	free_one_sprite(void *ptr, t_sprite *sprite)
 {

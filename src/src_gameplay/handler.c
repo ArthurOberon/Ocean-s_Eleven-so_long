@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:34:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/22 18:41:50 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/23 15:22:35 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,14 @@ int	handle_keypress(int keysym, t_game *game)
 			game->gameplay->text_box.talking_character
 				= game->gameplay->player->player_character;
 			game->gameplay->text_box.text = NULL;
+			free_text_box(&game->gameplay->text_box);
 		}
 	}
 	if (game->gameplay->is_pause == false
 		&& game->gameplay->is_stop == false)
 	{
 		handle_bomb(keysym, game);
-		handle_change_character_player(keysym, game->gameplay,
+		handle_change_character_player(keysym, game, game->gameplay,
 			game->gameplay->player);
 		handle_pickpocket(keysym, game);
 	}

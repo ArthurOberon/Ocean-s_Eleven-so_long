@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 19:17:43 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/18 17:11:13 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/23 15:18:58 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	free_gameplay(t_gameplay *gameplay)
 		free(gameplay->guards);
 	if (gameplay->map_start_state)
 		free(gameplay->map_start_state);
+	free_text_box(&gameplay->text_box);
 	free(gameplay);
 }
 

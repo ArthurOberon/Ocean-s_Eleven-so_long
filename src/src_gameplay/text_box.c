@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 18:00:00 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/22 18:40:29 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/23 15:28:01 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*ft_strncpy(char *src, int n)
 	i = 0;
 	dest = malloc(sizeof(char) * (n + 1));
 	if (!dest)
-		return (0);
+		return (NULL);
 	while (src[i] != '\0' && i < n)
 	{
 		dest[i] = src[i];
@@ -44,20 +44,28 @@ char	**str_n_divide(char *str, int size, int n)
 		if (i < n - 1)
 		{
 			result[i] = ft_strncpy(str, size);
+			if (!result[i])
+				return (free_2d_char_tab(result, i), NULL);
 			str += size;
 		}
 		else
+		{
 			result[i] = ft_strncpy(str, ft_strlen(str));
+			if (!result[i])
+				return (free_2d_char_tab(result, i), NULL);
+		}
 		i++;
 	}
 	return (result);
 }
 
-void	set_text_box(t_text_box *text_box, char *text)
+void	set_text_box(t_game *game, t_text_box *text_box, char *text)
 {
 	int	text_size;
 	int	divide_size;
 
+	if (text_box->text != NULL)
+		return ;
 	text_box->text = text;
 	text_size = ft_strlen(text_box->text);
 	if (text_size > text_box->characters_max_one_box)
@@ -68,6 +76,8 @@ void	set_text_box(t_text_box *text_box, char *text)
 		text_box->page_in = 0;
 		text_box->text_pages = str_n_divide(text,
 				text_box->characters_max_one_box, divide_size);
+		if (!text_box->text_pages)
+			free(*game);
 	}
 	text_box->is_diplay = true;
 	text_box->read_all = false;
