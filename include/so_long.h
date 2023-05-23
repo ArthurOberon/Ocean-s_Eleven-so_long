@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/23 16:08:57 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/23 18:24:54 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@
 # define PATH_HEART				"ui/heart"
 
 # define PATH_ALPHABET			"text_box/alphabet/alphabet_16px"
+# define PATH_SPECIAL_CHAR		"text_box/special_char/special_character_16px"
 # define PATH_BACKGROUND_TEXT	"text_box/background_text_3_64px"
 
 # define PATH_BACKGROUND		"ground/carpet_64px"
@@ -103,6 +104,7 @@
 # define FRAME_HEART 1
 
 # define FRAME_ALPHABET 26
+# define FRAME_SPECIAL_CHAR 31
 # define FRAME_BACKGROUND_TEXT 1
 
 # define DELAY_ANIMATION 2
@@ -145,6 +147,7 @@ enum e_assets_pos
 	e_guard_fov,
 	e_heart,
 	e_alphabet,
+	e_special_character,
 	e_background_text,
 	e_total_assets,
 };
@@ -280,6 +283,7 @@ typedef struct s_sprites_assets
 	t_sprite	*qte;
 	t_sprite	*heart;
 	t_sprite	*alphabet;
+	t_sprite	*special_character;
 	t_sprite	*background_text;
 }	t_sprites_assets;
 
@@ -639,7 +643,8 @@ t_f_vector_2		chunk_to_pixel_f_pos(int chunk, int x_max);
 // |			TEXT_BOX			|
 // |--------------------------------|
 
-void				set_text_box(t_game *game, t_text_box *text_box, char *text);
+void				set_text_box(t_game *game, t_text_box *text_box,
+						char *text);
 
 // |============================================|
 // |					SRC_GNL					|

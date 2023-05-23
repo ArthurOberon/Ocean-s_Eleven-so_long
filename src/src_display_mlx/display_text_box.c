@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:37:34 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/23 16:08:57 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/23 17:32:36 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,20 @@
 static void	display_character(t_game *game, t_window *window,
 	t_vector_2 pos_display, char character)
 {
-	if (character != ' ')
+	if (character >= 97 && character <= 122)
+	{
+		if (character != ' ')
+		{
+			put_image_to_image(&window->img, pos_display,
+				&(window->map_sprites[game->level->nb_cases
+					+ e_alphabet]->sprite_img)[character - 'a']);
+		}
+	}
+	if (character >= 33 && character <= 63)
 	{
 		put_image_to_image(&window->img, pos_display,
 			&(window->map_sprites[game->level->nb_cases
-				+ e_alphabet]->sprite_img)[character - 'a']);
+				+ e_special_character]->sprite_img)[character - '!']);
 	}
 }
 

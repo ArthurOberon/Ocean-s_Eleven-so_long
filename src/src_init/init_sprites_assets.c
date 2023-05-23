@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 20:56:08 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/19 18:29:20 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/23 17:28:13 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,8 @@ void	init_sprites_assets(t_game *game)
 	sprite_to_assets(game, &assets->heart, PATH_HEART, FRAME_HEART);
 	sprite_to_assets_no_images_alloc(game, &assets->alphabet, FRAME_ALPHABET);
 	sprite_images_assets_only(game, assets->alphabet, PATH_ALPHABET,(t_vector_2){16, 16});
+	sprite_to_assets_no_images_alloc(game, &assets->special_character, FRAME_SPECIAL_CHAR);
+	sprite_images_assets_only(game, assets->special_character, PATH_SPECIAL_CHAR,(t_vector_2){16, 16});
 	sprite_to_assets_no_images_alloc(game, &assets->background_text, FRAME_BACKGROUND_TEXT);
 	sprite_images_assets_only(game, assets->background_text, PATH_BACKGROUND_TEXT, (t_vector_2){WINDOW_WIDTH - 40, WINDOW_HEIGHT / 4});
 }

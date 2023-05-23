@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 18:00:00 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/23 16:08:57 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/23 18:41:14 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ void	set_text_box(t_game *game, t_text_box *text_box, char *text)
 		return ;
 	text_box->text = text;
 	text_size = ft_strlen(text_box->text);
-	if (text_size > text_box->characters_max_one_box)
-	{
+	// if (text_size > text_box->characters_max_one_box)
+	// {
 		divide_size = text_size / text_box->characters_max_one_box
 			+ ((text_size % text_box->characters_max_one_box) != 0);
 		text_box->page_number = divide_size;
@@ -78,7 +78,7 @@ void	set_text_box(t_game *game, t_text_box *text_box, char *text)
 				text_box->characters_max_one_box, divide_size);
 		if (!text_box->text_pages)
 			free_game(*game, NULL);
-	}
+	// }
 	text_box->is_display = true;
 	game->gameplay->is_stop = true;
 	text_box->read_all = false;
