@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:37:34 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/22 18:46:34 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/23 15:32:49 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ static void	display_face(t_game *game, t_vector_2 pos_display)
 	put_image_to_image(&game->window->img, pos_display,
 		&(sprite_face->sprite_img)[0]);
 }
-	// pos_display->x += sprite_face->sprite_img->size.x;
 
 void	display_text_box(t_game *game, t_window *window, t_text_box text_box)
 {
@@ -80,5 +79,3 @@ void	display_text_box(t_game *game, t_window *window, t_text_box text_box)
 	display_text(game, text_box, text_box.pos_display_text,
 		text_box.characters_max);
 }
-
-// free and secure text_box.text_pages in str_n_divide
