@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 02:08:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/24 20:06:07 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/24 22:17:21 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ static void	display_character_selection(t_game *game, t_window *window,
 
 	sprite_selection_box = window->map_sprites[game->level->nb_cases
 		+ e_selection_box];
-	i = 0;
-	while (i < 4)
+	i = -1;
+	size_sprite = 0;
+	while (++i < 4)
 	{
-		printf("test : [%p]\n", sprite_selection_box->sprite_img[0]);
 		pos_display = (t_vector_2){10 + (size_sprite * i) - (i * 2),
 			WINDOW_HEIGHT - CHUNK_SIZE - 10};
 		sprite = window->map_sprites[game->level->nb_cases + i];
@@ -35,7 +35,6 @@ static void	display_character_selection(t_game *game, t_window *window,
 			&(sprite_selection_box->sprite_img)[0]);
 		put_image_to_image(&window->img, pos_display,
 			&(sprite->sprite_img)[0]);
-		i++;
 	}
 	i = player->player_character;
 	pos_display.x = 10 + (size_sprite * i) - (i * 2);
