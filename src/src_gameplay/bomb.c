@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:52:31 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/19 15:50:46 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/24 22:42:38 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,26 +84,13 @@ static void	bomb_pattern_circle(t_game *game, t_bomb bomb, int size)
 
 void	make_bomb_explode(t_game *game, t_bomb bomb)
 {
-	int	i;
-
-	i = 0;
 	if (bomb.bomb_plant == 1)
 	{
-		set_explosion_position(&bomb, bomb.bomb_pos);
-		if (game->level->map[bomb.bomb_chunk_pos] == '2')
-		{
-			game->level->map[bomb.bomb_chunk_pos] = '0';
-			game->window->map_sprites[bomb.bomb_chunk_pos]
-				= game->assets->ground;
-		}
+		explode_chunk(game, bomb, 0, 0);
 		return ;
 	}
 	bomb_pattern_circle(game, bomb, bomb.bomb_plant);
 }
-
-// bomb->bomb_chunk_pos += player_look_dir.x;
-// bomb->bomb_chunk_pos += player->player_look_dir.y
-	// * game->level->map_vector.x;
 
 void	get_bomb_position(t_bomb *bomb, t_player *player, t_game *game)
 {
