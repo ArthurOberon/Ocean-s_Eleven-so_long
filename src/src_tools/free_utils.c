@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:49:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/23 18:17:27 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/24 16:01:25 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	free_assets(void *ptr, t_sprites_assets *assets)
 	free_one_sprite(ptr, assets->area_qte);
 	free_one_sprite(ptr, assets->qte);
 	free_one_sprite(ptr, assets->heart);
+	free_one_sprite(ptr, assets->selection_box);
 	free_one_sprite(ptr, assets->alphabet);
 	free_one_sprite(ptr, assets->special_character);
 	free_one_sprite(ptr, assets->background_text);
