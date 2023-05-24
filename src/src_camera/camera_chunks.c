@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:08:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/18 14:56:19 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/24 19:57:06 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ t_f_vector_2 camera_f_size, t_vector_2 nb_chunks_in_camera, t_window *window)
 		limit.x = (int)(camera_f_pos.x + camera_f_size.x) / CHUNK_SIZE;
 	if (camera_f_pos.y < 0)
 		limit.y = (int)(camera_f_pos.y + camera_f_size.y) / CHUNK_SIZE;
-	if ((camera_f_pos.x + camera_f_size.x) > window->img.size.x)
+	if ((camera_f_pos.x + camera_f_size.x + CHUNK_SIZE) > window->img.size.x)
 		limit.x = ((int)(window->img.size.x - camera_f_pos.x)) / CHUNK_SIZE;
-	if ((camera_f_pos.y + camera_f_size.y) > window->img.size.y)
+	if ((camera_f_pos.y + camera_f_size.y + CHUNK_SIZE) > window->img.size.y)
 		limit.y = ((int)(window->img.size.y - camera_f_pos.y)) / CHUNK_SIZE;
 	limit.x += 1;
 	limit.y += 1;
@@ -52,9 +52,11 @@ static void	get_chunks_in_int_tab(int *chunks_to_display, int chunk_start,
 {
 	int			i;
 	int			j;
+	int			k;
 	int			chunk_max;
 	int			chunk_tmp;
 
+	k = 0;
 	chunk_max = max.x * max.y;
 	j = -1;
 	while (++j < limit.y && j < max.y)
@@ -63,13 +65,14 @@ static void	get_chunks_in_int_tab(int *chunks_to_display, int chunk_start,
 		chunk_tmp = chunk_start + j * max.x;
 		while (++i < limit.x && i < max.x)
 		{
-			if (chunk_tmp >= chunk_max)
+			if (chunk_tmp > chunk_max)
 				break ;
 			chunks_to_display[i + (j * limit.x)] = chunk_tmp;
 			chunk_tmp++;
+			k++;
 		}
 	}
-	chunks_to_display[i + (--j * limit.x)] = -1;
+	chunks_to_display[k] = -1;
 }
 
 void	get_chunks_to_display(t_game *game, t_camera *camera)
@@ -85,6 +88,8 @@ void	get_chunks_to_display(t_game *game, t_camera *camera)
 			((int)camera->camera_f_pos.x * ((int)camera->camera_f_pos.x > 0)),
 			((int)camera->camera_f_pos.y * ((int)camera->camera_f_pos.y > 0)),
 			game->level->map_vector.x);
+	ft_bzero(camera->chunks_to_display,
+		(camera->nb_chunks_in_camera_total * 4));
 	get_chunks_in_int_tab(camera->chunks_to_display, chunk_start, limit,
 		game->level->map_vector);
 }

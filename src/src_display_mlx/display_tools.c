@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:17:13 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/17 18:11:38 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/24 18:36:38 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,37 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)pixel = color;
 }
 
-// OPTI : type unsigned int -> size_t -> have to protect if smallest than size_t
-void	memcpy_img(t_img *img_dst, t_img *img_src, t_vector_2 pos)
+// void	memcpy_img(t_img *img_dst, t_img *img_src, t_vector_2 pos)
+// {
+// 	int	j;
+
+// 	j = 0;
+// 	while (j < img_src->size.y)
+// 	{
+// 		ft_memcpy(img_dst->addr + (pos.y + j) * img_dst->line_len
+// 			+ pos.x * 4,
+// 			img_src->addr + j * img_src->line_len, img_src->line_len);
+// 		j++;
+// 	}
+// }
+
+void	background(t_img *img, int color)
+{
+	ft_memset(img->addr, color, img->size.x * img->size.y * 4);
+}
+
+void	memcpy_img(t_img *img_dst, t_vector_2 pos_dst,
+	t_img *img_src, t_vector_2 pos_src)
 {
 	int	j;
 
 	j = 0;
 	while (j < img_src->size.y)
 	{
-		ft_memcpy(img_dst->addr + (pos.y + j) * img_dst->line_len
-			+ pos.x * 4,
-			img_src->addr + j * img_src->line_len, img_src->line_len);
+		ft_memcpy(img_dst->addr + (pos_dst.y + j) * img_dst->line_len
+			+ pos_dst.x * 4,
+			img_src->addr + (pos_src.y + j) * img_src->line_len + pos_src.x * 4,
+			img_src->line_len - pos_src.x * 4);
 		j++;
 	}
-}
-
-void	background(t_img *img, int color)
-{
-	ft_memset(img->addr, color, img->size.x * img->size.y * 4);
 }

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/23 16:07:36 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/24 19:57:32 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,22 @@ void	update_frame(t_sprite *sprite)
 static void	display_one_sprite(t_window *window, t_sprite *sprite,
 	t_f_vector_2 pos)
 {
-	if (pos.x < 0)
+	t_vector_2	pos_src;
+
+	pos_src = (t_vector_2){0, 0};
+	if ((int)pos.x < 0)
+	{
+		pos_src.x = -pos.x;
 		pos.x = 0;
-		// pos.x = -pos.x;
-	if (pos.y < 0)
+	}
+	if ((int)pos.y < 0)
+	{
+		pos_src.y = -pos.y;
 		pos.y = 0;
-		// pos.y = -pos.y;
+	}
 	update_frame(sprite);
-	memcpy_img(&window->img, &sprite->sprite_img[sprite->frame],
-		(t_vector_2){pos.x, pos.y});
+	memcpy_img(&window->img, (t_vector_2){pos.x, pos.y},
+		&sprite->sprite_img[sprite->frame], pos_src);
 }
 
 void	display_sprites(t_game *game, t_camera *camera, t_window *window)
@@ -79,9 +86,9 @@ void	display_sprites(t_game *game, t_camera *camera, t_window *window)
 		pos_tmp.x = pos_tmp.x - camera->camera_f_pos.x;
 		pos_tmp.y = pos_tmp.y - camera->camera_f_pos.y;
 		if (pos_tmp.x > camera->camera_f_size.x)
-			pos_tmp.x = camera->camera_f_size.x;
+			pos_tmp.x = camera->camera_f_size.x - 1;
 		if (pos_tmp.y > camera->camera_f_size.y)
-			pos_tmp.y = camera->camera_f_size.y;
+			pos_tmp.y = camera->camera_f_size.y - 1;
 		display_one_sprite(window,
 			window->map_sprites[camera->chunks_to_display[i]], pos_tmp);
 		i++;

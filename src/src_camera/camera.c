@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 13:37:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/18 19:20:26 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/24 18:40:41 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	display_background(t_window *window, t_img *img)
 {
-	memcpy_img(&window->img, img, (t_vector_2){0, 0});
+	memcpy_img(&window->img, (t_vector_2){0, 0}, img, (t_vector_2){0, 0});
 }
 
 void	camera(t_game *game, t_camera *camera, t_player *player)

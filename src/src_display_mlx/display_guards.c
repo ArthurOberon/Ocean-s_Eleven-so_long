@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 17:28:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/18 22:36:21 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/24 18:43:19 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 static void	display_one_guard(t_window *window, t_guard guard, t_sprite *sprite)
 {
-// if ((guard.guard_pos.x + CHUNK_SIZE < window->img.size.x
-			// && guard.guard_pos.y + CHUNK_SIZE < window->img.size.y)
-		// && (guard.guard_pos.x > 0 && guard.guard_pos.y > 0))
-	// printf("pos : [%d]\n", guard.guard_pos_tab);
+	if ((guard.guard_pos.x + CHUNK_SIZE < window->img.size.x
+			&& guard.guard_pos.y + CHUNK_SIZE < window->img.size.y)
+		&& (guard.guard_pos.x > 0 && guard.guard_pos.y > 0))
 		put_image_to_image(&window->img, guard.guard_pos,
 			&(sprite->sprite_img)[sprite->frame]);
+	// printf("pos : [%d]\n", guard.guard_pos_tab);
 }
 
 // fov -> Field Of View
