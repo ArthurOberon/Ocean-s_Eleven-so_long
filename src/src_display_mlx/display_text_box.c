@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:37:34 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/23 17:32:36 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/25 16:04:59 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ static void	display_text(t_game *game, t_text_box text_box,
 {
 	int			i;
 	int			pos_display_x_start;
-	int			size_alphabet;
+	int			size_letter;
 	t_vector_2	pos_in_text;
 
 	i = 0;
 	pos_in_text.x = 0;
 	pos_in_text.y = 0;
 	pos_display_x_start = pos_display.x;
-	size_alphabet = game->window->map_sprites[game->level->nb_cases
+	size_letter = game->window->map_sprites[game->level->nb_cases
 		+ e_alphabet]->sprite_img->size.x;
 	while (text_box.text_pages[text_box.page_in][i])
 	{
@@ -53,7 +53,7 @@ static void	display_text(t_game *game, t_text_box text_box,
 			pos_in_text.x = 0;
 			pos_in_text.y += 1;
 			pos_display.x = pos_display_x_start;
-			pos_display.y += size_alphabet + 10;
+			pos_display.y += size_letter + 10;
 		}
 		if (pos_in_text.y >= pos_max.y)
 			break ;
@@ -61,7 +61,7 @@ static void	display_text(t_game *game, t_text_box text_box,
 			text_box.text_pages[text_box.page_in][i]);
 		i++;
 		pos_in_text.x++;
-		pos_display.x += size_alphabet;
+		pos_display.x += size_letter;
 	}
 }
 

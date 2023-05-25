@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/24 22:07:58 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/25 15:15:00 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@
 # define PATH_GUARD_FOV			"guard/fov_2_64px"
 
 # define PATH_HEART				"ui/heart"
+# define PATH_BOX				"ui/box_64px"
 # define PATH_SELECTION_BOX		"ui/character_selection_box_64px"
 
 # define PATH_ALPHABET			"text_box/alphabet/alphabet_16px"
@@ -103,6 +104,7 @@
 # define FRAME_GUARD_FOV 1
 
 # define FRAME_HEART 1
+# define FRAME_BOX 1
 # define FRAME_SELECTION_BOX 2
 
 # define FRAME_ALPHABET 26
@@ -148,6 +150,7 @@ enum e_assets_pos
 	e_guards,
 	e_guard_fov,
 	e_heart,
+	e_box,
 	e_selection_box,
 	e_alphabet,
 	e_special_character,
@@ -285,6 +288,7 @@ typedef struct s_sprites_assets
 	t_sprite	*area_qte;
 	t_sprite	*qte;
 	t_sprite	*heart;
+	t_sprite	*box;
 	t_sprite	*selection_box;
 	t_sprite	*alphabet;
 	t_sprite	*special_character;
