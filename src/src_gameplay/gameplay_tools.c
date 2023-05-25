@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 17:34:37 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/24 14:44:07 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/26 00:07:18 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void	calculate_fps(int *fps, double *delta_time)
 void	set_player_to_character(t_game *game, t_gameplay *gameplay,
 	t_player *player, int character)
 {
-	if (character == e_main)
+	if (character == e_main && (gameplay->available_character[e_main] == 1
+		|| gameplay->available_character[e_main] == 3))
 	{
 		if (player->has_been_hit == false)
 			player->hp = 2;
@@ -46,19 +47,25 @@ void	set_player_to_character(t_game *game, t_gameplay *gameplay,
 			"let's get thoses collectibles !  !\"#$%&'()*+,-./0123456789:;<=?>");
 		printf("new player choose : Danny\n");
 	}
-	else if (character == e_eater)
+	else if (character == e_eater
+		&& (gameplay->available_character[e_eater] == 1
+			|| gameplay->available_character[e_eater] == 3))
 	{
 		player->hp = 1;
 		player->player_character = e_eater;
 		printf("new player choose : Rusty\n");
 	}
-	else if (character == e_thief)
+	else if (character == e_thief
+		&& (gameplay->available_character[e_thief] == 1
+			|| gameplay->available_character[e_thief] == 3))
 	{
 		player->hp = 1;
 		player->player_character = e_thief;
 		printf("new player choose : Linus\n");
 	}
-	else if (character == e_bomber)
+	else if (character == e_bomber
+		&& (gameplay->available_character[e_bomber] == 1
+			|| gameplay->available_character[e_bomber] == 3))
 	{
 		player->hp = 1;
 		player->player_character = e_bomber;
@@ -79,9 +86,11 @@ void	restart(t_game *game)
 	ft_print_1d_to_2d(game->level);
 	free(game->gameplay->player->bomb.explosion_pos);
 	free(game->gameplay->player);
-	init_player(game, game->gameplay->player);
+	init_player(game, game->gameplay->player, game->gameplay->chosen_character);
 	game->gameplay->nb_collect_remain = game->level->nb_collect;
 	game->gameplay->nb_move = 0;
+	game->gameplay->display_plus_one = false;
+	game->gameplay->text_box.is_display = false;
 	mlx_clear_window(game->window->mlx_ptr, game->window->win_ptr);
 	while (i < game->level->nb_cases)
 	{

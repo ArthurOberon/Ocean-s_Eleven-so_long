@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 22:33:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/25 17:48:25 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/26 00:11:31 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,18 @@ static void	check_tile(t_game *game, char tile, int pos)
 			ft_putstr("SUCCESS !\n");
 			close_game(game);
 		}
+	}
+	if (tile == 'D' || tile == 'R' || tile == 'L' || tile == 'B')
+	{
+		if (tile == 'D')
+			game->gameplay->available_character[e_main] = 3;
+		else if (tile == 'R')
+			game->gameplay->available_character[e_eater] = 3;
+		else if (tile == 'L')
+			game->gameplay->available_character[e_thief] = 3;
+		else if (tile == 'B')
+			game->gameplay->available_character[e_bomber] = 3;
+		game->level->map[pos] = '0';
 	}
 }
 

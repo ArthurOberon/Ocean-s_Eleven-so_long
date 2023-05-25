@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/25 22:25:46 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/25 22:53:23 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -388,6 +388,8 @@ typedef struct s_gameplay
 	bool				is_pause;
 	bool				is_stop;
 	bool				display_plus_one;
+	int					available_character[4];
+	int					chosen_character;
 	t_text_box			text_box;
 	int					nb_collect_get;
 	int					nb_collect_remain;
@@ -684,14 +686,16 @@ void				init_camera(t_game *game);
 // |			INIT_GAME			|
 // |--------------------------------|
 
-void				init_game(t_game *game);
+void				init_game(t_game *game, int available_character[4],
+						int chosen_character);
 void				bzero_game(t_game *game);
 
 // |------------------------------------|
 // |			INIT_GAMEPLAY			|
 // |------------------------------------|
 
-void				init_gameplay(t_game *game);
+void				init_gameplay(t_game *game, int available_character[4],
+						int chosen_character);
 
 // |--------------------------------|
 // |			INIT_GUARD			|
@@ -716,7 +720,8 @@ t_img				resize_img(t_game *game, void *ptr, t_img *src,
 // |			INIT_PLAYER			|
 // |--------------------------------|
 
-void				init_player(t_game *game, t_player *player);
+void				init_player(t_game *game, t_player *player,
+						int chosen_character);
 void				init_explosion_pos(t_game *game, t_bomb *bomb, bool alloc);
 
 // |----------------------------------------|

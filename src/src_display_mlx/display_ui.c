@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 02:08:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/25 22:24:18 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/26 00:12:06 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,10 @@ static void	display_character_selection(t_game *game, t_window *window,
 		size_sprite = sprite->sprite_img->size.x;
 		put_image_to_image(&window->img, pos_display,
 			&(sprite_selection_box->sprite_img)[0]);
-		put_image_to_image(&window->img, pos_display,
-			&(sprite->sprite_img)[0]);
+		if (game->gameplay->available_character[i] == 1
+			|| game->gameplay->available_character[i] == 3)
+			put_image_to_image(&window->img, pos_display,
+				&(sprite->sprite_img)[0]);
 	}
 	i = player->player_character;
 	pos_display.x = 10 + (size_sprite * i) - (i * 2);

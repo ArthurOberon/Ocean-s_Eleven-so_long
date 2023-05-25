@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 21:36:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/18 22:27:44 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/25 22:32:58 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	init_qte(t_player *player)
 	player->qte.time = (struct timeval){0, 0};
 }
 
-void	init_player(t_game *game, t_player *player)
+void	init_player(t_game *game, t_player *player, int chosen_character)
 {
 	player = ft_calloc(sizeof(t_player), 1);
 	if (!player)
@@ -89,7 +89,7 @@ void	init_player(t_game *game, t_player *player)
 	init_player_positioning(game, player);
 	init_qte(player);
 	init_bomb(game, player);
-	player->player_character = e_main;
+player->player_character = chosen_character;
 	player->hp = 2;
 	player->has_been_hit = false;
 	player->iframes = false;

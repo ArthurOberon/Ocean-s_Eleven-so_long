@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:21:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/24 22:32:15 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/25 22:59:48 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,49 @@
 
 int	main(int argc, char **argv)
 {
+	int		argc_map;
+	int		available_character[4];
+	int		chosen_character;
 	t_game	game;
 
 	if (argc < 2)
 		exit_arg_error();
+	argc_map = 1;
+	chosen_character = e_main;
+	ft_bzero(available_character, sizeof(int) * 4);
+	while (argv[argc_map][0] == '-')
+	{
+		if (argv[argc_map][1] == 'd' || argv[argc_map][1] == 'D')
+		{
+			if (argc_map == 1)
+				chosen_character = e_main;
+			available_character[e_main] = 1;
+			argc_map += 1;
+		}
+		if (argv[argc_map][1] == 'r' || argv[argc_map][1] == 'R')
+		{
+			if (argc_map == 1)
+				chosen_character = e_eater;
+			available_character[e_eater] = 1;
+			argc_map += 1;
+		}
+		if (argv[argc_map][1] == 'l' || argv[argc_map][1] == 'L')
+		{
+			if (argc_map == 1)
+				chosen_character = e_thief;
+			available_character[e_thief] = 1;
+			argc_map += 1;
+		}
+		if (argv[argc_map][1] == 'b' || argv[argc_map][1] == 'B')
+		{
+			if (argc_map == 1)
+				chosen_character = e_bomber;
+			available_character[e_bomber] = 1;
+			argc_map += 1;
+		}
+	}
 	bzero_game(&game);
-	parse_map(argv[1], &(game.level->map), &(game.level->map_vector));
+	parse_map(argv[argc_map], &(game.level->map), &(game.level->map_vector));
 	game.level->nb_cases = game.level->map_vector.x * game.level->map_vector.y;
 	if (IS_DEBUG)
 	{
@@ -40,7 +77,7 @@ int	main(int argc, char **argv)
 		ft_print_1d_to_2d(game.level);
 	}
 	pathfinding(&game);
-	init_game(&game);
+	init_game(&game, available_character, chosen_character);
 	start_game(&game);
 	free_game(game, NULL);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/25 17:48:02 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/25 22:59:11 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,18 +75,23 @@ static void	init_text_box(t_game *game, t_window *window, t_gameplay *gameplay,
 	text_box->text_pages = NULL;
 }
 
-void	init_gameplay(t_game *game)
+void	init_gameplay(t_game *game, int available_character[4],
+			int chosen_character)
 {
 	t_gameplay	*gameplay;
 
 	gameplay = ft_calloc(sizeof(t_gameplay), 1);
 	if (!gameplay)
 		free_game(*game, "Error of malloc\n");
-	srand(time(NULL));
 	game->gameplay = gameplay;
 	gameplay->is_pause = false;
 	gameplay->is_stop = false;
 	gameplay->display_plus_one = false;
+	gameplay->available_character[0] = available_character[0];
+	gameplay->available_character[1] = available_character[1];
+	gameplay->available_character[2] = available_character[2];
+	gameplay->available_character[3] = available_character[3];
+	gameplay->chosen_character = chosen_character;
 	gameplay->fps = 0;
 	gameplay->delta_time = 0;
 	gameplay->nb_collect_get = 0;
@@ -95,7 +100,7 @@ void	init_gameplay(t_game *game)
 	get_chunk_positions(game, &gameplay->chunks_pos, game->level->map_vector,
 		game->level->nb_cases);
 	gameplay->map_start_state = ft_strdup(game->level->map);
-	init_player(game, gameplay->player);
+	init_player(game, gameplay->player, chosen_character);
 	init_guards(game, gameplay->guards);
 	init_text_box(game, game->window, gameplay, &gameplay->text_box);
 	if (IS_DEBUG)
