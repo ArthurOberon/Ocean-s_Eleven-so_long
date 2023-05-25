@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:34:28 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/25 17:50:48 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/25 20:39:33 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,42 @@ void	display_nb_move(t_game *game)
 	free(string_nb);
 }
 
-void	display_plus_one_collectible(t_game *game, t_gameplay *gameplay,
+static void	display_one_str(t_game *game, t_vector_2 pos_display,
+	char *text, int size_letter)
+{
+	int	i;
+
+	i = 0;
+	while (text[i])
+	{
+		display_character(game, game->window, pos_display, text[i]);
+		pos_display.x += size_letter;
+		i++;
+	}
+}
+
+static void	display_plus_one_collectible(t_game *game, t_gameplay *gameplay,
 	t_player *player)
 {
-	;
+	static struct timeval	start_time = {0, 0};
+	struct timeval			time;
+	double					delay;
+	t_vector_2				pos_display;
+
+	if (gameplay->display_plus_one == false)
+		return ;
+	display_one_str(game, (t_vector_2){WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2},
+		"+1", game->window->map_sprites[game->level->nb_cases + e_alphabet]->sprite_img->size.x);
+	if (!start_time.tv_sec)
+		gettimeofday(&start_time, NULL);
+	gettimeofday(&time, NULL);
+	delay = (((double)(time.tv_usec - start_time.tv_usec) / CLOCKS_PER_SEC)
+			+ time.tv_sec - start_time.tv_sec);
+	if (delay >= 2)
+	{
+		start_time = (struct timeval){0, 0};
+		gameplay->display_plus_one = false;
+	}
 }
 
 void	display_gameplay_elements(t_game *game, t_gameplay *gameplay,
@@ -52,4 +84,5 @@ void	display_gameplay_elements(t_game *game, t_gameplay *gameplay,
 	display_bomb(gameplay->player, &gameplay->player->bomb, game, window);
 	display_qte(game, &gameplay->player->qte, gameplay->player,
 		gameplay->guards);
+	display_plus_one_collectible(game, gameplay, gameplay->player);
 }
