@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/25 15:15:00 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/25 17:18:39 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@
 # define DELAY_ANIMATION 2
 
 # define DELAY_TURN_GUARD 2.5
-# define DELAY_GUARD_CHASE_PLAYER 6
+# define DELAY_GUARD_CHASE_PLAYER 20
 
 # define DELAY_IFRAMES 1.5
 
@@ -516,6 +516,9 @@ void				put_image_to_image(t_img *window_img,
 void				display_text_box(t_game *game, t_window *window,
 						t_text_box text_box);
 
+void				display_character(t_game *game, t_window *window,
+						t_vector_2 pos_display, char character);
+
 // |------------------------------------|
 // |			DISPLAY_TOOLS			|
 // |------------------------------------|
@@ -859,6 +862,7 @@ size_t				ft_strlen(const char *s);
 // |			UTILS			|
 // |----------------------------|
 
+int					ft_nbrlen(int nb);
 int					is_equals(char *s1, char *s2);
 
 char				*ft_itoa(int n);

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 17:28:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/24 18:43:19 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/25 17:10:06 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	display_one_guard_fov(t_window *window, t_guard guard,
 	}
 }
 
-static void	change_guard_f_direction(t_guard *guard)
+static void	change_guard_direction(t_guard *guard)
 {
 	if (guard->chasing_player == true || guard->is_in_player == true)
 		return ;
@@ -84,7 +84,7 @@ static void	turn_guards(t_guard *guard)
 			- guard->last_time.tv_sec);
 	if (delay >= DELAY_TURN_GUARD)
 	{
-		change_guard_f_direction(guard);
+		change_guard_direction(guard);
 		set_guard_fov_direction(guard);
 		guard->last_time = guard->time;
 	}

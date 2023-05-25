@@ -6,82 +6,54 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 02:08:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/25 16:42:04 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/25 17:06:17 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	display_character(t_game *game, t_window *window,
-	t_vector_2 pos_display, char character)
-{
-	if (character >= 97 && character <= 122)
-	{
-		if (character != ' ')
-		{
-			put_image_to_image(&window->img, pos_display,
-				&(window->map_sprites[game->level->nb_cases
-					+ e_alphabet]->sprite_img)[character - 'a']);
-		}
-	}
-	if (character >= 33 && character <= 63)
-	{
-		put_image_to_image(&window->img, pos_display,
-			&(window->map_sprites[game->level->nb_cases
-				+ e_special_character]->sprite_img)[character - '!']);
-	}
-}
-
-static void	display_text(t_game *game, t_window *window,
-	t_vector_2 pos_display, char *text)
+static void	display_one_str(t_game *game, t_vector_2 pos_display,
+	char *text, int size_letter)
 {
 	int	i;
-	int	size_letter;
 
 	i = 0;
-	size_letter = game->window->map_sprites[game->level->nb_cases
-		+ e_alphabet]->sprite_img->size.x;
 	while (text[i])
 	{
-		display_character(game, window, pos_display, text[i]);
+		display_character(game, game->window, pos_display, text[i]);
 		pos_display.x += size_letter;
 		i++;
 	}
 }
 
-int	ft_nbrlen(long nb)
-{
-	if (nb < 0)
-		nb = -nb;
-	if (nb < 10)
-		return (1);
-	else
-		return (1 + ft_nbrlen(nb / 10));
-}
-
 static void	display_number_moves(t_game *game, t_window *window,
-	t_gameplay *gameplay, t_sprite *sprite)
+	t_gameplay *gameplay)
 {
+	int			size_letter;
 	t_vector_2	start_pos_display;
 	t_vector_2	pos_display;
-	int			size_letter;
+	t_sprite	*sprite_box;
+	char		*str_itoa;
 
+	sprite_box = window->map_sprites[game->level->nb_cases + e_box];
 	size_letter = game->window->map_sprites[game->level->nb_cases
 		+ e_alphabet]->sprite_img->size.x;
 	start_pos_display = (t_vector_2){WINDOW_WIDTH
-		- (sprite->sprite_img->size.x * 2),
+		- (sprite_box->sprite_img->size.x * 2),
 		WINDOW_HEIGHT - CHUNK_SIZE - 10};
 	put_image_to_image(&window->img, start_pos_display,
-		&(sprite->sprite_img)[sprite->frame]);
-	pos_display.x = start_pos_display.x + sprite->sprite_img->size.x / 2
+		&(sprite_box->sprite_img)[sprite_box->frame]);
+	pos_display.x = start_pos_display.x + sprite_box->sprite_img->size.x / 2
 		- size_letter / 2;
-	pos_display.y = start_pos_display.y + sprite->sprite_img->size.x / 3
+	pos_display.y = start_pos_display.y + sprite_box->sprite_img->size.x / 3
 		- size_letter / 2;
 	pos_display.x -= (size_letter / 2) * (ft_nbrlen(gameplay->nb_move) - 1);
-	display_text(game, window, pos_display, ft_itoa(gameplay->nb_move));
+	str_itoa = ft_itoa(gameplay->nb_move);
+	display_one_str(game, pos_display, str_itoa, size_letter);
+	free(str_itoa);
 	pos_display.x = start_pos_display.x + size_letter * 1.5;
-	pos_display.y = start_pos_display.y + sprite->sprite_img->size.y / 2;
-	display_text(game, window, pos_display, "moves");
+	pos_display.y = start_pos_display.y + sprite_box->sprite_img->size.y / 2;
+	display_one_str(game, pos_display, "moves", size_letter);
 }
 
 static void	display_character_selection(t_game *game, t_window *window,
@@ -136,6 +108,5 @@ void	display_ui(t_game *game, t_window *window, t_gameplay *gameplay)
 	display_heart(window, gameplay->player,
 		window->map_sprites[game->level->nb_cases + e_heart]);
 	display_character_selection(game, window, gameplay->player);
-	display_number_moves(game, window, gameplay,
-		window->map_sprites[game->level->nb_cases + e_box]);
+	display_number_moves(game, window, gameplay);
 }

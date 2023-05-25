@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:24:32 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/24 22:46:03 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/25 17:06:12 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	is_equals(char *s1, char *s2)
 	return (1);
 }
 
-static int	ft_nbrlen(int nb)
+int	ft_nbrlen(int nb)
 {
 	if (nb < 0)
 		nb = -nb;

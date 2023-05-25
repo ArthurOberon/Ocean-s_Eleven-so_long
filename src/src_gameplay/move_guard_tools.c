@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 23:49:05 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/19 14:09:44 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/25 17:20:03 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ void	get_move_guard(t_guard *guard, t_f_vector_2 *move,
 	{
 		move->x = (double)guard->guard_f_dir.x * SPEED_GUARD * delta_time;
 		if (move->x > CHUNK_SIZE || move->x < -CHUNK_SIZE)
-			move->x = (CHUNK_SIZE - 1) * guard->guard_f_dir.x;
+			move->x = (CHUNK_SIZE - 1) * (int)guard->guard_f_dir.x;
 	}
 	if (axe.y == 1)
 	{
 		move->y = (double)guard->guard_f_dir.y * SPEED_GUARD * delta_time;
 		if (move->y > CHUNK_SIZE || move->y < -CHUNK_SIZE)
-			move->y = (CHUNK_SIZE - 1) * guard->guard_f_dir.y;
+			move->y = (CHUNK_SIZE - 1) * (int)guard->guard_f_dir.y;
 	}
 }
 
@@ -72,7 +72,7 @@ void	restrict_move_guard(t_f_vector_2 *move, t_guard *guard,
 		}
 		else
 		{
-			move->x = collider.x - (guard->guard_pos.x + CHUNK_SIZE) - 1;
+			move->x = collider.x - (guard->guard_pos.x + guard->size.x) - 1;
 		}
 	}
 	if (axe.y == 1)
@@ -83,7 +83,7 @@ void	restrict_move_guard(t_f_vector_2 *move, t_guard *guard,
 		}
 		else
 		{
-			move->y = collider.y - (guard->guard_pos.y + CHUNK_SIZE) - 1;
+			move->y = collider.y - (guard->guard_pos.y + guard->size.y) - 1;
 		}
 	}
 }

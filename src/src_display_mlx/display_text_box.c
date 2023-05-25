@@ -6,13 +6,13 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:37:34 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/25 16:04:59 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/25 17:05:25 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	display_character(t_game *game, t_window *window,
+void	display_character(t_game *game, t_window *window,
 	t_vector_2 pos_display, char character)
 {
 	if (character >= 97 && character <= 122)
@@ -32,7 +32,7 @@ static void	display_character(t_game *game, t_window *window,
 	}
 }
 
-static void	display_text(t_game *game, t_text_box text_box,
+static void	display_one_page_on_text_box(t_game *game, t_text_box text_box,
 	t_vector_2 pos_display, t_vector_2 pos_max)
 {
 	int			i;
@@ -85,6 +85,6 @@ void	display_text_box(t_game *game, t_window *window, t_text_box text_box)
 	put_image_to_image(&window->img, text_box.pos_display_background,
 		&(background->sprite_img)[0]);
 	display_face(game, text_box.pos_display_face);
-	display_text(game, text_box, text_box.pos_display_text,
+	display_one_page_on_text_box(game, text_box, text_box.pos_display_text,
 		text_box.characters_max);
 }
