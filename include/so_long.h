@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/25 17:18:39 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/25 17:47:50 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@
 # define DELAY_ANIMATION 2
 
 # define DELAY_TURN_GUARD 2.5
-# define DELAY_GUARD_CHASE_PLAYER 20
+# define DELAY_GUARD_CHASE_PLAYER 6
 
 # define DELAY_IFRAMES 1.5
 
@@ -387,7 +387,9 @@ typedef struct s_gameplay
 {
 	bool				is_pause;
 	bool				is_stop;
+	bool				display_plus_one;
 	t_text_box			text_box;
+	int					nb_collect_get;
 	int					nb_collect_remain;
 	int					nb_guard;
 	int					nb_move;
@@ -418,6 +420,8 @@ typedef struct s_game
 	t_camera			*camera;
 }	t_game;
 // int		bpp; /* bits per pixel */
+
+void				get_one_collectible(t_game *game);
 
 // |================================================|
 // |					SRC_CAMERA					|

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:34:28 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/23 16:08:11 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/25 17:50:48 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@ void	display_nb_move(t_game *game)
 	mlx_string_put(game->window->mlx_ptr, game->window->win_ptr, 10, 44, BLUE,
 		string_nb);
 	free(string_nb);
+}
+
+void	display_plus_one_collectible(t_game *game, t_gameplay *gameplay,
+	t_player *player)
+{
+	;
 }
 
 void	display_gameplay_elements(t_game *game, t_gameplay *gameplay,

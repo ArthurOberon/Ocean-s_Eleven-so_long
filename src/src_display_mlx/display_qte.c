@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 15:30:42 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/23 16:08:32 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/25 17:48:35 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ static void	start_qte(t_game *game, t_qte *qte, t_guard *guard)
 	{
 		if (is_win == true)
 		{
+			game->gameplay->nb_collect_get += 1;
 			game->gameplay->nb_collect_remain -= 1;
+			game->gameplay->display_plus_one = true;
 			guard->is_pickpocketable = false;
 		}
 		else

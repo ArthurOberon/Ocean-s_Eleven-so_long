@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 02:08:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/25 17:06:17 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/25 17:33:29 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,38 @@ static void	display_one_str(t_game *game, t_vector_2 pos_display,
 	}
 }
 
+static void	display_number_collectibles(t_game *game, t_window *window,
+	t_gameplay *gameplay)
+{
+	int			size_letter;
+	t_vector_2	start_pos_display;
+	t_vector_2	pos_display;
+	t_sprite	*sprite_box;
+	char		*str_itoa;
+
+	sprite_box = window->map_sprites[game->level->nb_cases + e_box];
+	start_pos_display = (t_vector_2){WINDOW_WIDTH
+		- (sprite_box->sprite_img->size.x + 10),
+		WINDOW_HEIGHT - CHUNK_SIZE - 10};
+	size_letter = game->window->map_sprites[game->level->nb_cases
+		+ e_alphabet]->sprite_img->size.x;
+	put_image_to_image(&window->img, start_pos_display,
+		&(sprite_box->sprite_img)[sprite_box->frame]);
+	pos_display.x = start_pos_display.x + sprite_box->sprite_img->size.x / 2
+		- size_letter / 2;
+	pos_display.y = start_pos_display.y + sprite_box->sprite_img->size.x / 3
+		- size_letter / 2;
+	pos_display.x -= (size_letter / 2) * (ft_nbrlen(gameplay->nb_collect_get) - 1);
+	str_itoa = ft_itoa(gameplay->nb_collect_get);
+	display_one_str(game, pos_display, str_itoa, size_letter);
+	free(str_itoa);
+	pos_display.x = start_pos_display.x + size_letter * 1.5;
+	pos_display.y = start_pos_display.y + sprite_box->sprite_img->size.y / 2;
+	str_itoa = ft_itoa(game->level->nb_collect);
+	display_one_str(game, pos_display, str_itoa, size_letter);
+	free(str_itoa);
+}
+
 static void	display_number_moves(t_game *game, t_window *window,
 	t_gameplay *gameplay)
 {
@@ -36,11 +68,11 @@ static void	display_number_moves(t_game *game, t_window *window,
 	char		*str_itoa;
 
 	sprite_box = window->map_sprites[game->level->nb_cases + e_box];
+	start_pos_display = (t_vector_2){WINDOW_WIDTH
+		- ((sprite_box->sprite_img->size.x * 2) + 20),
+		WINDOW_HEIGHT - CHUNK_SIZE - 10};
 	size_letter = game->window->map_sprites[game->level->nb_cases
 		+ e_alphabet]->sprite_img->size.x;
-	start_pos_display = (t_vector_2){WINDOW_WIDTH
-		- (sprite_box->sprite_img->size.x * 2),
-		WINDOW_HEIGHT - CHUNK_SIZE - 10};
 	put_image_to_image(&window->img, start_pos_display,
 		&(sprite_box->sprite_img)[sprite_box->frame]);
 	pos_display.x = start_pos_display.x + sprite_box->sprite_img->size.x / 2
@@ -109,4 +141,5 @@ void	display_ui(t_game *game, t_window *window, t_gameplay *gameplay)
 		window->map_sprites[game->level->nb_cases + e_heart]);
 	display_character_selection(game, window, gameplay->player);
 	display_number_moves(game, window, gameplay);
+	display_number_collectibles(game, window, gameplay);
 }
