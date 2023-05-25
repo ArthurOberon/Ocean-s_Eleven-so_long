@@ -32,7 +32,6 @@ SRC_DISPLAY		=	$(addprefix src_display_mlx/, \
 				 	display_guards.c \
 				 	display_sprites.c \
 				 	display_text_box.c \
-				 	display_small_features.c \
 				 	display_gameplay_elements.c \
 					)
 

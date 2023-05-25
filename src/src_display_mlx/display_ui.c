@@ -6,13 +6,13 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 02:08:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/25 17:33:29 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/25 22:24:18 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	display_one_str(t_game *game, t_vector_2 pos_display,
+void	display_one_str(t_game *game, t_vector_2 pos_display,
 	char *text, int size_letter)
 {
 	int	i;

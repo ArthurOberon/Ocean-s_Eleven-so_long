@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/25 17:47:50 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/25 22:25:46 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -529,7 +529,6 @@ void				display_character(t_game *game, t_window *window,
 
 void				background(t_img *img, int color);
 void				img_pix_put(t_img *img, int x, int y, int color);
-// void				memcpy_img(t_img *img_dst, t_img *img_src, t_vector_2 pos);
 void				memcpy_img(t_img *img_dst, t_vector_2 pos_dst,
 						t_img *img_src, t_vector_2 pos_src);
 
@@ -539,6 +538,8 @@ __uint32_t			get_color_pixel(t_img *img, int i, int j);
 // |			DISPLAY_UI			|
 // |--------------------------------|
 
+void				display_one_str(t_game *game, t_vector_2 pos_display,
+						char *text, int size_letter);
 void				display_ui(t_game *game, t_window *window,
 						t_gameplay *gameplay);
 

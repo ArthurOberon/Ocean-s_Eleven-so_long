@@ -6,11 +6,12 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:34:28 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/25 20:39:33 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/25 22:25:00 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
 // Not use
 void	display_hp(t_window *window, t_player *player, int color)
 {
@@ -25,6 +26,7 @@ void	display_hp(t_window *window, t_player *player, int color)
 			color, "HP : 0");
 }
 
+// Not use
 void	display_nb_move(t_game *game)
 {
 	char	*string_nb;
@@ -37,20 +39,6 @@ void	display_nb_move(t_game *game)
 	free(string_nb);
 }
 
-static void	display_one_str(t_game *game, t_vector_2 pos_display,
-	char *text, int size_letter)
-{
-	int	i;
-
-	i = 0;
-	while (text[i])
-	{
-		display_character(game, game->window, pos_display, text[i]);
-		pos_display.x += size_letter;
-		i++;
-	}
-}
-
 static void	display_plus_one_collectible(t_game *game, t_gameplay *gameplay,
 	t_player *player)
 {
@@ -61,8 +49,10 @@ static void	display_plus_one_collectible(t_game *game, t_gameplay *gameplay,
 
 	if (gameplay->display_plus_one == false)
 		return ;
-	display_one_str(game, (t_vector_2){WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2},
-		"+1", game->window->map_sprites[game->level->nb_cases + e_alphabet]->sprite_img->size.x);
+	pos_display.x = player->player_pos.x - game->camera->camera_f_pos.x - (CHUNK_SIZE / 5);
+	pos_display.y = player->player_pos.y - game->camera->camera_f_pos.y - (CHUNK_SIZE / 5);
+	display_one_str(game, pos_display,
+	 	"+1", game->window->map_sprites[game->level->nb_cases + e_alphabet]->sprite_img->size.x);
 	if (!start_time.tv_sec)
 		gettimeofday(&start_time, NULL);
 	gettimeofday(&time, NULL);
