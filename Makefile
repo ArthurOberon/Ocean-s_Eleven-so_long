@@ -70,6 +70,7 @@ SRC_INIT	=	$(addprefix src_init/, \
 					init_gameplay.c \
 					init_sprites_assets.c \
 					sprites_arrengement.c \
+					init_random_elements.c \
 					)
 
 # SOURCES USE TO READ AND PARSE THE MAP
