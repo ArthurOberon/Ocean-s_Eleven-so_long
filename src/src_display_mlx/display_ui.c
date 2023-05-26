@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 02:08:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/26 15:49:35 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/26 17:35:43 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,18 @@ static void	display_number_collectibles(t_game *game, t_window *window,
 		&(sprite_box->sprite_img)[sprite_box->frame]);
 	pos_display.x = start_pos_display.x + sprite_box->sprite_img->size.x / 2
 		- size_letter / 2;
-	pos_display.y = start_pos_display.y + sprite_box->sprite_img->size.x / 3
-		- size_letter / 2;
-	pos_display.x -= (size_letter / 2) * (ft_nbrlen(gameplay->nb_collect_get) - 1);
+	pos_display.y = start_pos_display.y + sprite_box->sprite_img->size.y / 2
+		- size_letter * 2;
+	pos_display.x -= (size_letter) * (ft_nbrlen(gameplay->nb_collect_get));
 	str_itoa = ft_itoa(gameplay->nb_collect_get);
 	display_one_str(game, pos_display, str_itoa, size_letter);
 	free(str_itoa);
-	pos_display.x = start_pos_display.x + size_letter * 1.5;
-	pos_display.y = start_pos_display.y + sprite_box->sprite_img->size.y / 2;
+	pos_display.x = start_pos_display.x + sprite_box->sprite_img->size.x / 2
+		- size_letter / 2;
+	pos_display.y += size_letter * 1;
+	display_one_str(game, pos_display, "/", size_letter);
+	pos_display.x += size_letter;
+	pos_display.y += size_letter;
 	str_itoa = ft_itoa(game->level->nb_collect);
 	display_one_str(game, pos_display, str_itoa, size_letter);
 	free(str_itoa);
