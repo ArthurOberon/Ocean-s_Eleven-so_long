@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 15:39:49 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/25 17:18:04 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/26 15:58:40 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ void	init_guards(t_game *game, t_guard *guards)
 	int		i;
 	int		count_guard;
 
-	ft_print_1d_to_2d(game->level);
 	count_guard = count_number_guard(game->level->map, game->level->nb_cases);
 	if (count_guard == 0)
 		return ;

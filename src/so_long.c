@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:21:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/25 22:59:48 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/26 15:37:12 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,18 @@ int	main(int argc, char **argv)
 		exit_arg_error();
 	argc_map = 1;
 	chosen_character = e_main;
-	ft_bzero(available_character, sizeof(int) * 4);
-	while (argv[argc_map][0] == '-')
+	available_character[0] = 1;
+	available_character[1] = 1;
+	available_character[2] = 1;
+	available_character[3] = 1;
+	while (argv[argc_map][0] == '-'
+		&& ((argv[argc_map][1] == 'd' || argv[argc_map][1] == 'D')
+		|| (argv[argc_map][1] == 'r' || argv[argc_map][1] == 'R')
+		|| (argv[argc_map][1] == 'l' || argv[argc_map][1] == 'L')
+		|| (argv[argc_map][1] == 'b' || argv[argc_map][1] == 'B')))
 	{
+		if (argc_map == 1)
+			ft_bzero(available_character, sizeof(int) * 4);
 		if (argv[argc_map][1] == 'd' || argv[argc_map][1] == 'D')
 		{
 			if (argc_map == 1)

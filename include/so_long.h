@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/25 22:53:23 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/26 16:51:51 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define WINDOW_WIDTH 1600
 # define WINDOW_HEIGHT 800
 
-# define CHUNK_SIZE 128
+# define CHUNK_SIZE 64
 
 # define RATIO_PLAYER_SIZE_X 0.75
 # define RATIO_PLAYER_SIZE_Y 0.90
@@ -78,6 +78,7 @@
 # define PATH_HEART				"ui/heart"
 # define PATH_BOX				"ui/box_64px"
 # define PATH_SELECTION_BOX		"ui/character_selection_box_64px"
+# define PATH_AVATAR_CHARACTER	"ui/avatar_character_64px"
 
 # define PATH_ALPHABET			"text_box/alphabet/alphabet_16px"
 # define PATH_SPECIAL_CHAR		"text_box/special_char/special_character_16px"
@@ -106,6 +107,7 @@
 # define FRAME_HEART 1
 # define FRAME_BOX 1
 # define FRAME_SELECTION_BOX 2
+# define FRAME_AVATAR_CHARACTER 1
 
 # define FRAME_ALPHABET 26
 # define FRAME_SPECIAL_CHAR 31
@@ -152,6 +154,7 @@ enum e_assets_pos
 	e_heart,
 	e_box,
 	e_selection_box,
+	e_avatar_character,
 	e_alphabet,
 	e_special_character,
 	e_background_text,
@@ -290,6 +293,7 @@ typedef struct s_sprites_assets
 	t_sprite	*heart;
 	t_sprite	*box;
 	t_sprite	*selection_box;
+	t_sprite	*avatar_character;
 	t_sprite	*alphabet;
 	t_sprite	*special_character;
 	t_sprite	*background_text;
@@ -422,8 +426,6 @@ typedef struct s_game
 	t_camera			*camera;
 }	t_game;
 // int		bpp; /* bits per pixel */
-
-void				get_one_collectible(t_game *game);
 
 // |================================================|
 // |					SRC_CAMERA					|

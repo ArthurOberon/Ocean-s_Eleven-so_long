@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:34:28 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/26 00:10:34 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/26 15:53:12 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,15 @@ void	display_available_character(t_game *game, t_window *window,
 	t_vector_2	pos_tmp;
 	t_sprite	*sprite;
 
-	// if (gameplay->available_character[0] != 0
-		// && gameplay->available_character[1] != 0
-		// && gameplay->available_character[2] != 0
-		// && gameplay->available_character[3] != 0)
-		// return ;
+	if ((gameplay->available_character[0] == 1
+			|| gameplay->available_character[0] == 3)
+		&& (gameplay->available_character[1] == 1
+			|| gameplay->available_character[1] == 3)
+		&& (gameplay->available_character[2] == 1
+			|| gameplay->available_character[2] == 3)
+		&& (gameplay->available_character[3] == 1
+			|| gameplay->available_character[3] == 3))
+		return ;
 	i = 0;
 	while (i < game->level->nb_cases)
 	{

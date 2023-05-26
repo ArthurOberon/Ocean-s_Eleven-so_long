@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:40:38 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/25 15:18:09 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/26 15:47:47 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	init_sprites(t_game *game)
 	map_sprites[i + e_heart] = game->assets->heart;
 	map_sprites[i + e_box] = game->assets->box;
 	map_sprites[i + e_selection_box] = game->assets->selection_box;
+	map_sprites[i + e_avatar_character] = game->assets->avatar_character;
 	map_sprites[i + e_alphabet] = game->assets->alphabet;
 	map_sprites[i + e_special_character] = game->assets->special_character;
 	map_sprites[i + e_background_text] = game->assets->background_text;

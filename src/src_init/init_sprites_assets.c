@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 20:56:08 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/25 15:32:01 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/26 17:13:23 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,7 @@ void	init_sprites_assets(t_game *game)
 	sprite_to_assets(game, &assets->heart, PATH_HEART, FRAME_HEART);
 	sprite_to_assets(game, &assets->box, PATH_BOX, FRAME_BOX);
 	sprite_to_assets(game, &assets->selection_box, PATH_SELECTION_BOX, FRAME_SELECTION_BOX);
+	sprite_to_assets(game, &assets->avatar_character, PATH_AVATAR_CHARACTER, FRAME_AVATAR_CHARACTER);
 // 
 	sprite_to_assets_no_images_alloc(game, &assets->alphabet, FRAME_ALPHABET);
 	sprite_images_assets_only(game, assets->alphabet, PATH_ALPHABET,(t_vector_2){16, 16});
