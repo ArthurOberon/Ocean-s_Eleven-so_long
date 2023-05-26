@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 13:58:54 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/23 15:52:52 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/26 21:49:23 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 void	handle_player_move(int keysym, t_game *game)
 {
+	t_sprite	*sprite;
+
+	sprite = game->window->map_sprites[game->level->nb_cases
+		+ game->gameplay->player->player_character];
 	if (keysym == XK_W || keysym == XK_w || keysym == XK_Up)
 	{
 		game->gameplay->player->player_dir.y += -1;
