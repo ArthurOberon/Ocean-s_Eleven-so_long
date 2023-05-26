@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:25:07 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/26 20:10:40 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/26 21:52:02 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	move_player(t_game *game, t_player *player)
 	if (player->player_dir.x == 0 && player->player_dir.y == 0)
 	{
 		sprite->frame = 0;
+		sprite->last_time = (struct timeval){0, 0};
 		return ;
 	}
 	move.x = 0;

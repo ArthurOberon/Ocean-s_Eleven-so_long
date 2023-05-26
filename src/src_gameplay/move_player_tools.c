@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 22:34:29 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/26 21:48:48 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/26 21:53:57 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,16 +91,15 @@ void	move_animation(t_player *player, t_sprite *sprite)
 		sprite->frame = (FRAME_MOVEMENT * 3);
 	if (player->player_look_dir.y == -1 && !(sprite->frame % FRAME_MOVEMENT))
 		sprite->frame = (FRAME_MOVEMENT * 4);
-	printf("frame : [%d]\n", sprite->frame);
+	if (sprite->last_time.tv_sec == 0)
+		gettimeofday(&sprite->last_time, NULL);
 	gettimeofday(&time, NULL);
 	delay = (((double)(time.tv_usec - sprite->last_time.tv_usec)
 				/ CLOCKS_PER_SEC) + time.tv_sec - sprite->last_time.tv_sec);
-	printf("delay : [%f]\n", delay);
 	if (delay >= 1)
 	{
 		sprite->last_time = time;
 		sprite->frame = (sprite->frame + 1)
 			- (FRAME_MOVEMENT * ((sprite->frame) % FRAME_MOVEMENT));
 	}
-	printf("frame : [%d]\n\n", sprite->frame);
 }
