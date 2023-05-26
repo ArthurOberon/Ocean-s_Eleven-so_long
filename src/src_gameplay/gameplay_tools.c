@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 17:34:37 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/26 00:07:18 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/26 19:48:05 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,31 @@ void	set_player_to_character(t_game *game, t_gameplay *gameplay,
 	}
 }
 
+static void	restart_available_character(t_gameplay *gameplay)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (gameplay->available_character[i] == 2
+			|| gameplay->available_character[i] == 3)
+			gameplay->available_character[i] = 0;
+		i++;
+	}
+}
+
 void	restart(t_game *game)
 {
 	int	i;
 
 	i = 0;
-	ft_print_1d_to_2d(game->level);
 	free(game->level->map);
 	game->level->map = ft_strdup(game->gameplay->map_start_state);
 	if (!game->level->map)
 		free_game(*game, "Error of malloc.\n");
-	ft_print_1d_to_2d(game->level);
+	free(game->gameplay->guards);
+	init_guards(game, game->gameplay->guards);
 	free(game->gameplay->player->bomb.explosion_pos);
 	free(game->gameplay->player);
 	init_player(game, game->gameplay->player, game->gameplay->chosen_character);
@@ -91,6 +105,10 @@ void	restart(t_game *game)
 	game->gameplay->nb_move = 0;
 	game->gameplay->display_plus_one = false;
 	game->gameplay->text_box.is_display = false;
+	game->gameplay->nb_collect_get = 0;
+	game->gameplay->nb_collect_remain = game->level->nb_collect;
+	restart_available_character(game->gameplay);
+	put_unavailable_character_on_map(game, game->gameplay);
 	mlx_clear_window(game->window->mlx_ptr, game->window->win_ptr);
 	while (i < game->level->nb_cases)
 	{

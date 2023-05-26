@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/26 18:40:30 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/26 20:11:44 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@
 # define FRAME_COLLECT 1
 # define FRAME_EXIT 1
 
-# define FRAME_PLAYER_DANNY 1
+# define FRAME_PLAYER_DANNY 5
 # define FRAME_PLAYER_RUSTY 1
 # define FRAME_PLAYER_LINUS 1
 # define FRAME_PLAYER_BASHER 1
@@ -640,9 +640,11 @@ void				move_guard(t_game *game, t_guard *guard, t_player *player);
 // |			MOVE_PLAYER_TOOLS			|
 // |----------------------------------------|
 
+void				set_player_look_dir(t_player *player);
+void				move_animation(t_player *player, t_sprite *sprite);
+void				set_player_pos(t_player *player, t_f_vector_2 move);
 void				get_move_player(t_player *player, t_f_vector_2 *move,
 						double delta_time, t_vector_2 axe);
-void				set_player_pos(t_player *player, t_f_vector_2 move);
 void				restrict_move(t_f_vector_2 *move, t_player *player,
 						t_vector_2 collider, t_vector_2 axe);
 

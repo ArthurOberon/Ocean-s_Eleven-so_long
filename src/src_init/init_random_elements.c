@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:37:06 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/26 18:41:40 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/26 19:48:53 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,5 @@ void	put_unavailable_character_on_map(t_game *game, t_gameplay *gameplay)
 		random_pos = ground_pos[rand() % ground_count--];
 		set_character_on_pos(game, gameplay, character, random_pos);
 	}
+	free(ground_pos);
 }
