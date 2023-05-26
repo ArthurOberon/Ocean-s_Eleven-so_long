@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 22:34:29 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/26 20:11:02 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/26 20:57:50 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,25 @@ void	set_player_look_dir(t_player *player)
 
 void	move_animation(t_player *player, t_sprite *sprite)
 {
-	if (player->player_look_dir.x == -1)
-		sprite->frame = 2;
+	struct timeval	time;
+	double			delay;
+
+	if (FRAME_MOVEMENT == 1)
+		return ;
 	if (player->player_look_dir.x == 1)
-		sprite->frame = 1;
-	if (player->player_look_dir.y == -1)
-		sprite->frame = 4;
+		sprite->frame = FRAME_MOVEMENT;
+	if (player->player_look_dir.x == -1)
+		sprite->frame = FRAME_MOVEMENT * 2;
 	if (player->player_look_dir.y == 1)
-		sprite->frame = 3;
+		sprite->frame = FRAME_MOVEMENT * 3;
+	if (player->player_look_dir.y == -1)
+		sprite->frame = FRAME_MOVEMENT * 4;
+	gettimeofday(&time, NULL);
+	delay = (((double)(time.tv_usec - sprite->last_time.tv_usec)
+				/ CLOCKS_PER_SEC) + time.tv_sec - sprite->last_time.tv_sec);
+	if (delay >= 0.5)
+	{
+		sprite->last_time = time;
+		sprite->frame = (sprite->frame + 1);
+	}
 }

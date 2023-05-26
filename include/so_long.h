@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/26 20:11:44 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/26 20:47:07 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,12 @@
 # define FRAME_COLLECT 1
 # define FRAME_EXIT 1
 
-# define FRAME_PLAYER_DANNY 5
+# define FRAME_PLAYER_DANNY 10
 # define FRAME_PLAYER_RUSTY 1
 # define FRAME_PLAYER_LINUS 1
 # define FRAME_PLAYER_BASHER 1
+
+# define FRAME_MOVEMENT 2
 
 # define FRAME_DYNAMITE 5
 # define FRAME_EXPLOSION 1
@@ -732,7 +734,8 @@ void				init_explosion_pos(t_game *game, t_bomb *bomb, bool alloc);
 // |			INIT_RANDOM_ELEMENTS			|
 // |--------------------------------------------|
 
-void				put_unavailable_character_on_map(t_game *game, t_gameplay *gameplay);
+void				put_unavailable_character_on_map(t_game *game,
+						t_gameplay *gameplay);
 
 // |----------------------------------------|
 // |			INIT_SPRITES_ASSETS			|
