@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 22:34:29 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/26 20:57:50 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/26 21:01:43 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void	move_animation(t_player *player, t_sprite *sprite)
 	if (delay >= 0.5)
 	{
 		sprite->last_time = time;
-		sprite->frame = (sprite->frame + 1);
+		sprite->frame = (sprite->frame + 1)
+			- (FRAME_MOVEMENT * ((sprite->frame + 1) % FRAME_MOVEMENT));
 	}
 }
