@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:35:23 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/26 18:15:39 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/26 18:40:30 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	bzero_game(t_game *game)
 	game->gameplay = NULL;
 }
 
-// static void	put_character_on_map(t_game *game, t_gameplay *gameplay)
+// static void	put_unavailable_character_on_map(t_game *game, t_gameplay *gameplay)
 // {
 // 	int	i;
 // 	int	character;
@@ -98,5 +98,5 @@ void	init_game(t_game *game, int available_character[4],
 	init_sprites(game);
 	init_gameplay(game, available_character, chosen_character);
 	init_camera(game);
-	put_character_on_map(game, game->gameplay);
+	put_unavailable_character_on_map(game, game->gameplay);
 }

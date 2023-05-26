@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/26 18:14:47 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/26 18:40:30 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -730,7 +730,7 @@ void				init_explosion_pos(t_game *game, t_bomb *bomb, bool alloc);
 // |			INIT_RANDOM_ELEMENTS			|
 // |--------------------------------------------|
 
-void				put_character_on_map(t_game *game, t_gameplay *gameplay);
+void				put_unavailable_character_on_map(t_game *game, t_gameplay *gameplay);
 
 // |----------------------------------------|
 // |			INIT_SPRITES_ASSETS			|

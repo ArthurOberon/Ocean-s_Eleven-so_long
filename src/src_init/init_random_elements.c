@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:37:06 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/26 18:39:24 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/26 18:41:40 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	set_character_on_pos(t_game *game, t_gameplay *gameplay,
 	gameplay->available_character[character] = 2;
 }
 
-void	put_character_on_map(t_game *game, t_gameplay *gameplay)
+void	put_unavailable_character_on_map(t_game *game, t_gameplay *gameplay)
 {
 	int	random_pos;
 	int	character;
