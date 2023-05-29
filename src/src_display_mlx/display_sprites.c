@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/29 20:41:11 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/29 20:43:30 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static void	display_one_sprite(t_window *window, t_sprite *sprite,
 {
 	t_vector_2	pos_src;
 
+	// ???
 	pos_src = (t_vector_2){0, 0};
 	printf("pos : [%f]\n", pos.x);
 	if ((int)pos.x < 0)

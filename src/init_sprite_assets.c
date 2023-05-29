@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 14:43:09 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/29 20:37:59 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/29 20:43:24 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ static t_img	new_resize_img(t_game *game, void *ptr, t_img *src,
 	t_img			dst;
 	__uint32_t		pixel;
 
+	// ? WHY doesn't work with :
 	// dst.mlx_img = mlx_new_image(ptr, dst_size.x, dst_size.y);
 	// if (!dst.mlx_img)
 		// free_game(*game, "Error of mlx_xpm_file_to_image.\n");
+	// And work with :
 	init_new_resize_img(game, ptr, &dst, dst_size);
 	quotient.x = (double)(src->size.x) / (double)(dst_size.x);
 	quotient.y = (double)(src->size.y) / (double)(dst_size.y);

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 20:56:08 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/29 18:43:25 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/29 20:44:51 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,8 @@ static void	sprite_to_assets(t_game *game, t_sprite **asset, char *path,
 	}
 	*asset = sprite;
 }
+
+// OLD WAY -> HAVE TO DELETE
 
 void	old_init_sprites_assets(t_game *game)
 {
