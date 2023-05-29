@@ -112,6 +112,7 @@ SL_SRCS 		=	$(addprefix $(SRC_DIR), \
 					$(SRC_TOOLS) \
 				 	game.c \
 					so_long.c \
+					init_sprite_assets.c \
 					\
 					temporary.c \
 					)

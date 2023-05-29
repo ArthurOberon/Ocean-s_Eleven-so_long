@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/26 20:49:20 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/29 20:41:11 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static void	display_one_sprite(t_window *window, t_sprite *sprite,
 	t_vector_2	pos_src;
 
 	pos_src = (t_vector_2){0, 0};
+	printf("pos : [%f]\n", pos.x);
 	if ((int)pos.x < 0)
 	{
 		pos_src.x = -pos.x;
@@ -66,6 +67,8 @@ static void	display_one_sprite(t_window *window, t_sprite *sprite,
 		pos_src.y = -pos.y;
 		pos.y = 0;
 	}
+	printf("pos : [%f]\n", pos.x);
+	printf("pos src : [%d]\n\n", pos_src.x);
 	update_frame(sprite);
 	memcpy_img(&window->img, (t_vector_2){pos.x, pos.y},
 		&sprite->sprite_img[sprite->frame], pos_src);
