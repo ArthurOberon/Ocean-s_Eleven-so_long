@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/30 13:48:57 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/30 14:04:31 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,23 +72,20 @@ static void	display_one_sprite(t_window *window, t_sprite *sprite,
 	printf("pos sup : x : [%d]", (int)pos.x + sprite->sprite_img->size.x);
 	if ((int)pos.x + sprite->sprite_img->size.x	> window->img.size.x)
 	{
-		// pos_src.x = sprite->sprite_img->size.x - ((pos.x + sprite->sprite_img->size.x) - window->img.size.x);
+		printf("X : 1 : [%d]\n", (int)(sprite->sprite_img->size.x - ((pos.x + sprite->sprite_img->size.x) - window->img.size.x)));
+		printf("X : 2 : [%d]\n", (int)(pos.x + sprite->sprite_img->size.x) - window->img.size.x);
+		pos_src.x = sprite->sprite_img->size.x - ((pos.x + sprite->sprite_img->size.x) - window->img.size.x);
 		
-		pos_src.x = (pos.x + sprite->sprite_img->size.x) - window->img.size.x;
-		
-		// pos_src.x = pos.x - ((pos.x + sprite->sprite_img->size.x) - window->img.size.x);
-		// pos_src.x = pos_src.x / CHUNK_SIZE;
-		// pos_src.x = pos.x - (window->img.size.x - (pos.x + sprite->sprite_img->size.x));
+		// pos_src.x = (pos.x + sprite->sprite_img->size.x) - window->img.size.x;
 	}
 	printf(" y : [%d]\n", (int)pos.y + sprite->sprite_img->size.y);
 	if ((int)pos.y + sprite->sprite_img->size.y	> window->img.size.y)
 	{
+		printf("Y : 1 : [%d]\n", (int)(sprite->sprite_img->size.y - ((pos.y + sprite->sprite_img->size.y) - window->img.size.y)));
+		printf("Y : 2 : [%d]\n", (int)(pos.y + sprite->sprite_img->size.y) - window->img.size.y);
+		pos_src.y = sprite->sprite_img->size.y - ((pos.y + sprite->sprite_img->size.y) - window->img.size.y);
 
-		pos_src.y = (pos.y + sprite->sprite_img->size.y) - window->img.size.y;
-
-		// pos_src.y = pos.y - ((pos.y + sprite->sprite_img->size.y) - window->img.size.y);
-		// pos_src.y = pos_src.y / CHUNK_SIZE;
-		// pos_src.y = pos.y - (window->img.size.y - (pos.y + sprite->sprite_img->size.y));
+		// pos_src.y = (pos.y + sprite->sprite_img->size.y) - window->img.size.y;
 	}
 	printf("pos_dst : [%f] [%f]\n", pos.x, pos.y);
 	printf("pos src : [%d] [%d]\n", pos_src.x, pos_src.y);
@@ -97,6 +94,9 @@ static void	display_one_sprite(t_window *window, t_sprite *sprite,
 		&sprite->sprite_img[sprite->frame], pos_src);
 	printf("\n");
 }
+
+// si Y : 1 = 52 & Y : 2 = 75
+// depasse de 75 pixel donc doit s'arreter au 52eme pixel (128 - 75 = 52)
 
 void	display_sprites(t_game *game, t_camera *camera, t_window *window)
 {
