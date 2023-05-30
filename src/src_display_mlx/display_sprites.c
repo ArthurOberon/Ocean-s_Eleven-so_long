@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/29 20:43:30 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/30 13:48:57 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	display_one_sprite(t_window *window, t_sprite *sprite,
 
 	// ???
 	pos_src = (t_vector_2){0, 0};
-	printf("pos : [%f]\n", pos.x);
+	printf("pos_dst : [%f] [%f]\n", pos.x, pos.y);
 	if ((int)pos.x < 0)
 	{
 		pos_src.x = -pos.x;
@@ -68,11 +68,34 @@ static void	display_one_sprite(t_window *window, t_sprite *sprite,
 		pos_src.y = -pos.y;
 		pos.y = 0;
 	}
-	printf("pos : [%f]\n", pos.x);
-	printf("pos src : [%d]\n\n", pos_src.x);
+	printf("window : [%d] [%d]\n",  window->img.size.x, window->img.size.y);
+	printf("pos sup : x : [%d]", (int)pos.x + sprite->sprite_img->size.x);
+	if ((int)pos.x + sprite->sprite_img->size.x	> window->img.size.x)
+	{
+		// pos_src.x = sprite->sprite_img->size.x - ((pos.x + sprite->sprite_img->size.x) - window->img.size.x);
+		
+		pos_src.x = (pos.x + sprite->sprite_img->size.x) - window->img.size.x;
+		
+		// pos_src.x = pos.x - ((pos.x + sprite->sprite_img->size.x) - window->img.size.x);
+		// pos_src.x = pos_src.x / CHUNK_SIZE;
+		// pos_src.x = pos.x - (window->img.size.x - (pos.x + sprite->sprite_img->size.x));
+	}
+	printf(" y : [%d]\n", (int)pos.y + sprite->sprite_img->size.y);
+	if ((int)pos.y + sprite->sprite_img->size.y	> window->img.size.y)
+	{
+
+		pos_src.y = (pos.y + sprite->sprite_img->size.y) - window->img.size.y;
+
+		// pos_src.y = pos.y - ((pos.y + sprite->sprite_img->size.y) - window->img.size.y);
+		// pos_src.y = pos_src.y / CHUNK_SIZE;
+		// pos_src.y = pos.y - (window->img.size.y - (pos.y + sprite->sprite_img->size.y));
+	}
+	printf("pos_dst : [%f] [%f]\n", pos.x, pos.y);
+	printf("pos src : [%d] [%d]\n", pos_src.x, pos_src.y);
 	update_frame(sprite);
 	memcpy_img(&window->img, (t_vector_2){pos.x, pos.y},
 		&sprite->sprite_img[sprite->frame], pos_src);
+	printf("\n");
 }
 
 void	display_sprites(t_game *game, t_camera *camera, t_window *window)
@@ -83,16 +106,22 @@ void	display_sprites(t_game *game, t_camera *camera, t_window *window)
 	i = 0;
 	while (i < camera->nb_chunks_in_camera_total)
 	{
+		printf("chunk : [%d]\n", camera->chunks_to_display[i]);
 		if (camera->chunks_to_display[i] == -1)
 			break ;
+		printf("chunk : [%c]\n", game->level->map[camera->chunks_to_display[i]]);
 		pos_tmp = chunk_to_pixel_f_pos(camera->chunks_to_display[i],
 				game->level->map_vector.x);
+		printf("pos_tmp : [%f] [%f]\n", pos_tmp.x, pos_tmp.y);
 		pos_tmp.x = pos_tmp.x - camera->camera_f_pos.x;
 		pos_tmp.y = pos_tmp.y - camera->camera_f_pos.y;
+		printf("camera size : [%f] [%f]\n", camera->camera_f_size.x, camera->camera_f_size.y);
+		printf("pos_tmp - camera : [%f] [%f]\n", pos_tmp.x, pos_tmp.y);
 		if (pos_tmp.x > camera->camera_f_size.x)
 			pos_tmp.x = camera->camera_f_size.x - 1;
 		if (pos_tmp.y > camera->camera_f_size.y)
 			pos_tmp.y = camera->camera_f_size.y - 1;
+		printf("pos_tmp if > camera : [%f] [%f]\n", pos_tmp.x, pos_tmp.y);
 		display_one_sprite(window,
 			window->map_sprites[camera->chunks_to_display[i]], pos_tmp);
 		i++;
@@ -102,3 +131,13 @@ void	display_sprites(t_game *game, t_camera *camera, t_window *window)
 		+ game->gameplay->player->player_character]);
 	display_gameplay_elements(game, game->gameplay, window);
 }
+
+// 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+// 100C000000000000000000000000000000000000000000000000000000000000C00C0000000000000000001
+// 100000000000111111111111111110000000000000000000000000000000000000000000000000000000001
+// 1E0000000000111111111111111110000000000000000000000000000000000000000000000000000000001
+// 100000000000111111111111111110000000000000000000000000000000000000000011110000000000001
+// 1000000000001111111111111111100000CCCCCCCCCCCCCCCCCCCCCCCCC0000000000001110000000000001
+// 100000000000111111111111111110000000000000000000000000000000000000000001110000000000001
+// 1010000000000000000000000000000000000000000000000000000001P10000001CG0010C0000000000001
+// 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111

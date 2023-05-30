@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:17:13 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/29 19:45:48 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/30 13:49:23 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,6 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)pixel = color;
 }
 
-// void	memcpy_img(t_img *img_dst, t_img *img_src, t_vector_2 pos)
-// {
-// 	int	j;
-
-// 	j = 0;
-// 	while (j < img_src->size.y)
-// 	{
-// 		ft_memcpy(img_dst->addr + (pos.y + j) * img_dst->line_len
-// 			+ pos.x * 4,
-// 			img_src->addr + j * img_src->line_len, img_src->line_len);
-// 		j++;
-// 	}
-// }
-
 void	background(t_img *img, int color)
 {
 	ft_memset(img->addr, color, img->size.x * img->size.y * 4);
@@ -62,7 +48,12 @@ void	memcpy_img(t_img *img_dst, t_vector_2 pos_dst,
 	int	j;
 
 	j = 0;
-	while (j < img_src->size.y)
+	printf("img size : y : [%d]\n", img_src->size.y);
+	printf("pos_src : y : [%d]\n", pos_src.y);
+	printf("img - pos : [%d]\n", img_src->size.y - pos_src.y);
+	printf("img - (pos / CHUNK_SIZE) : [%d]\n", img_src->size.y - (pos_src.y / CHUNK_SIZE));
+	printf("pos - img : [%d]\n", pos_src.y - img_src->size.y);
+	while (j < img_src->size.y - pos_src.y)
 	{
 		ft_memcpy(img_dst->addr + (pos_dst.y + j) * img_dst->line_len
 			+ pos_dst.x * 4,
