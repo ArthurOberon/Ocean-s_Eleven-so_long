@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/31 13:16:15 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/05/31 14:33:15 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -516,8 +516,6 @@ void				display_qte(t_game *game, t_qte *qte, t_player *player,
 void				update_frame(t_sprite *sprite);
 void				display_sprites(t_game *game, t_camera *camera,
 						t_window *window);
-void				put_image_to_image(t_img *window_img,
-						t_vector_2 pos, t_img *img);
 
 // |----------------------------------------|
 // |			DISPLAY_TEXT_BOX			|
@@ -535,6 +533,8 @@ void				display_character(t_game *game, t_window *window,
 
 void				background(t_img *img, int color);
 void				img_pix_put(t_img *img, int x, int y, int color);
+void				put_image_to_image(t_img *window_img,
+						t_vector_2 pos, t_img *img);
 void				memcpy_img(t_img *img_dst, t_vector_2 pos_dst,
 						t_img *img_src, t_vector_2 *pos_src);
 

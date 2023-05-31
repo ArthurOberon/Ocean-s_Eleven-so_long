@@ -6,32 +6,11 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/31 13:22:31 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/05/31 14:47:55 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	put_image_to_image(t_img *window_img, t_vector_2 pos, t_img *img)
-{		
-	int			i;
-	int			j;
-	__uint32_t	pixel;
-
-	j = 0;
-	while (j < img->size.y)
-	{
-		i = 0;
-		while (i < img->size.x)
-		{
-			pixel = get_color_pixel(img, i, j);
-			if (((pixel >> 24)) != 0xFF)
-				img_pix_put(window_img, i + pos.x, j + pos.y, pixel);
-			i++;
-		}
-		j++;
-	}
-}
 
 void	update_frame(t_sprite *sprite)
 {
@@ -55,8 +34,8 @@ static void	display_one_sprite(t_window *window, t_sprite *sprite,
 {
 	t_vector_2	pos_src[2];
 
-	pos_src[0] = (t_vector_2){0, 0}; 
-	pos_src[1] = (t_vector_2){0, 0}; 
+	pos_src[0] = (t_vector_2){0, 0};
+	pos_src[1] = (t_vector_2){0, 0};
 	if ((int)pos.x < 0)
 	{
 		pos_src[0].x = -pos.x;
@@ -67,14 +46,12 @@ static void	display_one_sprite(t_window *window, t_sprite *sprite,
 		pos_src[0].y = -pos.y;
 		pos.y = 0;
 	}
-	if ((int)pos.x + sprite->sprite_img->size.x	> window->img.size.x)
-	{
-		pos_src[1].x = (pos.x + sprite->sprite_img->size.x) - window->img.size.x;
-	}
-	if ((int)pos.y + sprite->sprite_img->size.y	> window->img.size.y)
-	{
-		pos_src[1].y = (pos.y + sprite->sprite_img->size.y) - window->img.size.y;
-	}
+	if ((int)pos.x + sprite->sprite_img->size.x > window->img.size.x)
+		pos_src[1].x = (pos.x + sprite->sprite_img->size.x)
+			- window->img.size.x;
+	if ((int)pos.y + sprite->sprite_img->size.y > window->img.size.y)
+		pos_src[1].y = (pos.y + sprite->sprite_img->size.y)
+			- window->img.size.y;
 	update_frame(sprite);
 	memcpy_img(&window->img, (t_vector_2){pos.x, pos.y},
 		&sprite->sprite_img[sprite->frame], pos_src);
