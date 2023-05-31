@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:35:23 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/31 20:36:04 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/05/31 21:06:21 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,13 @@ void	bzero_game(t_game *game)
 void	init_game(t_game *game, int *available_character,
 			int chosen_character)
 {
+	int	available_character_tmp[4];
+
+	available_character_tmp[0] = available_character[0];
+	available_character_tmp[1] = available_character[1];
+	available_character_tmp[2] = available_character[2];
+	available_character_tmp[3] = available_character[3];
+	free(available_character);
 	srand(time(NULL));
 	game->window = NULL;
 	game->assets = NULL;
@@ -55,7 +62,7 @@ void	init_game(t_game *game, int *available_character,
 	init_window(game);
 	init_sprites_assets(game);
 	init_sprites(game);
-	init_gameplay(game, available_character, chosen_character);
+	init_gameplay(game, available_character_tmp, chosen_character);
 	init_camera(game);
 	put_unavailable_character_on_map(game, game->gameplay);
 }

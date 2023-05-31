@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/31 20:34:18 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/05/31 21:05:30 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ void	init_gameplay(t_game *game, int *available_character,
 	gameplay->available_character[1] = available_character[1];
 	gameplay->available_character[2] = available_character[2];
 	gameplay->available_character[3] = available_character[3];
-	free(available_character);
 	gameplay->chosen_character = chosen_character;
 	gameplay->fps = 0;
 	gameplay->delta_time = 0;
