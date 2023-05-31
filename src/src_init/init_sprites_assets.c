@@ -3,143 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   init_sprites_assets.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/27 20:56:08 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/29 20:44:51 by aoberon          ###   ########.fr       */
+/*   Created: 2023/05/29 14:43:09 by aoberon           #+#    #+#             */
+/*   Updated: 2023/05/31 23:55:20 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// not use
-// static int	get_number_of_tile(t_game *game, char tile)
-// {
-// 	int	i;
-// 	int	number_tile;
-
-// 	i = 0;
-// 	number_tile = 0;
-// 	while (i < game->level->nb_cases)
-// 	{
-// 		if (game->level->map[i] == tile)
-// 			number_tile++;
-// 		i++;
-// 	}
-// 	if (tile == 'C')
-// 		printf("C : [%d]\n", number_tile);
-// 	return (number_tile);
-// }
-
-// static void	get_stat_tiles_map(t_game *game)
-// {
-// 	t_stat_tiles	stat_tiles;
-
-// 	stat_tiles.exit = get_number_of_tile(game, 'E');
-// 	stat_tiles.wall = get_number_of_tile(game, '1');
-// 	stat_tiles.ground = get_number_of_tile(game, '0');
-// 	stat_tiles.player = get_number_of_tile(game, 'P');
-// 	stat_tiles.collect = get_number_of_tile(game, 'C');
-// 	game->level->stat_tiles = stat_tiles;
-// 	if (IS_DEBUG)
-// 		debug_stat_tiles(stat_tiles);
-// }
-
-char	*find_sprite_path(t_game *game, char *start_path, int frame)
+t_img	set_one_image(t_game *game, void *ptr, char *path, t_vector_2 dst_size)
 {
-	char	*file_path;
-	char	*str_itoa;
-	char	*frame_path;
-	char	*complet_path;
+	t_img	src;
+	t_img	dst;
 
-	file_path = SPRITES_PATH;
-	file_path = ft_strjoin(file_path, start_path);
-	if (!file_path)
-		free_game(*game, "Error of malloc.\n");
-	str_itoa = ft_itoa(frame);
-	if (!str_itoa)
-		free_game(*game, "Error of malloc.\n");
-	frame_path = ft_strjoin(file_path, str_itoa);
-	free(str_itoa);
-	free(file_path);
-	if (!frame_path)
-		free_game(*game, "Error of malloc.\n");
-	complet_path = ft_strjoin(frame_path, ".xpm");
-	if (!complet_path)
-		free_game(*game, "Error of malloc.\n");
-	free(frame_path);
-	return (complet_path);
+	init_xpm_file(game, ptr, path, &src);
+	free(path);
+	if (src.size.x == dst_size.x && src.size.y == dst_size.y)
+		return (src);
+	dst = new_resize_img(game, ptr, &src, dst_size);
+	mlx_destroy_image(ptr, src.mlx_img);
+	return (dst);
 }
 
-static void	sprite_images_assets_only(t_game *game, t_sprite *sprite,
+void	alloc_sprite_asset(t_game *game, t_sprite **asset, int size)
+{
+	t_sprite	*sprite;
+
+	sprite = ft_calloc(sizeof(t_sprite), 1);
+	if (!sprite)
+		free_game(*game, "Error of malloc.\n");
+	sprite->frame = 0;
+	sprite->size = size;
+	sprite->last_time = (struct timeval){0, 0};
+	sprite->sprite_img = ft_calloc(sizeof(t_img), size);
+	if (!sprite->sprite_img)
+		free_game(*game, "Error of malloc.\n");
+	*asset = sprite;
+}
+
+void	set_images_to_asset(t_game *game, t_sprite *sprite,
 	char *path, t_vector_2 size)
 {
 	int		i;
-	char	*complet_path;
 	void	*ptr;
+	char	*complet_path;
 
 	ptr = game->window->mlx_ptr;
-	i = -1;
-	while (++i < sprite->size)
+	i = 0;
+	while (i < sprite->size)
 	{
 		complet_path = find_sprite_path(game, path, i);
-		init_xpm_file(game, ptr, complet_path, &(sprite->sprite_img)[i]);
-		(sprite->sprite_img)[i] = resize_img(game, ptr,
-				&(sprite->sprite_img)[i], size);
-		free(complet_path);
+		sprite->sprite_img[i] = set_one_image(game, ptr, complet_path, size);
+		i++;
 	}
 }
 
-static void	sprite_to_assets_no_images_alloc(t_game *game, t_sprite **asset,
-	int size)
+static void	init_one_sprite_asset(t_game *game, t_sprite **sprite,
+	char *path, int size, t_vector_2 dst_size)
 {
-	t_sprite	*sprite;
-
-	sprite = ft_calloc(sizeof(t_sprite), 1);
-	if (!sprite)
-		free_game(*game, "Error of malloc.\n");
-	sprite->frame = 0;
-	sprite->size = size;
-	sprite->last_time = (struct timeval){0, 0};
-	sprite->sprite_img = ft_calloc(sizeof(t_img), size);
-	if (!sprite->sprite_img)
-		free_game(*game, "Error of malloc.\n");
-	*asset = sprite;
+	alloc_sprite_asset(game, sprite, size);
+	set_images_to_asset(game, *sprite, path, dst_size);
 }
 
-static void	sprite_to_assets(t_game *game, t_sprite **asset, char *path,
-	int size)
-{
-	int			i;
-	char		*complet_path;
-	void		*ptr;
-	t_sprite	*sprite;
-
-	sprite = ft_calloc(sizeof(t_sprite), 1);
-	if (!sprite)
-		free_game(*game, "Error of malloc.\n");
-	ptr = game->window->mlx_ptr;
-	sprite->frame = 0;
-	sprite->size = size;
-	sprite->last_time = (struct timeval){0, 0};
-	sprite->sprite_img = ft_calloc(sizeof(t_img), size);
-	if (!sprite->sprite_img)
-		free_game(*game, "Error of malloc.\n");
-	i = -1;
-	while (++i < size)
-	{
-		complet_path = find_sprite_path(game, path, i);
-		init_xpm_file(game, ptr, complet_path, &(sprite->sprite_img)[i]);
-		(sprite->sprite_img)[i] = resize_img(game, ptr,
-				&(sprite->sprite_img)[i], (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
-		free(complet_path);
-	}
-	*asset = sprite;
-}
-
-// OLD WAY -> HAVE TO DELETE
-
-void	old_init_sprites_assets(t_game *game)
+void	init_sprites_assets(t_game *game)
 {
 	t_sprites_assets	*assets;
 
@@ -147,46 +74,36 @@ void	old_init_sprites_assets(t_game *game)
 	if (!assets)
 		free_game(*game, "Error of malloc.\n");
 	game->assets = assets;
-	sprite_to_assets(game, &assets->player_danny, PATH_PLAYER_DANNY, FRAME_PLAYER_DANNY);
-	sprite_to_assets(game, &assets->player_rusty, PATH_PLAYER_RUSTY, FRAME_PLAYER_RUSTY);
-	sprite_to_assets(game, &assets->player_linus, PATH_PLAYER_LINUS, FRAME_PLAYER_LINUS);
-	sprite_to_assets(game, &assets->player_basher, PATH_PLAYER_BASHER, FRAME_PLAYER_BASHER);
-	sprite_to_assets(game, &assets->exit, PATH_EXIT, FRAME_EXIT);
-	sprite_to_assets(game, &assets->collect, PATH_COLLECT, FRAME_COLLECT);
-	sprite_to_assets(game, &assets->ground, PATH_GROUND, FRAME_GROUND);
-	sprite_to_assets(game, &assets->guard, PATH_GUARD, FRAME_GUARD);
-	sprite_to_assets(game, &assets->guard_fov, PATH_GUARD_FOV, FRAME_GUARD_FOV);
-	sprite_to_assets(game, &assets->wall_corner_n_e, PATH_WALL_CORNER_N_E, 1);
-	sprite_to_assets(game, &assets->wall_corner_n_o, PATH_WALL_CORNER_N_O, 1);
-	sprite_to_assets(game, &assets->wall_corner_s_o, PATH_WALL_CORNER_S_O, 1);
-	sprite_to_assets(game, &assets->wall_corner_s_e, PATH_WALL_CORNER_S_E, 1);
-	sprite_to_assets(game, &assets->wall_side_up, PATH_WALL_SIDE_UP, 1);
-	sprite_to_assets(game, &assets->wall_side_down, PATH_WALL_SIDE_DOWN, 1);
-	sprite_to_assets(game, &assets->wall_side_left, PATH_WALL_SIDE_LEFT, 1);
-	sprite_to_assets(game, &assets->wall_side_right, PATH_WALL_SIDE_RIGHT, 1);
-	sprite_to_assets(game, &assets->wall_roulette, PATH_WALL_ROULETTE, 1);
-	sprite_to_assets(game, &assets->wall_poker, PATH_WALL_POKER, 1);
-	sprite_to_assets(game, &assets->dynamite, PATH_DYNAMITE, FRAME_DYNAMITE);
-	sprite_to_assets(game, &assets->explosion, PATH_EXPLOSION, FRAME_EXPLOSION);
-	sprite_to_assets(game, &assets->area_qte, PATH_AREA_QTE, FRAME_AREA_QTE);
-	sprite_to_assets(game, &assets->qte, PATH_QTE, FRAME_QTE);
-	sprite_to_assets(game, &assets->heart, PATH_HEART, FRAME_HEART);
-	sprite_to_assets(game, &assets->box, PATH_BOX, FRAME_BOX);
-	sprite_to_assets(game, &assets->selection_box, PATH_SELECTION_BOX, FRAME_SELECTION_BOX);
-	sprite_to_assets(game, &assets->avatar_character, PATH_AVATAR_CHARACTER, FRAME_AVATAR_CHARACTER);
-// 
-	sprite_to_assets_no_images_alloc(game, &assets->alphabet, FRAME_ALPHABET);
-	sprite_images_assets_only(game, assets->alphabet, PATH_ALPHABET,(t_vector_2){16, 16});
-// 
-	sprite_to_assets_no_images_alloc(game, &assets->special_character, FRAME_SPECIAL_CHAR);
-	sprite_images_assets_only(game, assets->special_character, PATH_SPECIAL_CHAR,(t_vector_2){16, 16});
-// 
-	sprite_to_assets_no_images_alloc(game, &assets->background_text, FRAME_BACKGROUND_TEXT);
-	sprite_images_assets_only(game, assets->background_text, PATH_BACKGROUND_TEXT, (t_vector_2){WINDOW_WIDTH - 40, WINDOW_HEIGHT / 4});
+	init_one_sprite_asset(game, &assets->player_danny, PATH_PLAYER_DANNY, FRAME_PLAYER_DANNY, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->player_rusty, PATH_PLAYER_RUSTY, FRAME_PLAYER_RUSTY, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->player_linus, PATH_PLAYER_LINUS, FRAME_PLAYER_LINUS, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->player_basher, PATH_PLAYER_BASHER, FRAME_PLAYER_BASHER, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->exit, PATH_EXIT, FRAME_EXIT, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->collect, PATH_COLLECT, FRAME_COLLECT, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->ground, PATH_GROUND, FRAME_GROUND, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->guard, PATH_GUARD, FRAME_GUARD, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->guard_fov, PATH_GUARD_FOV, FRAME_GUARD_FOV, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->wall_corner_n_e, PATH_WALL_CORNER_N_E, 1, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->wall_corner_n_o, PATH_WALL_CORNER_N_O, 1, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->wall_corner_s_o, PATH_WALL_CORNER_S_O, 1, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->wall_corner_s_e, PATH_WALL_CORNER_S_E, 1, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->wall_side_up, PATH_WALL_SIDE_UP, 1, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->wall_side_down, PATH_WALL_SIDE_DOWN, 1, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->wall_side_left, PATH_WALL_SIDE_LEFT, 1, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->wall_side_right, PATH_WALL_SIDE_RIGHT, 1, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->wall_roulette, PATH_WALL_ROULETTE, 1, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->wall_poker, PATH_WALL_POKER, 1, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->dynamite, PATH_DYNAMITE, FRAME_DYNAMITE, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->explosion, PATH_EXPLOSION, FRAME_EXPLOSION, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->area_qte, PATH_AREA_QTE, FRAME_AREA_QTE, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->qte, PATH_QTE, FRAME_QTE, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->heart, PATH_HEART, FRAME_HEART, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->box, PATH_BOX, FRAME_BOX, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->selection_box, PATH_SELECTION_BOX, FRAME_SELECTION_BOX, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+	init_one_sprite_asset(game, &assets->avatar_character, PATH_AVATAR_CHARACTER, FRAME_AVATAR_CHARACTER, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE});
+
+	init_one_sprite_asset(game, &assets->alphabet, PATH_ALPHABET,  FRAME_ALPHABET, (t_vector_2){16, 16});
+	init_one_sprite_asset(game, &assets->special_character, PATH_SPECIAL_CHAR,  FRAME_SPECIAL_CHAR, (t_vector_2){16, 16});
+	init_one_sprite_asset(game, &assets->background_text, PATH_BACKGROUND_TEXT,  FRAME_BACKGROUND_TEXT, (t_vector_2){WINDOW_WIDTH - 40, WINDOW_HEIGHT / 4});
+
 }
-
-	// sprite_to_assets_with_image_size(game, &assets->background_text, PATH_BACKGROUND_TEXT, (t_vector_2){WINDOW_WIDTH, WINDOW_HEIGHT / 4});
-	// sprite_to_assets(game, &assets->alphabet, PATH_ALPHABET, FRAME_ALPHABET);
-	// sprite_to_assets(game, &assets->background, PATH_BACKGROUND_TEXT, FRAME_BACKGROUND_TEXT);
-
-	// get_stat_tiles_map(game);

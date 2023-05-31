@@ -69,11 +69,13 @@ SRC_INIT	=	$(addprefix src_init/, \
 					init_images.c \
 					init_sprites.c \
 					init_gameplay.c \
-					init_sprites_assets.c \
 					sprites_arrengement.c \
+					init_sprites_assets.c \
 					init_random_elements.c \
 					get_available_character.c \
 					)
+
+# init_sprites_assets_deprecated.c
 
 # SOURCES USE TO READ AND PARSE THE MAP
 SRC_PARSING		=	$(addprefix src_parsing/, \
@@ -114,7 +116,6 @@ SL_SRCS 		=	$(addprefix $(SRC_DIR), \
 					$(SRC_TOOLS) \
 				 	game.c \
 					so_long.c \
-					init_sprite_assets.c \
 					\
 					temporary.c \
 					)

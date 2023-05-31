@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_images.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:02:17 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/29 17:46:17 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/31 23:55:39 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,21 @@ void	init_new_resize_img(t_game *game, void *ptr, t_img *new_img,
 	new_img->size = new_size;
 }
 
-t_img	resize_img(t_game *game, void *ptr, t_img *src, t_vector_2 dst_size)
+t_img	new_resize_img(t_game *game, void *ptr, t_img *src,
+	t_vector_2 dst_size)
 {
 	int				i;
 	int				j;
 	t_f_vector_2	quotient;
-	t_img			new_img;
+	t_img			dst;
 	__uint32_t		pixel;
 
-	if (src->size.x == dst_size.x && src->size.y == dst_size.y)
-		return (*src);
-	init_new_resize_img(game, ptr, &new_img, dst_size);
+	// ? WHY doesn't work with :
+	// dst.mlx_img = mlx_new_image(ptr, dst_size.x, dst_size.y);
+	// if (!dst.mlx_img)
+		// free_game(*game, "Error of mlx_xpm_file_to_image.\n");
+	// And work with :
+	init_new_resize_img(game, ptr, &dst, dst_size);
 	quotient.x = (double)(src->size.x) / (double)(dst_size.x);
 	quotient.y = (double)(src->size.y) / (double)(dst_size.y);
 	j = -1;
@@ -56,9 +60,34 @@ t_img	resize_img(t_game *game, void *ptr, t_img *src, t_vector_2 dst_size)
 		{
 			pixel = get_color_pixel(src, (int)(i * quotient.x),
 					(int)(j * quotient.y));
-			img_pix_put(&new_img, i, j, pixel);
+			img_pix_put(&dst, i, j, pixel);
 		}
 	}
-	mlx_destroy_image(ptr, src->mlx_img);
-	return (new_img);
+	return (dst);
+}
+
+char	*find_sprite_path(t_game *game, char *start_path, int frame)
+{
+	char	*file_path;
+	char	*str_itoa;
+	char	*frame_path;
+	char	*complet_path;
+
+	file_path = SPRITES_PATH;
+	file_path = ft_strjoin(file_path, start_path);
+	if (!file_path)
+		free_game(*game, "Error of malloc.\n");
+	str_itoa = ft_itoa(frame);
+	if (!str_itoa)
+		free_game(*game, "Error of malloc.\n");
+	frame_path = ft_strjoin(file_path, str_itoa);
+	free(str_itoa);
+	free(file_path);
+	if (!frame_path)
+		free_game(*game, "Error of malloc.\n");
+	complet_path = ft_strjoin(frame_path, ".xpm");
+	if (!complet_path)
+		free_game(*game, "Error of malloc.\n");
+	free(frame_path);
+	return (complet_path);
 }

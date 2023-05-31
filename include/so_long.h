@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/31 23:42:31 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/05/31 23:55:13 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -749,8 +749,13 @@ void				init_xpm_file(t_game *game, void *ptr, char *path,
 void				init_new_resize_img(t_game *game, void *ptr, t_img *new_img,
 						t_vector_2 new_size);
 
-t_img				resize_img(t_game *game, void *ptr, t_img *src,
+char				*find_sprite_path(t_game *game, char *start_path,
+						int frame);
+
+t_img				new_resize_img(t_game *game, void *ptr, t_img *src,
 						t_vector_2 dst_size);
+
+
 
 // |--------------------------------|
 // |			INIT_PLAYER			|
@@ -771,8 +776,6 @@ void				put_unavailable_character_on_map(t_game *game,
 // |			INIT_SPRITES_ASSETS			|
 // |----------------------------------------|
 
-char				*find_sprite_path(t_game *game, char *start_path,
-						int frame);
 
 void				init_sprites_assets(t_game *game);
 
