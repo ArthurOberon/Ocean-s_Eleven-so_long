@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:35:23 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/29 19:49:27 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/31 20:36:04 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	bzero_game(t_game *game)
 	game->gameplay = NULL;
 }
 
-void	init_game(t_game *game, int available_character[4],
+void	init_game(t_game *game, int *available_character,
 			int chosen_character)
 {
 	srand(time(NULL));

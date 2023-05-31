@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_gameplay.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/25 22:59:11 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/31 20:34:18 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	init_text_box(t_game *game, t_window *window, t_gameplay *gameplay,
 	text_box->text_pages = NULL;
 }
 
-void	init_gameplay(t_game *game, int available_character[4],
+void	init_gameplay(t_game *game, int *available_character,
 			int chosen_character)
 {
 	t_gameplay	*gameplay;
@@ -91,6 +91,7 @@ void	init_gameplay(t_game *game, int available_character[4],
 	gameplay->available_character[1] = available_character[1];
 	gameplay->available_character[2] = available_character[2];
 	gameplay->available_character[3] = available_character[3];
+	free(available_character);
 	gameplay->chosen_character = chosen_character;
 	gameplay->fps = 0;
 	gameplay->delta_time = 0;

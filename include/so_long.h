@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/31 14:33:15 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/05/31 20:56:12 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -682,6 +682,13 @@ char				*get_next_line(int fd);
 // |					SRC_INIT					|
 // |================================================|
 
+// |--------------------------------------------|
+// |			GET_AVAILABLE_CHARACTER			|
+// |--------------------------------------------|
+
+int					*get_available_character(char **argv, int *argc_map,
+						int *chosen_character);
+
 // |--------------------------------|
 // |			INIT_CAMERA			|
 // |--------------------------------|
@@ -692,7 +699,7 @@ void				init_camera(t_game *game);
 // |			INIT_GAME			|
 // |--------------------------------|
 
-void				init_game(t_game *game, int available_character[4],
+void				init_game(t_game *game, int *available_character,
 						int chosen_character);
 void				bzero_game(t_game *game);
 
@@ -700,7 +707,7 @@ void				bzero_game(t_game *game);
 // |			INIT_GAMEPLAY			|
 // |------------------------------------|
 
-void				init_gameplay(t_game *game, int available_character[4],
+void				init_gameplay(t_game *game, int *available_character,
 						int chosen_character);
 
 // |--------------------------------|

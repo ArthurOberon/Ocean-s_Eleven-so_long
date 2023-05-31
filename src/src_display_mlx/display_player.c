@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:20:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/31 14:40:25 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/05/31 18:48:18 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,10 @@ static void	display_aim_bomb(t_window *window, t_player *player,
 	}
 }
 
-static void	display_pattern_box(t_game *game, int player_pos,
-	t_sprite *sprite, int size)
+static void	display_pattern_box(t_game *game, t_sprite *sprite, int size)
 {
 	int			i;
 	int			j;
-	int			pos;
 	t_vector_2	f_pos;
 
 	i = -size + 1;
@@ -63,7 +61,6 @@ static void	display_pattern_box(t_game *game, int player_pos,
 		{
 			if (i != 0 || j != 0)
 			{
-				pos = player_pos + (i + (j * game->level->map_vector.x));
 				f_pos.x = game->gameplay->player->player_pos.x
 					+ (CHUNK_SIZE * i);
 				f_pos.y = game->gameplay->player->player_pos.y
@@ -81,14 +78,10 @@ static void	display_pattern_box(t_game *game, int player_pos,
 static void	display_area_pickpocketable(t_game *game, t_player *player,
 	t_sprite *sprite)
 {
-	int			player_pos;
-
 	if (player->player_character == e_thief
 		&& player->qte.is_pickpocketing == false)
 	{
-		player_pos = player->player_chunk_pos.x
-			+ (player->player_chunk_pos.y * game->level->map_vector.x);
-		display_pattern_box(game, player_pos, sprite, 2);
+		display_pattern_box(game, sprite, 2);
 	}
 }
 
@@ -100,8 +93,10 @@ void	display_player(t_game *game, t_window *window, t_player *player,
 	pos_tmp = player->player_pos;
 	player->player_pos.x = player->player_pos.x - game->camera->camera_f_pos.x;
 	player->player_pos.y = player->player_pos.y - game->camera->camera_f_pos.y;
-	player->player_pos.x = player->player_pos.x - (CHUNK_SIZE - (CHUNK_SIZE * RATIO_PLAYER_SIZE_X)) / 2;
-	player->player_pos.y = player->player_pos.y - (CHUNK_SIZE - (CHUNK_SIZE * RATIO_PLAYER_SIZE_Y)) / 2;
+	player->player_pos.x = player->player_pos.x
+		- (CHUNK_SIZE - (CHUNK_SIZE * RATIO_PLAYER_SIZE_X)) / 2;
+	player->player_pos.y = player->player_pos.y
+		- (CHUNK_SIZE - (CHUNK_SIZE * RATIO_PLAYER_SIZE_Y)) / 2;
 	display_player_on_window(window, player, sprite);
 	display_aim_bomb(window, player, game->assets->dynamite);
 	display_area_pickpocketable(game, player, game->assets->area_qte);

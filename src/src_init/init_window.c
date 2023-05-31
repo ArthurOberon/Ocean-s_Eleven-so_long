@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 12:15:53 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/29 20:27:54 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/31 20:53:32 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	init_window(t_game *game)
 	game->window = window;
 	window->img.size.x = WINDOW_WIDTH;
 	window->img.size.y = WINDOW_HEIGHT;
-	printf("WINDOW : [%d] [%d]\n", window->img.size.x, window->img.size.y);
 	window->mlx_ptr = mlx_init();
 	if (!window->mlx_ptr)
 		free_game(*game, "Error of mlx_init().\n");
