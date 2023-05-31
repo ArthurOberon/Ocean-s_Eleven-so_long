@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 13:37:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/29 20:26:56 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/31 13:21:26 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	display_background(t_window *window, t_img *img)
 {
-	memcpy_img(&window->img, (t_vector_2){0, 0}, img, (t_vector_2){0, 0});
+	memcpy_img(&window->img, (t_vector_2){0, 0}, img,
+		(t_vector_2[2]){{0, 0}, {0, 0}});
 }
 
 void	camera(t_game *game, t_camera *camera, t_player *player)

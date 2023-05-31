@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_tools.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:17:13 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/30 13:55:01 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/31 13:21:37 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,17 @@ void	background(t_img *img, int color)
 }
 
 void	memcpy_img(t_img *img_dst, t_vector_2 pos_dst,
-	t_img *img_src, t_vector_2 pos_src)
+	t_img *img_src, t_vector_2 *pos_src)
 {
 	int	j;
 
 	j = 0;
-	printf("img size : y : [%d]\n", img_src->size.y);
-	printf("pos_src : y : [%d]\n", pos_src.y);
-	printf("img - pos : [%d]\n", img_src->size.y - pos_src.y);
-	printf("img - (pos / CHUNK_SIZE) : [%d]\n", img_src->size.y - (pos_src.y / CHUNK_SIZE));
-	printf("pos - img : [%d]\n", pos_src.y - img_src->size.y);
-	while (j < img_src->size.y - pos_src.y)
+	while (j < img_src->size.y - pos_src[1].y)
 	{
 		ft_memcpy(img_dst->addr + (pos_dst.y + j) * img_dst->line_len
 			+ pos_dst.x * 4,
-			img_src->addr + (pos_src.y + j) * img_src->line_len + pos_src.x * 4,
-			img_src->line_len - pos_src.x * 4);
+			img_src->addr + (pos_src[0].y + j) * img_src->line_len + pos_src[0].x * 4,
+			img_src->line_len - pos_src[1].x * 4);
 		j++;
 	}
 }

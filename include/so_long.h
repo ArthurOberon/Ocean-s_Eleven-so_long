@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/29 20:20:02 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/31 13:16:15 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -536,7 +536,7 @@ void				display_character(t_game *game, t_window *window,
 void				background(t_img *img, int color);
 void				img_pix_put(t_img *img, int x, int y, int color);
 void				memcpy_img(t_img *img_dst, t_vector_2 pos_dst,
-						t_img *img_src, t_vector_2 pos_src);
+						t_img *img_src, t_vector_2 *pos_src);
 
 __uint32_t			get_color_pixel(t_img *img, int i, int j);
 
