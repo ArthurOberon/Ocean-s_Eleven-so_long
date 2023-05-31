@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   text_box.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 18:00:00 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/24 14:43:56 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/31 23:42:30 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,14 @@ void	set_text_box(t_game *game, t_text_box *text_box, char *text)
 	text_box->is_display = true;
 	game->gameplay->is_stop = true;
 	text_box->read_all = false;
+}
+
+void	display_text(t_game *game, t_text_box *text_box, t_text *text,
+	bool not_display_again)
+{
+	if (text->has_been_display == false)
+	{
+		set_text_box(game, text_box, text->text);
+		text->has_been_display = not_display_again;
+	}
 }

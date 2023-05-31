@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/31 21:05:30 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/05/31 23:36:51 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,27 @@ static void	init_text_box(t_game *game, t_window *window, t_gameplay *gameplay,
 	text_box->text_pages = NULL;
 }
 
+static void	init_texts(t_game *game, t_gameplay *gameplay)
+{
+	int		i;
+	t_text	*texts;
+
+	texts = ft_calloc(sizeof(t_text), e_total_text_number);
+	if (!texts)
+		free_game(*game, "Error of malloc.\n");
+	gameplay->texts = texts;
+	texts[e_text_start].text = "let's get thoses collectibles !";
+	texts[e_text_remain_one_collectible].text = "one more to go !";
+	texts[e_text_remain_zero_collectible].text = "perfect ! now let's go to the safe";
+	texts[e_text_take_danny].text = "abcdefghijqlmnopqrstuvwxyz  !\"#$%&'()*+,-./0123456789:;<=?>";
+	i = 0;
+	while (i < e_total_text_number)
+	{
+		texts[i].has_been_display = false;
+		i++;
+	}
+}
+
 void	init_gameplay(t_game *game, int *available_character,
 			int chosen_character)
 {
@@ -103,6 +124,7 @@ void	init_gameplay(t_game *game, int *available_character,
 	init_player(game, gameplay->player, chosen_character);
 	init_guards(game, gameplay->guards);
 	init_text_box(game, game->window, gameplay, &gameplay->text_box);
+	init_texts(game, gameplay);
 	if (IS_DEBUG)
 		debug_chunk_pos(game);
 }

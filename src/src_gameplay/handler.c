@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:34:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/23 16:08:57 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/31 22:36:37 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ int	handle_keypress(int keysym, t_game *game)
 	if (keysym == XK_R || keysym == XK_r)
 	{
 		restart(game);
+	}
+	if (keysym == XK_Delete && game->gameplay->text_box.is_display == true)
+	{
+		if (game->gameplay->text_box.page_in != 0)
+			game->gameplay->text_box.page_in -= 1;
 	}
 	if (keysym == XK_space && game->gameplay->text_box.is_display == true)
 	{

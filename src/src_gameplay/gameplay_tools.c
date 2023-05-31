@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gameplay_tools.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 17:34:37 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/26 19:48:05 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/31 23:42:46 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@ void	set_player_to_character(t_game *game, t_gameplay *gameplay,
 	t_player *player, int character)
 {
 	if (character == e_main && (gameplay->available_character[e_main] == 1
-		|| gameplay->available_character[e_main] == 3))
+			|| gameplay->available_character[e_main] == 3))
 	{
 		if (player->has_been_hit == false)
 			player->hp = 2;
 		else
 			player->hp = 1;
 		player->player_character = e_main;
-		set_text_box(game, &gameplay->text_box,
-			"let's get thoses collectibles !  !\"#$%&'()*+,-./0123456789:;<=?>");
+		display_text(game, &gameplay->text_box,
+			&gameplay->texts[e_text_take_danny], false);
 		printf("new player choose : Danny\n");
 	}
 	else if (character == e_eater

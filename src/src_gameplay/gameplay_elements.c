@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gameplay_elements.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:32:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/25 17:13:52 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/05/31 22:30:46 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	gameplay_elements(t_game *game, t_gameplay *gameplay)
 
 	if (gameplay->player->hp == 0)
 		game_over(game);
+	text_box_events(game, gameplay);
 	get_iframes(gameplay->player);
 	i = 0;
 	while (i < gameplay->nb_guard)

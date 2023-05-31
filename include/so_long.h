@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/31 20:56:12 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/05/31 23:42:31 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,15 @@ enum e_player_character
 	e_bomber,
 };
 
+enum e_texts
+{
+	e_text_start,
+	e_text_take_danny,
+	e_text_remain_one_collectible,
+	e_text_remain_zero_collectible,
+	e_total_text_number,
+};
+
 // e_main = danny
 // e_eater = rusty
 // e_thief = linus
@@ -265,7 +274,6 @@ typedef struct s_window
 	t_img		img;
 	t_sprite	**map_sprites;
 }	t_window;
-	// t_img		background;
 
 typedef struct s_sprites_assets
 {
@@ -318,6 +326,12 @@ typedef struct s_text_box
 	char		*text;
 	char		**text_pages;
 }	t_text_box;
+
+typedef struct s_text
+{
+	char	*text;
+	bool	has_been_display;
+}	t_text;
 
 typedef struct s_qte
 {
@@ -397,6 +411,7 @@ typedef struct s_gameplay
 	int					available_character[4];
 	int					chosen_character;
 	t_text_box			text_box;
+	t_text				*texts;
 	int					nb_collect_get;
 	int					nb_collect_remain;
 	int					nb_guard;
@@ -665,12 +680,20 @@ int					pos_to_chunk(int x, int y, int x_max);
 t_vector_2			chunk_to_pixel_pos(int chunk, int x_max);
 t_f_vector_2		chunk_to_pixel_f_pos(int chunk, int x_max);
 
+// |------------------------------------|
+// |			TEXT_BOX_EVENTS			|
+// |------------------------------------|
+
+void				text_box_events(t_game *game, t_gameplay *gameplay);
+
 // |--------------------------------|
 // |			TEXT_BOX			|
 // |--------------------------------|
 
 void				set_text_box(t_game *game, t_text_box *text_box,
 						char *text);
+void				display_text(t_game *game, t_text_box *text_box,
+						t_text *text, bool not_display_again);
 
 // |============================================|
 // |					SRC_GNL					|
