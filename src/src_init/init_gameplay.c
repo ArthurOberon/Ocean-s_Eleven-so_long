@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/01 17:00:01 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/01 22:49:29 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ static void	init_texts(t_game *game, t_gameplay *gameplay)
 	texts[e_text_remain_one_collectible].text = "One more to go !";
 	texts[e_text_remain_zero_collectible].text = "Perfect ! Now let's go to the safe";
 	texts[e_text_take_danny].text = "abcdefghijqlmnopqrstuvwxyz  !\"#$%&'()*+,-./0123456789:;<=?>";
+	texts[e_text_rusty_to_danny_1].text = "test_1";
+	texts[e_text_rusty_to_danny_2].text = "test_2";
 	i = 0;
 	while (i < e_total_text_number)
 	{

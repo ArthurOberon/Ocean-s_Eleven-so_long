@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 17:34:37 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/31 23:42:46 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/01 23:36:12 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,47 +30,6 @@ void	calculate_fps(int *fps, double *delta_time)
 	}
 	*fps = (int)(1.f / *delta_time);
 	last_time = now;
-}
-
-void	set_player_to_character(t_game *game, t_gameplay *gameplay,
-	t_player *player, int character)
-{
-	if (character == e_main && (gameplay->available_character[e_main] == 1
-			|| gameplay->available_character[e_main] == 3))
-	{
-		if (player->has_been_hit == false)
-			player->hp = 2;
-		else
-			player->hp = 1;
-		player->player_character = e_main;
-		display_text(game, &gameplay->text_box,
-			&gameplay->texts[e_text_take_danny], false);
-		printf("new player choose : Danny\n");
-	}
-	else if (character == e_eater
-		&& (gameplay->available_character[e_eater] == 1
-			|| gameplay->available_character[e_eater] == 3))
-	{
-		player->hp = 1;
-		player->player_character = e_eater;
-		printf("new player choose : Rusty\n");
-	}
-	else if (character == e_thief
-		&& (gameplay->available_character[e_thief] == 1
-			|| gameplay->available_character[e_thief] == 3))
-	{
-		player->hp = 1;
-		player->player_character = e_thief;
-		printf("new player choose : Linus\n");
-	}
-	else if (character == e_bomber
-		&& (gameplay->available_character[e_bomber] == 1
-			|| gameplay->available_character[e_bomber] == 3))
-	{
-		player->hp = 1;
-		player->player_character = e_bomber;
-		printf("new player choose : Basher\n");
-	}
 }
 
 static void	restart_available_character(t_gameplay *gameplay)

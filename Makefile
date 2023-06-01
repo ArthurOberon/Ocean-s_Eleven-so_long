@@ -43,6 +43,7 @@ SRC_GAMEPLAY	=	$(addprefix src_gameplay/, \
 					text_box.c \
 					move_guard.c \
 					move_player.c \
+					texts_box_list.c \
 					gameplay_tools.c \
 					positions_tools.c \
 					text_box_events.c \
@@ -51,6 +52,7 @@ SRC_GAMEPLAY	=	$(addprefix src_gameplay/, \
 					gameplay_elements.c \
 					move_player_tools.c \
 					collider_positions.c \
+					set_player_to_character.c \
 					)
 
 # SOURCES USE FOR GET_NEXT_LINE

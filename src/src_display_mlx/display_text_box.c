@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:37:34 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/01 16:57:23 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/01 23:40:15 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,13 @@ static void	display_one_page_on_text_box(t_game *game, t_text_box text_box,
 	}
 }
 
-static void	display_face(t_game *game, t_vector_2 pos_display)
+static void	display_face(t_game *game, t_vector_2 pos_display,
+	int talking_character)
 {
 	t_sprite	*sprite_face;
 
 	sprite_face = game->window->map_sprites[game->level->nb_cases
-		+ game->gameplay->player->player_character];
+		+ talking_character];
 	put_image_to_image(&game->window->img, pos_display,
 		&(sprite_face->sprite_img)[0]);
 }
@@ -92,7 +93,14 @@ void	display_text_box(t_game *game, t_window *window, t_text_box text_box)
 	background = window->map_sprites[game->level->nb_cases + e_background_text];
 	put_image_to_image(&window->img, text_box.pos_display_background,
 		&(background->sprite_img)[0]);
-	display_face(game, text_box.pos_display_face);
+	display_face(game, text_box.pos_display_face, text_box.talking_character);
 	display_one_page_on_text_box(game, text_box, text_box.pos_display_text,
 		text_box.characters_max);
+}
+
+void	display_texts_box_list(t_game *game, t_texts_box_list *texts_box_list)
+{
+	if (texts_box_list == NULL)
+		return ;
+	display_text_box(game, game->window, *texts_box_list->text_box);
 }

@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:34:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/31 22:36:37 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/01 23:36:48 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ int	handle_keypress(int keysym, t_game *game)
 			game->gameplay->is_stop = false;
 			game->gameplay->text_box.is_display = false;
 			game->gameplay->text_box.read_all = false;
-			game->gameplay->text_box.talking_character
-				= game->gameplay->player->player_character;
 			game->gameplay->text_box.text = NULL;
 			free_text_box(&game->gameplay->text_box);
 		}

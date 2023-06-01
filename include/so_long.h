@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/01 17:21:58 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/01 23:42:03 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,10 @@ enum e_texts
 {
 	e_text_start,
 	e_text_take_danny,
+	e_text_rusty_to_danny_1,
+	e_text_rusty_to_danny_2,
+	e_text_linus_to_danny,
+	e_text_basher_to_danny,
 	e_text_remain_one_collectible,
 	e_text_remain_zero_collectible,
 	e_total_text_number,
@@ -333,6 +337,12 @@ typedef struct s_text_box
 	char		**text_pages;
 }	t_text_box;
 
+typedef struct s_texts_box_list
+{
+	t_text_box				*text_box;
+	struct s_texts_box_list	*next;
+}	t_texts_box_list;
+
 typedef struct s_text
 {
 	char	*text;
@@ -418,6 +428,7 @@ typedef struct s_gameplay
 	int					chosen_character;
 	t_text_box			text_box;
 	t_text				*texts;
+	// t_texts_box_list	*texts_box_list;
 	int					nb_collect_get;
 	int					nb_collect_remain;
 	int					nb_guard;
@@ -545,6 +556,9 @@ void				display_sprites(t_game *game, t_camera *camera,
 void				display_text_box(t_game *game, t_window *window,
 						t_text_box text_box);
 
+void				display_texts_box_list(t_game *game,
+						t_texts_box_list *texts_box_list);
+
 void				display_character(t_game *game, t_window *window,
 						t_vector_2 pos_display, char character);
 
@@ -616,8 +630,6 @@ void				gameplay_elements(t_game *game, t_gameplay *gameplay);
 
 void				restart(t_game *game);
 void				calculate_fps(int *fps, double *delta_time);
-void				set_player_to_character(t_game *game, t_gameplay *gameplay,
-						t_player *player, int character);
 
 // |----------------------------------------|
 // |			HANDLER_GAMEPLAY			|
@@ -686,6 +698,13 @@ int					pos_to_chunk(int x, int y, int x_max);
 t_vector_2			chunk_to_pixel_pos(int chunk, int x_max);
 t_f_vector_2		chunk_to_pixel_f_pos(int chunk, int x_max);
 
+// |--------------------------------------------|
+// |			SET_PLAYER_TO_CHARACTER			|
+// |--------------------------------------------|
+
+void				set_player_to_character(t_game *game, t_gameplay *gameplay,
+						t_player *player, int character);
+
 // |------------------------------------|
 // |			TEXT_BOX_EVENTS			|
 // |------------------------------------|
@@ -700,6 +719,19 @@ void				set_text_box(t_game *game, t_text_box *text_box,
 						char *text);
 void				display_text(t_game *game, t_text_box *text_box,
 						t_text *text, bool not_display_again);
+
+// |------------------------------------|
+// |			TEXTS_BOX_LIST			|
+// |------------------------------------|
+
+int					ft_lstsize_texts_box(t_texts_box_list *lst);
+
+void				ft_lstclear_texts_box(t_texts_box_list **lst);
+void				ft_lstadd_back_texts_box(t_texts_box_list **lst,
+						t_texts_box_list *new);
+
+t_texts_box_list	*ft_lstnew_texts_box(t_text_box *text_box);
+t_texts_box_list	*ft_lstlast_texts_box(t_texts_box_list *lst);
 
 // |============================================|
 // |					SRC_GNL					|
