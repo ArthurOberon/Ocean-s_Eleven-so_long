@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/01 16:34:27 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/01 17:21:58 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,10 @@ enum e_player_character
 	e_thief,
 	e_bomber,
 };
+// e_main = danny
+// e_eater = rusty
+// e_thief = linus
+// e_bomber = basher
 
 enum e_texts
 {
@@ -179,11 +183,6 @@ enum e_texts
 	e_text_remain_zero_collectible,
 	e_total_text_number,
 };
-
-// e_main = danny
-// e_eater = rusty
-// e_thief = linus
-// e_bomber = basher
 
 typedef struct s_lst_map
 {
@@ -753,16 +752,12 @@ void				init_guards(t_game *game, t_guard *guards);
 
 void				init_xpm_file(t_game *game, void *ptr, char *path,
 						t_img *img);
-void				init_new_resize_img(t_game *game, void *ptr, t_img *new_img,
-						t_vector_2 new_size);
 
 char				*find_sprite_path(t_game *game, char *start_path,
 						int frame);
 
 t_img				new_resize_img(t_game *game, void *ptr, t_img *src,
 						t_vector_2 dst_size);
-
-
 
 // |--------------------------------|
 // |			INIT_PLAYER			|
@@ -782,7 +777,6 @@ void				put_unavailable_character_on_map(t_game *game,
 // |----------------------------------------|
 // |			INIT_SPRITES_ASSETS			|
 // |----------------------------------------|
-
 
 void				init_sprites_assets(t_game *game);
 

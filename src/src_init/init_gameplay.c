@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/31 23:36:51 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/01 17:00:01 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ static void	init_texts(t_game *game, t_gameplay *gameplay)
 	if (!texts)
 		free_game(*game, "Error of malloc.\n");
 	gameplay->texts = texts;
-	texts[e_text_start].text = "let's get thoses collectibles !";
-	texts[e_text_remain_one_collectible].text = "one more to go !";
-	texts[e_text_remain_zero_collectible].text = "perfect ! now let's go to the safe";
+	texts[e_text_start].text = "Let's get thoses collectibles !";
+	texts[e_text_remain_one_collectible].text = "One more to go !";
+	texts[e_text_remain_zero_collectible].text = "Perfect ! Now let's go to the safe";
 	texts[e_text_take_danny].text = "abcdefghijqlmnopqrstuvwxyz  !\"#$%&'()*+,-./0123456789:;<=?>";
 	i = 0;
 	while (i < e_total_text_number)

@@ -3,18 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   display_text_box.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:37:34 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/25 17:05:25 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/01 16:57:23 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+static int	ft_tolower(int character)
+{
+	if (character >= 65 && character <= 90)
+		return (character + 32);
+	return (character);
+}
+
 void	display_character(t_game *game, t_window *window,
 	t_vector_2 pos_display, char character)
 {
+	character = ft_tolower(character);
 	if (character >= 97 && character <= 122)
 	{
 		if (character != ' ')

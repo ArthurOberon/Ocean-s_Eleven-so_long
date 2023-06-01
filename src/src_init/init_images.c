@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:02:17 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/31 23:55:39 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/01 17:21:55 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	init_xpm_file(t_game *game, void *ptr, char *path, t_img *img)
 			&img->endian);
 }
 
-void	init_new_resize_img(t_game *game, void *ptr, t_img *new_img,
+static void	init_new_resize_img(t_game *game, void *ptr, t_img *new_img,
 	t_vector_2 new_size)
 {
 	new_img->mlx_img = mlx_new_image(ptr, new_size.x, new_size.y);
@@ -44,11 +44,6 @@ t_img	new_resize_img(t_game *game, void *ptr, t_img *src,
 	t_img			dst;
 	__uint32_t		pixel;
 
-	// ? WHY doesn't work with :
-	// dst.mlx_img = mlx_new_image(ptr, dst_size.x, dst_size.y);
-	// if (!dst.mlx_img)
-		// free_game(*game, "Error of mlx_xpm_file_to_image.\n");
-	// And work with :
 	init_new_resize_img(game, ptr, &dst, dst_size);
 	quotient.x = (double)(src->size.x) / (double)(dst_size.x);
 	quotient.y = (double)(src->size.y) / (double)(dst_size.y);
