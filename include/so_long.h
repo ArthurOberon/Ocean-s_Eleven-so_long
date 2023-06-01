@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/31 23:55:13 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/01 16:34:27 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,6 +308,13 @@ typedef struct s_sprites_assets
 	t_sprite	*special_character;
 	t_sprite	*background_text;
 }	t_sprites_assets;
+
+typedef struct s_init_sprite_asset_args
+{
+	char		*path;
+	int			size;
+	t_vector_2	dst_size;
+}	t_init_sprite_asset_args;
 
 typedef struct s_text_box
 {
