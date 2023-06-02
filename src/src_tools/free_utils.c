@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:49:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/26 15:55:29 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/02 17:51:59 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_text_box(t_text_box *text_box)
+void	free_text_box_text_pages(t_text_box *text_box)
 {
 	int	i;
 

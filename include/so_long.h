@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/01 23:42:03 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/02 17:49:30 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -426,9 +426,9 @@ typedef struct s_gameplay
 	bool				display_plus_one;
 	int					available_character[4];
 	int					chosen_character;
-	t_text_box			text_box;
+	// t_text_box			text_box;
 	t_text				*texts;
-	// t_texts_box_list	*texts_box_list;
+	t_texts_box_list	*texts_box_list;
 	int					nb_collect_get;
 	int					nb_collect_remain;
 	int					nb_guard;
@@ -717,8 +717,9 @@ void				text_box_events(t_game *game, t_gameplay *gameplay);
 
 void				set_text_box(t_game *game, t_text_box *text_box,
 						char *text);
-void				display_text(t_game *game, t_text_box *text_box,
-						t_text *text, bool not_display_again);
+void				add_text(t_game *game,
+						t_texts_box_list **texts_box_list, t_text *text,
+						bool not_display_again);
 
 // |------------------------------------|
 // |			TEXTS_BOX_LIST			|
@@ -727,6 +728,7 @@ void				display_text(t_game *game, t_text_box *text_box,
 int					ft_lstsize_texts_box(t_texts_box_list *lst);
 
 void				ft_lstclear_texts_box(t_texts_box_list **lst);
+void				ft_lstdelone_texts_box(t_texts_box_list *lst);
 void				ft_lstadd_back_texts_box(t_texts_box_list **lst,
 						t_texts_box_list *new);
 
@@ -770,6 +772,9 @@ void				bzero_game(t_game *game);
 
 void				init_gameplay(t_game *game, int *available_character,
 						int chosen_character);
+
+void				init_text_box(t_game *game, t_window *window,
+						t_gameplay *gameplay, t_text_box *text_box);
 
 // |--------------------------------|
 // |			INIT_GUARD			|
@@ -915,7 +920,7 @@ void				exit_pathfinding_error(t_level *level, char flag,
 // |			FREE_UTILS			|
 // |--------------------------------|
 
-void				free_text_box(t_text_box *text_box);
+void				free_text_box_text_pages(t_text_box *text_box);
 void				free_one_sprite(void *ptr, t_sprite *sprite);
 void				free_assets(void *ptr, t_sprites_assets *assets);
 

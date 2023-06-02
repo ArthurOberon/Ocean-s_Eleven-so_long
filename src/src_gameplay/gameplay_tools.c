@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 17:34:37 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/01 23:36:12 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/02 11:11:06 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	restart(t_game *game)
 	game->gameplay->nb_collect_remain = game->level->nb_collect;
 	game->gameplay->nb_move = 0;
 	game->gameplay->display_plus_one = false;
-	game->gameplay->text_box.is_display = false;
+	game->gameplay->texts_box_list->text_box->is_display = false;
 	game->gameplay->nb_collect_get = 0;
 	game->gameplay->nb_collect_remain = game->level->nb_collect;
 	restart_available_character(game->gameplay);

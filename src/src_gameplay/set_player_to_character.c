@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 17:35:44 by arthurobero       #+#    #+#             */
-/*   Updated: 2023/06/01 23:39:20 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/02 17:14:05 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ static void	set_player_to_main(t_game *game, t_gameplay *gameplay,
 		player->hp = 2;
 	else
 		player->hp = 1;
-	player->player_character = e_main;
-	gameplay->text_box.talking_character = player->player_character;
-	display_text(game, &gameplay->text_box,
+	add_text(game, &gameplay->texts_box_list,
 		&gameplay->texts[e_text_rusty_to_danny_1], false);
-	display_text(game, &gameplay->text_box,
+	player->player_character = e_main;
+	// gameplay->texts_box_list->text_box->talking_character
+		// = player->player_character;
+	add_text(game, &gameplay->texts_box_list,
 		&gameplay->texts[e_text_rusty_to_danny_2], false);
 }
 
@@ -32,7 +33,6 @@ static void	set_player_to_eater(t_game *game, t_gameplay *gameplay,
 {
 	player->hp = 1;
 	player->player_character = e_eater;
-	gameplay->text_box.talking_character = player->player_character;
 }
 
 static void	set_player_to_thief(t_game *game, t_gameplay *gameplay,
@@ -40,7 +40,6 @@ static void	set_player_to_thief(t_game *game, t_gameplay *gameplay,
 {
 	player->hp = 1;
 	player->player_character = e_thief;
-	gameplay->text_box.talking_character = player->player_character;
 }
 
 static void	set_player_to_bomber(t_game *game, t_gameplay *gameplay,
@@ -48,7 +47,6 @@ static void	set_player_to_bomber(t_game *game, t_gameplay *gameplay,
 {
 	player->hp = 1;
 	player->player_character = e_bomber;
-	gameplay->text_box.talking_character = player->player_character;
 }
 
 void	set_player_to_character(t_game *game, t_gameplay *gameplay,

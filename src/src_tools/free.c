@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 19:17:43 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/31 23:58:46 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/02 17:55:47 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	free_gameplay(t_gameplay *gameplay)
 		free(gameplay->guards);
 	if (gameplay->map_start_state)
 		free(gameplay->map_start_state);
-	free_text_box(&gameplay->text_box);
+	ft_lstclear_texts_box(&gameplay->texts_box_list);
 	if (gameplay->texts)
 		free(gameplay->texts);
 	free(gameplay);

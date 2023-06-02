@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 18:00:00 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/01 23:40:11 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/02 17:57:26 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,23 @@ void	set_text_box(t_game *game, t_text_box *text_box, char *text)
 	text_box->read_all = false;
 }
 
-void	display_text(t_game *game, t_text_box *text_box, t_text *text,
-	bool not_display_again)
+void	add_text(t_game *game, t_texts_box_list **texts_box_list,
+	t_text *text, bool not_display_again)
 {
+	t_texts_box_list	*new;
+	t_text_box			*text_box;
+
 	if (text->has_been_display == false)
 	{
+		text_box = ft_calloc(sizeof(t_text_box), 1);
+		if (!text_box)
+			free_game(*game, "Error of malloc.\n");
+		init_text_box(game, game->window, game->gameplay, text_box);
 		set_text_box(game, text_box, text->text);
 		text->has_been_display = not_display_again;
+		new = ft_lstnew_texts_box(text_box);
+		if (!new)
+			free_game(*game, "Error of malloc.\n");
+		ft_lstadd_back_texts_box(texts_box_list, new);
 	}
 }

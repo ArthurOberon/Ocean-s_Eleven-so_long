@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/01 22:49:29 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/02 17:21:15 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	get_chunk_positions(t_game *game, t_vector_2 **chunk_pos,
 	}
 }
 
-static void	init_text_box(t_game *game, t_window *window, t_gameplay *gameplay,
+void	init_text_box(t_game *game, t_window *window, t_gameplay *gameplay,
 	t_text_box *text_box)
 {
 	t_sprite	*background;
@@ -125,7 +125,7 @@ void	init_gameplay(t_game *game, int *available_character,
 	gameplay->map_start_state = ft_strdup(game->level->map);
 	init_player(game, gameplay->player, chosen_character);
 	init_guards(game, gameplay->guards);
-	init_text_box(game, game->window, gameplay, &gameplay->text_box);
+	gameplay->texts_box_list = NULL;
 	init_texts(game, gameplay);
 	if (IS_DEBUG)
 		debug_chunk_pos(game);

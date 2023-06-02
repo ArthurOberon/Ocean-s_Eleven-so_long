@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:34:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/01 23:36:48 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/02 17:55:22 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,27 +46,35 @@ int	handle_keypress(int keysym, t_game *game)
 	{
 		restart(game);
 	}
-	if (keysym == XK_Delete && game->gameplay->text_box.is_display == true)
+	if (keysym == XK_Delete && game->gameplay->texts_box_list && game->gameplay->texts_box_list->text_box->is_display == true)
 	{
-		if (game->gameplay->text_box.page_in != 0)
-			game->gameplay->text_box.page_in -= 1;
+		if (game->gameplay->texts_box_list->text_box->page_in != 0)
+			game->gameplay->texts_box_list->text_box->page_in -= 1;
 	}
-	if (keysym == XK_space && game->gameplay->text_box.is_display == true)
+	if (keysym == XK_space && game->gameplay->texts_box_list && game->gameplay->texts_box_list->text_box->is_display == true)
 	{
-		if (game->gameplay->text_box.read_all == false)
+		if (game->gameplay->texts_box_list->text_box->read_all == false)
 		{
-			game->gameplay->text_box.page_in += 1;
-			if (game->gameplay->text_box.page_in
-				== game->gameplay->text_box.page_number)
-				game->gameplay->text_box.read_all = true;
+			game->gameplay->texts_box_list->text_box->page_in += 1;
+			if (game->gameplay->texts_box_list->text_box->page_in
+				== game->gameplay->texts_box_list->text_box->page_number)
+				game->gameplay->texts_box_list->text_box->read_all = true;
 		}
-		if (game->gameplay->text_box.read_all == true)
+		if (game->gameplay->texts_box_list->text_box->read_all == true)
 		{
-			game->gameplay->is_stop = false;
-			game->gameplay->text_box.is_display = false;
-			game->gameplay->text_box.read_all = false;
-			game->gameplay->text_box.text = NULL;
-			free_text_box(&game->gameplay->text_box);
+			if (game->gameplay->texts_box_list->next == NULL)
+			{
+				game->gameplay->is_stop = false;
+				game->gameplay->texts_box_list->text_box->is_display = false;
+				game->gameplay->texts_box_list->text_box->read_all = false;
+				game->gameplay->texts_box_list->text_box->text = NULL;
+				free_text_box_text_pages(game->gameplay->texts_box_list->text_box);
+			}
+			t_texts_box_list	*tmp;
+
+			tmp = game->gameplay->texts_box_list;
+			game->gameplay->texts_box_list = game->gameplay->texts_box_list->next;
+			ft_lstdelone_texts_box(tmp);
 		}
 	}
 	handle_player_move(keysym, game);

@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/01 23:40:00 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/02 16:46:18 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	on_update(t_game *game)
 	camera(game, game->camera, game->gameplay->player);
 	display_sprites(game, game->camera, game->window);
 	display_ui(game, game->window, game->gameplay);
-	display_text_box(game, game->window, game->gameplay->text_box);
+	display_texts_box_list(game, game->gameplay->texts_box_list);
 	if (IS_DEBUG)
 	{
 		display_debug(&game->window->img, GREEN, game->gameplay->chunks_pos,
@@ -55,7 +55,7 @@ static int	on_update(t_game *game)
 
 void	start_game(t_game *game)
 {
-	display_text(game, &game->gameplay->text_box,
+	add_text(game, &game->gameplay->texts_box_list,
 		&game->gameplay->texts[e_text_start], true);
 	mlx_hook(game->window->win_ptr, DestroyNotify, KeyPressMask, &close_game,
 		game);

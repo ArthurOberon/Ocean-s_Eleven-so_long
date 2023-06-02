@@ -6,7 +6,7 @@
 /*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 22:53:08 by arthurobero       #+#    #+#             */
-/*   Updated: 2023/06/01 23:37:55 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/02 17:54:19 by arthurobero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_texts_box_list	*ft_lstnew_texts_box(t_text_box *text_box)
 {
 	t_texts_box_list	*newlist;
 
-	newlist = malloc(sizeof(t_texts_box_list));
+	newlist = ft_calloc(sizeof(t_texts_box_list), 1);
 	if (newlist)
 	{
 		newlist->text_box = text_box;
@@ -50,21 +50,20 @@ t_texts_box_list	*ft_lstnew_texts_box(t_text_box *text_box)
 void	ft_lstclear_texts_box(t_texts_box_list **lst)
 {
 	t_texts_box_list	*tmp;
-	t_texts_box_list	*tmp2;
+	t_texts_box_list	*tmp_next;
 
 	if (!lst)
 		return ;
 	tmp = *lst;
-	tmp2 = *lst;
+	tmp_next = *lst;
 	while (tmp)
 	{
-		tmp2 = tmp2->next;
-		free(tmp);
-		tmp = tmp2;
+		tmp_next = tmp_next->next;
+		ft_lstdelone_texts_box(tmp);
+		tmp = tmp_next;
 	}
 	*lst = NULL;
 }
-		// free(tmp->text_box);
 
 void	ft_lstadd_back_texts_box(t_texts_box_list **lst, t_texts_box_list *new)
 {
@@ -79,4 +78,14 @@ void	ft_lstadd_back_texts_box(t_texts_box_list **lst, t_texts_box_list *new)
 	}
 	tmp = ft_lstlast_texts_box(*lst);
 	tmp->next = new;
+}
+
+void	ft_lstdelone_texts_box(t_texts_box_list *lst)
+{
+	if (!lst)
+		return ;
+	free_text_box_text_pages(lst->text_box);
+	free(lst->text_box);
+	free(lst);
+	lst = NULL;
 }
