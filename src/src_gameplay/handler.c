@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:34:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/02 17:55:22 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/02 19:10:05 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	handle_keypress(int keysym, t_game *game)
 			tmp = game->gameplay->texts_box_list;
 			game->gameplay->texts_box_list = game->gameplay->texts_box_list->next;
 			ft_lstdelone_texts_box(tmp);
+			return (0);
 		}
 	}
 	handle_player_move(keysym, game);

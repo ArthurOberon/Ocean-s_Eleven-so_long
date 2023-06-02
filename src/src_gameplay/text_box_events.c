@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   text_box_events.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 21:10:48 by arthurobero       #+#    #+#             */
-/*   Updated: 2023/06/02 12:16:40 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/02 18:05:30 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

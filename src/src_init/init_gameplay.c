@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_gameplay.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/02 17:21:15 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/02 19:18:07 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,36 @@ static void	init_texts(t_game *game, t_gameplay *gameplay)
 	gameplay->texts = texts;
 	texts[e_text_start].text = "Let's get thoses collectibles !";
 	texts[e_text_remain_one_collectible].text = "One more to go !";
-	texts[e_text_remain_zero_collectible].text = "Perfect ! Now let's go to the safe";
+	texts[e_text_remain_zero_collectible].text = "Perfect ! Now let's go to the safe.";
 	texts[e_text_take_danny].text = "abcdefghijqlmnopqrstuvwxyz  !\"#$%&'()*+,-./0123456789:;<=?>";
-	texts[e_text_rusty_to_danny_1].text = "test_1";
-	texts[e_text_rusty_to_danny_2].text = "test_2";
+
+	texts[e_text_rusty_to_danny_1].text = "Aller on enchaine.";
+	texts[e_text_rusty_to_danny_2].text = "C'est parti.";
+	texts[e_text_linus_to_danny_1].text = "C'est a toi ?";
+	texts[e_text_linus_to_danny_2].text = "Oui. Reste derriere.";
+	texts[e_text_basher_to_danny_1].text = "J'espere que ton plan va fonctionner.";
+	texts[e_text_basher_to_danny_2].text = "Fais moi confiance.";
+
+	texts[e_text_danny_to_rusty_1].text = "A ton tour.";
+	texts[e_text_danny_to_rusty_2].text = "C'est parti !";
+	texts[e_text_linus_to_rusty_1].text = "Tu manges encore ?";
+	texts[e_text_linus_to_rusty_2].text = "C'est quoi le probleme ?";
+	texts[e_text_basher_to_rusty_1].text = "C'etait drole !";
+	texts[e_text_basher_to_rusty_2].text = "Et c'est pas fini.";
+
+	texts[e_text_danny_to_linus_1].text = "Tu sais, a ce jeu la tu perds ta concentration pendant un seconde, et quelqu'un ce blesse.";
+	texts[e_text_danny_to_linus_2].text = "Je sais, je sais.";
+	texts[e_text_rusty_to_linus_1].text = "C'est a toi. Et oublie pas que, sous aucune consideration, quoique tu fasses, ne vas jamais essayer de... *dring dring*";
+	texts[e_text_rusty_to_linus_2].text = "Ne jamais quoi ..?";
+	texts[e_text_basher_to_linus_1].text = "Fait pas de la merde.";
+	texts[e_text_basher_to_linus_2].text = "Oui, pas besoin de me le dire.";
+
+	texts[e_text_danny_to_basher_1].text = "Basher, c'est le moment.";
+	texts[e_text_danny_to_basher_2].text = "Oui, laisse moi faire.";
+	texts[e_text_rusty_to_basher_1].text = "Tu vas reussir a faire tout exploser ?";
+	texts[e_text_rusty_to_basher_2].text = "Bien sur, c'est presque deja fait.";
+	texts[e_text_linus_to_basher_1].text = "Je peux faire quelque chose ?";
+	texts[e_text_linus_to_basher_2].text = "Non. Ne touche a rien.";
 	i = 0;
 	while (i < e_total_text_number)
 	{
