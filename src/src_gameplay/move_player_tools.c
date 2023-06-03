@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 22:34:29 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/26 21:53:57 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/03 13:59:13 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,17 @@ void	move_animation(t_player *player, t_sprite *sprite)
 
 	if (FRAME_MOVEMENT == 1)
 		return ;
-	if (player->player_look_dir.x == 1 && !(sprite->frame % FRAME_MOVEMENT))
+	if (player->player_look_dir.x == 1 && !(sprite->frame == FRAME_MOVEMENT || sprite->frame == FRAME_MOVEMENT + 1))
 		sprite->frame = FRAME_MOVEMENT;
-	if (player->player_look_dir.x == -1 && !(sprite->frame % FRAME_MOVEMENT))
+	if (player->player_look_dir.x == -1 && !(sprite->frame ==  (FRAME_MOVEMENT * 2) || sprite->frame ==  (FRAME_MOVEMENT * 2) + 1))
 		sprite->frame = (FRAME_MOVEMENT * 2);
-	if (player->player_look_dir.y == 1 && !(sprite->frame % FRAME_MOVEMENT))
-		sprite->frame = (FRAME_MOVEMENT * 3);
-	if (player->player_look_dir.y == -1 && !(sprite->frame % FRAME_MOVEMENT))
-		sprite->frame = (FRAME_MOVEMENT * 4);
+	if (player->player_look_dir.x == 0 && player->player_look_dir.y != 0)
+	{
+		if (player->player_look_dir.y == 1 && !(sprite->frame ==  (FRAME_MOVEMENT * 3) || sprite->frame == (FRAME_MOVEMENT * 3) + 1))
+			sprite->frame = (FRAME_MOVEMENT * 3);
+		if (player->player_look_dir.y == -1 && !(sprite->frame ==  (FRAME_MOVEMENT * 4) || sprite->frame ==  (FRAME_MOVEMENT * 4) + 1))
+			sprite->frame = (FRAME_MOVEMENT * 4);
+	}
 	if (sprite->last_time.tv_sec == 0)
 		gettimeofday(&sprite->last_time, NULL);
 	gettimeofday(&time, NULL);

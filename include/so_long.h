@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/02 18:29:46 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/02 19:25:25 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,35 +179,30 @@ enum e_texts
 {
 	e_text_start,
 	e_text_take_danny,
-
 	e_text_rusty_to_danny_1,
 	e_text_rusty_to_danny_2,
 	e_text_linus_to_danny_1,
 	e_text_linus_to_danny_2,
 	e_text_basher_to_danny_1,
 	e_text_basher_to_danny_2,
-
 	e_text_danny_to_rusty_1,
 	e_text_danny_to_rusty_2,
 	e_text_linus_to_rusty_1,
 	e_text_linus_to_rusty_2,
 	e_text_basher_to_rusty_1,
 	e_text_basher_to_rusty_2,
-
 	e_text_danny_to_linus_1,
 	e_text_danny_to_linus_2,
 	e_text_rusty_to_linus_1,
 	e_text_rusty_to_linus_2,
 	e_text_basher_to_linus_1,
 	e_text_basher_to_linus_2,
-
 	e_text_danny_to_basher_1,
 	e_text_danny_to_basher_2,
 	e_text_rusty_to_basher_1,
 	e_text_rusty_to_basher_2,
 	e_text_linus_to_basher_1,
 	e_text_linus_to_basher_2,
-
 	e_text_remain_one_collectible,
 	e_text_remain_zero_collectible,
 	e_total_text_number,
@@ -451,7 +446,6 @@ typedef struct s_gameplay
 	bool				display_plus_one;
 	int					available_character[4];
 	int					chosen_character;
-	// t_text_box			text_box;
 	t_text				*texts;
 	t_texts_box_list	*texts_box_list;
 	int					nb_collect_get;
