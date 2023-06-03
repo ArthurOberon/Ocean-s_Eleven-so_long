@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/03 17:47:58 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/03 18:59:57 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -494,6 +494,8 @@ typedef struct s_game
 	t_camera			*camera;
 }	t_game;
 // int		bpp; /* bits per pixel */
+
+int					ft_printf(const char *string, ...);
 
 // |================================================|
 // |					SRC_CAMERA					|

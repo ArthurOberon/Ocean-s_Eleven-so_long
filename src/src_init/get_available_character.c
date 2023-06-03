@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 20:53:58 by arthurobero       #+#    #+#             */
-/*   Updated: 2023/06/03 14:35:52 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/03 19:00:37 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ int	*get_available_character(char **argv, int *argc_map, int *chosen_character)
 				chosen_character);
 		if (check_error == 0)
 		{
-			printf("Error\n");
-			printf("Not a valid option.\n");
-			printf("The option allows you to choose which character you will have at the start, the character not selectioned will be lay randomly on the map.\n");
-			printf("Please only use :\n-d or -D (to get Danny)\n-r or -R (to get Rusty)\n-l or -L (to get Linus)\n-b or -B (to get Basher)\n");
-			printf("Notice that the first option you write wil be the character you will play at the start between all the characters selected.\n");
+			ft_printf("Error\n");
+			ft_printf("Not a valid option.\n");
+			ft_printf("The option allows you to choose which character you will have at the start, the character not selectioned will be lay randomly on the map.\n");
+			ft_printf("Please only use :\n-d or -D (to get Danny)\n-r or -R (to get Rusty)\n-l or -L (to get Linus)\n-b or -B (to get Basher)\n");
+			ft_printf("Notice that the first option you write wil be the character you will play at the start between all the characters selected.\n");
 			if (available_character)
 				free(available_character);
 			exit (EXIT_FAILURE);

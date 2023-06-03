@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:21:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/31 20:56:17 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/03 18:20:47 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-// static int	multiples_maps(char **argv)
-// {
-// 	if (argv[1][0] == '-' && argv[1][1] == 'm')
-// 	{
-// 		// check number of multiples maps.
-// 		// check if each maps are valids.
-// 		// save each maps in a list.
-// 		printf("multiple maps\n");
-// 		return (2);
-// 	}
-// 	return (1);
-// }
 
 int	main(int argc, char **argv)
 {

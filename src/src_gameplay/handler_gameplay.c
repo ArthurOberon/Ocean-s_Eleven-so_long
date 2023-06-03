@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 13:58:54 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/29 20:02:47 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/03 19:00:10 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	handle_bomb(int keysym, t_game *game)
 			game->gameplay->player->bomb.bomb_plant += 1;
 			gettimeofday(&game->gameplay->player->bomb.last_time, NULL);
 		}
-		printf("plant a bomb. bomb planted : [%d]\n",
+		ft_printf("plant a bomb. bomb planted : [%d]\n",
 			game->gameplay->player->bomb.bomb_plant);
 	}
 	if (keysym == XK_Delete)
@@ -82,7 +82,7 @@ void	handle_bomb(int keysym, t_game *game)
 			game->gameplay->player->bomb.bomb_pos.x = -1;
 			game->gameplay->player->bomb.bomb_pos.y = -1;
 		}
-		printf("remove a bomb. bomb planted : [%d]\n",
+		ft_printf("remove a bomb. bomb planted : [%d]\n",
 			game->gameplay->player->bomb.bomb_plant);
 	}
 }

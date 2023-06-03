@@ -6,8 +6,11 @@ INCLUDES_DIR 	=	include/
 SRC_DIR 		=	src/
 OBJ_DIR 		=	.obj/
 LIB_DIR 		=	lib/
+LIB_DIR_MLX		=	$(LIB_DIR)
+LIB_DIR_PRINTF	=	$(LIB_DIR)ft_printf/
 INCLUDES_H		=	-I./$(INCLUDES_DIR) -I./$(LIB_DIR)
-MLX_FLAGS 		=	-L$(LIB_DIR) -lmlx -lX11 -lXext -lm
+MLX_FLAGS 		=	-L$(LIB_DIR_MLX) -lmlx -lX11 -lXext -lm
+FT_PRINTF_FLAGS	=	-L$(LIB_DIR_PRINTF) -lftprintf
 DEPS 			=	$(INCLUDES_DIR)so_long.h Makefile
 
 SRC_CAMERA		= $(addprefix src_camera/, \
@@ -129,17 +132,20 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(DEPS)
 	@$(CC) $(CFLAGS) $(INCLUDES_H) -c -o $@ $<
 
 $(SO_LONG): $(PS_OBJ) $(DEPS)
+	@make -s -C $(LIB_DIR_PRINTF)
 	@echo "\e[36mMaking $(SO_LONG)...\e[0m"
-	@$(CC) $(CFLAGS) $(INCLUDES_H) $(PS_OBJ) $(MLX_FLAGS) -o $(SO_LONG)
+	@$(CC) $(CFLAGS) $(INCLUDES_H) $(PS_OBJ) $(MLX_FLAGS) $(FT_PRINTF_FLAGS) -o $(SO_LONG)
 	@echo "\e[32mDone !\e[0m"
 
 bonus: all
 
 clean:
+	@make -s -C $(LIB_DIR_PRINTF) clean
 	@rm -rf $(OBJ_DIR)
 	@echo "\e[31mObject files removed.\e[0m"
 
 fclean:	clean
+	@make -s -C $(LIB_DIR_PRINTF) fclean
 	@rm -f $(SO_LONG)
 	@echo "\e[31m$(SO_LONG) removed.\e[0m"
 
