@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 22:53:08 by arthurobero       #+#    #+#             */
-/*   Updated: 2023/06/03 19:33:34 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/03 20:33:50 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@ int	ft_lstsize_texts_box(t_texts_box_list *lst)
 		lst = lst->next;
 	}
 	return (size);
+}
+
+t_texts_box_list	*ft_lstfirst_texts_box(t_texts_box_list *lst)
+{
+	while (lst && lst->prev)
+	{
+		lst = lst->prev;
+	}
+	return (lst);
 }
 
 t_texts_box_list	*ft_lstlast_texts_box(t_texts_box_list *lst)

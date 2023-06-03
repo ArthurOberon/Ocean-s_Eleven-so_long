@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 19:17:43 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/02 17:55:47 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/03 20:37:16 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	free_gameplay(t_gameplay *gameplay)
 		free(gameplay->guards);
 	if (gameplay->map_start_state)
 		free(gameplay->map_start_state);
+	free_text_box_text_pages(gameplay->texts_box_list->text_box);
+	gameplay->texts_box_list = ft_lstfirst_texts_box(gameplay->texts_box_list);
 	ft_lstclear_texts_box(&gameplay->texts_box_list);
 	if (gameplay->texts)
 		free(gameplay->texts);

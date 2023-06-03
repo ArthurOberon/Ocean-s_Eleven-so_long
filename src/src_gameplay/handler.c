@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:34:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/03 19:42:17 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/03 20:35:22 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int	handle_keypress(int keysym, t_game *game)
 				game->gameplay->texts_box_list->text_box->read_all = false;
 				game->gameplay->texts_box_list->text_box->text = NULL;
 				free_text_box_text_pages(game->gameplay->texts_box_list->text_box);
+				game->gameplay->texts_box_list = ft_lstfirst_texts_box(game->gameplay->texts_box_list);
 				ft_lstclear_texts_box(&game->gameplay->texts_box_list);
 			}
 			else

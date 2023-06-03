@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 21:10:48 by arthurobero       #+#    #+#             */
-/*   Updated: 2023/06/03 18:13:56 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/03 20:24:39 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	text_box_events_start(t_game *game)
 	}
 }
 
-static void	set_all_texts_remain_one_collectible(t_text *texts, bool status)
+void	set_all_texts_remain_one_collectible(t_text *texts, bool status)
 {
 	texts[e_text_remain_one_collectible_danny].has_been_display = status;
 	texts[e_text_remain_one_collectible_rusty].has_been_display = status;

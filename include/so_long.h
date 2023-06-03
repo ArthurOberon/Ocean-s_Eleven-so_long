@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/03 19:27:44 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/03 20:34:03 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -770,6 +770,7 @@ void				ft_lstadd_back_texts_box(t_texts_box_list **lst,
 
 t_texts_box_list	*ft_lstnew_texts_box(t_text_box *text_box);
 t_texts_box_list	*ft_lstlast_texts_box(t_texts_box_list *lst);
+t_texts_box_list	*ft_lstfirst_texts_box(t_texts_box_list *lst);
 
 // |============================================|
 // |					SRC_GNL					|
