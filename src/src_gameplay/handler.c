@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:34:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/03 17:49:31 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/03 19:42:17 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,14 @@ int	handle_keypress(int keysym, t_game *game)
 	{
 		if (game->gameplay->texts_box_list->text_box->page_in != 0)
 			game->gameplay->texts_box_list->text_box->page_in -= 1;
+		else
+		{
+			if (game->gameplay->texts_box_list->prev != NULL)
+			{
+				game->gameplay->texts_box_list = game->gameplay->texts_box_list->prev;
+				game->gameplay->texts_box_list->text_box->page_in = 0;
+			}
+		}
 	}
 	if (keysym == XK_space && game->gameplay->texts_box_list && game->gameplay->texts_box_list->text_box->is_display == true)
 	{
@@ -75,12 +83,10 @@ int	handle_keypress(int keysym, t_game *game)
 				game->gameplay->texts_box_list->text_box->read_all = false;
 				game->gameplay->texts_box_list->text_box->text = NULL;
 				free_text_box_text_pages(game->gameplay->texts_box_list->text_box);
+				ft_lstclear_texts_box(&game->gameplay->texts_box_list);
 			}
-			t_texts_box_list	*tmp;
-
-			tmp = game->gameplay->texts_box_list;
-			game->gameplay->texts_box_list = game->gameplay->texts_box_list->next;
-			ft_lstdelone_texts_box(tmp);
+			else
+				game->gameplay->texts_box_list = game->gameplay->texts_box_list->next;
 			return (0);
 		}
 	}

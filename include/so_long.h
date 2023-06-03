@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/03 18:59:57 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/03 19:27:44 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -376,6 +376,7 @@ typedef struct s_texts_box_list
 {
 	t_text_box				*text_box;
 	struct s_texts_box_list	*next;
+	struct s_texts_box_list	*prev;
 }	t_texts_box_list;
 
 typedef struct s_text

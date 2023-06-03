@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texts_box_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 22:53:08 by arthurobero       #+#    #+#             */
-/*   Updated: 2023/06/02 17:54:19 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/03 19:33:34 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_texts_box_list	*ft_lstnew_texts_box(t_text_box *text_box)
 	{
 		newlist->text_box = text_box;
 		newlist->next = NULL;
+		newlist->prev = NULL;
 	}
 	return (newlist);
 }
@@ -78,6 +79,7 @@ void	ft_lstadd_back_texts_box(t_texts_box_list **lst, t_texts_box_list *new)
 	}
 	tmp = ft_lstlast_texts_box(*lst);
 	tmp->next = new;
+	new->prev = tmp;
 }
 
 void	ft_lstdelone_texts_box(t_texts_box_list *lst)
