@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/02 19:25:25 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/03 14:07:10 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,8 +177,13 @@ enum e_player_character
 
 enum e_texts
 {
-	e_text_start,
-	e_text_take_danny,
+	// debug
+	e_text_debug,
+	// debug
+	e_text_start_danny,
+	e_text_start_rusty,
+	e_text_start_linus,
+	e_text_start_basher,
 	e_text_rusty_to_danny_1,
 	e_text_rusty_to_danny_2,
 	e_text_linus_to_danny_1,

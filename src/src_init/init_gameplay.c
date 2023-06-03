@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/02 19:18:07 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/03 14:21:43 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,17 @@ static void	init_texts(t_game *game, t_gameplay *gameplay)
 	if (!texts)
 		free_game(*game, "Error of malloc.\n");
 	gameplay->texts = texts;
-	texts[e_text_start].text = "Let's get thoses collectibles !";
+	// debug
+	texts[e_text_debug].text = "abcdefghijqlmnopqrstuvwxyz  !\"#$%&'()*+,-./0123456789:;<=?>";
+	// debug
+
+	texts[e_text_start_danny].text = "Let's get this code to open the safe !";
+	texts[e_text_start_rusty].text = "Qu'est ce que j'aime ce genre d'endroit. Bon, je dois aller ouvrir ce coffre. Je vais me faire discret et trouver le code.";
+	texts[e_text_start_linus].text = "Ok, c'est parti. Faut pas que je me foire. Je dois trouver le code du coffre c'est ca ? Je peux surement le voler sur un des guards.";
+	texts[e_text_start_basher].text = "Alors, alors. Ou est ce que tu te caches petit code du coffre fort.";
+
 	texts[e_text_remain_one_collectible].text = "One more to go !";
 	texts[e_text_remain_zero_collectible].text = "Perfect ! Now let's go to the safe.";
-	texts[e_text_take_danny].text = "abcdefghijqlmnopqrstuvwxyz  !\"#$%&'()*+,-./0123456789:;<=?>";
 
 	texts[e_text_rusty_to_danny_1].text = "Aller on enchaine.";
 	texts[e_text_rusty_to_danny_2].text = "C'est parti.";

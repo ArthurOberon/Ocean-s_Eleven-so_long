@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_available_character.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 20:53:58 by arthurobero       #+#    #+#             */
-/*   Updated: 2023/05/31 20:56:07 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/03 14:35:52 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	set_one_available_character(int *argc_map,
 		*argc_map += 1;
 }
 
-static void	check_which_character(char **argv, int *argc_map,
+static int	check_which_character(char **argv, int *argc_map,
 	int *available_character, int *chosen_character)
 {
 	if (argv[*argc_map][1] == 'd' || argv[*argc_map][1] == 'D')
@@ -29,26 +29,30 @@ static void	check_which_character(char **argv, int *argc_map,
 		set_one_available_character(argc_map, available_character,
 			chosen_character, e_main);
 	}
-	if (argv[*argc_map][1] == 'r' || argv[*argc_map][1] == 'R')
+	else if (argv[*argc_map][1] == 'r' || argv[*argc_map][1] == 'R')
 	{
 		set_one_available_character(argc_map, available_character,
 			chosen_character, e_eater);
 	}
-	if (argv[*argc_map][1] == 'l' || argv[*argc_map][1] == 'L')
+	else if (argv[*argc_map][1] == 'l' || argv[*argc_map][1] == 'L')
 	{
 		set_one_available_character(argc_map, available_character,
 			chosen_character, e_thief);
 	}
-	if (argv[*argc_map][1] == 'b' || argv[*argc_map][1] == 'B')
+	else if (argv[*argc_map][1] == 'b' || argv[*argc_map][1] == 'B')
 	{
 		set_one_available_character(argc_map, available_character,
 			chosen_character, e_bomber);
 	}
+	else
+		return (0);
+	return (1);
 }
 
 int	*get_available_character(char **argv, int *argc_map, int *chosen_character)
 {
 	int		*available_character;
+	int		check_error;
 
 	available_character = ft_calloc(sizeof(int), 4);
 	if (!available_character)
@@ -58,16 +62,23 @@ int	*get_available_character(char **argv, int *argc_map, int *chosen_character)
 	available_character[1] = 1;
 	available_character[2] = 1;
 	available_character[3] = 1;
-	while (argv[*argc_map][0] == '-'
-		&& ((argv[*argc_map][1] == 'd' || argv[*argc_map][1] == 'D')
-		|| (argv[*argc_map][1] == 'r' || argv[*argc_map][1] == 'R')
-		|| (argv[*argc_map][1] == 'l' || argv[*argc_map][1] == 'L')
-		|| (argv[*argc_map][1] == 'b' || argv[*argc_map][1] == 'B')))
+	while (argv[*argc_map][0] == '-')
 	{
 		if (*argc_map == 1)
 			ft_bzero(available_character, sizeof(int) * 4);
-		check_which_character(argv, argc_map, available_character,
-			chosen_character);
+		check_error = check_which_character(argv, argc_map, available_character,
+				chosen_character);
+		if (check_error == 0)
+		{
+			printf("Error\n");
+			printf("Not a valid option.\n");
+			printf("The option allows you to choose which character you will have at the start, the character not selectioned will be lay randomly on the map.\n");
+			printf("Please only use :\n-d or -D (to get Danny)\n-r or -R (to get Rusty)\n-l or -L (to get Linus)\n-b or -B (to get Basher)\n");
+			printf("Notice that the first option you write wil be the character you will play at the start between all the characters selected.\n");
+			if (available_character)
+				free(available_character);
+			exit (EXIT_FAILURE);
+		}
 	}
 	return (available_character);
 }
