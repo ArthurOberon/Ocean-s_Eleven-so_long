@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_images.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:02:17 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/01 17:21:55 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/03 17:21:48 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,19 +64,16 @@ t_img	new_resize_img(t_game *game, void *ptr, t_img *src,
 char	*find_sprite_path(t_game *game, char *start_path, int frame)
 {
 	char	*file_path;
-	char	*str_itoa;
 	char	*frame_path;
 	char	*complet_path;
+	char	str_itoa[10];
 
 	file_path = SPRITES_PATH;
 	file_path = ft_strjoin(file_path, start_path);
 	if (!file_path)
 		free_game(*game, "Error of malloc.\n");
-	str_itoa = ft_itoa(frame);
-	if (!str_itoa)
-		free_game(*game, "Error of malloc.\n");
+	ft_itoa(frame, str_itoa);
 	frame_path = ft_strjoin(file_path, str_itoa);
-	free(str_itoa);
 	free(file_path);
 	if (!frame_path)
 		free_game(*game, "Error of malloc.\n");

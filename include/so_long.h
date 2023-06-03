@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/03 14:07:10 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/03 17:22:04 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -539,7 +539,6 @@ void				display_bomb(t_player *player, t_bomb *bomb,
 // |			DISPLAY_GAMEPLAY_ELEMENTS			|
 // |------------------------------------------------|
 
-void				display_nb_move(t_game *game);
 void				display_gameplay_elements(t_game *game,
 						t_gameplay *gameplay, t_window *window);
 void				display_hp(t_window *window, t_player *player, int color);
@@ -983,7 +982,8 @@ size_t				ft_strlen(const char *s);
 int					ft_nbrlen(int nb);
 int					is_equals(char *s1, char *s2);
 
-char				*ft_itoa(int n);
+void				ft_itoa(int n, char result[10]);
+
 char				*ft_strjoin(char const *s1, char const *s2);
 
 long unsigned int	ft_abs(long n);

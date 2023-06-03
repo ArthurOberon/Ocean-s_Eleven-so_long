@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:24:32 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/31 21:09:28 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/03 17:21:00 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,17 @@ int	ft_nbrlen(int nb)
 	return (1 + ft_nbrlen(nb / 10));
 }
 
-char	*ft_itoa(int n)
+void	ft_itoa(int n, char result[10])
 {
 	unsigned int	tmp;
 	size_t			size;
-	char			*result;
-	// char			result[10];
 
 	if (n < 0)
 		tmp = -n;
 	else
 		tmp = n;
 	size = (ft_nbrlen(tmp) + (n < 0));
-	// ft_bzero(result, 10);
-	result = ft_calloc(sizeof(char), size + 1);
-	if (!result)
-		return (NULL);
+	ft_bzero(result, 10);
 	result[size--] = '\0';
 	if (n == 0)
 		result[0] = '0';
@@ -71,7 +66,6 @@ char	*ft_itoa(int n)
 	}
 	if (n < 0)
 		result[0] = '-';
-	return (result);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
