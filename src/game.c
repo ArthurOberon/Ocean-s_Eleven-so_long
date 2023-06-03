@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/03 17:22:18 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/03 17:44:39 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,25 +50,9 @@ static int	on_update(t_game *game)
 	return (0);
 }
 
-static void	get_text_start(t_game *game)
-{
-	if (game->gameplay->player->player_character == e_main)
-		add_text(game, &game->gameplay->texts_box_list,
-			&game->gameplay->texts[e_text_start_danny], true);
-	if (game->gameplay->player->player_character == e_eater)
-		add_text(game, &game->gameplay->texts_box_list,
-			&game->gameplay->texts[e_text_start_rusty], true);
-	if (game->gameplay->player->player_character == e_thief)
-		add_text(game, &game->gameplay->texts_box_list,
-			&game->gameplay->texts[e_text_start_linus], true);
-	if (game->gameplay->player->player_character == e_bomber)
-		add_text(game, &game->gameplay->texts_box_list,
-			&game->gameplay->texts[e_text_start_basher], true);
-}
-
 void	start_game(t_game *game)
 {
-	get_text_start(game);
+	text_box_events_start(game);
 	mlx_hook(game->window->win_ptr, DestroyNotify, KeyPressMask, &close_game,
 		game);
 	mlx_hook(game->window->win_ptr, KeyPress, KeyPressMask, &handle_keypress,

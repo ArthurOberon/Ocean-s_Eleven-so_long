@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   text_box.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 18:00:00 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/02 18:00:05 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/03 17:47:45 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	set_text_box(t_game *game, t_text_box *text_box, char *text)
 }
 
 void	add_text(t_game *game, t_texts_box_list **texts_box_list,
-	t_text *text, bool not_display_again)
+	t_text *text)
 {
 	t_texts_box_list	*new;
 	t_text_box			*text_box;
@@ -94,7 +94,7 @@ void	add_text(t_game *game, t_texts_box_list **texts_box_list,
 			free_game(*game, "Error of malloc.\n");
 		init_text_box(game, game->window, game->gameplay, text_box);
 		set_text_box(game, text_box, text->text);
-		text->has_been_display = not_display_again;
+		text->has_been_display = true;
 		new = ft_lstnew_texts_box(text_box);
 		if (!new)
 			free_game(*game, "Error of malloc.\n");

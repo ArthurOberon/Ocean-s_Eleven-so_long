@@ -14,7 +14,6 @@ SRC_CAMERA		= $(addprefix src_camera/, \
 					camera.c \
 					camera_chunks.c \
 					)
-# camera_chunks_out_map.c
 
 # SOURCES USE WHEN IS_DEBUG == 1
 SRC_DEBUG		=	$(addprefix src_debug/, \
@@ -76,8 +75,6 @@ SRC_INIT	=	$(addprefix src_init/, \
 					init_random_elements.c \
 					get_available_character.c \
 					)
-
-# init_sprites_assets_deprecated.c
 
 # SOURCES USE TO READ AND PARSE THE MAP
 SRC_PARSING		=	$(addprefix src_parsing/, \

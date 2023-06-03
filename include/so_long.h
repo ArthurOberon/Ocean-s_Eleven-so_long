@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/03 17:23:04 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/03 17:47:58 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,8 +208,18 @@ enum e_texts
 	e_text_rusty_to_basher_2,
 	e_text_linus_to_basher_1,
 	e_text_linus_to_basher_2,
-	e_text_remain_one_collectible,
-	e_text_remain_zero_collectible,
+
+	e_text_remain_one_collectible_danny,
+	e_text_remain_zero_collectible_danny,
+
+	e_text_remain_one_collectible_rusty,
+	e_text_remain_zero_collectible_rusty,
+
+	e_text_remain_one_collectible_linus,
+	e_text_remain_zero_collectible_linus,
+
+	e_text_remain_one_collectible_basher,
+	e_text_remain_zero_collectible_basher,
 	e_total_text_number,
 };
 
@@ -732,6 +742,7 @@ void				set_player_to_character(t_game *game, t_gameplay *gameplay,
 // |			TEXT_BOX_EVENTS			|
 // |------------------------------------|
 
+void				text_box_events_start(t_game *game);
 void				text_box_events(t_game *game, t_gameplay *gameplay);
 
 // |--------------------------------|
@@ -741,8 +752,7 @@ void				text_box_events(t_game *game, t_gameplay *gameplay);
 void				set_text_box(t_game *game, t_text_box *text_box,
 						char *text);
 void				add_text(t_game *game,
-						t_texts_box_list **texts_box_list, t_text *text,
-						bool not_display_again);
+						t_texts_box_list **texts_box_list, t_text *text);
 
 // |------------------------------------|
 // |			TEXTS_BOX_LIST			|
