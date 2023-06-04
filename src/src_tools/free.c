@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 19:17:43 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/03 20:37:16 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/04 19:48:00 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,15 @@ void	free_gameplay(t_gameplay *gameplay)
 		free(gameplay->guards);
 	if (gameplay->map_start_state)
 		free(gameplay->map_start_state);
-	free_text_box_text_pages(gameplay->texts_box_list->text_box);
-	gameplay->texts_box_list = ft_lstfirst_texts_box(gameplay->texts_box_list);
-	ft_lstclear_texts_box(&gameplay->texts_box_list);
-	if (gameplay->texts)
-		free(gameplay->texts);
+	if (gameplay->dialogue)
+	{
+		if (gameplay->dialogue->text_box)
+			free_text_box_text_pages(gameplay->dialogue->text_box);
+		gameplay->dialogue = ft_lstfirst_texts_box(gameplay->dialogue);
+		ft_lstclear_texts_box(&gameplay->dialogue);
+	}
+	if (gameplay->all_texts)
+		free(gameplay->all_texts);
 	free(gameplay);
 }
 

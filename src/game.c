@@ -6,14 +6,14 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/03 17:44:39 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/04 18:35:30 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 // 0xC6BF92
-// background(&game->window->img, 0xE0E0E0);
+// background = 0xE0E0E0
 
 static int	on_update(t_game *game)
 {
@@ -33,8 +33,6 @@ static int	on_update(t_game *game)
 	}
 	camera(game, game->camera, game->gameplay->player);
 	display_sprites(game, game->camera, game->window);
-	display_ui(game, game->window, game->gameplay);
-	display_texts_box_list(game, game->gameplay->texts_box_list);
 	if (IS_DEBUG)
 	{
 		display_debug(&game->window->img, GREEN, game->gameplay->chunks_pos,

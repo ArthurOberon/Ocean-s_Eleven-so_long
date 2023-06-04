@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   display_sprites.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/31 18:55:21 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/04 19:23:30 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Update the frame of the sprite after a certain delay.
+ * 
+ * @param sprite sprite to update.
+ */
 void	update_frame(t_sprite *sprite)
 {
 	struct timeval	time;
@@ -29,6 +34,14 @@ void	update_frame(t_sprite *sprite)
 	}
 }
 
+/**
+ * @brief Display one sprite on the window.
+ * With protection against chunks on the edge of the window.
+ * 
+ * @param window window struct, to display on.
+ * @param sprite sprite to display.
+ * @param pos position to display the sprite.
+ */
 static void	display_one_sprite(t_window *window, t_sprite *sprite,
 	t_f_vector_2 pos)
 {
@@ -57,6 +70,16 @@ static void	display_one_sprite(t_window *window, t_sprite *sprite,
 		&sprite->sprite_img[sprite->frame], pos_src);
 }
 
+/**
+ * @brief Get the display position of a sprite in the camera view.
+ * Make a shift of position to display compared to the camera position.
+ * 
+ * @param game game struct, used to level struct.
+ * @param camera camera struct, used to get the position, size of the camera
+ * and chunks_in_camera tab.
+ * @param i index of the chunk in chunks_to_display tab.
+ * @return t_f_vector_2 
+ */
 static t_f_vector_2	get_display_position(t_game *game, t_camera *camera, int i)
 {
 	t_f_vector_2	display_pos;
@@ -72,6 +95,14 @@ static t_f_vector_2	get_display_position(t_game *game, t_camera *camera, int i)
 	return (display_pos);
 }
 
+/**
+ * @brief Display all sprites in the camera view.
+ * 
+ * @param game game struct, used to level and gameplay structs.
+ * @param camera camera struct, used to get the chunks in the camera view.
+ * @param window window struct, used to display on
+ * and get the sprites of each chunks.
+ */
 void	display_sprites(t_game *game, t_camera *camera, t_window *window)
 {
 	int				i;

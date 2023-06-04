@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/03 20:34:03 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/04 21:28:43 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -459,11 +459,11 @@ typedef struct s_gameplay
 {
 	bool				is_pause;
 	bool				is_stop;
-	bool				display_plus_one;
+	bool				is_display_plus_one;
 	int					available_character[4];
 	int					chosen_character;
-	t_text				*texts;
-	t_texts_box_list	*texts_box_list;
+	t_text				*all_texts;
+	t_texts_box_list	*dialogue;
 	int					nb_collect_get;
 	int					nb_collect_remain;
 	int					nb_guard;
@@ -537,9 +537,9 @@ void				display_player_box_collider(t_img *img, t_player *player,
 void				debug_chunk_pos(t_game *game);
 void				debug_stat_tiles(t_stat_tiles stat);
 
-// |====================================================|
-// |					SRC_DISPLAY_MLX					|
-// |====================================================|
+// |================================================|
+// |					SRC_DISPLAY					|
+// |================================================|
 
 // |------------------------------------|
 // |			DISPLAY_BOMB			|
@@ -547,6 +547,20 @@ void				debug_stat_tiles(t_stat_tiles stat);
 
 void				display_bomb(t_player *player, t_bomb *bomb,
 						t_game *game, t_window *window);
+
+// |------------------------------------------------|
+// |			DISPLAY_CHARACTER_ON_MAP			|
+// |------------------------------------------------|
+
+void				get_characters_on_map(t_game *game, t_window *window,
+						t_gameplay *gameplay);
+
+// |----------------------------------------|
+// |			DISPLAY_DIALOGUE			|
+// |----------------------------------------|
+
+void				display_dialogue(t_game *game,
+						t_texts_box_list *texts_box_list);
 
 // |------------------------------------------------|
 // |			DISPLAY_GAMEPLAY_ELEMENTS			|
@@ -562,6 +576,12 @@ void				display_hp(t_window *window, t_player *player, int color);
 
 void				display_guards(t_game *game, t_gameplay *gameplay,
 						t_window *window, t_guard *guards);
+
+// |----------------------------------------|
+// |			DISPLAY_LAUNCH_QTE			|
+// |----------------------------------------|
+
+void				launch_qte(t_game *game, t_qte *qte, t_guard *guard);
 
 // |------------------------------------|
 // |			DISPLAY_PLAYER			|
@@ -589,11 +609,8 @@ void				display_sprites(t_game *game, t_camera *camera,
 // |			DISPLAY_TEXT_BOX			|
 // |----------------------------------------|
 
-void				display_text_box(t_game *game, t_window *window,
+void				display_one_node_texts_box(t_game *game, t_window *window,
 						t_text_box text_box);
-
-void				display_texts_box_list(t_game *game,
-						t_texts_box_list *texts_box_list);
 
 void				display_character(t_game *game, t_window *window,
 						t_vector_2 pos_display, char character);
@@ -602,7 +619,6 @@ void				display_character(t_game *game, t_window *window,
 // |			DISPLAY_TOOLS			|
 // |------------------------------------|
 
-void				background(t_img *img, int color);
 void				img_pix_put(t_img *img, int x, int y, int color);
 void				put_image_to_image(t_img *window_img,
 						t_vector_2 pos, t_img *img);
@@ -610,6 +626,13 @@ void				memcpy_img(t_img *img_dst, t_vector_2 pos_dst,
 						t_img *img_src, t_vector_2 *pos_src);
 
 __uint32_t			get_color_pixel(t_img *img, int i, int j);
+
+// |------------------------------------|
+// |			DISPLAY_UI_BOX			|
+// |------------------------------------|
+
+void				display_boxs(t_game *game, t_window *window,
+						t_gameplay *gameplay);
 
 // |--------------------------------|
 // |			DISPLAY_UI			|

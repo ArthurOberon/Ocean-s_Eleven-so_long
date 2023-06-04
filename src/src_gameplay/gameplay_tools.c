@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 17:34:37 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/03 20:24:17 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/04 19:48:15 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	restart(t_game *game)
 	init_player(game, game->gameplay->player, game->gameplay->chosen_character);
 	game->gameplay->nb_collect_remain = game->level->nb_collect;
 	game->gameplay->nb_move = 0;
-	game->gameplay->display_plus_one = false;
-	ft_lstclear_texts_box(&game->gameplay->texts_box_list);
+	game->gameplay->is_display_plus_one = false;
+	ft_lstclear_texts_box(&game->gameplay->dialogue);
 	game->gameplay->nb_collect_get = 0;
 	game->gameplay->nb_collect_remain = game->level->nb_collect;
 	restart_available_character(game->gameplay);
@@ -85,7 +85,7 @@ void	restart(t_game *game)
 	j = 0;
 	while (j < e_total_text_number)
 	{
-		game->gameplay->texts[j].has_been_display = false;
+		game->gameplay->all_texts[j].has_been_display = false;
 		j++;
 	}
 	text_box_events_start(game);

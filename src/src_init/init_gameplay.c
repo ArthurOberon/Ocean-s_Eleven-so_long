@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/03 17:41:57 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/04 19:48:15 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static void	init_texts(t_game *game, t_gameplay *gameplay)
 	texts = ft_calloc(sizeof(t_text), e_total_text_number);
 	if (!texts)
 		free_game(*game, "Error of malloc.\n");
-	gameplay->texts = texts;
+	gameplay->all_texts = texts;
 	// debug
 	texts[e_text_debug].text = "abcdefghijqlmnopqrstuvwxyz  !\"#$%&'()*+,-./0123456789:;<=?>";
 	// debug
@@ -154,7 +154,7 @@ void	init_gameplay(t_game *game, int *available_character,
 	game->gameplay = gameplay;
 	gameplay->is_pause = false;
 	gameplay->is_stop = false;
-	gameplay->display_plus_one = false;
+	gameplay->is_display_plus_one = false;
 	gameplay->available_character[0] = available_character[0];
 	gameplay->available_character[1] = available_character[1];
 	gameplay->available_character[2] = available_character[2];
@@ -170,7 +170,7 @@ void	init_gameplay(t_game *game, int *available_character,
 	gameplay->map_start_state = ft_strdup(game->level->map);
 	init_player(game, gameplay->player, chosen_character);
 	init_guards(game, gameplay->guards);
-	gameplay->texts_box_list = NULL;
+	gameplay->dialogue = NULL;
 	init_texts(game, gameplay);
 	if (IS_DEBUG)
 		debug_chunk_pos(game);

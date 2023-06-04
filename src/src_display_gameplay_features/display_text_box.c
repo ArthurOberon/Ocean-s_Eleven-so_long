@@ -3,15 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   display_text_box.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:37:34 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/02 16:38:24 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/04 19:55:38 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief transform a character to lower case.
+ * 
+ * @param character character to transform.
+ * @return int character transformed.
+ */
 static int	ft_tolower(int character)
 {
 	if (character >= 65 && character <= 90)
@@ -19,6 +25,14 @@ static int	ft_tolower(int character)
 	return (character);
 }
 
+/**
+ * @brief display one character/letter on the text box.
+ * 
+ * @param game game struct, used to get the level struct.
+ * @param window window struct, used to display on.
+ * @param pos_display position to display the character/letter.
+ * @param character character/letter to display.
+ */
 void	display_character(t_game *game, t_window *window,
 	t_vector_2 pos_display, char character)
 {
@@ -40,6 +54,14 @@ void	display_character(t_game *game, t_window *window,
 	}
 }
 
+/**
+ * @brief display only one page of a text_box.
+ * 
+ * @param game game struct, used to get the level struct.
+ * @param text_box text_box struct, used to get the text to display.
+ * @param pos_display position to display the text.
+ * @param pos_max position max to display the text before going to the line.
+ */
 static void	display_one_page_on_text_box(t_game *game, t_text_box text_box,
 	t_vector_2 pos_display, t_vector_2 pos_max)
 {
@@ -49,14 +71,13 @@ static void	display_one_page_on_text_box(t_game *game, t_text_box text_box,
 	t_vector_2	pos_in_text;
 
 	i = 0;
-	pos_in_text.x = 0;
-	pos_in_text.y = 0;
+	pos_in_text = (t_vector_2){0, 0};
 	pos_display_x_start = pos_display.x;
 	size_letter = game->window->map_sprites[game->level->nb_cases
 		+ e_alphabet]->sprite_img->size.x;
 	while (text_box.text_pages[text_box.page_in][i])
 	{
-		if (pos_in_text.x >= pos_max.x)
+		if (pos_in_text.x++ >= pos_max.x)
 		{
 			pos_in_text.x = 0;
 			pos_in_text.y += 1;
@@ -66,13 +87,18 @@ static void	display_one_page_on_text_box(t_game *game, t_text_box text_box,
 		if (pos_in_text.y >= pos_max.y)
 			break ;
 		display_character(game, game->window, pos_display,
-			text_box.text_pages[text_box.page_in][i]);
-		i++;
-		pos_in_text.x++;
+			text_box.text_pages[text_box.page_in][i++]);
 		pos_display.x += size_letter;
 	}
 }
 
+/**
+ * @brief Display the face of the talking character next to the text.
+ * 
+ * @param game game struct, used to get the window and level struct.
+ * @param pos_display position to display the face.
+ * @param talking_character the character choosen by the player.
+ */
 static void	display_face(t_game *game, t_vector_2 pos_display,
 	int talking_character)
 {
@@ -84,7 +110,16 @@ static void	display_face(t_game *game, t_vector_2 pos_display,
 		&(sprite_face->sprite_img)[0]);
 }
 
-void	display_text_box(t_game *game, t_window *window, t_text_box text_box)
+/**
+ * @brief Display one text box of dialogue (list of texts box).
+ * 
+ * @param game game struct, used to get the level struct.
+ * @param window window struct, used to display on.
+ * @param text_box text box,
+ * first node of dialogue (list of text_box), to display.
+ */
+void	display_one_node_texts_box(t_game *game, t_window *window,
+	t_text_box text_box)
 {
 	t_sprite	*background;
 
@@ -96,11 +131,4 @@ void	display_text_box(t_game *game, t_window *window, t_text_box text_box)
 	display_face(game, text_box.pos_display_face, text_box.talking_character);
 	display_one_page_on_text_box(game, text_box, text_box.pos_display_text,
 		text_box.characters_max);
-}
-
-void	display_texts_box_list(t_game *game, t_texts_box_list *texts_box_list)
-{
-	if (texts_box_list == NULL)
-		return ;
-	display_text_box(game, game->window, *texts_box_list->text_box);
 }

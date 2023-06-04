@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 22:33:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/26 00:11:31 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/04 19:48:15 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	check_tile(t_game *game, char tile, int pos)
 		{
 			game->gameplay->nb_collect_get += 1;
 			game->gameplay->nb_collect_remain -= 1;
-			game->gameplay->display_plus_one = true;
+			game->gameplay->is_display_plus_one = true;
 		}
 		game->window->map_sprites[pos] = game->assets->ground;
 	}

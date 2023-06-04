@@ -6,12 +6,20 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:08:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/30 13:48:28 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/04 17:16:07 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief check if a chunks is in the tab chunks_to_display.
+ * 
+ * @param chunks_to_display tab to check int.
+ * @param size the size of the tab.
+ * @param chunk the chunk to check.
+ * @return int 1 if the chunk is in the tab, 0 if not.
+ */
 int	is_in_chunks_to_display(int *chunks_to_display, int size, int chunk)
 {
 	int	i;
@@ -28,6 +36,15 @@ int	is_in_chunks_to_display(int *chunks_to_display, int size, int chunk)
 	return (0);
 }
 
+/**
+ * @brief define the limit of the camera, compared to the position of the camera.
+ * 
+ * @param camera_f_pos camrea position in double.
+ * @param camera_f_size camera size in double.
+ * @param nb_chunks_in_camera number max of chunks in the camera on x and y.
+ * @param level_size size of the level in chunks, on x and y.
+ * @return t_vector_2 limit of chunks in the camera, on x and y.
+ */
 static t_vector_2	define_limit_of_camera(t_f_vector_2 camera_f_pos,
 t_f_vector_2 camera_f_size, t_vector_2 nb_chunks_in_camera,
 	t_vector_2 level_size)
@@ -48,6 +65,14 @@ t_f_vector_2 camera_f_size, t_vector_2 nb_chunks_in_camera,
 	return (limit);
 }
 
+/**
+ * @brief Get the displayable chunks in a tab of int.
+ * 
+ * @param chunks_to_display int tab to fill.
+ * @param chunk_start the first chunk, on the top left of the camera.
+ * @param limit the limit of the camera, created by define_limit_of_camera().
+ * @param max size max of the level, on x and y.
+ */
 static void	get_chunks_in_int_tab(int *chunks_to_display, int chunk_start,
 	t_vector_2 limit, t_vector_2 max)
 {
@@ -76,6 +101,13 @@ static void	get_chunks_in_int_tab(int *chunks_to_display, int chunk_start,
 	chunks_to_display[k] = -1;
 }
 
+/**
+ * @brief set the tab camera->chunks_to_display
+ * to only the chunks that are in the camera.
+ * 
+ * @param game all the info of the game.
+ * @param camera contains the tab of chunks to display.
+ */
 void	get_chunks_to_display(t_game *game, t_camera *camera)
 {
 	int			chunk_start;

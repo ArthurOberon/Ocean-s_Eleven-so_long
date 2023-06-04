@@ -3,15 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   display_tools.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:17:13 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/31 14:33:23 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/04 19:06:46 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Get the color pixel of a img on a specific position.
+ * 
+ * @param img img to get the pixel from.
+ * @param i position x of the pixel.
+ * @param j position y of the pixel.
+ * @return __uint32_t the color pixel.
+ */
 __uint32_t	get_color_pixel(t_img *img, int i, int j)
 {
 	__uint32_t	pixel;
@@ -22,13 +30,22 @@ __uint32_t	get_color_pixel(t_img *img, int i, int j)
 		| (unsigned char)(img->addr[i * 4 + j * img->size.x * 4 + 3]) << 24;
 	return (pixel);
 }
+/* Other way to get color pixel :
+	pixel = (img->addr[i * 4 + j * img->size.x * 4] & 0xFF)
+		| (img->addr[i * 4 + j * img->size.x * 4 + 1] << 8 & 0xFF00)
+		| (img->addr[i * 4 + j * img->size.x * 4 + 2] << 16 & 0xFF0000)
+		| (img->addr[i * 4 + j * img->size.x * 4 + 3] << 24
+			& 0xFF000000);
+*/
 
-	// pixel = (img->addr[i * 4 + j * img->size.x * 4] & 0xFF)
-	// 	| (img->addr[i * 4 + j * img->size.x * 4 + 1] << 8 & 0xFF00)
-	// 	| (img->addr[i * 4 + j * img->size.x * 4 + 2] << 16 & 0xFF0000)
-	// 	| (img->addr[i * 4 + j * img->size.x * 4 + 3] << 24
-	// 		& 0xFF000000);
-
+/**
+ * @brief Put a pixel on a img on a specific position.
+ * 
+ * @param img img to put the pixel on.
+ * @param x position x to put the pixel.
+ * @param y position y to put the pixel.
+ * @param color color of the pixel to put.
+ */
 void	img_pix_put(t_img *img, int x, int y, int color)
 {
 	char	*pixel;
@@ -37,12 +54,15 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)pixel = color;
 }
 
-// not use ?
-void	background(t_img *img, int color)
-{
-	ft_memset(img->addr, color, img->size.x * img->size.y * 4);
-}
-
+/**
+ * @brief Copy a img on a specific position
+ * to another img on a specific position.
+ * 
+ * @param img_dst img to copy on.
+ * @param pos_dst position to copy on.
+ * @param img_src img to copy.
+ * @param pos_src position to copy from.
+ */
 void	memcpy_img(t_img *img_dst, t_vector_2 pos_dst,
 	t_img *img_src, t_vector_2 *pos_src)
 {
@@ -60,8 +80,15 @@ void	memcpy_img(t_img *img_dst, t_vector_2 pos_dst,
 	}
 }
 
+/**
+ * @brief Put a img on a specific position on another img.
+ * 
+ * @param window_img image of the window to put the img on.
+ * @param pos position to put the img on.
+ * @param img img to put.
+ */
 void	put_image_to_image(t_img *window_img, t_vector_2 pos, t_img *img)
-{		
+{
 	int			i;
 	int			j;
 	__uint32_t	pixel;

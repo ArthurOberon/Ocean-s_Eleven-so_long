@@ -3,15 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   display_player.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:20:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/31 18:48:18 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/04 19:17:53 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief display the player, normally or flashing if the player is invincible.
+ * 
+ * @param window window struct, used to display on.
+ * @param player player struct, used to get the player position and iframes info.
+ * @param sprite sprite struct, used to get the sprite of the player.
+ */
 static void	display_player_on_window(t_window *window, t_player *player,
 	t_sprite *sprite)
 {
@@ -31,6 +38,15 @@ static void	display_player_on_window(t_window *window, t_player *player,
 			&(sprite->sprite_img)[sprite->frame]);
 }
 
+/**
+ * @brief display the bomb depending on the player look direction,
+ * if the player character is bomber and the bomb is not planted.
+ * 
+ * @param window window struct, used to display on.
+ * @param player player struct, used to get the player position
+ * and look direction.
+ * @param sprite sprite struct, used to get the sprite of the bomb.
+ */
 static void	display_aim_bomb(t_window *window, t_player *player,
 	t_sprite *sprite)
 {
@@ -47,6 +63,13 @@ static void	display_aim_bomb(t_window *window, t_player *player,
 	}
 }
 
+/**
+ * @brief display a pattern of a box, depending on the size.
+ * 
+ * @param game game struct, used to get window and gameplay structs.
+ * @param sprite sprite struct, used to get the sprite of the box.
+ * @param size size of the box.
+ */
 static void	display_pattern_box(t_game *game, t_sprite *sprite, int size)
 {
 	int			i;
@@ -75,6 +98,14 @@ static void	display_pattern_box(t_game *game, t_sprite *sprite, int size)
 	}
 }
 
+/**
+ * @brief Display area where player can pickpocket
+ * if the player character is thief and is not pickpocketing.
+ *
+ * @param game game struct, used to get window and gameplay struct.
+ * @param player player struct, used to get player info.
+ * @param sprite sprite struct, used to get the sprite of the area.
+ */
 static void	display_area_pickpocketable(t_game *game, t_player *player,
 	t_sprite *sprite)
 {
@@ -85,6 +116,14 @@ static void	display_area_pickpocketable(t_game *game, t_player *player,
 	}
 }
 
+/**
+ * @brief Display player on the window.
+ * 
+ * @param game game struct, used to get camera and sprite_assets info.
+ * @param window window struct, used to display on.
+ * @param player player struct, used to display and his features.
+ * @param sprite sprite struct, used to get the player sprite.
+ */
 void	display_player(t_game *game, t_window *window, t_player *player,
 	t_sprite *sprite)
 {
