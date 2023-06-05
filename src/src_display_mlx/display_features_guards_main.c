@@ -1,17 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_guards.c                                   :+:      :+:    :+:   */
+/*   display_features_guards_main.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 17:28:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/04 21:49:01 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/05 21:31:24 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Display one guard.
+ * 
+ * @param window window struct, used to display on.
+ * @param guard guard struct, used to get the guard position.
+ * @param sprite sprite struct, used to get the sprite of the guard.
+ */
 static void	display_one_guard(t_window *window, t_guard guard, t_sprite *sprite)
 {
 	if ((guard.guard_pos.x + CHUNK_SIZE < window->img.size.x
@@ -21,7 +28,15 @@ static void	display_one_guard(t_window *window, t_guard guard, t_sprite *sprite)
 			&(sprite->sprite_img)[sprite->frame]);
 }
 
-// fov -> Field Of View
+/**
+ * @brief Display both field of view (fov) of a guard.
+ * (Only display the first fov if the player character is eater.)
+ * 
+ * @param window window struct, used to display on.
+ * @param guard guard struct, used to get the fov position.
+ * @param sprite sprite struct, used to get the sprite of the fov.
+ * @param player player struct, used to check if the player character is eater.
+ */
 static void	display_one_guard_fov(t_window *window, t_guard guard,
 	t_sprite *sprite, t_player *player)
 {
@@ -40,60 +55,43 @@ static void	display_one_guard_fov(t_window *window, t_guard guard,
 	}
 }
 
-static void	change_guard_direction(t_guard *guard)
+/**
+ * @brief  Get the display position of the guard in the camera view.
+ * Make a shift of position to display compared to the camera position
+ * and his ratio size.
+ * 
+ * @param game game struct, used to get the camera struct.
+ * @param guard guard struct, set up his size.
+ * @return t_vector_2 the true position of the guard in the level,
+ * set up the guard position a this size after the display.
+ */
+static t_vector_2	get_display_guard_pos(t_game *game, t_guard *guard)
 {
-	if (guard->chasing_player == true || guard->is_in_player == true)
-		return ;
-	if (guard->guard_look_dir.x == -1 && guard->guard_look_dir.y == 0)
-	{
-		guard->guard_look_dir.x = 0;
-		guard->guard_look_dir.y = -1;
-	}
-	else if (guard->guard_look_dir.x == 0 && guard->guard_look_dir.y == -1)
-	{
-		guard->guard_look_dir.x = 1;
-		guard->guard_look_dir.y = 0;
-	}
-	else if (guard->guard_look_dir.x == 1 && guard->guard_look_dir.y == 0)
-	{
-		guard->guard_look_dir.x = 0;
-		guard->guard_look_dir.y = 1;
-	}
-	else if (guard->guard_look_dir.x == 0 && guard->guard_look_dir.y == 1)
-	{
-		guard->guard_look_dir.x = -1;
-		guard->guard_look_dir.y = 0;
-	}
-	else
-	{
-		if (rand() % 101 > 50)
-			guard->guard_look_dir.x = 0;
-		else
-			guard->guard_look_dir.y = 0;
-	}
+	t_vector_2	true_pos;
+
+	true_pos = guard->guard_pos;
+	guard->guard_pos.x -= game->camera->camera_f_pos.x;
+	guard->guard_pos.y -= game->camera->camera_f_pos.y;
+	guard->guard_pos.x -= (CHUNK_SIZE - (CHUNK_SIZE * RATIO_PLAYER_SIZE_X)) / 2;
+	guard->guard_pos.y -= (CHUNK_SIZE - (CHUNK_SIZE * RATIO_PLAYER_SIZE_Y)) / 2;
+	set_guard_fov_direction(guard);
+	return (true_pos);
 }
 
-static void	turn_guards(t_guard *guard)
-{
-	double			delay;
-
-	gettimeofday(&guard->time, NULL);
-	delay = (((double)(guard->time.tv_usec - guard->last_time.tv_usec)
-				/ CLOCKS_PER_SEC) + guard->time.tv_sec
-			- guard->last_time.tv_sec);
-	if (delay >= DELAY_TURN_GUARD)
-	{
-		change_guard_direction(guard);
-		set_guard_fov_direction(guard);
-		guard->last_time = guard->time;
-	}
-}
-
+/**
+ * @brief Display guards that are in the camera view.
+ * 
+ * @param game game struct, used to get the camera and level struct.
+ * @param gameplay gameplay struct,
+ * used to get player struct and is_stop variable.
+ * @param window window struct, used to display on.
+ * @param guards guards struct, used to get guards positions and status.
+ */
 void	display_guards(t_game *game, t_gameplay *gameplay, t_window *window,
 	t_guard *guards)
 {
 	int			i;
-	t_vector_2	pos_tmp;
+	t_vector_2	true_pos;
 
 	i = 0;
 	while (i < gameplay->nb_guard)
@@ -103,12 +101,7 @@ void	display_guards(t_game *game, t_gameplay *gameplay, t_window *window,
 				game->camera->nb_chunks_in_camera_total,
 				guards[i].guard_pos_tab))
 		{
-			pos_tmp = guards[i].guard_pos;
-			guards[i].guard_pos.x -= game->camera->camera_f_pos.x;
-			guards[i].guard_pos.y -= game->camera->camera_f_pos.y;
-			guards[i].guard_pos.x -= (CHUNK_SIZE - (CHUNK_SIZE * RATIO_PLAYER_SIZE_X)) / 2;
-			guards[i].guard_pos.y -= (CHUNK_SIZE - (CHUNK_SIZE * RATIO_PLAYER_SIZE_Y)) / 2;
-			set_guard_fov_direction(&guards[i]);
+			true_pos = get_display_guard_pos(game, &guards[i]);
 			if (gameplay->is_stop == false)
 				turn_guards(&guards[i]);
 			display_one_guard(window, guards[i],
@@ -116,7 +109,7 @@ void	display_guards(t_game *game, t_gameplay *gameplay, t_window *window,
 			display_one_guard_fov(window, guards[i],
 				window->map_sprites[game->level->nb_cases + e_guard_fov],
 				gameplay->player);
-			guards[i].guard_pos = pos_tmp;
+			guards[i].guard_pos = true_pos;
 			set_guard_fov_direction(&guards[i]);
 		}
 		i++;

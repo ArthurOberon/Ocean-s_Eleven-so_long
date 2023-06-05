@@ -25,23 +25,21 @@ SRC_DEBUG			=	$(addprefix src_debug/, \
 						)
 
 # SOURCES USE TO DISPLAY THE GAME WITH THE MLX
-SRC_DISPLAY_GAME	=	$(addprefix src_display_game/, \
-						)
-
-# SOURCES USE TO DISPLAY THE GAMEPLAY FEATURES
-SRC_DIS_GAMEPLAY	=	$(addprefix src_display_gameplay_features/, \
-					 	display_ui.c \
-					 	display_qte.c \
-					 	display_bomb.c \
+SRC_DISPLAY			=	$(addprefix src_display_mlx/, \
 					 	display_tools.c \
 					 	display_player.c \
-					 	display_guards.c \
 					 	display_sprites.c \
-					 	display_dialogue.c \
-					 	display_text_box.c \
-					 	display_launch_qte.c \
-						display_character_on_map.c \
-					 	display_gameplay_elements.c \
+					 	display_features_main.c \
+					 	display_features_bomb.c \
+					 	display_features_ui_main.c \
+					 	display_features_ui_boxs.c \
+					 	display_features_qte_main.c \
+					 	display_features_qte_launch.c \
+					 	display_features_guards_main.c \
+					 	display_features_dialogue_main.c \
+					 	display_features_guards_turn_fov.c \
+						display_features_character_on_map.c \
+					 	display_features_dialogue_text_box.c \
 						)
 
 # SOURCES USE FOR THE GAMEPLAY
@@ -116,8 +114,7 @@ SRC_TOOLS			=	$(addprefix src_tools/, \
 SL_SRCS 			=	$(addprefix $(SRC_DIR), \
 						$(SRC_CAMERA) \
 						$(SRC_DEBUG) \
-						$(SRC_DISPLAY_GAME) \
-						$(SRC_DIS_GAMEPLAY) \
+						$(SRC_DISPLAY) \
 						$(SRC_GAMEPLAY) \
 						$(SRC_GNL) \
 						$(SRC_INIT) \

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 20:48:25 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/04 21:45:36 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/05 20:44:57 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /**
  * @brief Launches the qte loading part,
- * meanings the part where the player has to not press the button.
+ * meaning the part where the player has to not press the button.
  * 
  * @param game game struct, used to get the window and level structs.
  * @param qte qte struct, used to manage the qte process.
@@ -42,7 +42,7 @@ static void	launch_qte_loading_part(t_game *game, t_qte *qte,
 
 /**
  * @brief Launches the qte reaction time part,
- * meanings the part where the player has to press the button.
+ * meaning the part where the player has to press the button.
  * 
  * @param game game struct, used to get the window and level structs.
  * @param qte qte struct, used to manage the qte process.
@@ -65,7 +65,7 @@ static void	launch_qte_reaction_time(t_game *game, t_qte *qte,
 
 /**
  * @brief Launches the qte display win or lose part,
- * meanings the part where is displayed if the player win or lose the qte.
+ * meaning the part where is displayed if the player win or lose the qte.
  * 
  * @param game game struct, used to get the window and level structs.
  * @param pos_tmp position to display the qte.
@@ -88,7 +88,7 @@ static void	launch_qte_display_win_or_lose(t_game *game, t_vector_2 pos_tmp,
 
 /**
  * @brief Launches the qte ending part,
- * meanings the part where the game is set up
+ * meaning the part where the game is set up
  * depending on the course of the qte (win or lose).
  * 
  * @param game game struct, used to get the gameplay struct.

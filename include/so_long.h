@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/04 21:28:43 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/05 21:39:22 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -541,73 +541,22 @@ void				debug_stat_tiles(t_stat_tiles stat);
 // |					SRC_DISPLAY					|
 // |================================================|
 
-// |------------------------------------|
-// |			DISPLAY_BOMB			|
-// |------------------------------------|
+// |----------- DISPLAY_FEATURES_BOMB -----------|
 
 void				display_bomb(t_player *player, t_bomb *bomb,
 						t_game *game, t_window *window);
 
-// |------------------------------------------------|
-// |			DISPLAY_CHARACTER_ON_MAP			|
-// |------------------------------------------------|
+// |----------- DISPLAY_FEATURES_CHARACTER_ON_MAP -----------|
 
 void				get_characters_on_map(t_game *game, t_window *window,
 						t_gameplay *gameplay);
 
-// |----------------------------------------|
-// |			DISPLAY_DIALOGUE			|
-// |----------------------------------------|
+// |----------- DISPLAY_FEATURES_DIALOGUE_MAIN -----------|
 
 void				display_dialogue(t_game *game,
 						t_texts_box_list *texts_box_list);
 
-// |------------------------------------------------|
-// |			DISPLAY_GAMEPLAY_ELEMENTS			|
-// |------------------------------------------------|
-
-void				display_gameplay_elements(t_game *game,
-						t_gameplay *gameplay, t_window *window);
-void				display_hp(t_window *window, t_player *player, int color);
-
-// |------------------------------------|
-// |			DISPLAY_GUARDS			|
-// |------------------------------------|
-
-void				display_guards(t_game *game, t_gameplay *gameplay,
-						t_window *window, t_guard *guards);
-
-// |----------------------------------------|
-// |			DISPLAY_LAUNCH_QTE			|
-// |----------------------------------------|
-
-void				launch_qte(t_game *game, t_qte *qte, t_guard *guard);
-
-// |------------------------------------|
-// |			DISPLAY_PLAYER			|
-// |------------------------------------|
-
-void				display_player(t_game *game, t_window *window,
-						t_player *player, t_sprite *sprite);
-
-// |--------------------------------|
-// |			DISPLAY_QTE			|
-// |--------------------------------|
-
-void				display_qte(t_game *game, t_qte *qte, t_player *player,
-						t_guard *guards);
-
-// |------------------------------------|
-// |			DISPLAY_SPRITES			|
-// |------------------------------------|
-
-void				update_frame(t_sprite *sprite);
-void				display_sprites(t_game *game, t_camera *camera,
-						t_window *window);
-
-// |----------------------------------------|
-// |			DISPLAY_TEXT_BOX			|
-// |----------------------------------------|
+// |----------- DISPLAY_FEATURES_DIALOGUE_TEXT_BOX -----------|
 
 void				display_one_node_texts_box(t_game *game, t_window *window,
 						t_text_box text_box);
@@ -615,9 +564,54 @@ void				display_one_node_texts_box(t_game *game, t_window *window,
 void				display_character(t_game *game, t_window *window,
 						t_vector_2 pos_display, char character);
 
-// |------------------------------------|
-// |			DISPLAY_TOOLS			|
-// |------------------------------------|
+// |----------- DISPLAY_GUARDS_MAIN ---------|
+
+void				display_guards(t_game *game, t_gameplay *gameplay,
+						t_window *window, t_guard *guards);
+
+// |----------- DISPLAY_FEATURES_GUARDS_TURN_FOV ---------|
+
+void				turn_guards(t_guard *guard);
+
+// |----------- DISPLAY_FEATURES_MAIN ----------|
+
+void				display_gameplay_elements(t_game *game,
+						t_gameplay *gameplay, t_window *window);
+void				display_hp(t_window *window, t_player *player, int color);
+
+// |----------- DISPLAY_FEATURES_QTE_LAUNCH ---------|
+
+void				launch_qte(t_game *game, t_qte *qte, t_guard *guard);
+
+// |----------- DISPLAY_FEATURES_QTE --------|
+
+void				display_qte(t_game *game, t_qte *qte, t_player *player,
+						t_guard *guards);
+
+// |----------- DISPLAY_FEATURES_UI_BOXS ---------|
+
+void				display_ui_boxs(t_game *game, t_window *window,
+						t_gameplay *gameplay);
+
+// |----------- DISPLAY_FEATURES_UI_MAIN ---------|
+
+void				display_one_str(t_game *game, t_vector_2 pos_display,
+						char *text, int size_letter);
+void				display_ui(t_game *game, t_window *window,
+						t_gameplay *gameplay);
+
+// |----------- DISPLAY_PLAYER ---------|
+
+void				display_player(t_game *game, t_window *window,
+						t_player *player, t_sprite *sprite);
+
+// |----------- DISPLAY_SPRITES --------|
+
+void				update_frame(t_sprite *sprite);
+void				display_sprites(t_game *game, t_camera *camera,
+						t_window *window);
+
+// |----------- DISPLAY_TOOLS ----------|
 
 void				img_pix_put(t_img *img, int x, int y, int color);
 void				put_image_to_image(t_img *window_img,
@@ -626,22 +620,6 @@ void				memcpy_img(t_img *img_dst, t_vector_2 pos_dst,
 						t_img *img_src, t_vector_2 *pos_src);
 
 __uint32_t			get_color_pixel(t_img *img, int i, int j);
-
-// |------------------------------------|
-// |			DISPLAY_UI_BOX			|
-// |------------------------------------|
-
-void				display_boxs(t_game *game, t_window *window,
-						t_gameplay *gameplay);
-
-// |--------------------------------|
-// |			DISPLAY_UI			|
-// |--------------------------------|
-
-void				display_one_str(t_game *game, t_vector_2 pos_display,
-						char *text, int size_letter);
-void				display_ui(t_game *game, t_window *window,
-						t_gameplay *gameplay);
 
 // |====================================================|
 // |					SRC_GAMEPLAY					|
