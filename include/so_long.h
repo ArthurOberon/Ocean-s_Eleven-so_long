@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/05 22:13:43 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/05 22:35:33 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -909,15 +909,11 @@ void				parse_map(char *file_name, char **map,
 // |					SRC_PATHFINDING					|
 // |====================================================|
 
-// |----------------------------------------|
-// |			A_STAR_ALGORITHM			|
-// |----------------------------------------|
+// |----------- A_STAR_ALGORITHM -----------|
 
 int					a_star(t_level *level, int pos, int end_pos);
 
-// |------------------------------------|
-// |			A_STAR_UTILS			|
-// |------------------------------------|
+// |----------- A_STAR_UTILS -----------|
 
 int					dst_to_end(int pos, int end, int x);
 int					calculate_dir_pos(int dir, int pos, int x);
@@ -925,9 +921,7 @@ int					find_character(t_level *level, char searched_char);
 
 t_path_map			*init_path_map(t_level *level);
 
-// |--------------------------------|
-// |			PATHFINDING			|
-// |--------------------------------|
+// |---------- PATHFINDING ---------|
 
 void				pathfinding(t_game *game);
 

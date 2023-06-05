@@ -6,12 +6,23 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:53:34 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/10 15:04:24 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/05 22:30:57 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Calculate the distance between two positions
+ * for the four directions from the current position.
+ * 
+ * @param level level struct, used to get the map to check
+ * if there a wall or a guard/ennemy.
+ * @param path_map struct of the current path to set.
+ * @param pos position to check in the four directions.
+ * @param end_pos end position to calculate the distance.
+ * @return int 1 if the end position has been found, 0 otherwise.
+ */
 static int	calculate_four_dir(t_level *level, t_path_map *path_map,
 	int pos, int end_pos)
 {
@@ -42,6 +53,15 @@ static int	calculate_four_dir(t_level *level, t_path_map *path_map,
 	return (0);
 }
 
+/**
+ * @brief Find the lower f value (addition of dst_to_start and dst_to_end)
+ * in the path_map, return the position of it.
+ * 
+ * @param path_map map of the current path to check.
+ * @param nb_cases number of cases in the map.
+ * @return int position of the lower f value.
+ * Return -1 if every case has been checked.
+ */
 static int	find_lower_f(t_path_map *path_map, int nb_cases)
 {
 	int	i;
@@ -66,6 +86,15 @@ static int	find_lower_f(t_path_map *path_map, int nb_cases)
 	return (lower_f_pos);
 }
 
+/**
+ * @brief A* algorithm, return 1 if end is found a path
+ * between the start and the end, 0 if not.
+ * 
+ * @param level level struct, used to get the map and the path_map.
+ * @param pos position of the start.
+ * @param end_pos end position.
+ * @return int 1 if end is found a path between the start and the end, 0 if not.
+ */
 int	a_star(t_level *level, int pos, int end_pos)
 {
 	int			bool_end;
@@ -85,5 +114,3 @@ int	a_star(t_level *level, int pos, int end_pos)
 	}
 	return (bool_end);
 }
-		// ft_print_path_map_status(level);
-		// printf("##################################################\n\n");
