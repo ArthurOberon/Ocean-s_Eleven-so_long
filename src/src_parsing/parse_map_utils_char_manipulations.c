@@ -6,12 +6,18 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:43:07 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/28 14:57:23 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/05 22:09:16 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Create a malloc'd copy of a line.
+ * 
+ * @param line 
+ * @return char* 
+ */
 char	*line_to_tab(char *line)
 {
 	int		i;
@@ -31,22 +37,14 @@ char	*line_to_tab(char *line)
 	return (tab);
 }
 
-void	free_2d_char_tab(char **tab, int y)
-{
-	int	i;
-
-	if (!tab)
-		return ;
-	i = 0;
-	while (i < y)
-	{
-		if (tab[i])
-			free(tab[i]);
-		i++;
-	}
-	free(tab);
-}
-
+/**
+ * @brief Converts a 2 dimensional char array to a 1 dimensional char array.
+ * 
+ * @param map_2d char array to convert.
+ * @param x size of the map on x (width).
+ * @param y size of the map on y (height).
+ * @return char* converted map.
+ */
 char	*char_2d_to_1d(char **map_2d, int x, int y)
 {
 	int		i;

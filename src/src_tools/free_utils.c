@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:49:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/02 17:51:59 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/05 22:09:24 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,26 @@ void	free_assets(void *ptr, t_sprites_assets *assets)
 	free_one_sprite(ptr, assets->special_character);
 	free_one_sprite(ptr, assets->background_text);
 	free(assets);
+}
+
+/**
+ * @brief Free a 2 dimensional char array.
+ * 
+ * @param tab char array to free.
+ * @param y size of the array.
+ */
+void	free_2d_char_tab(char **tab, int y)
+{
+	int	i;
+
+	if (!tab)
+		return ;
+	i = 0;
+	while (i < y)
+	{
+		if (tab[i])
+			free(tab[i]);
+		i++;
+	}
+	free(tab);
 }

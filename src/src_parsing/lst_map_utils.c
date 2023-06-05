@@ -6,12 +6,18 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:06:11 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/28 14:55:25 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/05 22:13:23 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Get the size of the list.
+ * 
+ * @param lst list to get the size.
+ * @return int size of the list.
+ */
 int	ft_lstsize(t_lst_map *lst)
 {
 	int	size;
@@ -25,6 +31,12 @@ int	ft_lstsize(t_lst_map *lst)
 	return (size);
 }
 
+/**
+ * @brief Get the last element of the list.
+ * 
+ * @param lst list to get the last element.
+ * @return t_lst_map* last element of the list.
+ */
 t_lst_map	*ft_lstlast(t_lst_map *lst)
 {
 	while (lst && lst->next)
@@ -34,6 +46,12 @@ t_lst_map	*ft_lstlast(t_lst_map *lst)
 	return (lst);
 }
 
+/**
+ * @brief Create a new list.
+ * 
+ * @param content content of the new list.
+ * @return t_lst_map* new list created and initialized.
+ */
 t_lst_map	*ft_lstnew(void *content)
 {
 	t_lst_map	*newlist;
@@ -47,6 +65,32 @@ t_lst_map	*ft_lstnew(void *content)
 	return (newlist);
 }
 
+/**
+ * @brief Add a new element at the end of the list.
+ * 
+ * @param lst list to add the new element.
+ * @param new element to add.
+ */
+void	ft_lstadd_back(t_lst_map **lst, t_lst_map *new)
+{
+	t_lst_map	*tmp;
+
+	if (!lst || !new)
+		return ;
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
+	tmp = ft_lstlast(*lst);
+	tmp->next = new;
+}
+
+/**
+ * @brief Clear the list.
+ * 
+ * @param lst list to clear.
+ */
 void	ft_lstclear(t_lst_map **lst)
 {
 	t_lst_map	*tmp;
@@ -64,19 +108,4 @@ void	ft_lstclear(t_lst_map **lst)
 		tmp = tmp2;
 	}
 	*lst = NULL;
-}
-
-void	ft_lstadd_back(t_lst_map **lst, t_lst_map *new)
-{
-	t_lst_map	*tmp;
-
-	if (!lst || !new)
-		return ;
-	if (!*lst)
-	{
-		*lst = new;
-		return ;
-	}
-	tmp = ft_lstlast(*lst);
-	tmp->next = new;
 }

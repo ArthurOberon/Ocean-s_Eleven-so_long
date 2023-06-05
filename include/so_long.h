@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/05 21:39:22 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/05 22:13:43 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -878,9 +878,7 @@ void				get_wall_image(t_game *game, t_sprite **sprite, int pos);
 // |					SRC_PARSING					|
 // |================================================|
 
-// |------------------------------------|
-// |			LST_MAP_UTILS			|
-// |------------------------------------|
+// |----------- LST_MAP_UTILS ----------|
 
 int					ft_lstsize(t_lst_map *lst);
 
@@ -890,27 +888,19 @@ void				ft_lstadd_back(t_lst_map **lst, t_lst_map *new);
 t_lst_map			*ft_lstnew(void *content);
 t_lst_map			*ft_lstlast(t_lst_map *lst);
 
-// |--------------------------------------------------------|
-// |			PARSE_MAP_UTILS_CHAR_MANIPULATIONS			|
-// |--------------------------------------------------------|
-
-void				free_2d_char_tab(char **tab, int y);
+// |----------- PARSE_MAP_UTILS_CHAR_MANIPULATIONS ---------|
 
 char				*line_to_tab(char *line);
 char				*char_2d_to_1d(char **map_2d, int x, int y);
 
-// |------------------------------------------------|
-// |			PARSE_MAP_UTILS_check_MAP			|
-// |------------------------------------------------|
+// |----------- PARSE_MAP_UTILS_check_MAP ----------|
 
 int					is_ber(char *file_name);
 int					is_closed(char **map, int x, int y);
 int					is_rectangle(t_lst_map *lst, int size);
 int					has_all_characters(char **map, int x, int y);
 
-// |--------------------------------|
-// |			PARSE_MAPS			|
-// |--------------------------------|
+// |----------- PARSE_MAPS ---------|
 
 void				parse_map(char *file_name, char **map,
 						t_vector_2 *map_vector);
@@ -958,6 +948,7 @@ void				exit_pathfinding_error(t_level *level, char flag,
 // |			FREE_UTILS			|
 // |--------------------------------|
 
+void				free_2d_char_tab(char **tab, int y);
 void				free_text_box_text_pages(t_text_box *text_box);
 void				free_one_sprite(void *ptr, t_sprite *sprite);
 void				free_assets(void *ptr, t_sprites_assets *assets);

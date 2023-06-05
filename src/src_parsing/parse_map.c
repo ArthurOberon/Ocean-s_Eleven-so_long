@@ -6,12 +6,20 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:30:54 by aoberon           #+#    #+#             */
-/*   Updated: 2023/04/28 22:01:03 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/05 21:59:09 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Converts a list to a 2 dimensional array of chars.
+ * 
+ * @param lst list to convert.
+ * @param x size of the map on x (width).
+ * @param y size of the map on y (height).
+ * @return char** converted map.
+ */
 char	**list_to_map(t_lst_map *lst, int *x, int *y)
 {
 	t_lst_map	*lst_free_addr;
@@ -40,6 +48,15 @@ char	**list_to_map(t_lst_map *lst, int *x, int *y)
 	return (map);
 }
 
+/**
+ * @brief Reads (with get_next_line) the map from the file descriptor
+ * fills a list with the lines and returns it as a 2d char array.
+ * 
+ * @param fd file descriptor to read from.
+ * @param x size of the map on x (width).
+ * @param y size of the map on y (height).
+ * @return char** 2 dimensional array of chars representing the map.
+ */
 char	**read_map(int fd, int *x, int *y)
 {
 	char		*line;
@@ -68,6 +85,13 @@ char	**read_map(int fd, int *x, int *y)
 	return (list_to_map(lst_map, x, y));
 }
 
+/**
+ * @brief Parses the map and checks for errors.
+ * 
+ * @param file_name name of the map file to parse.
+ * @param map map to be filled in a 2 dimensional array of char.
+ * @param map_vector size of the map on x and y in a vector.
+ */
 void	parse_map(char *file_name, char **map, t_vector_2 *map_vector)
 {
 	int		fd;
@@ -93,4 +117,3 @@ void	parse_map(char *file_name, char **map, t_vector_2 *map_vector)
 	*map_vector = (t_vector_2){x, y};
 	free_2d_char_tab(map_2d, y);
 }
-	// ft_print_map(map_2d, x, y);
