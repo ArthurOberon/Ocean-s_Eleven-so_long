@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/05 22:35:33 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 12:23:54 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -929,55 +929,39 @@ void				pathfinding(t_game *game);
 // |					SRC_TOOLS					|
 // |================================================|
 
-// |----------------------------|
-// |			EXIT			|
-// |----------------------------|
+// |---------- EXIT_ERROR_MESSAGE ----------|
 
 void				exit_arg_error(void);
 void				exit_map_error(char **map_2d, int y);
 void				exit_pathfinding_error(t_level *level, char flag,
 						int pos_error);
 
-// |--------------------------------|
-// |			FREE_UTILS			|
-// |--------------------------------|
+// |---------- FREE_ASSETS ---------|
 
-void				free_2d_char_tab(char **tab, int y);
-void				free_text_box_text_pages(t_text_box *text_box);
-void				free_one_sprite(void *ptr, t_sprite *sprite);
 void				free_assets(void *ptr, t_sprites_assets *assets);
 
-// |----------------------------|
-// |			FREE			|
-// |----------------------------|
+// |---------- FREE_UTILS ----------|
 
-void				free_game(t_game game, const char *error);
+void				free_2d_char_tab(char **tab, int y);
+void				free_dialogue(t_texts_box_list *dialogue);
+void				free_text_box_text_pages(t_text_box *text_box);
 
-// |------------------------------------|
-// |			MEM_FUNCTIONS			|
-// |------------------------------------|
+// |----------- FREE -----------|
+
+void				exit_game(t_game game, const char *error);
+
+// |----------- MEM_FUNCTIONS ----------|
 
 char				*ft_strdup(const char *s);
 
 void				ft_bzero(void *s, size_t n);
 void				ft_memset(void *addr, int value, size_t n);
 
+void				ft_memcpy(void *dest, const void *src, size_t n);
+
 void				*ft_calloc(size_t nmemb, size_t size);
-void				*ft_memcpy(void *dest, const void *src, size_t n);
 
-// |------------------------------------|
-// |			PRINT_FUNCTIONS			|
-// |------------------------------------|
-
-void				ft_putnbr(int nb);
-void				ft_putstr(char *s);
-void				ft_putchar(char c);
-
-size_t				ft_strlen(const char *s);
-
-// |----------------------------|
-// |			UTILS			|
-// |----------------------------|
+// |----------- UTILS ----------|
 
 int					ft_nbrlen(int nb);
 int					is_equals(char *s1, char *s2);
@@ -986,11 +970,9 @@ void				ft_itoa(int n, char result[10]);
 
 char				*ft_strjoin(char const *s1, char const *s2);
 
-long unsigned int	ft_abs(long n);
+size_t				ft_strlen(const char *s);
 
-// |----------------------------------------|
-// |			VECTOR_FUNCTIONS			|
-// |----------------------------------------|
+// |----------- VECTOR_FUNCTIONS -----------|
 
 t_f_vector_2		normalize(t_vector_2 vector);
 t_f_vector_2		direction_normalized(t_vector_2 src, t_vector_2 dest);

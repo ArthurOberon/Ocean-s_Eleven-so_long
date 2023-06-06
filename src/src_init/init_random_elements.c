@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:37:06 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/26 19:48:53 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 11:45:27 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	put_unavailable_character_on_map(t_game *game, t_gameplay *gameplay)
 	ground_pos = get_all_ground_pos(game->level->map, game->level->nb_cases,
 			&ground_count);
 	if (!ground_pos)
-		free_game(*game, "Error of malloc.\n");
+		exit_game(*game, "Error of malloc.\n");
 	while ((gameplay->available_character[0] == 0)
 		|| (gameplay->available_character[1] == 0)
 		|| (gameplay->available_character[2] == 0)

@@ -6,12 +6,17 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:49:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/05 22:09:24 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 12:23:06 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Free text_pages of a text_box struct.
+ * 
+ * @param text_box text_box struct to free text_pages from.
+ */
 void	free_text_box_text_pages(t_text_box *text_box)
 {
 	int	i;
@@ -28,56 +33,17 @@ void	free_text_box_text_pages(t_text_box *text_box)
 	text_box->text_pages = NULL;
 }
 
-void	free_one_sprite(void *ptr, t_sprite *sprite)
+/**
+ * @brief Free the text_boxs_list struct, named dialogue in the gameplay struct.
+ * 
+ * @param dialogue text_boxs_list struct to free.
+ */
+void	free_dialogue(t_texts_box_list *dialogue)
 {
-	int	i;
-
-	i = 0;
-	if (!sprite)
-		return ;
-	while (i < sprite->size)
-	{
-		if (sprite->sprite_img[i].mlx_img)
-			mlx_destroy_image(ptr, sprite->sprite_img[i].mlx_img);
-		i++;
-	}
-	free(sprite->sprite_img);
-	free(sprite);
-}
-
-void	free_assets(void *ptr, t_sprites_assets *assets)
-{
-	free_one_sprite(ptr, assets->player_danny);
-	free_one_sprite(ptr, assets->player_rusty);
-	free_one_sprite(ptr, assets->player_linus);
-	free_one_sprite(ptr, assets->player_basher);
-	free_one_sprite(ptr, assets->guard);
-	free_one_sprite(ptr, assets->guard_fov);
-	free_one_sprite(ptr, assets->exit);
-	free_one_sprite(ptr, assets->collect);
-	free_one_sprite(ptr, assets->ground);
-	free_one_sprite(ptr, assets->wall_corner_n_o);
-	free_one_sprite(ptr, assets->wall_corner_n_e);
-	free_one_sprite(ptr, assets->wall_corner_s_e);
-	free_one_sprite(ptr, assets->wall_corner_s_o);
-	free_one_sprite(ptr, assets->wall_side_up);
-	free_one_sprite(ptr, assets->wall_side_down);
-	free_one_sprite(ptr, assets->wall_side_left);
-	free_one_sprite(ptr, assets->wall_side_right);
-	free_one_sprite(ptr, assets->wall_roulette);
-	free_one_sprite(ptr, assets->wall_poker);
-	free_one_sprite(ptr, assets->dynamite);
-	free_one_sprite(ptr, assets->explosion);
-	free_one_sprite(ptr, assets->area_qte);
-	free_one_sprite(ptr, assets->qte);
-	free_one_sprite(ptr, assets->heart);
-	free_one_sprite(ptr, assets->box);
-	free_one_sprite(ptr, assets->selection_box);
-	free_one_sprite(ptr, assets->avatar_character);
-	free_one_sprite(ptr, assets->alphabet);
-	free_one_sprite(ptr, assets->special_character);
-	free_one_sprite(ptr, assets->background_text);
-	free(assets);
+	if (dialogue->text_box)
+		free_text_box_text_pages(dialogue->text_box);
+	dialogue = ft_lstfirst_texts_box(dialogue);
+	ft_lstclear_texts_box(&dialogue);
 }
 
 /**

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/04 19:48:15 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 11:45:27 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	get_chunk_positions(t_game *game, t_vector_2 **chunk_pos,
 
 	(*chunk_pos) = ft_calloc(sizeof(t_vector_2), nb);
 	if (!*chunk_pos)
-		free_game(*game, "Error of malloc.\n");
+		exit_game(*game, "Error of malloc.\n");
 	i = 0;
 	y = 0;
 	while (i < size.y)
@@ -82,7 +82,7 @@ static void	init_texts(t_game *game, t_gameplay *gameplay)
 
 	texts = ft_calloc(sizeof(t_text), e_total_text_number);
 	if (!texts)
-		free_game(*game, "Error of malloc.\n");
+		exit_game(*game, "Error of malloc.\n");
 	gameplay->all_texts = texts;
 	// debug
 	texts[e_text_debug].text = "abcdefghijqlmnopqrstuvwxyz  !\"#$%&'()*+,-./0123456789:;<=?>";
@@ -150,7 +150,7 @@ void	init_gameplay(t_game *game, int *available_character,
 
 	gameplay = ft_calloc(sizeof(t_gameplay), 1);
 	if (!gameplay)
-		free_game(*game, "Error of malloc\n");
+		exit_game(*game, "Error of malloc\n");
 	game->gameplay = gameplay;
 	gameplay->is_pause = false;
 	gameplay->is_stop = false;

@@ -1,0 +1,99 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_assets.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/06 12:03:52 by aoberon           #+#    #+#             */
+/*   Updated: 2023/06/06 12:14:06 by aoberon          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "so_long.h"
+
+/**
+ * @brief free a one t_sprite struct.
+ * 
+ * @param ptr mlx_ptr, used to destroy the mlx_img of the sprite.
+ * @param sprite sprite struct to free.
+ */
+static void	free_one_sprite(void *ptr, t_sprite *sprite)
+{
+	int	i;
+
+	i = 0;
+	if (!sprite)
+		return ;
+	while (i < sprite->size)
+	{
+		if (sprite->sprite_img[i].mlx_img)
+			mlx_destroy_image(ptr, sprite->sprite_img[i].mlx_img);
+		i++;
+	}
+	free(sprite->sprite_img);
+	free(sprite);
+}
+
+/**
+ * @brief Free the first part of the t_sprites_assets struct.
+ * 
+ * @param ptr mlx_ptr, used to destroy the mlx_img of the sprite.
+ * @param assets assets struct to free.
+ */
+static void	free_assets_part_1(void *ptr, t_sprites_assets *assets)
+{
+	free_one_sprite(ptr, assets->player_danny);
+	free_one_sprite(ptr, assets->player_rusty);
+	free_one_sprite(ptr, assets->player_linus);
+	free_one_sprite(ptr, assets->player_basher);
+	free_one_sprite(ptr, assets->guard);
+	free_one_sprite(ptr, assets->guard_fov);
+	free_one_sprite(ptr, assets->exit);
+	free_one_sprite(ptr, assets->collect);
+	free_one_sprite(ptr, assets->ground);
+	free_one_sprite(ptr, assets->wall_corner_n_o);
+	free_one_sprite(ptr, assets->wall_corner_n_e);
+	free_one_sprite(ptr, assets->wall_corner_s_e);
+	free_one_sprite(ptr, assets->wall_corner_s_o);
+	free_one_sprite(ptr, assets->wall_side_up);
+	free_one_sprite(ptr, assets->wall_side_down);
+	free_one_sprite(ptr, assets->wall_side_left);
+	free_one_sprite(ptr, assets->wall_side_right);
+	free_one_sprite(ptr, assets->wall_roulette);
+	free_one_sprite(ptr, assets->wall_poker);
+}
+
+/**
+ * @brief Free the second part of the t_sprites_assets struct.
+ * 
+ * @param ptr mlx_ptr, used to destroy the mlx_img of the sprite.
+ * @param assets assets struct to free.
+ */
+static void	free_assets_part_2(void *ptr, t_sprites_assets *assets)
+{
+	free_one_sprite(ptr, assets->dynamite);
+	free_one_sprite(ptr, assets->explosion);
+	free_one_sprite(ptr, assets->area_qte);
+	free_one_sprite(ptr, assets->qte);
+	free_one_sprite(ptr, assets->heart);
+	free_one_sprite(ptr, assets->box);
+	free_one_sprite(ptr, assets->selection_box);
+	free_one_sprite(ptr, assets->avatar_character);
+	free_one_sprite(ptr, assets->alphabet);
+	free_one_sprite(ptr, assets->special_character);
+	free_one_sprite(ptr, assets->background_text);
+}
+
+/**
+ * @brief free all the assets of the game.
+ * 
+ * @param ptr mlx_ptr, used to destroy the mlx_img of the sprites.
+ * @param assets assets struct to free.
+ */
+void	free_assets(void *ptr, t_sprites_assets *assets)
+{
+	free_assets_part_1(ptr, assets);
+	free_assets_part_2(ptr, assets);
+	free(assets);
+}

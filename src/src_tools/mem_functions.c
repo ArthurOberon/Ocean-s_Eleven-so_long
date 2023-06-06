@@ -6,12 +6,18 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:19:28 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/30 13:07:04 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 12:20:12 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Set a block of memory to 0.
+ * 
+ * @param s block of memory to set.
+ * @param n size of the block to set.
+ */
 void	ft_bzero(void *s, size_t n)
 {
 	size_t	i;
@@ -24,6 +30,13 @@ void	ft_bzero(void *s, size_t n)
 	}
 }
 
+/**
+ * @brief Allocates memory and sets it to 0.
+ * 
+ * @param nmemb size of the type to allocate.
+ * @param size size to allocate.
+ * @return void* allocated memory.
+ */
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*result;
@@ -39,6 +52,12 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	return (result);
 }
 
+/**
+ * @brief Create a duplicate of a string.
+ * 
+ * @param s string to duplicate.
+ * @return char* string duplicate.
+ */
 char	*ft_strdup(const char *s)
 {
 	int		length;
@@ -58,30 +77,15 @@ char	*ft_strdup(const char *s)
 	return (result);
 }
 
-// void	*ft_memcpy(void *dest, const void *src, size_t n)
-// {
-// 	size_t	i;
-// 	size_t	size;
-
-// 	size = sizeof(size_t);
-// 	i = 0;
-// 	if (n > size)
-// 	{
-// 		while (i < n - size)
-// 		{
-// 			*(size_t *)(dest + i) = *(size_t *)(src + i);
-// 			i += size;
-// 		}
-// 	}
-// 	while (i != n)
-// 	{
-// 		*(unsigned char *)(dest + i) = *(unsigned char *)(src + i);
-// 		i++;
-// 	}
-// 	return (dest);
-// }
-
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+/**
+ * @brief Copies a block of memory.
+ * 
+ * @param dest destination of the copy.
+ * @param src src to copy.
+ * @param n size of the block to copy.
+ * @return void* 
+ */
+void	ft_memcpy(void *dest, const void *src, size_t n)
 {
 	size_t	i;
 	size_t	offset;
@@ -98,9 +102,15 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 		*(char *)(dest + i) = *(char *)(src + i);
 		i++;
 	}
-	return (dest);
 }
 
+/**
+ * @brief Set a block of memory to a value.
+ * 
+ * @param addr address of the block of memory to set.
+ * @param value value to set.
+ * @param n size of the block to set.
+ */
 void	ft_memset(void *addr, int value, size_t n)
 {
 	size_t	i;

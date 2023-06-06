@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gameplay_elements.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:32:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/31 22:30:46 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/06 11:36:11 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	game_over(t_game *game)
 {
-	ft_putstr("GAME OVER\n");
+	ft_printf("GAME OVER\n");
 	close_game(game);
 }
 

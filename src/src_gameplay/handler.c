@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:34:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/04 19:48:00 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 11:48:13 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	close_game(t_game *game)
 {
-	free_game(*game, NULL);
-	exit(EXIT_SUCCESS);
+	exit_game(*game, NULL);
 	return (0);
 }
 

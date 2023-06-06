@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:21:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/04 19:24:03 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 11:48:06 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,5 @@ int	main(int argc, char **argv)
 	pathfinding(&game);
 	init_game(&game, available_character, chosen_character);
 	start_game(&game);
-	free_game(game, NULL);
 	return (0);
 }

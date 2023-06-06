@@ -6,19 +6,35 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:24:32 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/03 17:21:00 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 11:39:42 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-long unsigned int	ft_abs(long n)
+/**
+ * @brief Returns the length of a string.
+ * 
+ * @param s string to calculate length.
+ * @return size_t length of the string.
+ */
+size_t	ft_strlen(const char *s)
 {
-	if (n < 0)
-		return (-n);
-	return (n);
-}	
+	size_t	length;
 
+	length = 0;
+	while (s[length] != '\0')
+		length++;
+	return (length);
+}
+
+/**
+ * @brief Checks if two strings are equal.
+ * 
+ * @param s1 string 1.
+ * @param s2 string 2.
+ * @return int 1 if equal, 0 if not.
+ */
 int	is_equals(char *s1, char *s2)
 {
 	size_t	i;
@@ -35,6 +51,12 @@ int	is_equals(char *s1, char *s2)
 	return (1);
 }
 
+/**
+ * @brief Returns the length of an integer.
+ * 
+ * @param nb number to calculate length.
+ * @return int length of the number.
+ */
 int	ft_nbrlen(int nb)
 {
 	if (nb < 0)
@@ -44,6 +66,12 @@ int	ft_nbrlen(int nb)
 	return (1 + ft_nbrlen(nb / 10));
 }
 
+/**
+ * @brief Converts an integer to a string without malloc.
+ * 
+ * @param n integer to convert.
+ * @param result string to store the result.
+ */
 void	ft_itoa(int n, char result[10])
 {
 	unsigned int	tmp;
@@ -68,6 +96,13 @@ void	ft_itoa(int n, char result[10])
 		result[0] = '-';
 }
 
+/**
+ * @brief Joins two strings into a new one.
+ * 
+ * @param s1 first string.
+ * @param s2 second string.
+ * @return char* new string.
+ */
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t	i;

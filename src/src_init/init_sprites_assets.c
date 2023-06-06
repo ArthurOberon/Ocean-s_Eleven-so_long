@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_sprites_assets.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthuroberon <arthuroberon@student.42.f    +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 14:43:09 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/01 16:39:55 by arthurobero      ###   ########.fr       */
+/*   Updated: 2023/06/06 11:45:27 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ void	alloc_sprite_asset(t_game *game, t_sprite **asset, int size)
 
 	sprite = ft_calloc(sizeof(t_sprite), 1);
 	if (!sprite)
-		free_game(*game, "Error of malloc.\n");
+		exit_game(*game, "Error of malloc.\n");
 	sprite->frame = 0;
 	sprite->size = size;
 	sprite->last_time = (struct timeval){0, 0};
 	sprite->sprite_img = ft_calloc(sizeof(t_img), size);
 	if (!sprite->sprite_img)
-		free_game(*game, "Error of malloc.\n");
+		exit_game(*game, "Error of malloc.\n");
 	*asset = sprite;
 }
 
@@ -73,7 +73,7 @@ void	init_sprites_assets(t_game *game)
 
 	assets = ft_calloc(sizeof(t_sprites_assets), 1);
 	if (!assets)
-		free_game(*game, "Error of malloc.\n");
+		exit_game(*game, "Error of malloc.\n");
 	game->assets = assets;
 	init_one_sprite_asset(game, &assets->player_danny, (t_init_sprite_asset_args){PATH_PLAYER_DANNY, FRAME_PLAYER_DANNY, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
 	init_one_sprite_asset(game, &assets->player_rusty, (t_init_sprite_asset_args){PATH_PLAYER_RUSTY, FRAME_PLAYER_RUSTY, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});

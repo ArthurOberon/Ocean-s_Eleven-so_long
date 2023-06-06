@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 21:36:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/25 22:32:58 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 11:45:27 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	init_explosion_pos(t_game *game, t_bomb *bomb, bool alloc)
 		bomb->explosion_pos = ft_calloc(bomb->explosion_tab_size,
 				sizeof(t_vector_2));
 		if (!bomb->explosion_pos)
-			free_game(*game, "Error of malloc.\n");
+			exit_game(*game, "Error of malloc.\n");
 	}
 	while (i < bomb->explosion_tab_size)
 	{
@@ -82,7 +82,7 @@ void	init_player(t_game *game, t_player *player, int chosen_character)
 {
 	player = ft_calloc(sizeof(t_player), 1);
 	if (!player)
-		free_game(*game, "Error of malloc.\n");
+		exit_game(*game, "Error of malloc.\n");
 	game->gameplay->player = player;
 	player->size.x = (CHUNK_SIZE * RATIO_PLAYER_SIZE_X);
 	player->size.y = (CHUNK_SIZE * RATIO_PLAYER_SIZE_Y);

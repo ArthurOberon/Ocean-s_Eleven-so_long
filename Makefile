@@ -101,13 +101,13 @@ SRC_PATH 			=	$(addprefix src_pathfinding/, \
 
 # SOURCES USEFULS
 SRC_TOOLS			=	$(addprefix src_tools/, \
-						exit.c \
-						free.c \
 						utils.c \
+						exit_game.c \
 						free_utils.c \
+						free_assets.c \
 						mem_functions.c \
-						print_functions.c \
 						vector_functions.c \
+						exit_error_message.c \
 						)
 
 # ALL SOURCES FOR SO_LONG

@@ -6,11 +6,24 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 19:26:47 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/05 22:35:14 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 11:38:46 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+/**
+ * @brief Returns the absolute value of a number.
+ * 
+ * @param n number to calculate absolute value.
+ * @return long unsigned int absolute value of the number.
+ */
+static long unsigned int	ft_abs(long n)
+{
+	if (n < 0)
+		return (-n);
+	return (n);
+}	
 
 /**
  * @brief Calculate the distance between two positions.

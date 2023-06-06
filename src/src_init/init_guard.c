@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 15:39:49 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/26 15:58:40 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 11:45:27 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	init_guards(t_game *game, t_guard *guards)
 		return ;
 	guards = ft_calloc(sizeof(t_guard), count_guard);
 	if (!guards)
-		free_game(*game, "Error of malloc.\n");
+		exit_game(*game, "Error of malloc.\n");
 	game->gameplay->guards = guards;
 	game->gameplay->nb_guard = count_guard;
 	i = 0;

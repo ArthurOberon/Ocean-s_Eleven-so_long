@@ -6,12 +6,18 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 23:54:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/25 17:12:41 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 11:31:18 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Returns the distance between two vectors.
+ * 
+ * @param vector vector to calculate distance from.
+ * @return t_f_vector_2 distance vector.
+ */
 t_f_vector_2	normalize(t_vector_2 vector)
 {
 	float	magn;
@@ -22,6 +28,13 @@ t_f_vector_2	normalize(t_vector_2 vector)
 	return ((t_f_vector_2){vector.x / magn, vector.y / magn});
 }
 
+/**
+ * @brief Returns the direction vector from src to dest.
+ * 
+ * @param src source vector.
+ * @param dest destination vector.
+ * @return t_f_vector_2 normalized direction vector.
+ */
 t_f_vector_2	direction_normalized(t_vector_2 src, t_vector_2 dest)
 {
 	t_f_vector_2	dir;

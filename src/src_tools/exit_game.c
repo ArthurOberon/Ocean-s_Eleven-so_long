@@ -1,17 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   exit_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 19:17:43 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/04 19:48:00 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 12:15:03 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Free all the allocated memory in the level struct.
+ * 
+ * @param level level struct to free.
+ */
 static void	free_level(t_level *level)
 {
 	if (level->map)
@@ -21,7 +26,12 @@ static void	free_level(t_level *level)
 	free(level);
 }
 
-void	free_window(t_window *window)
+/**
+ * @brief Free all the allocated memory in the window struct.
+ * 
+ * @param window window struct to free.
+ */
+static void	free_window(t_window *window)
 {
 	if (window->map_sprites)
 		free(window->map_sprites);
@@ -39,7 +49,13 @@ void	free_window(t_window *window)
 	free(window);
 }
 
-void	free_camera(t_camera *camera, void *mlx_ptr)
+/**
+ * @brief Free all the allocated memory in the camera struct.
+ * 
+ * @param camera camera struct to free.
+ * @param mlx_ptr mlx_ptr, used to destroy the mlx_img of the background image.
+ */
+static void	free_camera(t_camera *camera, void *mlx_ptr)
 {
 	if (camera->chunks_to_display)
 		free(camera->chunks_to_display);
@@ -48,7 +64,12 @@ void	free_camera(t_camera *camera, void *mlx_ptr)
 	free(camera);
 }
 
-void	free_gameplay(t_gameplay *gameplay)
+/**
+ * @brief Free all the allocated memory in the gameplay struct.
+ * 
+ * @param gameplay gameplay struct to free.
+ */
+static void	free_gameplay(t_gameplay *gameplay)
 {
 	if (gameplay->chunks_pos)
 		free(gameplay->chunks_pos);
@@ -61,18 +82,20 @@ void	free_gameplay(t_gameplay *gameplay)
 	if (gameplay->map_start_state)
 		free(gameplay->map_start_state);
 	if (gameplay->dialogue)
-	{
-		if (gameplay->dialogue->text_box)
-			free_text_box_text_pages(gameplay->dialogue->text_box);
-		gameplay->dialogue = ft_lstfirst_texts_box(gameplay->dialogue);
-		ft_lstclear_texts_box(&gameplay->dialogue);
-	}
+		free_dialogue(gameplay->dialogue);
 	if (gameplay->all_texts)
 		free(gameplay->all_texts);
 	free(gameplay);
 }
 
-void	free_game(t_game game, const char *error)
+/**
+ * @brief Free all the allocated memory and exit the game.
+ * Exit with EXIT_SUCCESS if there is no error, otherwise exit with EXIT_FAILURE.
+ * 
+ * @param game game struct to free all the allocated memory.
+ * @param error message to print before exiting if there is an error.
+ */
+void	exit_game(t_game game, const char *error)
 {
 	if (game.level)
 	{
@@ -88,7 +111,8 @@ void	free_game(t_game game, const char *error)
 	}
 	if (error)
 	{
-		ft_putstr((char *)error);
+		ft_printf("%s", error);
 		exit(EXIT_FAILURE);
 	}
+	exit(EXIT_SUCCESS);
 }
