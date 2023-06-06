@@ -6,19 +6,26 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:25:07 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/26 21:52:02 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/07 00:21:32 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Move the player on the x (width) axis.
+ * 
+ * @param game game struct, used to get the level struct.
+ * @param player player struct, used to move.
+ * @param move vector of the movement of the player.
+ */
 static void	move_player_on_x(t_game *game, t_player *player, t_f_vector_2 *move)
 {
 	int				collider_chunk;
 	t_collider		chunks;
 	t_vector_2		collider;
 
-	get_move_player(player, move,
+	set_move_player(player, move,
 		game->gameplay->delta_time, (t_vector_2){1, 0});
 	chunks = get_collider_on_move(move, player, game->level->map_vector.x);
 	collider_chunk = check_wall_collider(game->level->map, chunks);
@@ -30,13 +37,20 @@ static void	move_player_on_x(t_game *game, t_player *player, t_f_vector_2 *move)
 	}
 }
 
+/**
+ * @brief Move the player on the y (height) axis.
+ * 
+ * @param game game struct, used to get the level struct.
+ * @param player player struct, used to move.
+ * @param move vector of the movement of the player.
+ */
 static void	move_player_on_y(t_game *game, t_player *player, t_f_vector_2 *move)
 {
 	int				collider_chunk;
 	t_collider		chunks;
 	t_vector_2		collider;
 
-	get_move_player(player, move,
+	set_move_player(player, move,
 		game->gameplay->delta_time, (t_vector_2){0, 1});
 	chunks = get_collider_on_move(move, player, game->level->map_vector.x);
 	collider_chunk = check_wall_collider(game->level->map, chunks);
@@ -48,6 +62,12 @@ static void	move_player_on_y(t_game *game, t_player *player, t_f_vector_2 *move)
 	}
 }
 
+/**
+ * @brief Move the player.
+ * 
+ * @param game game struct, used te get the level and the window struct.
+ * @param player player struct to move.
+ */
 void	move_player(t_game *game, t_player *player)
 {
 	int				chunk_before;
@@ -70,7 +90,7 @@ void	move_player(t_game *game, t_player *player)
 	move_player_on_y(game, player, &move);
 	set_player_pos(player, move);
 	set_player_look_dir(player);
-	move_animation(player, sprite);
+	move_animation(player->player_look_dir, sprite);
 	if (chunk_before != pos_to_chunk(player->player_pos.x, player->player_pos.y,
 			game->level->map_vector.x))
 		game->gameplay->nb_move++;

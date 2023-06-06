@@ -6,13 +6,19 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:52:31 by aoberon           #+#    #+#             */
-/*   Updated: 2023/05/24 22:42:38 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 20:54:28 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	set_explosion_position(t_bomb *bomb, t_vector_2 pos)
+/**
+ * @brief Save the explosion position in the explosion position tab.
+ * 
+ * @param bomb bomb struct, to get explosion position tab.
+ * @param pos position to save.
+ */
+static void	set_explosion_position(t_bomb *bomb, t_vector_2 pos)
 {
 	int	i;
 
@@ -28,6 +34,16 @@ void	set_explosion_position(t_bomb *bomb, t_vector_2 pos)
 	}
 }
 
+/**
+ * @brief Make the bomb explode in a precise position.
+ * And destroy the destructible wall '2,
+ * and kill the guard if he is on the explosion.
+ * 
+ * @param game game struct, to get level struct.
+ * @param bomb bomb struct, to get bomb chunk position.
+ * @param i position on x axis in the bomb pattern.
+ * @param j position on y axis in the bomb pattern.
+ */
 static void	explode_chunk(t_game *game, t_bomb bomb, int i, int j)
 {
 	int			k;
@@ -53,6 +69,14 @@ static void	explode_chunk(t_game *game, t_bomb bomb, int i, int j)
 	}
 }
 
+/**
+ * @brief Make the bomb explode in a circle pattern,
+ * depending on the size/number of bomb plant.
+ * 
+ * @param game game struct, to get level struct.
+ * @param bomb bomb struct, to get bomb position.
+ * @param size size of the bomb pattern.
+ */
 static void	bomb_pattern_circle(t_game *game, t_bomb bomb, int size)
 {
 	int	i;
@@ -82,6 +106,13 @@ static void	bomb_pattern_circle(t_game *game, t_bomb bomb, int size)
 	}
 }
 
+/**
+ * @brief Make the bomb explode,
+ * with a pattern depending on the number of bomb plant.
+ * 
+ * @param game game struct, to get level struct.
+ * @param bomb bomb struct, to get bomb position.
+ */
 void	make_bomb_explode(t_game *game, t_bomb bomb)
 {
 	if (bomb.bomb_plant == 1)
@@ -92,7 +123,15 @@ void	make_bomb_explode(t_game *game, t_bomb bomb)
 	bomb_pattern_circle(game, bomb, bomb.bomb_plant);
 }
 
-void	get_bomb_position(t_bomb *bomb, t_player *player, t_game *game)
+/**
+ * @brief Set the bomb position,
+ * axis (x (width) and y (height)) and chunk position.
+ * 
+ * @param bomb bomb struct, to set position.
+ * @param player player struct, to get player position.
+ * @param game game struct, to get level struct.
+ */
+void	set_bomb_position(t_bomb *bomb, t_player *player, t_game *game)
 {
 	if (bomb->bomb_chunk_pos == -1)
 	{

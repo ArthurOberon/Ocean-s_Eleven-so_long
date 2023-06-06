@@ -6,13 +6,21 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 22:34:29 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/03 13:59:13 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/07 00:28:50 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	get_move_player(t_player *player, t_f_vector_2 *move,
+/**
+ * @brief Get the move player, based on the player direction.
+ * 
+ * @param player player struct, used to get player direction.
+ * @param move movement of the player to set.
+ * @param delta_time delta time, used to get a move depending on the time.
+ * @param axe axe of the movement to set.
+ */
+void	set_move_player(t_player *player, t_f_vector_2 *move,
 double delta_time, t_vector_2 axe)
 {
 	if (axe.x == 1)
@@ -21,7 +29,7 @@ double delta_time, t_vector_2 axe)
 		if (move->x > CHUNK_SIZE || move->x < -CHUNK_SIZE)
 			move->x = (CHUNK_SIZE - 1) * player->player_dir.x;
 	}
-	if (axe.y)
+	if (axe.y == 1)
 	{
 		move->y = (double)player->player_dir.y * SPEED * delta_time;
 		if (move->y > CHUNK_SIZE || move->y < -CHUNK_SIZE)
@@ -29,6 +37,46 @@ double delta_time, t_vector_2 axe)
 	}
 }
 
+/**
+ * @brief Set the player look direction, based on the player direction.
+ * 
+ * @param player player struct, to set the look direction.
+ */
+void	set_player_look_dir(t_player *player)
+{
+	player->player_look_dir.x = 0;
+	player->player_look_dir.y = 0;
+	if (player->player_dir.x != 0)
+		player->player_look_dir.x = -1 + (2 * (player->player_dir.x > 0));
+	if (player->player_dir.y != 0)
+		player->player_look_dir.y = -1 + (2 * (player->player_dir.y > 0));
+}
+
+/**
+ * @brief Set the player position, based on the move.
+ * 
+ * @param player player struct, to move.
+ * @param move vector of the movement of the player.
+ */
+void	set_player_pos(t_player *player, t_f_vector_2 move)
+{
+	player->player_f_pos.x += move.x;
+	player->player_pos.x = (int)player->player_f_pos.x;
+	player->player_f_pos.y += move.y;
+
+	player->player_pos.y = (int)player->player_f_pos.y;
+	player->player_chunk_pos.x = player->player_pos.x / CHUNK_SIZE;
+	player->player_chunk_pos.y = player->player_pos.y / CHUNK_SIZE;
+}
+
+/**
+ * @brief Restrict the movement of the player, based on the collider.
+ * 
+ * @param move movement of the player to restrict.
+ * @param player player struct, used to get player position.
+ * @param collider collider position, used to restrict the movement.
+ * @param axe axe of the movement to restrict.
+ */
 void	restrict_move(t_f_vector_2 *move, t_player *player, t_vector_2 collider,
 t_vector_2 axe)
 {
@@ -53,56 +101,5 @@ t_vector_2 axe)
 		{
 			move->y = collider.y - (player->player_pos.y + player->size.y) - 1;
 		}
-	}
-}
-
-void	set_player_pos(t_player *player, t_f_vector_2 move)
-{
-	player->player_f_pos.x += move.x;
-	player->player_f_pos.y += move.y;
-	player->player_pos.x = (int)player->player_f_pos.x;
-	player->player_pos.y = (int)player->player_f_pos.y;
-	player->player_chunk_pos.x = player->player_pos.x / CHUNK_SIZE;
-	player->player_chunk_pos.y = player->player_pos.y / CHUNK_SIZE;
-}
-
-void	set_player_look_dir(t_player *player)
-{
-	player->player_look_dir.x = 0;
-	player->player_look_dir.y = 0;
-	if (player->player_dir.x != 0)
-		player->player_look_dir.x = -1 + (2 * (player->player_dir.x > 0));
-	if (player->player_dir.y != 0)
-		player->player_look_dir.y = -1 + (2 * (player->player_dir.y > 0));
-}
-
-void	move_animation(t_player *player, t_sprite *sprite)
-{
-	struct timeval	time;
-	double			delay;
-
-	if (FRAME_MOVEMENT == 1)
-		return ;
-	if (player->player_look_dir.x == 1 && !(sprite->frame == FRAME_MOVEMENT || sprite->frame == FRAME_MOVEMENT + 1))
-		sprite->frame = FRAME_MOVEMENT;
-	if (player->player_look_dir.x == -1 && !(sprite->frame ==  (FRAME_MOVEMENT * 2) || sprite->frame ==  (FRAME_MOVEMENT * 2) + 1))
-		sprite->frame = (FRAME_MOVEMENT * 2);
-	if (player->player_look_dir.x == 0 && player->player_look_dir.y != 0)
-	{
-		if (player->player_look_dir.y == 1 && !(sprite->frame ==  (FRAME_MOVEMENT * 3) || sprite->frame == (FRAME_MOVEMENT * 3) + 1))
-			sprite->frame = (FRAME_MOVEMENT * 3);
-		if (player->player_look_dir.y == -1 && !(sprite->frame ==  (FRAME_MOVEMENT * 4) || sprite->frame ==  (FRAME_MOVEMENT * 4) + 1))
-			sprite->frame = (FRAME_MOVEMENT * 4);
-	}
-	if (sprite->last_time.tv_sec == 0)
-		gettimeofday(&sprite->last_time, NULL);
-	gettimeofday(&time, NULL);
-	delay = (((double)(time.tv_usec - sprite->last_time.tv_usec)
-				/ CLOCKS_PER_SEC) + time.tv_sec - sprite->last_time.tv_sec);
-	if (delay >= 1)
-	{
-		sprite->last_time = time;
-		sprite->frame = (sprite->frame + 1)
-			- (FRAME_MOVEMENT * ((sprite->frame) % FRAME_MOVEMENT));
 	}
 }

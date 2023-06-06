@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 16:36:28 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/07 00:41:12 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -575,7 +575,7 @@ void				turn_guards(t_guard *guard);
 
 // |----------- DISPLAY_FEATURES_MAIN ----------|
 
-void				display_gameplay_elements(t_game *game,
+void				display_gameplay_features(t_game *game,
 						t_gameplay *gameplay, t_window *window);
 void				display_hp(t_window *window, t_player *player, int color);
 
@@ -630,7 +630,7 @@ __uint32_t			get_color_pixel(t_img *img, int i, int j);
 // |----------------------------|
 
 void				make_bomb_explode(t_game *game, t_bomb bomb);
-void				get_bomb_position(t_bomb *bomb, t_player *player,
+void				set_bomb_position(t_bomb *bomb, t_player *player,
 						t_game *game);
 
 // |----------------------------------------|
@@ -659,7 +659,7 @@ t_collider			get_collider_on_move(t_f_vector_2 *move, t_player *player,
 // |			GAMEPLAY_ELEMENTS			|
 // |----------------------------------------|
 
-void				gameplay_elements(t_game *game, t_gameplay *gameplay);
+void				gameplay_features(t_game *game, t_gameplay *gameplay);
 
 // |------------------------------------|
 // |			GAMEPLAY_TOOLS			|
@@ -694,7 +694,9 @@ int					handle_keyrelease(int keysym, t_game *game);
 
 void				set_guard_pos(t_game *game, t_guard *guard,
 						t_f_vector_2 move);
-void				get_move_guard(t_guard *guard, t_f_vector_2 *move,
+void				set_guard_look_dir(t_guard *guard, t_player *player,
+						t_f_vector_2 move);
+void				set_move_guard(t_guard *guard, t_f_vector_2 *move,
 						double delta_time, t_vector_2 axe);
 void				restrict_move_guard(t_f_vector_2 *move, t_guard *guard,
 						t_vector_2 collider, t_vector_2 axe);
@@ -713,12 +715,23 @@ void				move_guard(t_game *game, t_guard *guard, t_player *player);
 // |----------------------------------------|
 
 void				set_player_look_dir(t_player *player);
-void				move_animation(t_player *player, t_sprite *sprite);
 void				set_player_pos(t_player *player, t_f_vector_2 move);
-void				get_move_player(t_player *player, t_f_vector_2 *move,
+void				set_move_player(t_player *player, t_f_vector_2 *move,
 						double delta_time, t_vector_2 axe);
 void				restrict_move(t_f_vector_2 *move, t_player *player,
 						t_vector_2 collider, t_vector_2 axe);
+
+// |------------------------------------|
+// |			MOVE_ANIMATION			|
+// |------------------------------------|
+
+void				move_animation(t_vector_2 look_dir, t_sprite *sprite);
+
+// |------------------------------------|
+// |			MOVE_ANIMATION			|
+// |------------------------------------|
+
+void				move_player_animation(t_player *player, t_sprite *sprite);
 
 // |--------------------------------|
 // |			MOVE_PLAYER			|
@@ -753,19 +766,21 @@ void				text_box_events(t_game *game, t_gameplay *gameplay);
 // |			TEXT_BOX			|
 // |--------------------------------|
 
-void				set_text_box(t_game *game, t_text_box *text_box,
-						char *text);
-void				add_text(t_game *game,
+void				add_one_text_to_dialogue(t_game *game,
 						t_texts_box_list **texts_box_list, t_text *text);
 
-// |------------------------------------|
-// |			TEXTS_BOX_LIST			|
-// |------------------------------------|
-
-int					ft_lstsize_texts_box(t_texts_box_list *lst);
+// |------------------------------------------------|
+// |			TEXTS_BOX_LIST_UTILS_FREE			|
+// |------------------------------------------------|
 
 void				ft_lstclear_texts_box(t_texts_box_list **lst);
 void				ft_lstdelone_texts_box(t_texts_box_list *lst);
+
+// |------------------------------------------------|
+// |			TEXTS_BOX_LIST_UTILS_AIN			|
+// |------------------------------------------------|
+
+int					ft_lstsize_texts_box(t_texts_box_list *lst);
 void				ft_lstadd_back_texts_box(t_texts_box_list **lst,
 						t_texts_box_list *new);
 

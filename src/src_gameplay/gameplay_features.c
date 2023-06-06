@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gameplay_elements.c                                :+:      :+:    :+:   */
+/*   gameplay_features.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:32:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 11:36:11 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 21:02:11 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Close the game, by printing "GAME OVER" and close/free the game.
+ * 
+ * @param game game struct, to free the game.
+ */
 static void	game_over(t_game *game)
 {
 	ft_printf("GAME OVER\n");
 	close_game(game);
 }
 
+/**
+ * @brief Get the iframes (invincibility frames) for a certain amount of time.
+ * If the player is hit by a guard, he will be invincible for a certain amount.
+ * 
+ * @param player player struct, to set the iframes variables.
+ */
 static void	get_iframes(t_player *player)
 {
 	double			delay;
@@ -38,6 +49,14 @@ static void	get_iframes(t_player *player)
 	}
 }
 
+/**
+ * @brief Makes the guard chase the player, for a certain amount of time,
+ * if the player is in the guard's line of sight.
+ * 
+ * @param game game struct, used to get the level struct.
+ * @param player player struct, used to get the player position.
+ * @param guard guard struct, used to move the guard.
+ */
 static void	guard_chase_player(t_game *game, t_player *player, t_guard *guard)
 {
 	double			delay;
@@ -62,7 +81,14 @@ static void	guard_chase_player(t_game *game, t_player *player, t_guard *guard)
 	}
 }
 
-void	gameplay_elements(t_game *game, t_gameplay *gameplay)
+/**
+ * @brief launches all the gameplay features, such as 
+ * game over, the text_box, the iframes and guards chasing the player.
+ * 
+ * @param game game struct, used to close the game if the player dies.
+ * @param gameplay gameplay struct, used to get the player and guards structs.
+ */
+void	gameplay_features(t_game *game, t_gameplay *gameplay)
 {
 	int	i;
 

@@ -1,17 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   texts_box_list.c                                   :+:      :+:    :+:   */
+/*   texts_box_list_utils_1.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 22:53:08 by arthurobero       #+#    #+#             */
-/*   Updated: 2023/06/04 19:45:37 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 21:13:30 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Get the size of a texts_box_list.
+ * 
+ * @param lst list to get the size.
+ * @return int size of the list.
+ */
 int	ft_lstsize_texts_box(t_texts_box_list *lst)
 {
 	int	size;
@@ -25,6 +31,12 @@ int	ft_lstsize_texts_box(t_texts_box_list *lst)
 	return (size);
 }
 
+/**
+ * @brief Get the first element of a texts_box_list.
+ * 
+ * @param lst list to get the first element.
+ * @return t_texts_box_list* first element of the list.
+ */
 t_texts_box_list	*ft_lstfirst_texts_box(t_texts_box_list *lst)
 {
 	while (lst && lst->prev)
@@ -34,6 +46,12 @@ t_texts_box_list	*ft_lstfirst_texts_box(t_texts_box_list *lst)
 	return (lst);
 }
 
+/**
+ * @brief Get the last element of a texts_box_list.
+ * 
+ * @param lst list to get the last element.
+ * @return t_texts_box_list* last element of the list.
+ */
 t_texts_box_list	*ft_lstlast_texts_box(t_texts_box_list *lst)
 {
 	while (lst && lst->next)
@@ -43,6 +61,12 @@ t_texts_box_list	*ft_lstlast_texts_box(t_texts_box_list *lst)
 	return (lst);
 }
 
+/**
+ * @brief Create a new node for a texts_box_list.
+ * 
+ * @param text_box text_box to add to the node.
+ * @return t_texts_box_list* new node created.
+ */
 t_texts_box_list	*ft_lstnew_texts_box(t_text_box *text_box)
 {
 	t_texts_box_list	*newlist;
@@ -57,24 +81,12 @@ t_texts_box_list	*ft_lstnew_texts_box(t_text_box *text_box)
 	return (newlist);
 }
 
-void	ft_lstclear_texts_box(t_texts_box_list **lst)
-{
-	t_texts_box_list	*tmp;
-	t_texts_box_list	*tmp_next;
-
-	if (!lst)
-		return ;
-	tmp = *lst;
-	tmp_next = *lst;
-	while (tmp)
-	{
-		tmp_next = tmp_next->next;
-		ft_lstdelone_texts_box(tmp);
-		tmp = tmp_next;
-	}
-	*lst = NULL;
-}
-
+/**
+ * @brief Add a new node to the front of a texts_box_list.
+ * 
+ * @param lst list to add node to.
+ * @param new node to add.
+ */
 void	ft_lstadd_back_texts_box(t_texts_box_list **lst, t_texts_box_list *new)
 {
 	t_texts_box_list	*tmp;
@@ -89,14 +101,4 @@ void	ft_lstadd_back_texts_box(t_texts_box_list **lst, t_texts_box_list *new)
 	tmp = ft_lstlast_texts_box(*lst);
 	tmp->next = new;
 	new->prev = tmp;
-}
-
-void	ft_lstdelone_texts_box(t_texts_box_list *lst)
-{
-	if (!lst)
-		return ;
-	free_text_box_text_pages(lst->text_box);
-	free(lst->text_box);
-	free(lst);
-	lst = NULL;
 }

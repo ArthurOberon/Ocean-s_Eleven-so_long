@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_bomb.c                                     :+:      :+:    :+:   */
+/*   display_features_bomb.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 15:05:27 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/04 18:08:50 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 20:45:35 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	display_bomb(t_player *player, t_bomb *bomb, t_game *game,
 	if (bomb->bomb_plant <= 0
 		|| (player->player_character != e_bomber && bomb->bomb_chunk_pos == -1))
 		return ;
-	get_bomb_position(bomb, player, game);
+	set_bomb_position(bomb, player, game);
 	display_bomb_sprite(bomb, game, window);
 	gettimeofday(&bomb->time, NULL);
 	delay = (((double)(bomb->time.tv_usec - bomb->last_time.tv_usec)

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:34:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 11:48:13 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 21:16:35 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	handle_keypress(int keysym, t_game *game)
 {
 	// debug text_box
 	if (keysym == XK_O || keysym == XK_o)
-		add_text(game, &game->gameplay->dialogue,
+		add_one_text_to_dialogue(game, &game->gameplay->dialogue,
 			&game->gameplay->all_texts[e_text_debug]);
 	// debug text_box
 

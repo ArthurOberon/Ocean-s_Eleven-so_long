@@ -6,12 +6,19 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 18:00:00 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 15:39:01 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 21:20:55 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Copy n char from src to dest.
+ * 
+ * @param src string to copy.
+ * @param n number of char to copy.
+ * @return char* string copied.
+ */
 static char	*ft_strncpy(char *src, int n)
 {
 	int		i;
@@ -30,6 +37,14 @@ static char	*ft_strncpy(char *src, int n)
 	return (dest);
 }
 
+/**
+ * @brief Divide a string in n part of size.
+ * 
+ * @param str string to divide.
+ * @param size size of each part.
+ * @param n number of part.
+ * @return char** string divided in n part of size.
+ */
 char	**str_n_divide(char *str, int size, int n)
 {
 	int		i;
@@ -59,7 +74,14 @@ char	**str_n_divide(char *str, int size, int n)
 	return (result);
 }
 
-void	set_text_box(t_game *game, t_text_box *text_box, char *text)
+/**
+ * @brief Set the text_box with a text.
+ * 
+ * @param game game struct, used to exit_game if malloc fail.
+ * @param text_box text_box struct to set.
+ * @param text text to set with.
+ */
+static void	set_text_box(t_game *game, t_text_box *text_box, char *text)
 {
 	int	text_size;
 	int	divide_size;
@@ -75,14 +97,21 @@ void	set_text_box(t_game *game, t_text_box *text_box, char *text)
 	text_box->text_pages = str_n_divide(text,
 			text_box->characters_max_one_box, divide_size);
 	if (!text_box->text_pages)
-		exit_game(*game, NULL);
+		exit_game(*game, "Error of malloc.\n");
 	text_box->is_display = true;
 	game->gameplay->is_stop = true;
 	text_box->read_all = false;
 }
 
-void	add_text(t_game *game, t_texts_box_list **texts_box_list,
-	t_text *text)
+/**
+ * @brief Add one text (t_text) to the dialogue (t_texts_box_list).
+ * 
+ * @param game game struct, used to exit_game if malloc fail.
+ * @param texts_box_list texts_box_list struct to the text to.
+ * @param text text struct to add.
+ */
+void	add_one_text_to_dialogue(t_game *game,
+	t_texts_box_list **texts_box_list, t_text *text)
 {
 	t_texts_box_list	*new;
 	t_text_box			*text_box;

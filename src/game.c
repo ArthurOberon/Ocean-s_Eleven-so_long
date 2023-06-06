@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/04 18:35:30 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 20:56:52 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	on_update(t_game *game)
 	{
 		move_player(game, game->gameplay->player);
 		check_collider(game, game->gameplay->player, game->gameplay->guards);
-		gameplay_elements(game, game->gameplay);
+		gameplay_features(game, game->gameplay);
 	}
 	camera(game, game->camera, game->gameplay->player);
 	display_sprites(game, game->camera, game->window);
