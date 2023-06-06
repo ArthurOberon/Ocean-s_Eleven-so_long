@@ -6,12 +6,19 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 15:39:49 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 11:45:27 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 14:04:27 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Count the number of guard in the map.
+ * 
+ * @param map map of the level to check.
+ * @param size size of the map.
+ * @return int number of guard in the map.
+ */
 static int	count_number_guard(char *map, int size)
 {
 	int	i;
@@ -28,6 +35,13 @@ static int	count_number_guard(char *map, int size)
 	return (count_guard);
 }
 
+/**
+ * @brief Initialize all variables of the guard struct.
+ * 
+ * @param game game struct, used to get the level struct.
+ * @param guard guard struct, where all variables will be initialized.
+ * @param number number of the guard in the map.
+ */
 static void	init_one_guard_variables(t_game *game, t_guard *guard, int number)
 {
 	guard->guard_pos_tab = number;
@@ -54,6 +68,14 @@ static void	init_one_guard_variables(t_game *game, t_guard *guard, int number)
 	guard->chase_time = (struct timeval){0, 0};
 }
 
+/**
+ * @brief Initialize one guard struct.
+ * 
+ * @param game game struct, used to get the level struct.
+ * @param guard guard struct to initialize.
+ * @param number number of the guard to initialize.
+ * @param map map of the level in a string.
+ */
 static void	init_one_guard(t_game *game, t_guard *guard, int number, char *map)
 {
 	int	i;
@@ -77,6 +99,11 @@ static void	init_one_guard(t_game *game, t_guard *guard, int number, char *map)
 	}
 }
 
+/**
+ * @brief Set the guard fov direction depending on the guard look direction.
+ * 
+ * @param guard guard struct to set the fov direction.
+ */
 void	set_guard_fov_direction(t_guard *guard)
 {
 	guard->guard_fov_pos_1.x = guard->guard_pos.x
@@ -93,6 +120,12 @@ void	set_guard_fov_direction(t_guard *guard)
 	guard->guard_fov_f_pos_2.y = guard->guard_fov_pos_2.y;
 }
 
+/**
+ * @brief Initialize the array of guards struct.
+ * 
+ * @param game game struct, used to get the level struct.
+ * @param guards array of guards struct to initialize.
+ */
 void	init_guards(t_game *game, t_guard *guards)
 {
 	int		i;

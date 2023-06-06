@@ -6,12 +6,20 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:37:06 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 11:45:27 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 15:02:39 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Get the all ground '0' position on the map.
+ * 
+ * @param map map of the level in a string.
+ * @param size size of the map string.
+ * @param ground_count number of ground '0' on the map.
+ * @return int* array of all ground '0' position on the map.
+ */
 static int	*get_all_ground_pos(char *map, int size, int *ground_count)
 {
 	int	i;
@@ -40,6 +48,14 @@ static int	*get_all_ground_pos(char *map, int size, int *ground_count)
 	return (ground_pos);
 }
 
+/**
+ * @brief Set the character on a posisition on the map.
+ * 
+ * @param game game struct, used to get the level struct.
+ * @param gameplay gameplay struct, used to get the available_character array.
+ * @param character character to set on the map.
+ * @param random_pos position random on the map to set the character.
+ */
 static void	set_character_on_pos(t_game *game, t_gameplay *gameplay,
 	int character, int random_pos)
 {
@@ -54,6 +70,14 @@ static void	set_character_on_pos(t_game *game, t_gameplay *gameplay,
 	gameplay->available_character[character] = 2;
 }
 
+/**
+ * @brief Put unavailable character on the map.
+ * For the array available_character, 0 is available,
+ * 1 is unavailable and 2 is unvailable and set on the map.
+ * 
+ * @param game game struct, used to get the level struct.
+ * @param gameplay gameplay struct, used to get the available_character array.
+ */
 void	put_unavailable_character_on_map(t_game *game, t_gameplay *gameplay)
 {
 	int	random_pos;

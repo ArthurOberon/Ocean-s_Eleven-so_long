@@ -6,12 +6,20 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:02:17 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 11:45:27 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 14:16:12 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Initialize a new image pointer.
+ * 
+ * @param game game struct, used to exit the game and free it if an error occurs.
+ * @param ptr mlx_ptr, used to create a new mlx_img.
+ * @param path path to the image file (.xpm).
+ * @param img image struct, where the new image will be initialized.
+ */
 void	init_xpm_file(t_game *game, void *ptr, char *path, t_img *img)
 {
 	img->mlx_img = mlx_xpm_file_to_image(ptr, path, &img->size.x, &img->size.y);
@@ -24,6 +32,14 @@ void	init_xpm_file(t_game *game, void *ptr, char *path, t_img *img)
 			&img->endian);
 }
 
+/**
+ * @brief Initialize an new image resized.
+ * 
+ * @param game game struct, used to exit the game and free it if an error occurs.
+ * @param ptr mlx_ptr, used to create a new mlx_img.
+ * @param new_img new image resized.
+ * @param new_size new size of the image.
+ */
 static void	init_new_resize_img(t_game *game, void *ptr, t_img *new_img,
 	t_vector_2 new_size)
 {
@@ -35,6 +51,15 @@ static void	init_new_resize_img(t_game *game, void *ptr, t_img *new_img,
 	new_img->size = new_size;
 }
 
+/**
+ * @brief Resize an image to a new size.
+ * 
+ * @param game game struct, used to get the window struct.
+ * @param ptr mlx_ptr, used to create a new mlx_img.
+ * @param src src image to resize.
+ * @param dst_size new size of the image.
+ * @return t_img new image resized.
+ */
 t_img	new_resize_img(t_game *game, void *ptr, t_img *src,
 	t_vector_2 dst_size)
 {
@@ -61,6 +86,14 @@ t_img	new_resize_img(t_game *game, void *ptr, t_img *src,
 	return (dst);
 }
 
+/**
+ * @brief Find the path of the sprite in the folder sprites.
+ * 
+ * @param game game struct, used to exit the program if malloc fails.
+ * @param start_path path of the sprite without the frame number.
+ * @param frame frame number of the sprite.
+ * @return char* complete path of the sprite to the file.
+ */
 char	*find_sprite_path(t_game *game, char *start_path, int frame)
 {
 	char	*file_path;

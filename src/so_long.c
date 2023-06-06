@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:21:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 11:48:06 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 12:51:28 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 int	main(int argc, char **argv)
 {
-	int		argc_map;
+	int		argc_index;
 	int		chosen_character;
 	int		*available_character;
 	t_game	game;
 
 	if (argc < 2)
 		exit_arg_error();
-	argc_map = 1;
-	available_character = get_available_character(argv, &argc_map,
+	argc_index = 1;
+	available_character = get_available_character(argv, &argc_index,
 			&chosen_character);
 	if (!available_character)
 		return (1);
 	bzero_game(&game);
-	parse_map(argv[argc_map], &(game.level->map), &(game.level->map_vector));
+	parse_map(argv[argc_index], &(game.level->map), &(game.level->map_vector));
 	game.level->nb_cases = game.level->map_vector.x * game.level->map_vector.y;
 	if (IS_DEBUG)
 	{

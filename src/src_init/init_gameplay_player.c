@@ -1,17 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_player.c                                      :+:      :+:    :+:   */
+/*   init_gameplay_player.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 21:36:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 11:45:27 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 16:40:28 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Initialize the positioning of the player struct.
+ * 
+ * @param game game struct, used to get the level struct.
+ * @param player player struct, where the variables will be initialized.
+ */
 static void	init_player_positioning(t_game *game, t_player *player)
 {
 	player->player_dir.x = 0;
@@ -28,6 +34,13 @@ static void	init_player_positioning(t_game *game, t_player *player)
 	player->player_look_dir.y = 0;
 }
 
+/**
+ * @brief Initialize the eplosion position tab of the bomb struct.
+ * 
+ * @param game game struct, used to exit the game if malloc fail.
+ * @param bomb bomb struct, where the explosion position tab will be initialized.
+ * @param alloc boolean, if true, the explosion position tab will be allocated.
+ */
 void	init_explosion_pos(t_game *game, t_bomb *bomb, bool alloc)
 {
 	int	i;
@@ -47,6 +60,12 @@ void	init_explosion_pos(t_game *game, t_bomb *bomb, bool alloc)
 	}
 }
 
+/**
+ * @brief Initialize the bomb struct.
+ * 
+ * @param game game struct, used to initialize the bomb struct.
+ * @param player player struct, used to initialize his bomb struct.
+ */
 static void	init_bomb(t_game *game, t_player *player)
 {
 	player->bomb.bomb_total = BOMB_NUMBER;
@@ -64,6 +83,11 @@ static void	init_bomb(t_game *game, t_player *player)
 	player->bomb.start_time_explosion = (struct timeval){0, 0};
 }
 
+/**
+ * @brief Initialize the qte struct.
+ * 
+ * @param player player struct, used to initialize his qte struct.
+ */
 static void	init_qte(t_player *player)
 {
 	player->qte.is_pickpocketing = false;
@@ -78,6 +102,15 @@ static void	init_qte(t_player *player)
 	player->qte.time = (struct timeval){0, 0};
 }
 
+/**
+ * @brief Initialize the player struct.
+ * 
+ * @param game game struct, used to get the gameplau struct.
+ * @param player player struct to initialize.
+ * @param chosen_character first character chosen by the player,
+ * and will be the character the player will start with
+ * between the available ones.
+ */
 void	init_player(t_game *game, t_player *player, int chosen_character)
 {
 	player = ft_calloc(sizeof(t_player), 1);

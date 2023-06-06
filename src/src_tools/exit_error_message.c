@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   exit_error_message.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 15:13:50 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 11:29:41 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 12:42:32 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,23 @@ void	exit_pathfinding_error(t_level *level, char flag, int pos_error)
 	ft_printf("is not reachable.\nPlease make the Exit and all the Collectibles \
 reachable from the Player P.\nfor example :\n1111\n1P01\n10C1\n1E01\n1111\n");
 	exit(EXIT_FAILURE);
+}
+
+/**
+ * @brief Exit the game, with option error message.
+ * 
+ * @param available_character array of available character to free.
+ */
+void	exit_option_error(int *available_character)
+{
+	ft_printf("Error\nNot a valid option.\n\
+The option allows you to choose which character you will \
+have at the start, the character not selectioned will be lay randomly \
+on the map.\nPlease only use :\n-d or -D (to get Danny)\n\
+-r or -R (to get Rusty)\n-l or -L (to get Linus)\n-b or -B (to get Basher)\n\
+Notice that the first option you write will be the character you will play at \
+the start between all the characters selected.\n");
+	if (available_character)
+		free(available_character);
+	exit (EXIT_FAILURE);
 }

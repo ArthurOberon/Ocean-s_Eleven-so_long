@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 18:00:00 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 11:45:27 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 15:39:01 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	add_text(t_game *game, t_texts_box_list **texts_box_list,
 		text_box = ft_calloc(sizeof(t_text_box), 1);
 		if (!text_box)
 			exit_game(*game, "Error of malloc.\n");
-		init_text_box(game, game->window, game->gameplay, text_box);
+		init_one_text_box(game, game->window, game->gameplay, text_box);
 		set_text_box(game, text_box, text->text);
 		text->has_been_display = true;
 		new = ft_lstnew_texts_box(text_box);

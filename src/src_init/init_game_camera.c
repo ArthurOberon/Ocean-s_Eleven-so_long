@@ -6,12 +6,18 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 12:01:27 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 11:45:27 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 13:55:44 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Initialize the number of chunks in the camera view.
+ * 
+ * @param game game struct, used to get the level struct.
+ * @param nb_chunks number of chunks in the camera view.
+ */
 static void	init_camera_nb_chunks(t_game *game, t_vector_2 *nb_chunks)
 {
 	nb_chunks->x = WINDOW_WIDTH / CHUNK_SIZE;
@@ -24,6 +30,12 @@ static void	init_camera_nb_chunks(t_game *game, t_vector_2 *nb_chunks)
 	nb_chunks->y++;
 }
 
+/**
+ * @brief Initialize the background image of the camera struct.
+ * 
+ * @param game game struct, used to get the window struct.
+ * @param camera camera struct, where the background image will be initialized.
+ */
 static void	init_background_image(t_game *game, t_camera *camera)
 {
 	char		*complet_path;
@@ -45,6 +57,11 @@ static void	init_background_image(t_game *game, t_camera *camera)
 	mlx_destroy_image(game->window->mlx_ptr, src.mlx_img);
 }
 
+/**
+ * @brief Initialize the camera struct of the game struct.
+ * 
+ * @param game The game struct, where the camera struct will be initialized.
+ */
 void	init_camera(t_game *game)
 {
 	t_camera		*camera;

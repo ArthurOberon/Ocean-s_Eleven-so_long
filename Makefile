@@ -70,18 +70,20 @@ SRC_GNL				=	$(addprefix src_gnl/, \
 
 # SOURCES USE TO INIT VARIABLES FOR DISPLAY
 SRC_INIT		=	$(addprefix src_init/, \
-						init_game.c \
-						init_guard.c \
-						init_player.c \
-						init_camera.c \
-						init_window.c \
-						init_images.c \
-						init_sprites.c \
-						init_gameplay.c \
-						sprites_arrengement.c \
-						init_sprites_assets.c \
-						init_random_elements.c \
-						get_available_character.c \
+						init_game_main.c \
+						init_game_camera.c \
+						init_game_window.c \
+						init_sprites_main.c \
+						init_gameplay_main.c \
+						init_gameplay_guard.c \
+						init_gameplay_player.c \
+						init_gameplay_all_texts.c \
+						init_available_character.c \
+						init_sprites_arrengement.c \
+						init_assets_sprites_main.c \
+						init_assets_sprites_tools.c \
+						init_assets_sprites_images.c \
+						init_gameplay_random_elements.c \
 						)
 
 # SOURCES USE TO READ AND PARSE THE MAP

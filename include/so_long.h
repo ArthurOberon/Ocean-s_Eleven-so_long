@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 12:23:54 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/06 16:36:28 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -783,47 +783,7 @@ char				*get_next_line(int fd);
 // |					SRC_INIT					|
 // |================================================|
 
-// |--------------------------------------------|
-// |			GET_AVAILABLE_CHARACTER			|
-// |--------------------------------------------|
-
-int					*get_available_character(char **argv, int *argc_map,
-						int *chosen_character);
-
-// |--------------------------------|
-// |			INIT_CAMERA			|
-// |--------------------------------|
-
-void				init_camera(t_game *game);
-
-// |--------------------------------|
-// |			INIT_GAME			|
-// |--------------------------------|
-
-void				init_game(t_game *game, int *available_character,
-						int chosen_character);
-void				bzero_game(t_game *game);
-
-// |------------------------------------|
-// |			INIT_GAMEPLAY			|
-// |------------------------------------|
-
-void				init_gameplay(t_game *game, int *available_character,
-						int chosen_character);
-
-void				init_text_box(t_game *game, t_window *window,
-						t_gameplay *gameplay, t_text_box *text_box);
-
-// |--------------------------------|
-// |			INIT_GUARD			|
-// |--------------------------------|
-
-void				set_guard_fov_direction(t_guard *guard);
-void				init_guards(t_game *game, t_guard *guards);
-
-// |--------------------------------|
-// |			INIT_IMAGES			|
-// |--------------------------------|
+// |---------- INIT_ASSETS_SPRITES_IMAGES ----------|
 
 void				init_xpm_file(t_game *game, void *ptr, char *path,
 						t_img *img);
@@ -834,45 +794,71 @@ char				*find_sprite_path(t_game *game, char *start_path,
 t_img				new_resize_img(t_game *game, void *ptr, t_img *src,
 						t_vector_2 dst_size);
 
-// |--------------------------------|
-// |			INIT_PLAYER			|
-// |--------------------------------|
+// |----------- INIT_SPRITES_ASSETS_MAIN -----------|
+
+void				init_sprites_assets(t_game *game);
+
+// |----------- INIT_SPRITES_ASSETS_TOOLS ----------|
+
+void				init_one_sprite_asset(t_game *game, t_sprite **sprite,
+						t_init_sprite_asset_args init_sprite_asset_args);
+
+// |---------- GET_AVAILABLE_CHARACTER ---------|
+
+int					*get_available_character(char **argv, int *argc_index,
+						int *chosen_character);
+
+// |----------- INIT_GAME_CAMERA -----------|
+
+void				init_camera(t_game *game);
+
+// |---------- INIT_GAME_MAIN ----------|
+
+void				init_game(t_game *game, int *available_character,
+						int chosen_character);
+void				bzero_game(t_game *game);
+
+// |----------- INIT_GAME_WINDOW -----------|
+
+void				init_window(t_game *game);
+
+// |---------- INIT_GAMEPLAY_ALL_TEXTS ---------|
+
+void				init_all_texts_of_the_game(t_game *game,
+						t_gameplay *gameplay);
+
+// |---------- INIT_GAMEPLAY_GUARD ---------|
+
+void				set_guard_fov_direction(t_guard *guard);
+void				init_guards(t_game *game, t_guard *guards);
+
+// |---------- INIT_GAMEPLAY_MAIN ----------|
+
+void				init_gameplay(t_game *game, int *available_character,
+						int chosen_character);
+
+void				init_one_text_box(t_game *game, t_window *window,
+						t_gameplay *gameplay, t_text_box *text_box);
+
+// |----------- INIT_GAMPEPLAY_PLAYER ----------|
 
 void				init_player(t_game *game, t_player *player,
 						int chosen_character);
 void				init_explosion_pos(t_game *game, t_bomb *bomb, bool alloc);
 
-// |--------------------------------------------|
-// |			INIT_RANDOM_ELEMENTS			|
-// |--------------------------------------------|
+// |----------- INIT_GAMEPLAY_RANDOM_ELEMENTS ----------|
 
 void				put_unavailable_character_on_map(t_game *game,
 						t_gameplay *gameplay);
 
-// |----------------------------------------|
-// |			INIT_SPRITES_ASSETS			|
-// |----------------------------------------|
+// |----------- INIT_SPRITES_ARRENGEMENT -----------|
 
-void				init_sprites_assets(t_game *game);
+void				get_wall_image(t_game *game, t_sprite **sprite, int pos);
 
-// |------------------------------------|
-// |			INIT_SPRITES			|
-// |------------------------------------|
+// |----------- INIT_SPRITES_MAIN ----------|
 
 void				init_sprites(t_game *game);
 void				init_sprite(t_img *image_asset, t_sprite *sprite, int size);
-
-// |--------------------------------|
-// |			INIT_WINDOW			|
-// |--------------------------------|
-
-void				init_window(t_game *game);
-
-// |----------------------------------------|
-// |			SPRITES_ARRENGEMENT			|
-// |----------------------------------------|
-
-void				get_wall_image(t_game *game, t_sprite **sprite, int pos);
 
 // |================================================|
 // |					SRC_PARSING					|
@@ -933,6 +919,7 @@ void				pathfinding(t_game *game);
 
 void				exit_arg_error(void);
 void				exit_map_error(char **map_2d, int y);
+void				exit_option_error(int *available_character);
 void				exit_pathfinding_error(t_level *level, char flag,
 						int pos_error);
 
