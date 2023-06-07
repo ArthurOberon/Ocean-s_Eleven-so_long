@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 14:43:09 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 15:46:32 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/07 22:10:33 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_img	create_one_image(t_game *game, void *ptr, char *path,
 /**
  * @brief Allocate a new sprite asset.
  * 
- * @param game game struct, to exit the game if malloc fail.
+ * @param game game struct, to exit the game if a malloc fail.
  * @param asset asset struct, where the new asset will be allocated.
  * @param size number of images (frames of animation) of the asset.
  */

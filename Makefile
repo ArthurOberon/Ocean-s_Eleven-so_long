@@ -42,33 +42,45 @@ SRC_DISPLAY			=	$(addprefix src_display_mlx/, \
 					 	display_features_dialogue_text_box.c \
 						)
 
+SRC_EVENT			=	$(addprefix src_events/, \
+						events_dialogue_main.c \
+						events_dialogue_tools.c \
+						events_dialogue_utils.c \
+						texts_box_list_utils_free.c \
+						texts_box_list_utils_main.c \
+						)
+
 # SOURCES USE FOR THE GAMEPLAY
 SRC_GAMEPLAY		=	$(addprefix src_gameplay/, \
-						bomb.c \
-						handler.c \
-						collider.c \
-						text_box.c \
-						move_guard.c \
-						move_player.c \
-						move_animation.c \
 						gameplay_tools.c \
-						positions_tools.c \
-						text_box_events.c \
-						handler_gameplay.c \
-						move_guard_tools.c \
 						gameplay_features.c \
-						move_player_tools.c \
-						collider_positions.c \
-						move_player_animation.c \
-						set_player_to_character.c \
-						texts_box_list_utils_main.c \
-						texts_box_list_utils_free.c \
+						gameplay_restart_game.c \
+						gameplay_features_bomb.c \
+						gameplay_collider_tools.c \
+						gameplay_move_animation.c \
+						gameplay_move_guard_main.c \
+						gameplay_move_player_main.c \
+						gameplay_move_guard_tools.c \
+						gameplay_move_player_tools.c \
+						gameplay_collider_positions.c \
+						gameplay_collider_check_tile.c \
+						gameplay_move_player_animation.c \
+						gameplay_player_to_character_main.c \
+						gameplay_player_to_character_functions.c \
 						)
 
 # SOURCES USE FOR GET_NEXT_LINE
 SRC_GNL				=	$(addprefix src_gnl/, \
 						get_next_line.c \
 						get_next_line_utils.c \
+						)
+
+SRC_HANDLER			=	$(addprefix src_handler/, \
+						handler.c \
+						handler_bomb.c \
+						handler_dialogue.c \
+						handler_player_features.c \
+						handler_player_movement.c \
 						)
 
 # SOURCES USE TO INIT VARIABLES FOR DISPLAY
@@ -111,6 +123,7 @@ SRC_TOOLS			=	$(addprefix src_tools/, \
 						free_utils.c \
 						free_assets.c \
 						mem_functions.c \
+						positions_tools.c \
 						vector_functions.c \
 						exit_error_message.c \
 						)
@@ -120,8 +133,10 @@ SL_SRCS 			=	$(addprefix $(SRC_DIR), \
 						$(SRC_CAMERA) \
 						$(SRC_DEBUG) \
 						$(SRC_DISPLAY) \
+						$(SRC_EVENT) \
 						$(SRC_GAMEPLAY) \
 						$(SRC_GNL) \
+						$(SRC_HANDLER) \
 						$(SRC_INIT) \
 						$(SRC_PARSING) \
 						$(SRC_PATH) \

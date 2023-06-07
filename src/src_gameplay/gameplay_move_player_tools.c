@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_player_tools.c                                :+:      :+:    :+:   */
+/*   gameplay_move_player_tools.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 22:34:29 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/07 00:28:50 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/08 00:52:52 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	set_player_pos(t_player *player, t_f_vector_2 move)
 	player->player_f_pos.x += move.x;
 	player->player_pos.x = (int)player->player_f_pos.x;
 	player->player_f_pos.y += move.y;
-
 	player->player_pos.y = (int)player->player_f_pos.y;
 	player->player_chunk_pos.x = player->player_pos.x / CHUNK_SIZE;
 	player->player_chunk_pos.y = player->player_pos.y / CHUNK_SIZE;

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 21:36:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 16:40:28 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/07 22:10:33 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	init_player_positioning(t_game *game, t_player *player)
 /**
  * @brief Initialize the eplosion position tab of the bomb struct.
  * 
- * @param game game struct, used to exit the game if malloc fail.
+ * @param game game struct, used to exit the game if a malloc fail.
  * @param bomb bomb struct, where the explosion position tab will be initialized.
  * @param alloc boolean, if true, the explosion position tab will be allocated.
  */

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_images.c                                      :+:      :+:    :+:   */
+/*   init_assets_sprites_images.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:02:17 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 14:16:12 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/07 22:10:33 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ t_img	new_resize_img(t_game *game, void *ptr, t_img *src,
 /**
  * @brief Find the path of the sprite in the folder sprites.
  * 
- * @param game game struct, used to exit the program if malloc fails.
+ * @param game game struct, used to exit the program if malloc fail.
  * @param start_path path of the sprite without the frame number.
  * @param frame frame number of the sprite.
  * @return char* complete path of the sprite to the file.

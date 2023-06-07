@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:41:24 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 16:23:17 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/07 22:10:33 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ exploser ?";
 /**
  * @brief Init all texts of the game.
  * 
- * @param game game struct, used to exit game if malloc fail.
+ * @param game game struct, used to exit game if a malloc fail.
  * @param gameplay gameplay struct, used to get all_texts to initialize.
  */
 void	init_all_texts_of_the_game(t_game *game, t_gameplay *gameplay)

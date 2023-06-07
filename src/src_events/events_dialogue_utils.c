@@ -1,42 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   text_box_events.c                                  :+:      :+:    :+:   */
+/*   text_box_events_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 21:10:48 by arthurobero       #+#    #+#             */
-/*   Updated: 2023/06/06 21:21:42 by aoberon          ###   ########.fr       */
+/*   Created: 2023/06/07 22:17:32 by aoberon           #+#    #+#             */
+/*   Updated: 2023/06/07 22:17:33 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	text_box_events_start(t_game *game)
-{
-	if (game->gameplay->player->player_character == e_main)
-	{
-		add_one_text_to_dialogue(game, &game->gameplay->dialogue,
-			&game->gameplay->all_texts[e_text_start_danny]);
-	}
-	else if (game->gameplay->player->player_character == e_eater)
-	{
-		add_one_text_to_dialogue(game, &game->gameplay->dialogue,
-			&game->gameplay->all_texts[e_text_start_rusty]);
-	}
-	else if (game->gameplay->player->player_character == e_thief)
-	{
-		add_one_text_to_dialogue(game, &game->gameplay->dialogue,
-			&game->gameplay->all_texts[e_text_start_linus]);
-	}
-	else if (game->gameplay->player->player_character == e_bomber)
-	{
-		add_one_text_to_dialogue(game, &game->gameplay->dialogue,
-			&game->gameplay->all_texts[e_text_start_basher]);
-	}
-}
-
-void	set_all_texts_remain_one_collectible(t_text *texts, bool status)
+/**
+ * @brief Set the all texts remain one collectible to a status (true or false).
+ * 
+ * @param texts texts struct, used to set the texts.
+ * @param status status to set the texts.
+ */
+static void	set_all_texts_remain_one_collectible(t_text *texts, bool status)
 {
 	texts[e_text_remain_one_collectible_danny].has_been_display = status;
 	texts[e_text_remain_one_collectible_rusty].has_been_display = status;
@@ -44,6 +26,12 @@ void	set_all_texts_remain_one_collectible(t_text *texts, bool status)
 	texts[e_text_remain_one_collectible_basher].has_been_display = status;
 }
 
+/**
+ * @brief Set the all texts remain zero collectible to a status (true or false).
+ * 
+ * @param texts texts struct, used to set the texts.
+ * @param status status to set the texts.
+ */
 static void	set_all_texts_remain_zero_collectible(t_text *texts, bool status)
 {
 	texts[e_text_remain_zero_collectible_danny].has_been_display = status;
@@ -52,7 +40,13 @@ static void	set_all_texts_remain_zero_collectible(t_text *texts, bool status)
 	texts[e_text_remain_zero_collectible_basher].has_been_display = status;
 }
 
-static void	text_box_events_remain_one_collectible(t_game *game,
+/**
+ * @brief Get the dialogue when it's remaining 1 collectible.
+ * 
+ * @param game 
+ * @param gameplay 
+ */
+void	get_text_box_events_remain_one_collectible(t_game *game,
 	t_gameplay *gameplay)
 {
 	if (gameplay->nb_collect_remain == 1 && game->level->nb_collect != 1)
@@ -75,7 +69,14 @@ static void	text_box_events_remain_one_collectible(t_game *game,
 	}
 }
 
-static void	text_box_events_remain_zero_collectible(t_game *game,
+/**
+ * @brief Get the dialogue when it's remaining 0 collectible.
+ * 
+ * @param game game struct, used to exit the game if a malloc fail.
+ * @param gameplay gameplay struct,
+ * used to get the player and the dialogue struct.
+ */
+void	get_text_box_events_remain_zero_collectible(t_game *game,
 	t_gameplay *gameplay)
 {
 	if (gameplay->nb_collect_remain == 0)
@@ -96,10 +97,4 @@ static void	text_box_events_remain_zero_collectible(t_game *game,
 			return ;
 		set_all_texts_remain_zero_collectible(gameplay->all_texts, true);
 	}
-}
-
-void	text_box_events(t_game *game, t_gameplay *gameplay)
-{
-	text_box_events_remain_one_collectible(game, gameplay);
-	text_box_events_remain_zero_collectible(game, gameplay);
 }

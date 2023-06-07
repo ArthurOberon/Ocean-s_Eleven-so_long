@@ -1,0 +1,56 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   events_dialogue_main.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/07 22:13:36 by aoberon           #+#    #+#             */
+/*   Updated: 2023/06/08 00:07:35 by aoberon          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "so_long.h"
+
+/**
+ * @brief Set the starting text depending on the player character.
+ * 
+ * @param game game struct, used to get gameplay struct.
+ */
+void	set_text_box_events_start(t_game *game)
+{
+	if (game->gameplay->player->player_character == e_main)
+	{
+		add_one_text_to_dialogue(game, &game->gameplay->dialogue,
+			&game->gameplay->all_texts[e_text_start_danny]);
+	}
+	else if (game->gameplay->player->player_character == e_eater)
+	{
+		add_one_text_to_dialogue(game, &game->gameplay->dialogue,
+			&game->gameplay->all_texts[e_text_start_rusty]);
+	}
+	else if (game->gameplay->player->player_character == e_thief)
+	{
+		add_one_text_to_dialogue(game, &game->gameplay->dialogue,
+			&game->gameplay->all_texts[e_text_start_linus]);
+	}
+	else if (game->gameplay->player->player_character == e_bomber)
+	{
+		add_one_text_to_dialogue(game, &game->gameplay->dialogue,
+			&game->gameplay->all_texts[e_text_start_basher]);
+	}
+}
+
+/**
+ * @brief Get the events including the text box events.
+ * Like remaining 1 or 0 collectible.
+ * 
+ * @param game game struct, used to exit the game if a malloc fail.
+ * @param gameplay gameplay struct,
+ * used to get the player and the dialogue struct.
+ */
+void	get_text_box_events(t_game *game, t_gameplay *gameplay)
+{
+	get_text_box_events_remain_one_collectible(game, gameplay);
+	get_text_box_events_remain_zero_collectible(game, gameplay);
+}

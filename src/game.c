@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 20:56:52 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/08 00:46:40 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,6 @@ static int	on_update(t_game *game)
 	}
 	camera(game, game->camera, game->gameplay->player);
 	display_sprites(game, game->camera, game->window);
-	if (IS_DEBUG)
-	{
-		display_debug(&game->window->img, GREEN, game->gameplay->chunks_pos,
-			game->level->nb_cases);
-		display_player_box_collider(&game->window->img, game->gameplay->player,
-			0x800080);
-	}
 	mlx_put_image_to_window(game->window->mlx_ptr, game->window->win_ptr,
 		game->window->img.mlx_img, 0, 0);
 	if (IS_DEBUG)
@@ -50,7 +43,7 @@ static int	on_update(t_game *game)
 
 void	start_game(t_game *game)
 {
-	text_box_events_start(game);
+	set_text_box_events_start(game);
 	mlx_hook(game->window->win_ptr, DestroyNotify, KeyPressMask, &close_game,
 		game);
 	mlx_hook(game->window->win_ptr, KeyPress, KeyPressMask, &handle_keypress,

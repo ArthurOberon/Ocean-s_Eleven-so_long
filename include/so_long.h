@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/07 00:41:12 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/08 00:52:17 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,16 +208,12 @@ enum e_texts
 	e_text_rusty_to_basher_2,
 	e_text_linus_to_basher_1,
 	e_text_linus_to_basher_2,
-
 	e_text_remain_one_collectible_danny,
 	e_text_remain_zero_collectible_danny,
-
 	e_text_remain_one_collectible_rusty,
 	e_text_remain_zero_collectible_rusty,
-
 	e_text_remain_one_collectible_linus,
 	e_text_remain_zero_collectible_linus,
-
 	e_text_remain_one_collectible_basher,
 	e_text_remain_zero_collectible_basher,
 	e_total_text_number,
@@ -502,17 +498,13 @@ int					ft_printf(const char *string, ...);
 // |					SRC_CAMERA					|
 // |================================================|
 
-// |------------------------------------|
-// |			CAMERA_CHUNKS			|
-// |------------------------------------|
+// |----------- CAMERA_CHUNKS ----------|
 
 int					is_in_chunks_to_display(int *chunks_to_display,
 						int size, int chunk);
 void				get_chunks_to_display(t_game *game, t_camera *camera);
 
-// |----------------------------|
-// |			CAMERA			|
-// |----------------------------|
+// |---------- CAMERA ----------|
 
 void				camera(t_game *game, t_camera *camera, t_player *player);
 
@@ -520,9 +512,7 @@ void				camera(t_game *game, t_camera *camera, t_player *player);
 // |					SRC_DEBUG					|
 // |================================================|
 
-// |------------------------------------|
-// |			DEBUG_DISPLAY			|
-// |------------------------------------|
+// |----------- DEBUG_DISPLAY ----------|
 
 void				display_map(t_img *img, t_game game);
 void				display_debug(t_img *img, int color,
@@ -530,9 +520,7 @@ void				display_debug(t_img *img, int color,
 void				display_player_box_collider(t_img *img, t_player *player,
 						int color);
 
-// |--------------------------------|
-// |			DEBUG_PRINT			|
-// |--------------------------------|
+// |---------- DEBUG_PRINT ---------|
 
 void				debug_chunk_pos(t_game *game);
 void				debug_stat_tiles(t_stat_tiles stat);
@@ -621,31 +609,51 @@ void				memcpy_img(t_img *img_dst, t_vector_2 pos_dst,
 
 __uint32_t			get_color_pixel(t_img *img, int i, int j);
 
+// |================================================|
+// |					SRC_EVENT					|
+// |================================================|
+
+// |----------- EVENTS_DIALOGUE_MAIN -----------|
+
+void				set_text_box_events_start(t_game *game);
+void				get_text_box_events(t_game *game, t_gameplay *gameplay);
+
+// |----------- EVENTS_DIALOGUE_UTILS ----------|
+
+void				get_text_box_events_remain_zero_collectible(t_game *game,
+						t_gameplay *gameplay);
+void				get_text_box_events_remain_one_collectible(t_game *game,
+						t_gameplay *gameplay);
+
+// |----------- EVENTS_DIALOGUE_TOOLS ----------|
+
+void				add_one_text_to_dialogue(t_game *game,
+						t_texts_box_list **texts_box_list, t_text *text);
+
+// |----------- TEXTS_BOX_LIST_UTILS_FREE ----------|
+
+void				ft_lstclear_texts_box(t_texts_box_list **lst);
+void				ft_lstdelone_texts_box(t_texts_box_list *lst);
+
+// |----------- TEXTS_BOX_LIST_UTILS_MAIN ----------|
+
+int					ft_lstsize_texts_box(t_texts_box_list *lst);
+void				ft_lstadd_back_texts_box(t_texts_box_list **lst,
+						t_texts_box_list *new);
+
+t_texts_box_list	*ft_lstnew_texts_box(t_text_box *text_box);
+t_texts_box_list	*ft_lstlast_texts_box(t_texts_box_list *lst);
+t_texts_box_list	*ft_lstfirst_texts_box(t_texts_box_list *lst);
+
 // |====================================================|
 // |					SRC_GAMEPLAY					|
 // |====================================================|
 
-// |----------------------------|
-// |			BOMB			|
-// |----------------------------|
+// |--------- GAMEPLAY_COLLIDER_CHECK_TILE ----------|
 
-void				make_bomb_explode(t_game *game, t_bomb bomb);
-void				set_bomb_position(t_bomb *bomb, t_player *player,
-						t_game *game);
+void				check_tile(t_game *game, char tile, int pos);
 
-// |----------------------------------------|
-// |			COLLIDER_POSITIONS			|
-// |----------------------------------------|
-
-int					is_inside_area(t_f_vector_2 pos, t_f_vector_2 pos_size,
-						t_f_vector_2 area, t_f_vector_2 size_area);
-
-void				check_collider_positions(t_game *game,
-						t_player *player, t_guard *guards);
-
-// |--------------------------------|
-// |			COLLIDER			|
-// |--------------------------------|
+// |----------- GAMEPLAY_COLLIDER_TOOLS -----------|
 
 int					check_wall_collider(char *map, t_collider chunks);
 
@@ -655,42 +663,39 @@ void				check_collider(t_game *game, t_player *player,
 t_collider			get_collider_on_move(t_f_vector_2 *move, t_player *player,
 						int x_max);
 
-// |----------------------------------------|
-// |			GAMEPLAY_ELEMENTS			|
-// |----------------------------------------|
+// |---------- GAMEPLAY_COLLIDER_POSITIONS ----------|
+
+int					is_inside_area(t_f_vector_2 pos, t_f_vector_2 pos_size,
+						t_f_vector_2 area, t_f_vector_2 size_area);
+
+void				check_collider_positions(t_game *game,
+						t_player *player, t_guard *guards);
+
+// FOLDER COLLIDER ???
+
+// |---------- GAMEPLAY_FEATURES_BOMB ----------|
+
+void				make_bomb_explode(t_game *game, t_bomb bomb);
+void				set_bomb_position(t_bomb *bomb, t_player *player,
+						t_game *game);
+
+// |----------- GAMEPLAY_FEATURES ----------|
 
 void				gameplay_features(t_game *game, t_gameplay *gameplay);
 
-// |------------------------------------|
-// |			GAMEPLAY_TOOLS			|
-// |------------------------------------|
+// |---------- GAMEPLAY_MOVE_ANIMATION ---------|
 
-void				restart(t_game *game);
-void				calculate_fps(int *fps, double *delta_time);
+void				move_animation(t_vector_2 look_dir, t_sprite *sprite);
 
-// |----------------------------------------|
-// |			HANDLER_GAMEPLAY			|
-// |----------------------------------------|
+// |----------- GAMEPLAY_RESTART_GAME ----------|
 
-void				handle_bomb(int keysym, t_game *game);
-void				handle_pickpocket(int keysym, t_game *game);
-void				handle_player_move(int keysym, t_game *game);
-void				handle_player_move_release(int keysym, t_game *game);
-void				handle_change_character_player(int keysym, t_game *game,
-						t_gameplay *gameplay, t_player *player);
+void				restart_the_game(t_game *game);
 
-// |----------------------------|
-// |			HANDLER			|
-// |----------------------------|
+// |---------- GAMEPLAY_MOVE_GUARD ---------|
 
-int					close_game(t_game *game);
-int					secure_lost_focus(t_game *game);
-int					handle_keypress(int keysym, t_game	*game);
-int					handle_keyrelease(int keysym, t_game *game);
+void				move_guard(t_game *game, t_guard *guard, t_player *player);
 
-// |----------------------------------------|
-// |			MOVE_GUARD_TOOLS			|
-// |----------------------------------------|
+// |----------- GAMEPLAY_MOVE_GUARD_TOOLS ----------|
 
 void				set_guard_pos(t_game *game, t_guard *guard,
 						t_f_vector_2 move);
@@ -704,15 +709,15 @@ void				restrict_move_guard(t_f_vector_2 *move, t_guard *guard,
 t_collider			get_collider_guard_on_move(t_f_vector_2 *move,
 						t_guard *guard, int x_max);
 
-// |--------------------------------|
-// |			MOVE_GUARD			|
-// |--------------------------------|
+// |---------- GAMEPLAY_MOVE_PLAYER_ANIMATION ----------|
 
-void				move_guard(t_game *game, t_guard *guard, t_player *player);
+void				move_player_animation(t_player *player, t_sprite *sprite);
 
-// |----------------------------------------|
-// |			MOVE_PLAYER_TOOLS			|
-// |----------------------------------------|
+// |----------- GAMEPLAY_MOVE_PLAYER -----------|
+
+void				move_player(t_game *game, t_player *player);
+
+// |---------- GAMEPLAY_MOVE_PLAYER_TOOLS ----------|
 
 void				set_player_look_dir(t_player *player);
 void				set_player_pos(t_player *player, t_f_vector_2 move);
@@ -721,78 +726,61 @@ void				set_move_player(t_player *player, t_f_vector_2 *move,
 void				restrict_move(t_f_vector_2 *move, t_player *player,
 						t_vector_2 collider, t_vector_2 axe);
 
-// |------------------------------------|
-// |			MOVE_ANIMATION			|
-// |------------------------------------|
+// |---------- GAMEPLAY_PLAYER_TO_CHARACTER_FUNCTIONS ----------|
 
-void				move_animation(t_vector_2 look_dir, t_sprite *sprite);
+void				set_player_to_main(t_game *game, t_gameplay *gameplay,
+						t_player *player);
+void				set_player_to_eater(t_game *game, t_gameplay *gameplay,
+						t_player *player);
+void				set_player_to_thief(t_game *game, t_gameplay *gameplay,
+						t_player *player);
+void				set_player_to_bomber(t_game *game, t_gameplay *gameplay,
+						t_player *player);
 
-// |------------------------------------|
-// |			MOVE_ANIMATION			|
-// |------------------------------------|
-
-void				move_player_animation(t_player *player, t_sprite *sprite);
-
-// |--------------------------------|
-// |			MOVE_PLAYER			|
-// |--------------------------------|
-
-void				move_player(t_game *game, t_player *player);
-
-// |------------------------------------|
-// |			POSITIONS_TOOLS			|
-// |------------------------------------|
-
-int					pos_to_chunk(int x, int y, int x_max);
-
-t_vector_2			chunk_to_pixel_pos(int chunk, int x_max);
-t_f_vector_2		chunk_to_pixel_f_pos(int chunk, int x_max);
-
-// |--------------------------------------------|
-// |			SET_PLAYER_TO_CHARACTER			|
-// |--------------------------------------------|
+// |----------- GAMEPLAY_PLAYER_TO_CHARACTER_MAIN ----------|
 
 void				set_player_to_character(t_game *game, t_gameplay *gameplay,
 						t_player *player, int character);
 
-// |------------------------------------|
-// |			TEXT_BOX_EVENTS			|
-// |------------------------------------|
+// |---------- GAMEPLAY_TOOLS ----------|
 
-void				text_box_events_start(t_game *game);
-void				text_box_events(t_game *game, t_gameplay *gameplay);
-
-// |--------------------------------|
-// |			TEXT_BOX			|
-// |--------------------------------|
-
-void				add_one_text_to_dialogue(t_game *game,
-						t_texts_box_list **texts_box_list, t_text *text);
-
-// |------------------------------------------------|
-// |			TEXTS_BOX_LIST_UTILS_FREE			|
-// |------------------------------------------------|
-
-void				ft_lstclear_texts_box(t_texts_box_list **lst);
-void				ft_lstdelone_texts_box(t_texts_box_list *lst);
-
-// |------------------------------------------------|
-// |			TEXTS_BOX_LIST_UTILS_AIN			|
-// |------------------------------------------------|
-
-int					ft_lstsize_texts_box(t_texts_box_list *lst);
-void				ft_lstadd_back_texts_box(t_texts_box_list **lst,
-						t_texts_box_list *new);
-
-t_texts_box_list	*ft_lstnew_texts_box(t_text_box *text_box);
-t_texts_box_list	*ft_lstlast_texts_box(t_texts_box_list *lst);
-t_texts_box_list	*ft_lstfirst_texts_box(t_texts_box_list *lst);
+void				calculate_fps(int *fps, double *delta_time);
 
 // |============================================|
 // |					SRC_GNL					|
 // |============================================|
 
 char				*get_next_line(int fd);
+
+// |================================================|
+// |					SRC_HANDLER					|
+// |================================================|
+
+// |----------- HANDLER_DIALOGUE -----------|
+
+int					handle_dialogue(int keysym, t_game *game);
+
+// |---------- HANDLER ---------|
+
+int					close_game(t_game *game);
+int					secure_lost_focus(t_game *game);
+int					handle_keypress(int keysym, t_game	*game);
+int					handle_keyrelease(int keysym, t_game *game);
+
+// |----------- HANDLER_BOMB -----------|
+
+void				handle_bomb(int keysym, t_game *game);
+
+// |---------- HANDLER_PLAYER_FEATURES ---------|
+
+void				handle_pickpocket(int keysym, t_game *game);
+void				handle_change_character_player(int keysym, t_game *game,
+						t_gameplay *gameplay, t_player *player);
+
+// |---------- HANDLER_PLAYER_MOVEMENT ---------|
+
+void				handle_player_move_press(int keysym, t_game *game);
+void				handle_player_move_release(int keysym, t_game *game);
 
 // |================================================|
 // |					SRC_INIT					|
@@ -963,6 +951,13 @@ void				ft_memcpy(void *dest, const void *src, size_t n);
 
 void				*ft_calloc(size_t nmemb, size_t size);
 
+// |---------- POSITIONS_TOOLS----------|
+
+int					pos_to_chunk(int x, int y, int x_max);
+
+t_vector_2			chunk_to_pixel_pos(int chunk, int x_max);
+t_f_vector_2		chunk_to_pixel_f_pos(int chunk, int x_max);
+
 // |----------- UTILS ----------|
 
 int					ft_nbrlen(int nb);
@@ -981,15 +976,11 @@ t_f_vector_2		direction_normalized(t_vector_2 src, t_vector_2 dest);
 
 //========================================
 
-// |----------------------------|
-// |			GAME			|
-// |----------------------------|
+// |----------- GAME -----------|
 
 void				start_game(t_game *game);
 
-// |----------------------------|
-// |			SO_LONG			|
-// |----------------------------|
+// |---------- SO_LONG ---------|
 
 //------------------------------------------
 

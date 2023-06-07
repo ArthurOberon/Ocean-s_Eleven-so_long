@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 18:00:00 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 21:20:55 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/07 22:30:54 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	*ft_strncpy(char *src, int n)
  * @param n number of part.
  * @return char** string divided in n part of size.
  */
-char	**str_n_divide(char *str, int size, int n)
+static char	**str_n_divide(char *str, int size, int n)
 {
 	int		i;
 	char	**result;
@@ -77,7 +77,7 @@ char	**str_n_divide(char *str, int size, int n)
 /**
  * @brief Set the text_box with a text.
  * 
- * @param game game struct, used to exit_game if malloc fail.
+ * @param game game struct, used to exit the game if a malloc fail.
  * @param text_box text_box struct to set.
  * @param text text to set with.
  */
@@ -106,7 +106,7 @@ static void	set_text_box(t_game *game, t_text_box *text_box, char *text)
 /**
  * @brief Add one text (t_text) to the dialogue (t_texts_box_list).
  * 
- * @param game game struct, used to exit_game if malloc fail.
+ * @param game game struct, used to exit the game if a malloc fail.
  * @param texts_box_list texts_box_list struct to the text to.
  * @param text text struct to add.
  */

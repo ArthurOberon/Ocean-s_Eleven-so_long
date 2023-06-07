@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 16:16:16 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/07 22:10:33 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
  * @brief Create the chunk positions of the map.
  * 
- * @param game game struct, used to exit the program if malloc fail.
+ * @param game game struct, used to exit the program if a malloc fail.
  * @param chunk_pos chunk positions to create.
  * @param size size of the map on the x (width) and y (height) axis.
  * @param nb number of chunk in the map.

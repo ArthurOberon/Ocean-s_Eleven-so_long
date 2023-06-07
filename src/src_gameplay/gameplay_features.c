@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:32:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 21:02:11 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/07 22:13:22 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	gameplay_features(t_game *game, t_gameplay *gameplay)
 
 	if (gameplay->player->hp == 0)
 		game_over(game);
-	text_box_events(game, gameplay);
+	get_text_box_events(game, gameplay);
 	get_iframes(gameplay->player);
 	i = 0;
 	while (i < gameplay->nb_guard)

@@ -6,12 +6,18 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 17:34:37 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 11:45:27 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/07 23:15:32 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Calculate the fps of the game, and cap it to FPS_CAP.
+ * 
+ * @param fps fps of the game.
+ * @param delta_time time difference between the last frame and the current one.
+ */
 void	calculate_fps(int *fps, double *delta_time)
 {
 	static struct timeval	last_time = {0, 0};
@@ -30,63 +36,4 @@ void	calculate_fps(int *fps, double *delta_time)
 	}
 	*fps = (int)(1.f / *delta_time);
 	last_time = now;
-}
-
-static void	restart_available_character(t_gameplay *gameplay)
-{
-	int	i;
-
-	i = 0;
-	while (i < 4)
-	{
-		if (gameplay->available_character[i] == 2
-			|| gameplay->available_character[i] == 3)
-			gameplay->available_character[i] = 0;
-		i++;
-	}
-}
-
-void	restart(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	free(game->level->map);
-	game->level->map = ft_strdup(game->gameplay->map_start_state);
-	if (!game->level->map)
-		exit_game(*game, "Error of malloc.\n");
-	free(game->gameplay->guards);
-	init_guards(game, game->gameplay->guards);
-	free(game->gameplay->player->bomb.explosion_pos);
-	free(game->gameplay->player);
-	init_player(game, game->gameplay->player, game->gameplay->chosen_character);
-	game->gameplay->nb_collect_remain = game->level->nb_collect;
-	game->gameplay->nb_move = 0;
-	game->gameplay->is_display_plus_one = false;
-	ft_lstclear_texts_box(&game->gameplay->dialogue);
-	game->gameplay->nb_collect_get = 0;
-	game->gameplay->nb_collect_remain = game->level->nb_collect;
-	restart_available_character(game->gameplay);
-	put_unavailable_character_on_map(game, game->gameplay);
-	mlx_clear_window(game->window->mlx_ptr, game->window->win_ptr);
-	while (i < game->level->nb_cases)
-	{
-		if (game->level->map[i] == '0' || game->level->map[i] == 'P')
-			game->window->map_sprites[i] = game->assets->ground;
-		else if (game->level->map[i] == '1' || game->level->map[i] == '2')
-			get_wall_image(game, &game->window->map_sprites[i], i);
-		else if (game->level->map[i] == 'C')
-			game->window->map_sprites[i] = game->assets->collect;
-		else if (game->level->map[i] == 'E')
-			game->window->map_sprites[i] = game->assets->exit;
-		i++;
-	}
-	int	j;
-	j = 0;
-	while (j < e_total_text_number)
-	{
-		game->gameplay->all_texts[j].has_been_display = false;
-		j++;
-	}
-	text_box_events_start(game);
 }

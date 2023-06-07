@@ -6,12 +6,19 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 22:33:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 20:54:46 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/07 23:07:08 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Check if a one of the chunks of the t_collider struct is in a wall.
+ * 
+ * @param map map in a string.
+ * @param chunks chunks struct, to check.
+ * @return int index of the chunk that is in a wall, -1 if none.
+ */
 int	check_wall_collider(char *map, t_collider chunks)
 {
 	if (map[chunks.n_w] == '1' || map[chunks.n_w] == '2')
@@ -25,6 +32,16 @@ int	check_wall_collider(char *map, t_collider chunks)
 	return (-1);
 }
 
+/**
+ * @brief Get the collider struct (4 corners chunks) of the player
+ * with a hypothetical move.
+ * 
+ * @param move movement of the player, used to get the hypothetical position.
+ * @param player player struct, used to get player position and size.
+ * @param x_max size max of the map in x (width).
+ * @return t_collider collider struct,
+ * containing the 4 corners chunks of the hypothetical player position.
+ */
 t_collider	get_collider_on_move(t_f_vector_2 *move, t_player *player,
 	int x_max)
 {
@@ -44,6 +61,14 @@ t_collider	get_collider_on_move(t_f_vector_2 *move, t_player *player,
 	return (chunks);
 }
 
+/**
+ * @brief Get the collider struct (4 corners chunks) of the player.
+ * 
+ * @param player player struct, used to get the player position.
+ * @param x_max size max of the map in x (width).
+ * @return t_collider collider struct,
+ * containing the 4 corners chunks of the player.
+ */
 static t_collider	get_collider(t_player *player, int x_max)
 {
 	t_collider		chunks;
@@ -59,41 +84,14 @@ static t_collider	get_collider(t_player *player, int x_max)
 	return (chunks);
 }
 
-static void	check_tile(t_game *game, char tile, int pos)
-{
-	if (tile == 'C')
-	{
-		game->level->map[pos] = '0';
-		if (game->gameplay->nb_collect_remain > 0)
-		{
-			game->gameplay->nb_collect_get += 1;
-			game->gameplay->nb_collect_remain -= 1;
-			game->gameplay->is_display_plus_one = true;
-		}
-		game->window->map_sprites[pos] = game->assets->ground;
-	}
-	else if (tile == 'E')
-	{
-		if (game->gameplay->nb_collect_remain == 0)
-		{
-			ft_printf("SUCCESS !\n");
-			close_game(game);
-		}
-	}
-	if (tile == 'D' || tile == 'R' || tile == 'L' || tile == 'B')
-	{
-		if (tile == 'D')
-			game->gameplay->available_character[e_main] = 3;
-		else if (tile == 'R')
-			game->gameplay->available_character[e_eater] = 3;
-		else if (tile == 'L')
-			game->gameplay->available_character[e_thief] = 3;
-		else if (tile == 'B')
-			game->gameplay->available_character[e_bomber] = 3;
-		game->level->map[pos] = '0';
-	}
-}
-
+/**
+ * @brief Check if the player position (in chunk and vector) is touching,
+ * a collectible, a character, the exit, or a guard.
+ * 
+ * @param game game struct, used to get the level struct.
+ * @param player player struct, used to get the player position.
+ * @param guards guards struct, used to get the guards position.
+ */
 void	check_collider(t_game *game, t_player *player, t_guard *guards)
 {
 	int			x_max;
