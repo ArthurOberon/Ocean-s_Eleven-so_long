@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/23 11:38:06 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/23 12:05:03 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -529,6 +529,11 @@ void				debug_stat_tiles(t_stat_tiles stat);
 // |					SRC_DISPLAY					|
 // |================================================|
 
+// |----------- DISPLAY_FEATURES_ANIMATION --------|
+
+void				get_animation(t_game *game, t_gameplay *gameplay,
+						t_sprite *sprite, int chunk_pos);
+
 // |----------- DISPLAY_FEATURES_BOMB -----------|
 
 void				display_bomb(t_player *player, t_bomb *bomb,
@@ -571,7 +576,7 @@ void				display_hp(t_window *window, t_player *player, int color);
 
 void				launch_qte(t_game *game, t_qte *qte, t_guard *guard);
 
-// |----------- DISPLAY_FEATURES_QTE --------|
+// |----------- DISPLAY_FEATURES_QTE_MAIN --------|
 
 void				display_qte(t_game *game, t_qte *qte, t_player *player,
 						t_guard *guards);

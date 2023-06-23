@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/16 20:02:45 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/23 12:05:04 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ static void	display_one_sprite(t_window *window, t_sprite *sprite,
 	if ((int)pos.y + sprite->sprite_img->size.y > window->img.size.y)
 		pos_src[1].y = (pos.y + sprite->sprite_img->size.y)
 			- window->img.size.y;
-	update_frame(sprite);
 	memcpy_img(&window->img, (t_vector_2){pos.x, pos.y},
 		&sprite->sprite_img[sprite->frame], pos_src);
 }
@@ -107,6 +106,7 @@ void	display_sprites(t_game *game, t_camera *camera, t_window *window)
 {
 	int				i;
 	t_f_vector_2	display_pos;
+	t_sprite		*sprite;
 
 	i = 0;
 	while (i < camera->nb_chunks_in_camera_total)
@@ -114,8 +114,10 @@ void	display_sprites(t_game *game, t_camera *camera, t_window *window)
 		if (camera->chunks_to_display[i] == -1)
 			break ;
 		display_pos = get_display_position(game, camera, i);
-		display_one_sprite(window,
-			window->map_sprites[camera->chunks_to_display[i]], display_pos);
+		sprite = window->map_sprites[camera->chunks_to_display[i]];
+		get_animation(game, game->gameplay, sprite,
+			camera->chunks_to_display[i]);
+		display_one_sprite(window, sprite, display_pos);
 		i++;
 	}
 	display_player(game, window, game->gameplay->player,
