@@ -6,59 +6,11 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 17:28:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/22 12:24:58 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/23 11:33:41 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-static void	put_image_to_image_with_limit(t_img *window_img, t_vector_2 pos,
-	t_img *img, t_vector_2 *limit)
-{
-	int			i;
-	int			j;
-	__uint32_t	pixel;
-
-	j = limit[0].y;
-	while (j < img->size.y - limit[1].y)
-	{
-		i = limit[0].x;
-		while (i < img->size.x - limit[1].x)
-		{
-			pixel = get_color_pixel(img, i, j);
-			if (((pixel >> 24)) != 0xFF)
-				img_pix_put(window_img, i + pos.x, j + pos.y, pixel);
-			i++;
-		}
-		j++;
-	}
-}
-
-static void	display_one_sprite_with_transparency(t_window *window,
-	t_sprite *sprite, t_vector_2 pos)
-{
-	t_vector_2	limit[2];
-
-	limit[0] = (t_vector_2){0, 0};
-	limit[1] = (t_vector_2){0, 0};
-	if ((int)pos.x < 0)
-	{
-		limit[0].x = -pos.x;
-	}
-	if ((int)pos.y < 0)
-	{
-		limit[0].y = -pos.y;
-	}
-	if ((int)pos.x + sprite->sprite_img->size.x > window->img.size.x)
-		limit[1].x = (pos.x + sprite->sprite_img->size.x)
-			- window->img.size.x;
-	if ((int)pos.y + sprite->sprite_img->size.y > window->img.size.y)
-		limit[1].y = (pos.y + sprite->sprite_img->size.y)
-			- window->img.size.y;
-	update_frame(sprite);
-	put_image_to_image_with_limit(&window->img, pos, sprite->sprite_img,
-		limit);
-}
 
 /**
  * @brief Display one guard.
@@ -69,6 +21,7 @@ static void	display_one_sprite_with_transparency(t_window *window,
  */
 static void	display_one_guard(t_window *window, t_guard guard, t_sprite *sprite)
 {
+	// update_frame(sprite);
 	display_one_sprite_with_transparency(window, sprite, guard.guard_pos);
 }
 

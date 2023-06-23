@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_character_on_map.c                         :+:      :+:    :+:   */
+/*   display_features_character_on_map.c                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 18:17:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/04 18:19:52 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/23 11:22:55 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,7 @@ static void	display_one_character_on_map(t_game *game,
 		pos_tmp.x = game->camera->camera_f_size.x - 1;
 	if (pos_tmp.y > game->camera->camera_f_size.y)
 		pos_tmp.y = game->camera->camera_f_size.y - 1;
-	if ((pos_tmp.x + CHUNK_SIZE < window->img.size.x
-			&& pos_tmp.y + CHUNK_SIZE < window->img.size.y)
-		&& (pos_tmp.x > 0 && pos_tmp.y > 0))
-	{
-		put_image_to_image(&window->img, pos_tmp,
-			&(sprite->sprite_img)[sprite->frame]);
-	}
+	display_one_sprite_with_transparency(window, sprite, pos_tmp);
 }
 
 /**

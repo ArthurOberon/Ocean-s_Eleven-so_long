@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/18 13:29:41 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/23 11:38:06 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -599,7 +599,7 @@ void				update_frame(t_sprite *sprite);
 void				display_sprites(t_game *game, t_camera *camera,
 						t_window *window);
 
-// |----------- DISPLAY_TOOLS ----------|
+// |----------- DISPLAY_TOOLS_1 ----------|
 
 void				img_pix_put(t_img *img, int x, int y, int color);
 void				put_image_to_image(t_img *window_img,
@@ -608,6 +608,11 @@ void				memcpy_img(t_img *img_dst, t_vector_2 pos_dst,
 						t_img *img_src, t_vector_2 *pos_src);
 
 __uint32_t			get_color_pixel(t_img *img, int i, int j);
+
+// |----------- DISPLAY_TOOLS_2 ----------|
+
+void				display_one_sprite_with_transparency(t_window *window,
+						t_sprite *sprite, t_vector_2 pos);
 
 // |================================================|
 // |					SRC_EVENT					|

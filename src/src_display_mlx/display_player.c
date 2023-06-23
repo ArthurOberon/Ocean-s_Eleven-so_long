@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:20:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/04 19:17:53 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/23 11:25:40 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ static void	display_aim_bomb(t_window *window, t_player *player,
 {
 	t_vector_2	bomb_pos;
 
-	if (player->player_character == e_bomber && player->bomb.bomb_plant == 0)
+	if (player->player_character == e_bomber && player->bomb.bomb_plant == 0
+		&& player->bomb.bomb_total > 0)
 	{
 		bomb_pos.x = player->player_pos.x
 			+ (CHUNK_SIZE * player->player_look_dir.x);

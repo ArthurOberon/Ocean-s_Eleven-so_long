@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_animation.c                                   :+:      :+:    :+:   */
+/*   gameplay_move_animation.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 00:08:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/07 00:18:17 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/23 11:22:35 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	move_animation(t_vector_2 look_dir, t_sprite *sprite)
 	struct timeval	time;
 	double			delay;
 
-	if (FRAME_MOVEMENT == 1)
+	if (FRAME_MOVEMENT == 0)
 		return ;
 	set_move_animation_on_x(look_dir, sprite);
 	set_move_animation_on_y(look_dir, sprite);

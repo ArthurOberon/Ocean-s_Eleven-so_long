@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 15:05:27 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 20:45:35 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/23 11:32:53 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,7 @@ static void	display_explosition(t_camera *camera, t_window *window, t_bomb bomb,
 	{
 		pos_tmp.x = bomb.explosion_pos[i].x - camera->camera_f_pos.x;
 		pos_tmp.y = bomb.explosion_pos[i].y - camera->camera_f_pos.y;
-		if ((pos_tmp.x + CHUNK_SIZE < window->img.size.x
-				&& pos_tmp.y + CHUNK_SIZE < window->img.size.y)
-			&& (pos_tmp.x > 0 && pos_tmp.y > 0))
-			put_image_to_image(&window->img, pos_tmp,
-				&(sprite->sprite_img)[sprite->frame]);
+		display_one_sprite_with_transparency(window, sprite, pos_tmp);
 		i++;
 	}
 }
@@ -82,18 +78,16 @@ static void	get_bomb_explosion(t_bomb *bomb, t_game *game, t_window *window)
  */
 static void	display_bomb_sprite(t_bomb *bomb, t_game *game, t_window *window)
 {
+	t_sprite		*sprite;
 	t_vector_2		pos_tmp;
 
 	pos_tmp = bomb->bomb_pos;
+	sprite = window->map_sprites[game->level->nb_cases + e_dynamite];
 	bomb->bomb_pos.x = bomb->bomb_pos.x - game->camera->camera_f_pos.x;
 	bomb->bomb_pos.y = bomb->bomb_pos.y - game->camera->camera_f_pos.y;
-	if ((bomb->bomb_pos.x + CHUNK_SIZE < window->img.size.x
-			&& bomb->bomb_pos.y + CHUNK_SIZE < window->img.size.y)
-		&& (bomb->bomb_pos.x > 0 && bomb->bomb_pos.y > 0))
-		put_image_to_image(&window->img, bomb->bomb_pos,
-			&(window->map_sprites
-			[game->level->nb_cases + e_dynamite]->sprite_img)
-		[bomb->bomb_plant - 1]);
+	sprite->frame = bomb->bomb_plant - 1;
+	display_one_sprite_with_transparency(window, sprite, bomb->bomb_pos);
+	sprite->frame = 0;
 	bomb->bomb_pos = pos_tmp;
 }
 
