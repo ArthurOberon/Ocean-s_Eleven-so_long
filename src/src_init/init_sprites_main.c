@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_sprites.c                                     :+:      :+:    :+:   */
+/*   init_sprites_main.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:40:38 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 15:13:09 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/29 14:50:44 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	init_sprites(t_game *game)
 			map_sprites[i] = game->assets->collect;
 		else if (game->level->map[i] == 'E')
 			map_sprites[i] = game->assets->exit;
+		printf(" %c = %p\n", game->level->map[i], map_sprites[i]);
 		i++;
 	}
 	init_sprites_extra_map(game, map_sprites, i);

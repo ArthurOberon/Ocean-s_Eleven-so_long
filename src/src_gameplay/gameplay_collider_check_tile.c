@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   collider_check_tile.c                              :+:      :+:    :+:   */
+/*   gameplay_collider_check_tile.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 22:59:08 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/07 23:07:02 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/29 12:13:01 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,16 @@ static int	check_tile_collectible(t_game *game, char tile, int pos)
 {
 	if (tile == 'C')
 	{
-		game->level->map[pos] = '0';
-		if (game->gameplay->nb_collect_remain > 0)
-		{
-			game->gameplay->nb_collect_get += 1;
-			game->gameplay->nb_collect_remain -= 1;
-			game->gameplay->is_display_plus_one = true;
-		}
-		game->window->map_sprites[pos] = game->assets->ground;
+		collected_one_collectible(game, game->gameplay,
+			pos, COLLECTED);
+		// game->level->map[pos] = '0';
+		// if (game->gameplay->nb_collect_remain > 0)
+		// {
+		// 	game->gameplay->nb_collect_get += 1;
+		// 	game->gameplay->nb_collect_remain -= 1;
+		// 	game->gameplay->is_display_plus_one = true;
+		// }
+		// game->window->map_sprites[pos] = game->assets->ground;
 		return (1);
 	}
 	return (0);

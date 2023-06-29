@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/23 12:05:03 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/29 12:34:03 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@
 # define PATH_WALL_POKER		"wall/poker_table_64px"
 
 # define PATH_GROUND			"ground/carpet_64px"
-# define PATH_COLLECT			"debug/test_32px"
-# define PATH_EXIT				"debug/test"
+# define PATH_COLLECT			"collectible/test_32px"
+# define PATH_EXIT				"ground/test"
 
 # define PATH_PLAYER_DANNY		"player/danny/danny_64px"
 # define PATH_PLAYER_RUSTY		"player/rusty/rusty_2_64px"
@@ -69,8 +69,8 @@
 # define PATH_DYNAMITE			"dynamite/dynamite_64px"
 # define PATH_EXPLOSION			"dynamite/explosion_64px"
 
-# define PATH_AREA_QTE			"qte/area_64px"
-# define PATH_QTE				"qte/now"
+# define PATH_AREA_QTE			"pickpocket_qte/area_64px"
+# define PATH_QTE				"pickpocket_qte/now"
 
 # define PATH_GUARD				"guard/guard_64px"
 # define PATH_GUARD_FOV			"guard/fov_2_64px"
@@ -140,6 +140,10 @@
 
 # define INT_MIN -2147483648
 # define INT_MAX 2147483647
+
+# define COLLECTABLE 20
+# define COLLECTED 21
+# define COLLECTED_ON_GUARD 22
 
 enum e_assets_pos
 {
@@ -407,6 +411,14 @@ typedef struct s_bomb
 	struct timeval		start_time_explosion;
 }	t_bomb;
 
+typedef struct s_collectible
+{
+	int			code;
+	int			state;
+	int			pos;
+	t_sprite	*sprite_open_animation;
+}	t_collectible;
+
 typedef struct s_player
 {
 	int					player_character;
@@ -458,6 +470,8 @@ typedef struct s_gameplay
 	bool				is_display_plus_one;
 	int					available_character[4];
 	int					chosen_character;
+	t_collectible		*collectible;
+	char				*collectible_code;
 	t_text				*all_texts;
 	t_texts_box_list	*dialogue;
 	int					nb_collect_get;
@@ -659,6 +673,11 @@ t_texts_box_list	*ft_lstfirst_texts_box(t_texts_box_list *lst);
 // |					SRC_GAMEPLAY					|
 // |====================================================|
 
+// |--------- GAMEPLAY_COLLECTIBLE ----------|
+
+void				collected_one_collectible(t_game *game,
+						t_gameplay *gameplay, int pos, int new_state);
+
 // |--------- GAMEPLAY_COLLIDER_CHECK_TILE ----------|
 
 void				check_tile(t_game *game, char tile, int pos);
@@ -839,6 +858,11 @@ void				init_window(t_game *game);
 
 void				init_all_texts_of_the_game(t_game *game,
 						t_gameplay *gameplay);
+
+// |---------- INIT_GAMEPLAY_COLLECTIBLE ---------|
+
+void				init_collectible(t_game *game, t_gameplay *gameplay,
+						t_collectible *collectible, char *collectible_code);
 
 // |---------- INIT_GAMEPLAY_GUARD ---------|
 

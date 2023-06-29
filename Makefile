@@ -56,6 +56,7 @@ SRC_EVENT			=	$(addprefix src_events/, \
 SRC_GAMEPLAY		=	$(addprefix src_gameplay/, \
 						gameplay_tools.c \
 						gameplay_features.c \
+						gameplay_collectible.c \
 						gameplay_restart_game.c \
 						gameplay_features_bomb.c \
 						gameplay_collider_tools.c \
@@ -96,6 +97,7 @@ SRC_INIT		=	$(addprefix src_init/, \
 						init_gameplay_player.c \
 						init_gameplay_all_texts.c \
 						init_available_character.c \
+						init_gameplay_collectible.c \
 						init_sprites_arrengement.c \
 						init_assets_sprites_main.c \
 						init_assets_sprites_tools.c \
