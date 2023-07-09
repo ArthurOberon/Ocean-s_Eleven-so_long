@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/29 12:34:03 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/08 09:54:32 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define FPS_CAP 125
 // -> 0.008
 
-# define SPRITES_PATH "assets/sprites/xpm/"
+# define SPRITES_PATH "assets/sprites/old_sprites/xpm/"
 
 # define PATH_WALL_CORNER_N_O	"wall/column_corner_N-O_64px"
 # define PATH_WALL_CORNER_N_E	"wall/column_corner_N-E_64px"

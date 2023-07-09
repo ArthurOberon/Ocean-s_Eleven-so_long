@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/29 12:36:01 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/30 18:34:06 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ void	init_gameplay(t_game *game, int *available_character,
 	init_all_texts_of_the_game(game, gameplay);
 	init_collectible(game, gameplay, gameplay->collectible,
 		gameplay->collectible_code);
-	printf("pos : %d\n", gameplay->collectible[0].pos);
+	// printf("pos : %d\n", gameplay->collectible[0].pos);
 	put_unavailable_character_on_map(game, gameplay);
 	if (IS_DEBUG)
 		debug_chunk_pos(game);

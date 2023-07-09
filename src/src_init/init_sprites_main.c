@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:40:38 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/29 14:50:44 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/06/30 20:27:34 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,15 @@ static void	init_sprites_extra_map(t_game *game, t_sprite **map_sprites, int i)
 	map_sprites[i + e_background_text] = game->assets->background_text;
 }
 
+void	sprite_cpy(t_sprite *new, t_sprite *src)
+{
+	// not commented
+	new->frame = src->frame;
+	new->last_time = src->last_time;
+	new->size = src->size;
+	new->sprite_img = src->sprite_img;
+}
+
 /**
  * @brief init all sprites of the game.
  * 
@@ -59,16 +68,26 @@ void	init_sprites(t_game *game)
 	game->window->map_sprites = map_sprites;
 	while (i < game->level->nb_cases)
 	{
+		map_sprites[i] = ft_calloc(sizeof(t_sprite), 1);
+		if (!map_sprites[i])
+			exit_game(*game, "Error of malloc.\n");
 		if (game->level->map[i] == '0' || game->level->map[i] == 'P'
 			|| game->level->map[i] == 'G')
-			map_sprites[i] = game->assets->ground;
+		{
+			printf("%p\n", map_sprites[i]);
+			printf("%d\n", map_sprites[i]->size);
+			// ft_memcpy(map_sprites[i], game->assets->ground, sizeof(t_sprite));
+			sprite_cpy(map_sprites[i], game->assets->ground);
+			printf("%d	%p != %p\n", i, map_sprites[i], game->assets->ground);
+			printf("%d = %d\n\n", map_sprites[i]->size, game->assets->ground->size);
+		}
 		else if (game->level->map[i] == '1' || game->level->map[i] == '2')
 			get_wall_image(game, &map_sprites[i], i);
 		else if (game->level->map[i] == 'C')
 			map_sprites[i] = game->assets->collect;
 		else if (game->level->map[i] == 'E')
 			map_sprites[i] = game->assets->exit;
-		printf(" %c = %p\n", game->level->map[i], map_sprites[i]);
+		// printf(" %c = %p\n", game->level->map[i], map_sprites[i]);
 		i++;
 	}
 	init_sprites_extra_map(game, map_sprites, i);
