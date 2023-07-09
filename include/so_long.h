@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/08 09:54:32 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/10 00:37:38 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -468,6 +468,7 @@ typedef struct s_gameplay
 	bool				is_pause;
 	bool				is_stop;
 	bool				is_display_plus_one;
+	int					menu_status;
 	int					available_character[4];
 	int					chosen_character;
 	t_collectible		*collectible;
@@ -700,8 +701,6 @@ int					is_inside_area(t_f_vector_2 pos, t_f_vector_2 pos_size,
 void				check_collider_positions(t_game *game,
 						t_player *player, t_guard *guards);
 
-// FOLDER COLLIDER ???
-
 // |---------- GAMEPLAY_FEATURES_BOMB ----------|
 
 void				make_bomb_explode(t_game *game, t_bomb bomb);
@@ -785,20 +784,17 @@ char				*get_next_line(int fd);
 // |					SRC_HANDLER					|
 // |================================================|
 
+// |----------- HANDLER_BOMB -----------|
+
+void				handle_bomb(int keysym, t_game *game);
+
 // |----------- HANDLER_DIALOGUE -----------|
 
 int					handle_dialogue(int keysym, t_game *game);
 
-// |---------- HANDLER ---------|
+// |----------- HANDLER_PAUSE_MENU -----------|
 
-int					close_game(t_game *game);
-int					secure_lost_focus(t_game *game);
-int					handle_keypress(int keysym, t_game	*game);
-int					handle_keyrelease(int keysym, t_game *game);
-
-// |----------- HANDLER_BOMB -----------|
-
-void				handle_bomb(int keysym, t_game *game);
+void				handle_pause_menu(int keysym, t_game *game);
 
 // |---------- HANDLER_PLAYER_FEATURES ---------|
 
@@ -811,9 +807,21 @@ void				handle_change_character_player(int keysym, t_game *game,
 void				handle_player_move_press(int keysym, t_game *game);
 void				handle_player_move_release(int keysym, t_game *game);
 
+// |---------- HANDLER ---------|
+
+int					close_game(t_game *game);
+int					secure_lost_focus(t_game *game);
+int					handle_keypress(int keysym, t_game	*game);
+int					handle_keyrelease(int keysym, t_game *game);
+
 // |================================================|
 // |					SRC_INIT					|
 // |================================================|
+
+// |---------- INIT_ASSETS_SPRITES_ANIMATIONS ----------|
+
+void				init_sprites_animations(t_game *game, t_sprite *sprite,
+						char character);
 
 // |---------- INIT_ASSETS_SPRITES_IMAGES ----------|
 

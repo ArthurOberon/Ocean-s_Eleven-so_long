@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:27:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/08 00:37:54 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/10 00:31:14 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,11 @@ int	handle_keypress(int keysym, t_game *game)
 			&game->gameplay->all_texts[e_text_debug]);
 	// debug text_box
 	handle_out_game_features(keysym, game);
+	if (game->gameplay->is_pause == 1)
+	{
+		handle_pause_menu(keysym, game);
+		return (1);
+	}
 	if (handle_dialogue(keysym, game))
 		return (1);
 	handle_player_move_press(keysym, game);
@@ -103,6 +108,11 @@ int	handle_keypress(int keysym, t_game *game)
  */
 int	handle_keyrelease(int keysym, t_game *game)
 {
+	if (game->gameplay->is_pause == 1)
+	{
+		// handle_menu_release() ?
+		return (1);
+	}
 	handle_player_move_release(keysym, game);
 	return (0);
 }

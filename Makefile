@@ -82,6 +82,7 @@ SRC_HANDLER			=	$(addprefix src_handler/, \
 						handler.c \
 						handler_bomb.c \
 						handler_dialogue.c \
+						handler_pause_menu.c \
 						handler_player_features.c \
 						handler_player_movement.c \
 						)
@@ -97,12 +98,13 @@ SRC_INIT		=	$(addprefix src_init/, \
 						init_gameplay_player.c \
 						init_gameplay_all_texts.c \
 						init_available_character.c \
-						init_gameplay_collectible.c \
 						init_sprites_arrengement.c \
 						init_assets_sprites_main.c \
+						init_gameplay_collectible.c \
 						init_assets_sprites_tools.c \
 						init_assets_sprites_images.c \
 						init_gameplay_random_elements.c \
+						init_assets_sprites_animations.c \
 						)
 
 # SOURCES USE TO READ AND PARSE THE MAP

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:15:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/08 00:07:35 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/10 00:45:30 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,21 @@ static void	restart_all_texts_of_the_game(t_game *game)
 	set_text_box_events_start(game);
 }
 
+static void	restart_gameplay_small_variables(t_gameplay *gameplay,
+	t_level *level)
+{
+	// not commented
+	gameplay->is_pause = false;
+	gameplay->is_stop = false;
+	gameplay->is_display_plus_one = false;
+	gameplay->menu_status = 0;
+	gameplay->fps = 0;
+	gameplay->delta_time = 0;
+	gameplay->nb_collect_get = 0;
+	gameplay->nb_collect_remain = level->nb_collect;
+	gameplay->nb_move = 0;
+}
+
 /**
  * @brief Restart the game to the start state.
  * 
@@ -89,13 +104,9 @@ void	restart_the_game(t_game *game)
 	free(game->gameplay->player->bomb.explosion_pos);
 	free(game->gameplay->player);
 	init_player(game, game->gameplay->player, game->gameplay->chosen_character);
-	game->gameplay->nb_collect_remain = game->level->nb_collect;
-	game->gameplay->nb_move = 0;
-	game->gameplay->is_display_plus_one = false;
-	ft_lstclear_texts_box(&game->gameplay->dialogue);
-	game->gameplay->nb_collect_get = 0;
-	game->gameplay->nb_collect_remain = game->level->nb_collect;
+	restart_gameplay_small_variables(game->gameplay, game->level);
 	restart_the_game_available_character(game->gameplay);
+	ft_lstclear_texts_box(&game->gameplay->dialogue);
 	put_unavailable_character_on_map(game, game->gameplay);
 	mlx_clear_window(game->window->mlx_ptr, game->window->win_ptr);
 	restart_map_sprites(game);

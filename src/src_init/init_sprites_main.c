@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:40:38 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/30 20:27:34 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/09 23:56:38 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	init_sprites(t_game *game)
 			map_sprites[i] = game->assets->collect;
 		else if (game->level->map[i] == 'E')
 			map_sprites[i] = game->assets->exit;
+		init_sprites_animations(game, map_sprites[i], game->level->map[i]);
 		// printf(" %c = %p\n", game->level->map[i], map_sprites[i]);
 		i++;
 	}

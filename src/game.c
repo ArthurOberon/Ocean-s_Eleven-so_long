@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/08 00:46:40 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/10 00:31:58 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@
 
 static int	on_update(t_game *game)
 {
+	// not commented
 	if (!game->window->win_ptr)
 		return (0);
 	if (game->gameplay->is_pause == true)
 	{
+		// get_menu(game->gameplay);
 		mlx_string_put(game->window->mlx_ptr, game->window->win_ptr,
 			WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, GREEN, "PAUSE");
 		return (0);
@@ -43,6 +45,7 @@ static int	on_update(t_game *game)
 
 void	start_game(t_game *game)
 {
+	// not commented
 	set_text_box_events_start(game);
 	mlx_hook(game->window->win_ptr, DestroyNotify, KeyPressMask, &close_game,
 		game);
