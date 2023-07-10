@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:32:37 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/08 00:41:35 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/10 13:26:29 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static void	handle_dialogue_next_page(t_game *game)
  * @brief Go to the next text_box/node of the dialogue.
  * 
  * @param game game struct, used to get the gameplay struct.
+ * @return int 1 if the player go to the next text_box/node
+ * (meaning that the all text_box has been read), 0 otherwise.
  */
 static int	handle_dialogue_next_text_box(t_game *game)
 {
@@ -60,6 +62,8 @@ static int	handle_dialogue_next_text_box(t_game *game)
  * 
  * @param keysym key pressed.
  * @param game game struct, used to get the gameplay struct.
+ * @return int 1 if the player go to the next text_box/node
+ * (meaning that the all text_box has been read), 0 otherwise.
  */
 static int	handle_dialogue_next(int keysym, t_game *game)
 {
@@ -106,7 +110,8 @@ static void	handle_dialogue_prev(int keysym, t_game *game)
  * 
  * @param keysym key pressed.
  * @param game game struct, used to get the gameplay struct.
- * @return int 1 if ??
+ * @return int 1 if the player go to the next text_box/node
+ * (meaning that the all text_box has been read), 0 otherwise.
  */
 int	handle_dialogue(int keysym, t_game *game)
 {
