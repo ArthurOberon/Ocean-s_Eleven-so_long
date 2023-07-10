@@ -40,6 +40,7 @@ SRC_DISPLAY			=	$(addprefix src_display_mlx/, \
 					 	display_features_qte_launch.c \
 					 	display_features_guards_main.c \
 					 	display_features_dialogue_main.c \
+					 	display_features_ending_screen.c \
 					 	display_features_guards_turn_fov.c \
 						display_features_character_on_map.c \
 					 	display_features_dialogue_text_box.c \
@@ -84,6 +85,7 @@ SRC_HANDLER			=	$(addprefix src_handler/, \
 						handler_bomb.c \
 						handler_dialogue.c \
 						handler_pause_menu.c \
+						handler_game_features.c \
 						handler_player_features.c \
 						handler_player_movement.c \
 						)

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/10 16:12:14 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/11 00:20:59 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -477,6 +477,7 @@ typedef struct s_gameplay
 	bool				is_pause;
 	bool				is_stop;
 	bool				is_display_plus_one;
+	int					is_end;
 	int					menu_status;
 	int					available_character[4];
 	int					chosen_character;
@@ -580,6 +581,10 @@ void				display_one_node_texts_box(t_game *game, t_window *window,
 
 void				display_character(t_game *game, t_window *window,
 						t_vector_2 pos_display, char character);
+
+// |----------- DISPLAY_FEATURES_ENDING_SCREEN -----------|
+
+void				display_end_screen(t_game *game, int param);
 
 // |----------- DISPLAY_GUARDS_MAIN ---------|
 
@@ -805,6 +810,14 @@ void				handle_bomb(int keysym, t_game *game);
 
 int					handle_dialogue(int keysym, t_game *game);
 
+// |---------- HANDLER_GAME_FEATURES ---------|
+
+int					close_game(t_game *game);
+int					secure_lost_focus(t_game *game);
+int					handle_end_screen(int keysym, t_game *game);
+
+void				handle_out_game_features(int keysym, t_game *game);
+
 // |----------- HANDLER_PAUSE_MENU -----------|
 
 void				handle_pause_menu(int keysym, t_game *game);
@@ -822,8 +835,6 @@ void				handle_player_move_release(int keysym, t_game *game);
 
 // |---------- HANDLER ---------|
 
-int					close_game(t_game *game);
-int					secure_lost_focus(t_game *game);
 int					handle_keypress(int keysym, t_game	*game);
 int					handle_keyrelease(int keysym, t_game *game);
 

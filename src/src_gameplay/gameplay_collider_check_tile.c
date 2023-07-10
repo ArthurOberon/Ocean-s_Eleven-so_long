@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 22:59:08 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/29 12:13:01 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/11 00:12:03 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ static int	check_tile_exit(t_game *game, char tile)
 	{
 		if (game->gameplay->nb_collect_remain == 0)
 		{
-			ft_printf("SUCCESS !\n");
-			close_game(game);
+			game->gameplay->is_end = 1;
 		}
 	}
 	return (0);

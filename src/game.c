@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/10 16:49:18 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/11 00:06:34 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ static int	on_update(t_game *game)
 	// not commented
 	if (!game->window->win_ptr)
 		return (0);
+	if (game->gameplay->is_end)
+	{
+		display_end_screen(game, game->gameplay->is_end);
+		return (0);
+	}
 	if (game->gameplay->is_pause == true)
 	{
 		display_menu(game, game->window, game->level->nb_cases);

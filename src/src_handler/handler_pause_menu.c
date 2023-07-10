@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 00:02:32 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/10 16:48:48 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/10 23:38:43 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ static void	get_menu(t_gameplay *gameplay, t_sprite **map_sprites, int nb_cases)
 	{
 		map_sprites[nb_cases + e_button_pause]->frame = 1;
 	}
-	if (gameplay->menu_status == 1)
+	else if (gameplay->menu_status == 1)
 	{
 		map_sprites[nb_cases + e_button_restart]->frame = 1;
 	}
-	if (gameplay->menu_status == 2)
+	else if (gameplay->menu_status == 2)
 	{
 		map_sprites[nb_cases + e_button_quit]->frame = 1;
 	}
-	if (gameplay->menu_status >= 3)
+	else if (gameplay->menu_status >= 3)
 	{
 		map_sprites[nb_cases + e_button_tutorial]->frame = 1;
 	}

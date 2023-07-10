@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:32:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/07 22:13:22 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/11 00:12:20 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  */
 static void	game_over(t_game *game)
 {
-	ft_printf("GAME OVER\n");
+	game->gameplay->is_end = 2;
 	close_game(game);
 }
 
