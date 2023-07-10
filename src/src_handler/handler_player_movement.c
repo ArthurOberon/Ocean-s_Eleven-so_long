@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:18:13 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/10 13:32:31 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/10 14:41:51 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
  */
 void	handle_player_move_press(int keysym, t_game *game)
 {
-	printf("player move\n");
 	if (keysym == XK_W || keysym == XK_w || keysym == XK_Up)
 	{
 		game->gameplay->player->player_dir.y += -1;

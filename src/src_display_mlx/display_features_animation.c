@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:54:13 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/09 23:57:17 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/10 16:45:56 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	get_animation(t_game *game, t_gameplay *gameplay, t_sprite *sprite,
 {
 	char	character;
 
+	if (gameplay->is_pause || gameplay->is_stop)
+		return ;
 	character = game->level->map[chunk_pos];
 	if (character == 'E')
 		exit_animation(gameplay, sprite);

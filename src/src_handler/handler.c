@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:27:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/10 13:35:12 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/10 16:31:41 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	secure_lost_focus(t_game *game)
 {
 	game->gameplay->player->player_dir.x = 0;
 	game->gameplay->player->player_dir.y = 0;
-	return (1);
+	return (0);
 }
 
 /**
@@ -52,6 +52,7 @@ static void	handle_out_game_features(int keysym, t_game *game)
 	}
 	if (keysym == XK_P || keysym == XK_p)
 	{
+		game->gameplay->menu_status = 0;
 		if (game->gameplay->is_pause == false)
 			game->gameplay->is_pause = true;
 		else
@@ -68,9 +69,9 @@ static void	handle_out_game_features(int keysym, t_game *game)
 /**
  * @brief Handle the key press events.
  * 
- * @param keysym 
- * @param game 
- * @return int 
+ * @param keysym key pressed.
+ * @param game game struct, used to set events depending on the key pressed.
+ * @return int 0
  */
 int	handle_keypress(int keysym, t_game *game)
 {
@@ -83,10 +84,10 @@ int	handle_keypress(int keysym, t_game *game)
 	if (game->gameplay->is_pause == 1)
 	{
 		handle_pause_menu(keysym, game);
-		return (1);
+		return (0);
 	}
 	if (handle_dialogue(keysym, game))
-		return (1);
+		return (0);
 	handle_player_move_press(keysym, game);
 	if (game->gameplay->is_pause == false
 		&& game->gameplay->is_stop == false)

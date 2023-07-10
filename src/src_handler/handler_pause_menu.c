@@ -6,41 +6,35 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 00:02:32 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/10 00:46:18 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/10 16:48:48 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	get_menu(t_gameplay *gameplay)
+static void	get_menu(t_gameplay *gameplay, t_sprite **map_sprites, int nb_cases)
 {
 	// not commented
-	// ADD sprite instead of print
-	char *menu[4];
-	char *display_button;
-	menu[0] = "Resume";
-	menu[1] = "Restart";
-	menu[2] = "Quit";
-	menu[3] = "Tutorial";
-
+	map_sprites[nb_cases + e_button_pause]->frame = 0;
+	map_sprites[nb_cases + e_button_restart]->frame = 0;
+	map_sprites[nb_cases + e_button_quit]->frame = 0;
+	map_sprites[nb_cases + e_button_tutorial]->frame = 0;
 	if (gameplay->menu_status == 0)
 	{
-		display_button = menu[0];
+		map_sprites[nb_cases + e_button_pause]->frame = 1;
 	}
 	if (gameplay->menu_status == 1)
 	{
-		display_button = menu[1];
+		map_sprites[nb_cases + e_button_restart]->frame = 1;
 	}
 	if (gameplay->menu_status == 2)
 	{
-		display_button = menu[2];
+		map_sprites[nb_cases + e_button_quit]->frame = 1;
 	}
 	if (gameplay->menu_status >= 3)
 	{
-		display_button = menu[3];
+		map_sprites[nb_cases + e_button_tutorial]->frame = 1;
 	}
-	printf("%d\n", gameplay->menu_status);
-	printf("%s\n\n", display_button);
 }
 
 static void	pressed_menu_button(t_game *game, t_gameplay *gameplay)
@@ -93,7 +87,7 @@ void	handle_pause_menu(int keysym, t_game *game)
 		if (game->gameplay->menu_status >= 0 && game->gameplay->menu_status < 2)
 			game->gameplay->menu_status += 1;
 	}
-	get_menu(game->gameplay);
+	get_menu(game->gameplay, game->window->map_sprites, game->level->nb_cases);
 	if (keysym == XK_space)
 		pressed_menu_button(game, game->gameplay);
 }

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/10 00:37:38 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/10 16:12:14 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@
 # define FRAME_GUARD 1
 # define FRAME_GUARD_FOV 1
 
+# define FRAME_MENU_BUTTON 2
 # define FRAME_HEART 1
 # define FRAME_BOX 1
 # define FRAME_SELECTION_BOX 2
@@ -157,6 +158,10 @@ enum e_assets_pos
 	e_qte,
 	e_guards,
 	e_guard_fov,
+	e_button_pause,
+	e_button_restart,
+	e_button_quit,
+	e_button_tutorial,
 	e_heart,
 	e_box,
 	e_selection_box,
@@ -338,6 +343,10 @@ typedef struct s_sprites_assets
 	t_sprite	*explosion;
 	t_sprite	*area_qte;
 	t_sprite	*qte;
+	t_sprite	*button_pause;
+	t_sprite	*button_restart;
+	t_sprite	*button_quit;
+	t_sprite	*button_tutorial;
 	t_sprite	*heart;
 	t_sprite	*box;
 	t_sprite	*selection_box;
@@ -587,6 +596,10 @@ void				display_gameplay_features(t_game *game,
 						t_gameplay *gameplay, t_window *window);
 void				display_hp(t_window *window, t_player *player, int color);
 
+// |----------- DISPLAY_FEATURES_MENU ----------|
+
+void				display_menu(t_game *game, t_window *window, int nb_cases);
+
 // |----------- DISPLAY_FEATURES_QTE_LAUNCH ---------|
 
 void				launch_qte(t_game *game, t_qte *qte, t_guard *guard);
@@ -833,6 +846,20 @@ char				*find_sprite_path(t_game *game, char *start_path,
 
 t_img				new_resize_img(t_game *game, void *ptr, t_img *src,
 						t_vector_2 dst_size);
+
+// |----------- INIT_SPRITES_ASSETS_MAIN_HELPER -----------|
+
+void				init_sprites_assets_part_1(t_game *game,
+						t_sprites_assets *assets);
+void				init_sprites_assets_part_2(t_game *game,
+						t_sprites_assets *assets);
+void				init_sprites_assets_part_3(t_game *game,
+						t_sprites_assets *assets);
+void				init_sprites_assets_part_4(t_game *game,
+						t_sprites_assets *assets);
+void				init_sprites_assets_part_5(t_game *game,
+						t_sprites_assets *assets);
+
 
 // |----------- INIT_SPRITES_ASSETS_MAIN -----------|
 

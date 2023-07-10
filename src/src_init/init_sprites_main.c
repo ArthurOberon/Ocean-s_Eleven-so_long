@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:40:38 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/09 23:56:38 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/10 15:54:09 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ static void	init_sprites_extra_map(t_game *game, t_sprite **map_sprites, int i)
 	map_sprites[i + e_qte] = game->assets->qte;
 	map_sprites[i + e_guards] = game->assets->guard;
 	map_sprites[i + e_guard_fov] = game->assets->guard_fov;
+	map_sprites[i + e_button_pause] = game->assets->button_pause;
+	map_sprites[i + e_button_restart] = game->assets->button_restart;
+	map_sprites[i + e_button_quit] = game->assets->button_quit;
+	map_sprites[i + e_button_tutorial] = game->assets->button_tutorial;
 	map_sprites[i + e_heart] = game->assets->heart;
 	map_sprites[i + e_box] = game->assets->box;
 	map_sprites[i + e_selection_box] = game->assets->selection_box;
@@ -74,12 +78,12 @@ void	init_sprites(t_game *game)
 		if (game->level->map[i] == '0' || game->level->map[i] == 'P'
 			|| game->level->map[i] == 'G')
 		{
-			printf("%p\n", map_sprites[i]);
-			printf("%d\n", map_sprites[i]->size);
+			// printf("%p\n", map_sprites[i]);
+			// printf("%d\n", map_sprites[i]->size);
 			// ft_memcpy(map_sprites[i], game->assets->ground, sizeof(t_sprite));
 			sprite_cpy(map_sprites[i], game->assets->ground);
-			printf("%d	%p != %p\n", i, map_sprites[i], game->assets->ground);
-			printf("%d = %d\n\n", map_sprites[i]->size, game->assets->ground->size);
+			// printf("%d	%p != %p\n", i, map_sprites[i], game->assets->ground);
+			// printf("%d = %d\n\n", map_sprites[i]->size, game->assets->ground->size);
 		}
 		else if (game->level->map[i] == '1' || game->level->map[i] == '2')
 			get_wall_image(game, &map_sprites[i], i);

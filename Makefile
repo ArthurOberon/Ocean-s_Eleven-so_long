@@ -31,6 +31,7 @@ SRC_DISPLAY			=	$(addprefix src_display_mlx/, \
 					 	display_tools_1.c \
 					 	display_tools_2.c \
 					 	display_features_main.c \
+					 	display_features_menu.c \
 					 	display_features_bomb.c \
 					 	display_features_ui_main.c \
 					 	display_features_ui_boxs.c \
@@ -105,6 +106,7 @@ SRC_INIT		=	$(addprefix src_init/, \
 						init_assets_sprites_images.c \
 						init_gameplay_random_elements.c \
 						init_assets_sprites_animations.c \
+						init_assets_sprites_main_helper.c \
 						)
 
 # SOURCES USE TO READ AND PARSE THE MAP

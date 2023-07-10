@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 17:28:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/23 11:33:41 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/10 16:47:10 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	display_guards(t_game *game, t_gameplay *gameplay, t_window *window,
 				guards[i].guard_pos_tab))
 		{
 			true_pos = get_display_guard_pos(game, &guards[i]);
-			if (gameplay->is_stop == false)
+			if (gameplay->is_pause == false && gameplay->is_stop == false)
 				turn_guards(&guards[i]);
 			display_one_guard(window, guards[i],
 				window->map_sprites[game->level->nb_cases + e_guards]);
