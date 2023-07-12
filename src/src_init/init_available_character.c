@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_available_character.c                          :+:      :+:    :+:   */
+/*   init_available_character.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 20:53:58 by arthurobero       #+#    #+#             */
-/*   Updated: 2023/06/06 14:28:57 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 14:19:33 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static void	set_one_available_character(int *argc_index,
 	int *available_character, int *chosen_character, int character)
 {
 	if (*argc_index == 1)
-			*chosen_character = character;
-		available_character[character] = 1;
-		*argc_index += 1;
+		*chosen_character = character;
+	available_character[character] = 1;
+	*argc_index += 1;
 }
 
 /**
@@ -44,6 +44,8 @@ static void	set_one_available_character(int *argc_index,
 static int	check_which_character(char **argv, int *argc_index,
 	int *available_character, int *chosen_character)
 {
+	if (argv[*argc_index][2] != '\0')
+		return (0);
 	if (argv[*argc_index][1] == 'd' || argv[*argc_index][1] == 'D')
 	{
 		set_one_available_character(argc_index, available_character,
