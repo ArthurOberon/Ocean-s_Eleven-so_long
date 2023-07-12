@@ -6,14 +6,14 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 10:48:06 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 15:56:00 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 17:49:05 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 // not commented ALL
-static bool	check_all_collectible_collected(t_collectible *collectible,
+static bool	check_all_collectible_has_been_collected(t_collectible *collectible,
 	int size)
 {
 	int	i;
@@ -50,21 +50,25 @@ static void	add_collect_to_code(t_game *game, t_gameplay *gameplay,
 static void	get_one_collectible(t_game *game, t_gameplay *gameplay,
 	t_collectible *one_collectible, int new_state)
 {
-	one_collectible->state = new_state;
 	if (game->gameplay->nb_collect_remain > 0)
 	{
-		gameplay->nb_collect_get += 1;
-		gameplay->nb_collect_remain -= 1;
-		gameplay->is_display_plus_one = true;
-		printf("get code : [%d]\n", one_collectible->code);
-		add_collect_to_code(game, gameplay, one_collectible);
-		if (new_state == COLLECTED)
+		if (one_collectible->state != COLLECTED_ON_GUARD)
 		{
-			game->level->map[one_collectible->pos] = 'O';
-			game->window->map_sprites[one_collectible->pos]
-				= one_collectible->sprite_open_animation;
+			gameplay->nb_collect_get += 1;
+			gameplay->nb_collect_remain -= 1;
 		}
+		printf("get code : [%d]\n", one_collectible->code);
+		if (one_collectible->state != COLLECTED_ON_GUARD)
+			add_collect_to_code(game, gameplay, one_collectible);
 	}
+	gameplay->is_display_plus_one = true;
+	if (new_state == COLLECTED)
+	{
+		game->level->map[one_collectible->pos] = 'O';
+		game->window->map_sprites[one_collectible->pos]
+			= one_collectible->sprite_open_animation;
+	}
+	one_collectible->state = new_state;
 }
 
 static int	get_one_random_collectable_collectible(t_game *game,
@@ -85,7 +89,8 @@ static void	get_one_collectible_by_guard(t_game *game, t_gameplay *gameplay,
 {
 	int				random_collectible;
 
-	if (check_all_collectible_collected(collectible, game->level->nb_collect))
+	if (check_all_collectible_has_been_collected(collectible,
+			game->level->nb_collect))
 	{
 		gameplay->is_display_plus_one = true;
 		return ;
@@ -96,24 +101,30 @@ static void	get_one_collectible_by_guard(t_game *game, t_gameplay *gameplay,
 		COLLECTED_ON_GUARD);
 }
 
-static void	get_one_collectible_by(t_game *game, t_gameplay *gameplay,
-	t_collectible *one_collectible, int new_state)
-{
-	if (new_state == COLLECTED)
-	{
-		get_one_collectible(game, gameplay, one_collectible, new_state);
-	}
-	else if (new_state == COLLECTED_ON_GUARD)
-	{
-		get_one_collectible_by_guard(game, gameplay, gameplay->collectible);
-	}
-}
+// static void	get_one_collectible_by(t_game *game, t_gameplay *gameplay,
+// 	t_collectible *one_collectible, int new_state)
+// {
+// 	if (new_state == COLLECTED)
+// 	{
+// 		get_one_collectible(game, gameplay, one_collectible, new_state);
+// 	}
+// 	else if (new_state == COLLECTED_ON_GUARD)
+// 	{
+// 		get_one_collectible_by_guard(game, gameplay, gameplay->collectible);
+// 	}
+// }
 
 void	collected_one_collectible(t_game *game, t_gameplay *gameplay,
 	int pos, int new_state)
 {
 	int	i;
 
+	if (new_state == COLLECTED_ON_GUARD)
+	{
+		get_one_collectible_by_guard(game, gameplay, gameplay->collectible);
+		printf("---\ncode : '%s'\n---\n", gameplay->collectible_code);
+		return ;
+	}
 	if (pos == -1)
 		return ;
 	i = 0;
@@ -121,7 +132,7 @@ void	collected_one_collectible(t_game *game, t_gameplay *gameplay,
 	{
 		if (gameplay->collectible[i].pos == pos)
 		{
-			get_one_collectible_by(game, gameplay, &gameplay->collectible[i],
+			get_one_collectible(game, gameplay, &gameplay->collectible[i],
 				new_state);
 			game->gameplay->all_texts[e_text_code].text
 				= gameplay->collectible_code;

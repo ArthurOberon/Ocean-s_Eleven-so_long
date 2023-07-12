@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 22:59:08 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 16:33:58 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 17:52:07 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,6 @@ static int	check_tile_collectible(t_game *game, char tile, int pos)
 	{
 		collected_one_collectible(game, game->gameplay,
 			pos, COLLECTED);
-		// game->level->map[pos] = '0';
-		// if (game->gameplay->nb_collect_remain > 0)
-		// {
-		// 	game->gameplay->nb_collect_get += 1;
-		// 	game->gameplay->nb_collect_remain -= 1;
-		// 	game->gameplay->is_display_plus_one = true;
-		// }
-		// game->window->map_sprites[pos] = game->assets->ground;
 		return (1);
 	}
 	return (0);

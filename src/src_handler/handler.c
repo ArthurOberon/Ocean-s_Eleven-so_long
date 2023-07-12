@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:27:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 13:52:34 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 16:52:33 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,21 @@ int	handle_keypress(int keysym, t_game *game)
 	handle_out_game_features(keysym, game);
 	if (game->gameplay->is_pause == 1)
 	{
+		game->gameplay->player->player_dir.x = 0;
+		game->gameplay->player->player_dir.y = 0;
 		handle_pause_menu(keysym, game);
 		return (0);
 	}
 	if (handle_dialogue(keysym, game))
 	{
+		game->gameplay->player->player_dir.x = 0;
+		game->gameplay->player->player_dir.y = 0;
 		return (0);
 	}
-	handle_player_move_press(keysym, game);
 	if (game->gameplay->is_pause == false
 		&& game->gameplay->is_stop == false)
 	{
+		handle_player_move_press(keysym, game);
 		handle_bomb(keysym, game);
 		handle_change_character_player(keysym, game, game->gameplay,
 			game->gameplay->player);
@@ -61,7 +65,7 @@ int	handle_keypress(int keysym, t_game *game)
  */
 int	handle_keyrelease(int keysym, t_game *game)
 {
-	if (game->gameplay->is_pause == 1)
+	if (game->gameplay->is_pause == 1 || game->gameplay->is_stop == 1)
 	{
 		return (1);
 	}

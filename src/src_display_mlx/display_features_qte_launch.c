@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_launch_qte.c                               :+:      :+:    :+:   */
+/*   display_features_qte_launch.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 20:48:25 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/05 20:44:57 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 17:51:53 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,7 @@ static void	launch_qte_ending(t_game *game, t_qte *qte, t_guard *guard,
 {
 	if (is_win == true)
 	{
-		game->gameplay->nb_collect_get += 1;
-		game->gameplay->nb_collect_remain -= 1;
-		game->gameplay->is_display_plus_one = true;
+		collected_one_collectible(game, game->gameplay, -1, COLLECTED_ON_GUARD);
 		guard->is_pickpocketable = false;
 	}
 	else
@@ -148,6 +146,6 @@ void	launch_qte(t_game *game, t_qte *qte, t_guard *guard)
 	else if (delay + is_win <= DELAY_QTE + DELAY_REACTION + 1)
 		launch_qte_display_win_or_lose(game, pos_tmp, is_win);
 	else
-		launch_qte_ending(game, qte, guard, is_win);
+		launch_qte_ending(game, qte, guard, 1);
 	qte->pressed = false;
 }
