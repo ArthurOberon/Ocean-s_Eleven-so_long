@@ -84,6 +84,7 @@ SRC_GNL				=	$(addprefix src_gnl/, \
 SRC_HANDLER			=	$(addprefix src_handler/, \
 						handler.c \
 						handler_bomb.c \
+						handler_tutorial.c \
 						handler_dialogue.c \
 						handler_pause_menu.c \
 						handler_game_features.c \

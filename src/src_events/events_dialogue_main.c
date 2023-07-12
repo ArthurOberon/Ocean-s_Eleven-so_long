@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 22:13:36 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 14:02:14 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 15:47:42 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	set_tutorial_text_box(t_game *game)
  */
 void	set_text_box_events_start(t_game *game)
 {
-	set_tutorial_text_box(game);
 	if (game->gameplay->player->player_character == e_main)
 	{
 		add_one_text_to_dialogue(game, &game->gameplay->dialogue,

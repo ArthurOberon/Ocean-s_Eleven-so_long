@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:58:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 12:39:11 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 15:10:57 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ static void	display_characters_end_up(t_game *game, t_gameplay *gameplay,
 	t_sprite	*sprite;
 	t_vector_2	pos;
 
-	if (gameplay->available_character[0] == 1
-		|| gameplay->available_character[0] == 3)
+	if (gameplay->available_character[2] == 1
+		|| gameplay->available_character[2] == 3)
 	{
 		pos.x = WINDOW_WIDTH / 2 - (CHUNK_SIZE * 1.5);
 		pos.y = WINDOW_HEIGHT / 2;
 		sprite = window->map_sprites[game->level->nb_cases + e_player_linus];
 		put_image_to_image(&window->img, pos, &(sprite->sprite_img)[0]);
 	}
-	if (gameplay->available_character[1] == 1
-		|| gameplay->available_character[1] == 3)
+	if (gameplay->available_character[3] == 1
+		|| gameplay->available_character[3] == 3)
 	{
 		pos.x = WINDOW_WIDTH / 2 + (CHUNK_SIZE / 2);
 		sprite = window->map_sprites[game->level->nb_cases + e_player_basher];
@@ -43,15 +43,16 @@ static void	display_characters_end_down(t_game *game, t_gameplay *gameplay,
 	t_sprite	*sprite;
 	t_vector_2	pos;
 
-	if (gameplay->available_character[2] == 1
-		|| gameplay->available_character[2] == 3)
+	if (gameplay->available_character[0] == 1
+		|| gameplay->available_character[0] == 3)
 	{
 		pos.y = (WINDOW_HEIGHT / 2) + CHUNK_SIZE / 2;
 		pos.x = (WINDOW_WIDTH / 2) - CHUNK_SIZE;
 		sprite = window->map_sprites[game->level->nb_cases + e_player_danny];
+		put_image_to_image(&window->img, pos, &(sprite->sprite_img)[0]);
 	}
-	if (gameplay->available_character[3] == 1
-		|| gameplay->available_character[3] == 3)
+	if (gameplay->available_character[1] == 1
+		|| gameplay->available_character[1] == 3)
 	{
 		put_image_to_image(&window->img, pos, &(sprite->sprite_img)[0]);
 		pos.x = WINDOW_WIDTH / 2;

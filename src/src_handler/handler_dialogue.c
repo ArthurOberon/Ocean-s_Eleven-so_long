@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:32:37 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/10 13:26:29 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 15:14:57 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	handle_dialogue_next_page(t_game *game)
  * @return int 1 if the player go to the next text_box/node
  * (meaning that the all text_box has been read), 0 otherwise.
  */
-static int	handle_dialogue_next_text_box(t_game *game)
+int	handle_dialogue_next_text_box(t_game *game)
 {
 	if (game->gameplay->dialogue->text_box->read_all == true)
 	{

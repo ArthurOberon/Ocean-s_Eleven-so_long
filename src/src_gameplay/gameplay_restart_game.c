@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:15:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 13:00:19 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 15:47:59 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	restart_all_texts_of_the_game(t_game *game)
 		game->gameplay->all_texts[j].has_been_display = false;
 		j++;
 	}
-	set_text_box_events_start(game);
+	set_tutorial_text_box(game);
 }
 
 static void	restart_gameplay_small_variables(t_gameplay *gameplay,
@@ -80,7 +80,7 @@ static void	restart_gameplay_small_variables(t_gameplay *gameplay,
 	gameplay->is_pause = false;
 	gameplay->is_stop = false;
 	gameplay->is_display_plus_one = false;
-	gameplay->tutorial_status =  0;
+	gameplay->tutorial_status = 0;
 	gameplay->menu_status = 0;
 	gameplay->fps = 0;
 	gameplay->delta_time = 0;
@@ -112,4 +112,5 @@ void	restart_the_game(t_game *game)
 	mlx_clear_window(game->window->mlx_ptr, game->window->win_ptr);
 	restart_map_sprites(game);
 	restart_all_texts_of_the_game(game);
+	game->gameplay->is_start = true;
 }

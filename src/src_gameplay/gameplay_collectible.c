@@ -6,12 +6,13 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 10:48:06 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/29 13:00:06 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 15:04:44 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+// not commented ALL
 static bool	check_all_collectible_collected(t_collectible *collectible,
 	int size)
 {

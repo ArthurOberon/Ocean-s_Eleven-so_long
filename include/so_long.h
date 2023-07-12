@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 14:02:45 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 15:33:11 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -496,6 +496,7 @@ typedef struct s_gameplay
 	bool				is_stop;
 	bool				is_display_plus_one;
 	bool				is_end;
+	bool				is_start;
 	int					tutorial_status;
 	int					menu_status;
 	int					available_character[4];
@@ -835,6 +836,7 @@ void				handle_bomb(int keysym, t_game *game);
 
 // |----------- HANDLER_DIALOGUE -----------|
 
+int					handle_dialogue_next_text_box(t_game *game);
 int					handle_dialogue(int keysym, t_game *game);
 
 // |---------- HANDLER_GAME_FEATURES ---------|
@@ -842,7 +844,6 @@ int					handle_dialogue(int keysym, t_game *game);
 int					close_game(t_game *game);
 int					secure_lost_focus(t_game *game);
 int					handle_end_screen(int keysym, t_game *game);
-int					handle_tutorial(int keysym, t_game *game);
 
 void				handle_out_game_features(int keysym, t_game *game);
 
@@ -865,6 +866,10 @@ void				handle_player_move_release(int keysym, t_game *game);
 
 int					handle_keypress(int keysym, t_game	*game);
 int					handle_keyrelease(int keysym, t_game *game);
+
+// |---------- HANDLER_TUTORIAL ---------|
+
+int					handle_tutorial(int keysym, t_game *game);
 
 // |================================================|
 // |					SRC_INIT					|
