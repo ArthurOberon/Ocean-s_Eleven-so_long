@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 10:48:06 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 15:04:44 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 15:56:00 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,9 @@ void	collected_one_collectible(t_game *game, t_gameplay *gameplay,
 		{
 			get_one_collectible_by(game, gameplay, &gameplay->collectible[i],
 				new_state);
+			game->gameplay->all_texts[e_text_code].text
+				= gameplay->collectible_code;
+			printf("---\ncode : '%s'\n---\n", gameplay->collectible_code);
 			return ;
 		}
 		i++;

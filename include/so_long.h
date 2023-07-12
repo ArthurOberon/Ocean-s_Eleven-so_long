@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 15:33:11 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 16:36:14 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,6 +242,7 @@ enum e_texts
 	e_text_remain_zero_collectible_linus,
 	e_text_remain_one_collectible_basher,
 	e_text_remain_zero_collectible_basher,
+	e_text_code,
 	e_total_text_number,
 };
 
@@ -497,6 +498,7 @@ typedef struct s_gameplay
 	bool				is_display_plus_one;
 	bool				is_end;
 	bool				is_start;
+	int					victory_text_status;
 	int					tutorial_status;
 	int					menu_status;
 	int					available_character[4];
@@ -684,6 +686,9 @@ void				display_one_sprite_with_transparency(t_window *window,
 // |================================================|
 
 // |----------- EVENTS_DIALOGUE_MAIN -----------|
+
+int					display_victory_text(t_game *game,
+						int *victory_text_status);
 
 void				set_tutorial_text_box(t_game *game);
 void				set_text_box_events_start(t_game *game);

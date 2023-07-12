@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 15:48:04 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 16:35:36 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static int	on_update(t_game *game)
 		return (0);
 	if (game->gameplay->is_start)
 		game->gameplay->is_start = false;
+	if (display_victory_text(game, &game->gameplay->victory_text_status))
+		return (0);
 	if (display_end_screen(game, game->gameplay->is_end))
 		return (0);
 	if (display_menu(game, game->window, game->level->nb_cases,

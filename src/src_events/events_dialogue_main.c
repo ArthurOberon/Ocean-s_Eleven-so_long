@@ -6,11 +6,38 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 22:13:36 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 15:47:42 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 16:35:48 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	display_victory_text(t_game *game, int *victory_text_status)
+{
+	// not commented
+	if (*victory_text_status == 0)
+		return (0);
+	if (*victory_text_status == 1)
+	{
+		add_one_text_to_dialogue(game, &game->gameplay->dialogue,
+			&game->gameplay->all_texts[e_text_code]);
+		display_dialogue(game, game->gameplay->dialogue);
+		mlx_put_image_to_window(game->window->mlx_ptr, game->window->win_ptr,
+			game->window->img.mlx_img, 0, 0);
+		*victory_text_status = 2;
+		return (1);
+	}
+	else if (*victory_text_status == 2)
+	{
+		if (game->gameplay->dialogue)
+			return (1);
+		else if (game->gameplay->dialogue == NULL)
+		{
+			game->gameplay->is_end = 1;
+		}
+	}
+	return (0);
+}
 
 void	set_tutorial_text_box(t_game *game)
 {

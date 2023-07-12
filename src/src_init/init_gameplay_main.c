@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 15:33:30 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 16:34:25 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ static void	init_gameplay_small_variables(t_game *game, t_gameplay *gameplay)
 	gameplay->is_end = false;
 	gameplay->is_display_plus_one = false;
 	gameplay->is_start = false;
+	gameplay->victory_text_status = 0;
 	gameplay->tutorial_status = 0;
 	gameplay->menu_status = 0;
 	gameplay->fps = 0;

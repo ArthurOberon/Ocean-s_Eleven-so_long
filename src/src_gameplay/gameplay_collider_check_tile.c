@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 22:59:08 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/11 00:12:03 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 16:33:58 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	check_tile_collectible(t_game *game, char tile, int pos)
 
 /**
  * @brief Check if the tile is an exit,
- * and exit the game if it is and the player has collected all the collectibles.
+ * and launch the victory text if the player has collected all the collectibles.
  * 
  * @param game game struct, used to get the gameplay struct.
  * @param tile tile to check.
@@ -53,7 +53,7 @@ static int	check_tile_exit(t_game *game, char tile)
 	{
 		if (game->gameplay->nb_collect_remain == 0)
 		{
-			game->gameplay->is_end = 1;
+			game->gameplay->victory_text_status = 1;
 		}
 	}
 	return (0);

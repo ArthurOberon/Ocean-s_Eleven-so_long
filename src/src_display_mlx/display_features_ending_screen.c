@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:58:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 15:10:57 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 16:32:03 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	display_lose_screen(t_game *game, t_gameplay *gameplay, t_window *window)
 	mlx_put_image_to_window(window->mlx_ptr, window->win_ptr,
 		window->img.mlx_img, 0, 0);
 }
-
 
 int	display_end_screen(t_game *game, int is_end)
 {
