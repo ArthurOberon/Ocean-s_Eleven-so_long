@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/11 00:20:59 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 14:02:45 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,11 @@
 # define PATH_GUARD				"guard/guard_64px"
 # define PATH_GUARD_FOV			"guard/fov_2_64px"
 
+# define PATH_BUTTON_PAUSE		"text_box/alphabet/alphabet_16px"
+# define PATH_BUTTON_RESTART	"text_box/alphabet/alphabet_16px"
+# define PATH_BUTTON_QUIT		"text_box/alphabet/alphabet_16px"
+# define PATH_BUTTON_TUTO		"text_box/alphabet/alphabet_16px"
+
 # define PATH_HEART				"ui/heart"
 # define PATH_BOX				"ui/box_64px"
 # define PATH_SELECTION_BOX		"ui/character_selection_box_64px"
@@ -83,6 +88,8 @@
 # define PATH_ALPHABET			"text_box/alphabet/alphabet_16px"
 # define PATH_SPECIAL_CHAR		"text_box/special_char/special_character_16px"
 # define PATH_BACKGROUND_TEXT	"text_box/background_text_3_64px"
+
+# define PATH_TUTORIAL			"ground/carpet_64px"
 
 # define PATH_BACKGROUND		"ground/carpet_64px"
 
@@ -115,6 +122,8 @@
 # define FRAME_ALPHABET 26
 # define FRAME_SPECIAL_CHAR 31
 # define FRAME_BACKGROUND_TEXT 1
+
+# define FRAME_TUTORIAL 7
 
 # define DELAY_ANIMATION 2
 
@@ -169,6 +178,7 @@ enum e_assets_pos
 	e_alphabet,
 	e_special_character,
 	e_background_text,
+	e_tutorial,
 	e_total_assets,
 };
 
@@ -189,6 +199,13 @@ enum e_texts
 	// debug
 	e_text_debug,
 	// debug
+	e_text_tutorial_1,
+	e_text_tutorial_2,
+	e_text_tutorial_3,
+	e_text_tutorial_4,
+	e_text_tutorial_5,
+	e_text_tutorial_6,
+	e_text_tutorial_7,
 	e_text_start_danny,
 	e_text_start_rusty,
 	e_text_start_linus,
@@ -354,6 +371,7 @@ typedef struct s_sprites_assets
 	t_sprite	*alphabet;
 	t_sprite	*special_character;
 	t_sprite	*background_text;
+	t_sprite	*tutorial;
 }	t_sprites_assets;
 
 typedef struct s_init_sprite_asset_args
@@ -477,7 +495,8 @@ typedef struct s_gameplay
 	bool				is_pause;
 	bool				is_stop;
 	bool				is_display_plus_one;
-	int					is_end;
+	bool				is_end;
+	int					tutorial_status;
 	int					menu_status;
 	int					available_character[4];
 	int					chosen_character;
@@ -531,6 +550,7 @@ void				get_chunks_to_display(t_game *game, t_camera *camera);
 
 // |---------- CAMERA ----------|
 
+void				display_background(t_window *window, t_img *img); //ERROR -> TEMPORARY
 void				camera(t_game *game, t_camera *camera, t_player *player);
 
 // |================================================|
@@ -584,7 +604,7 @@ void				display_character(t_game *game, t_window *window,
 
 // |----------- DISPLAY_FEATURES_ENDING_SCREEN -----------|
 
-void				display_end_screen(t_game *game, int param);
+int					display_end_screen(t_game *game, int is_end);
 
 // |----------- DISPLAY_GUARDS_MAIN ---------|
 
@@ -603,7 +623,8 @@ void				display_hp(t_window *window, t_player *player, int color);
 
 // |----------- DISPLAY_FEATURES_MENU ----------|
 
-void				display_menu(t_game *game, t_window *window, int nb_cases);
+int					display_menu(t_game *game, t_window *window,
+						int nb_cases, int is_pause);
 
 // |----------- DISPLAY_FEATURES_QTE_LAUNCH ---------|
 
@@ -613,6 +634,11 @@ void				launch_qte(t_game *game, t_qte *qte, t_guard *guard);
 
 void				display_qte(t_game *game, t_qte *qte, t_player *player,
 						t_guard *guards);
+
+// |----------- DISPLAY_FEATURES_TUTORIAL --------|
+
+int					display_tutorial(t_game *game, t_gameplay *gameplay,
+						t_window *window, int tutorial_status);
 
 // |----------- DISPLAY_FEATURES_UI_BOXS ---------|
 
@@ -658,6 +684,7 @@ void				display_one_sprite_with_transparency(t_window *window,
 
 // |----------- EVENTS_DIALOGUE_MAIN -----------|
 
+void				set_tutorial_text_box(t_game *game);
 void				set_text_box_events_start(t_game *game);
 void				get_text_box_events(t_game *game, t_gameplay *gameplay);
 
@@ -815,6 +842,7 @@ int					handle_dialogue(int keysym, t_game *game);
 int					close_game(t_game *game);
 int					secure_lost_focus(t_game *game);
 int					handle_end_screen(int keysym, t_game *game);
+int					handle_tutorial(int keysym, t_game *game);
 
 void				handle_out_game_features(int keysym, t_game *game);
 

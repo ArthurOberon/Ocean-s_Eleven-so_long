@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:40:38 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/10 15:54:09 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 13:06:11 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	init_sprites_extra_map(t_game *game, t_sprite **map_sprites, int i)
 	map_sprites[i + e_alphabet] = game->assets->alphabet;
 	map_sprites[i + e_special_character] = game->assets->special_character;
 	map_sprites[i + e_background_text] = game->assets->background_text;
+	map_sprites[i + e_tutorial] = game->assets->tutorial;
 }
 
 void	sprite_cpy(t_sprite *new, t_sprite *src)

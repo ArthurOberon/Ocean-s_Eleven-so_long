@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 00:14:31 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/11 00:20:49 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 14:04:47 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,12 @@ void	handle_out_game_features(int keysym, t_game *game)
 	{
 		restart_the_game(game);
 	}
+	if (keysym == XK_T || keysym == XK_t)
+	{
+		set_tutorial_text_box(game);
+		if (game->gameplay->tutorial_status == -1)
+			game->gameplay->tutorial_status = 0;
+	}
 }
 
 int	handle_end_screen(int keysym, t_game *game)
@@ -74,3 +80,51 @@ int	handle_end_screen(int keysym, t_game *game)
 		close_game(game);
 	return (0);
 }
+
+int	handle_tutorial(int keysym, t_game *game)
+{
+	// not commented
+	void	*prev;
+	void	*current;
+	void	*next;
+
+	prev = game->gameplay->dialogue->prev;
+	current = game->gameplay->dialogue;
+	next = game->gameplay->dialogue->next;
+	handle_dialogue(keysym, game);
+	if (keysym == XK_Escape || keysym == XK_Q || keysym == XK_q)
+		close_game(game);
+	if (game->gameplay->dialogue == current)
+		return (0);
+	else if (game->gameplay->dialogue == next)
+	{
+		game->gameplay->tutorial_status += 1;
+		if (game->gameplay->tutorial_status == FRAME_TUTORIAL)
+			game->gameplay->tutorial_status = -1;
+	}
+	else if (game->gameplay->dialogue == prev)
+	{
+		if (game->gameplay->tutorial_status > 0)
+			game->gameplay->tutorial_status -= 1;
+	}
+	return (0);
+}
+
+	// if (keysym == XK_space)
+	// {
+	// 	game->gameplay->tutorial_status += 1;
+	// 	if (game->gameplay->tutorial_status == FRAME_TUTORIAL)
+	// 		game->gameplay->tutorial_status = -1;
+	// }
+	// if (keysym == XK_Delete)
+	// {
+	// 	if (game->gameplay->tutorial_status > 0)
+	// 		game->gameplay->tutorial_status -= 1;
+	// }
+	// if (game->gameplay->dialogue == NULL)
+	// {
+	// 	add_one_text_to_dialogue(game, &game->gameplay->dialogue,
+	// 		&game->gameplay->all_texts
+	// 	[e_text_tutorial_1 + game->gameplay->tutorial_status]);
+	// 	printf("text : %s\n", game->gameplay->all_texts
+	// 	[e_text_tutorial_1 + game->gameplay->tutorial_status].text);

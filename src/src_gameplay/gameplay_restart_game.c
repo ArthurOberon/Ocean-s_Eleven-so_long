@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:15:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/10 00:45:30 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 13:00:19 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ static void	restart_gameplay_small_variables(t_gameplay *gameplay,
 	gameplay->is_pause = false;
 	gameplay->is_stop = false;
 	gameplay->is_display_plus_one = false;
+	gameplay->tutorial_status =  0;
 	gameplay->menu_status = 0;
 	gameplay->fps = 0;
 	gameplay->delta_time = 0;

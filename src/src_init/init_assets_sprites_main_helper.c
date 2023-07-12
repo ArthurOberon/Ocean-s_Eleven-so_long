@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 14:57:48 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/10 16:12:04 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 14:00:29 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,16 +120,16 @@ void	init_sprites_assets_part_3(t_game *game, t_sprites_assets *assets)
 void	init_sprites_assets_part_4(t_game *game, t_sprites_assets *assets)
 {
 	init_one_sprite_asset(game, &assets->button_pause,
-		(t_init_sprite_asset_args){PATH_ALPHABET, FRAME_MENU_BUTTON,
+		(t_init_sprite_asset_args){PATH_BUTTON_PAUSE, FRAME_MENU_BUTTON,
 		(t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
 	init_one_sprite_asset(game, &assets->button_restart,
-		(t_init_sprite_asset_args){PATH_ALPHABET, FRAME_MENU_BUTTON,
+		(t_init_sprite_asset_args){PATH_BUTTON_RESTART, FRAME_MENU_BUTTON,
 		(t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
 	init_one_sprite_asset(game, &assets->button_quit,
-		(t_init_sprite_asset_args){PATH_ALPHABET, FRAME_MENU_BUTTON,
+		(t_init_sprite_asset_args){PATH_BUTTON_QUIT, FRAME_MENU_BUTTON,
 		(t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
 	init_one_sprite_asset(game, &assets->button_tutorial,
-		(t_init_sprite_asset_args){PATH_ALPHABET, FRAME_MENU_BUTTON,
+		(t_init_sprite_asset_args){PATH_BUTTON_TUTO, FRAME_MENU_BUTTON,
 		(t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
 	init_one_sprite_asset(game, &assets->heart,
 		(t_init_sprite_asset_args){PATH_HEART, FRAME_HEART,
@@ -144,7 +144,6 @@ void	init_sprites_assets_part_4(t_game *game, t_sprites_assets *assets)
 		(t_init_sprite_asset_args){PATH_AVATAR_CHARACTER,
 		FRAME_AVATAR_CHARACTER, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
 }
-
 
 /**
  * @brief Initialize the fourth part of the sprites_assets struct.
@@ -163,4 +162,7 @@ void	init_sprites_assets_part_5(t_game *game, t_sprites_assets *assets)
 	init_one_sprite_asset(game, &assets->background_text,
 		(t_init_sprite_asset_args){PATH_BACKGROUND_TEXT, FRAME_BACKGROUND_TEXT,
 		(t_vector_2){WINDOW_WIDTH - 40, WINDOW_HEIGHT / 4}});
+	init_one_sprite_asset(game, &assets->tutorial,
+		(t_init_sprite_asset_args){PATH_TUTORIAL, 1, // ERROR 1 -> FRAME_TUTORIAL
+		(t_vector_2){WINDOW_WIDTH, WINDOW_HEIGHT}});
 }

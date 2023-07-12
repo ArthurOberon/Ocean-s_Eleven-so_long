@@ -35,6 +35,7 @@ SRC_DISPLAY			=	$(addprefix src_display_mlx/, \
 					 	display_features_bomb.c \
 					 	display_features_ui_main.c \
 					 	display_features_ui_boxs.c \
+						display_features_tutorial.c \
 					 	display_features_qte_main.c \
 					 	display_features_animation.c \
 					 	display_features_qte_launch.c \

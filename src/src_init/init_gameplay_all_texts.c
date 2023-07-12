@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:41:24 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/07 22:10:33 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 12:35:11 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@
  */
 static void	init_all_texts_part_1(t_text *texts)
 {
+	texts[e_text_tutorial_1].text = "Welcome to the tutorial !";
+	texts[e_text_tutorial_2].text = "Use WASD to move.";
+	texts[e_text_tutorial_3].text = "Use ESC to quit.";
+	texts[e_text_tutorial_4].text = "Use E to interact.";
+	texts[e_text_tutorial_5].text = "Use SPACE to attack.";
+	texts[e_text_tutorial_6].text = "Use SHIFT to dash.";
+	texts[e_text_tutorial_7].text = "Use TAB to switch character.";
 	texts[e_text_start_danny].text = "Let's get this code to open the safe !";
 	texts[e_text_start_rusty].text = "Qu'est ce que j'aime ce genre d'endroit. \
 Bon, je dois aller ouvrir ce coffre. Je vais me faire discret\
@@ -28,6 +35,15 @@ Je dois trouver le code du coffre c'est ca ? Je peux surement le voler sur \
 un des guards.";
 	texts[e_text_start_basher].text = "Alors, alors. Ou est ce que tu te caches \
 petit code du coffre fort.";
+}
+
+/**
+ * @brief Initialize the second part of the texts struct.
+ * 
+ * @param texts texts struct to initialize.
+ */
+static void	init_all_texts_part_2(t_text *texts)
+{
 	texts[e_text_remain_one_collectible_danny].text = "One more to go !";
 	texts[e_text_remain_zero_collectible_danny].text = "Perfect ! Now let's go \
 to the safe.";
@@ -40,15 +56,6 @@ to the safe.";
 	texts[e_text_remain_one_collectible_basher].text = "One more to go !";
 	texts[e_text_remain_zero_collectible_basher].text = "Perfect ! Now let's go \
 to the safe.";
-}
-
-/**
- * @brief Initialize the second part of the texts struct.
- * 
- * @param texts texts struct to initialize.
- */
-static void	init_all_texts_part_2(t_text *texts)
-{
 	texts[e_text_rusty_to_danny_1].text = "Aller on enchaine.";
 	texts[e_text_rusty_to_danny_2].text = "C'est parti.";
 	texts[e_text_linus_to_danny_1].text = "C'est a toi ?";

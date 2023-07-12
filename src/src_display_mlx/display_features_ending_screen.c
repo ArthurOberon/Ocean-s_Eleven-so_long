@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:58:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/11 00:18:06 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 12:39:11 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,13 @@ void	display_lose_screen(t_game *game, t_gameplay *gameplay, t_window *window)
 }
 
 
-void	display_end_screen(t_game *game, int param)
+int	display_end_screen(t_game *game, int is_end)
 {
-	if (param == 1)
+	if (is_end == 0)
+		return (0);
+	if (is_end == 1)
 		display_win_screen(game, game->gameplay, game->window);
-	else if (param == 2)
+	else if (is_end == 2)
 		display_lose_screen(game, game->gameplay, game->window);
+	return (1);
 }

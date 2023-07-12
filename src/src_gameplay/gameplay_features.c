@@ -6,22 +6,11 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:32:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/11 00:12:20 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 12:14:11 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-/**
- * @brief Close the game, by printing "GAME OVER" and close/free the game.
- * 
- * @param game game struct, to free the game.
- */
-static void	game_over(t_game *game)
-{
-	game->gameplay->is_end = 2;
-	close_game(game);
-}
 
 /**
  * @brief Get the iframes (invincibility frames) for a certain amount of time.
@@ -93,7 +82,7 @@ void	gameplay_features(t_game *game, t_gameplay *gameplay)
 	int	i;
 
 	if (gameplay->player->hp == 0)
-		game_over(game);
+		gameplay->is_end = 2;
 	get_text_box_events(game, gameplay);
 	get_iframes(gameplay->player);
 	i = 0;

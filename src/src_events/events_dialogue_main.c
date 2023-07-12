@@ -6,11 +6,28 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 22:13:36 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/08 00:07:35 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/12 14:02:14 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	set_tutorial_text_box(t_game *game)
+{
+	int	i;
+
+	// not commented
+	i = 0;
+	while (i < FRAME_TUTORIAL)
+	{
+		game->gameplay->all_texts[e_text_tutorial_1 + i].has_been_display
+			= false;
+		add_one_text_to_dialogue(game, &game->gameplay->dialogue,
+			&game->gameplay->all_texts
+		[e_text_tutorial_1 + i]);
+		i++;
+	}
+}
 
 /**
  * @brief Set the starting text depending on the player character.
@@ -19,6 +36,7 @@
  */
 void	set_text_box_events_start(t_game *game)
 {
+	set_tutorial_text_box(game);
 	if (game->gameplay->player->player_character == e_main)
 	{
 		add_one_text_to_dialogue(game, &game->gameplay->dialogue,
