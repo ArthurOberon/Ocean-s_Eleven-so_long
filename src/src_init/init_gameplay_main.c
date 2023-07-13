@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 19:05:59 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 19:41:58 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,47 @@ static void	init_gameplay_small_variables(t_game *game, t_gameplay *gameplay)
 	gameplay->nb_move = 0;
 }
 
+
+
+
+
+t_personage_animation	*init_personage_animation(t_sprites_assets *assets)
+{
+	t_personage_animation	personage_animation[5];
+
+	personage_animation[0].idle = assets->player_danny_idle;
+	personage_animation[0].move_up = assets->player_danny_move_up;
+	personage_animation[0].move_down = assets->player_danny_move_down;
+	personage_animation[0].move_left = assets->player_danny_move_left;
+	personage_animation[0].move_right = assets->player_danny_move_right;
+	personage_animation[1].idle = assets->player_rusty_idle;
+	personage_animation[1].move_up = assets->player_rusty_move_up;
+	personage_animation[1].move_down = assets->player_rusty_move_down;
+	personage_animation[1].move_left = assets->player_rusty_move_left;
+	personage_animation[1].move_right = assets->player_rusty_move_right;
+	personage_animation[2].idle = assets->player_linus_idle;
+	personage_animation[2].move_up = assets->player_linus_move_up;
+	personage_animation[2].move_down = assets->player_linus_move_down;
+	personage_animation[2].move_left = assets->player_linus_move_left;
+	personage_animation[2].move_right = assets->player_linus_move_right;
+	personage_animation[3].idle = assets->player_basher_idle;
+	personage_animation[3].move_up = assets->player_basher_move_up;
+	personage_animation[3].move_down = assets->player_basher_move_down;
+	personage_animation[3].move_left = assets->player_basher_move_left;
+	personage_animation[3].move_right = assets->player_basher_move_right;
+	personage_animation[4].idle = assets->guard_idle;
+	personage_animation[4].move_up = assets->guard_move_up;
+	personage_animation[4].move_down = assets->guard_move_down;
+	personage_animation[4].move_left = assets->guard_move_left;
+	personage_animation[4].move_right = assets->guard_move_right;
+	return (personage_animation);
+}
+
+
+
+
+
+
 /**
  * @brief initialize the gameplay struct.
  * 
@@ -168,6 +209,7 @@ void	init_gameplay(t_game *game, int *available_character,
 	init_collectible(game, gameplay, gameplay->collectible,
 		gameplay->collectible_code);
 	// printf("pos : %d\n", gameplay->collectible[0].pos);
+	gameplay->personage_animation = init_personage_animation(game->assets);
 	put_unavailable_character_on_map(game, gameplay);
 	if (IS_DEBUG)
 		debug_chunk_pos(game);

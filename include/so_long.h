@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 19:13:37 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 19:36:25 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -644,6 +644,15 @@ typedef struct s_collectible
 	t_sprite	*sprite_open_animation;
 }	t_collectible;
 
+typedef struct s_personage_animation
+{
+	t_sprite	*idle;
+	t_sprite	*move_up;
+	t_sprite	*move_down;
+	t_sprite	*move_left;
+	t_sprite	*move_right;
+}	t_personage_animation;
+
 typedef struct s_player
 {
 	int					player_character;
@@ -690,31 +699,32 @@ typedef struct s_guard
 
 typedef struct s_gameplay
 {
-	bool				is_pause;
-	bool				is_stop;
-	bool				is_display_plus_one;
-	bool				is_title_screen;
-	bool				is_start;
-	int					is_end;
-	int					victory_text_status;
-	int					tutorial_status;
-	int					menu_status;
-	int					available_character[4];
-	int					chosen_character;
-	t_collectible		*collectible;
-	char				*collectible_code;
-	t_text				*all_texts;
-	t_texts_box_list	*dialogue;
-	int					nb_collect_get;
-	int					nb_collect_remain;
-	int					nb_guard;
-	int					nb_move;
-	int					fps;
-	char				*map_start_state;
-	double				delta_time;
-	t_vector_2			*chunks_pos;
-	t_player			*player;
-	t_guard				*guards;
+	bool					is_pause;
+	bool					is_stop;
+	bool					is_display_plus_one;
+	bool					is_title_screen;
+	bool					is_start;
+	int						is_end;
+	int						victory_text_status;
+	int						tutorial_status;
+	int						menu_status;
+	int						available_character[4];
+	int						chosen_character;
+	t_collectible			*collectible;
+	char					*collectible_code;
+	t_text					*all_texts;
+	t_texts_box_list		*dialogue;
+	int						nb_collect_get;
+	int						nb_collect_remain;
+	int						nb_guard;
+	int						nb_move;
+	int						fps;
+	char					*map_start_state;
+	double					delta_time;
+	t_vector_2				*chunks_pos;
+	t_player				*player;
+	t_guard					*guards;
+	t_personage_animation	personage_animation[5];
 }	t_gameplay;
 
 typedef struct s_camera
