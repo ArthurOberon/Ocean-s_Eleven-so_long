@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:58:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 16:36:14 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 17:41:51 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ void	display_win_screen(t_game *game, t_gameplay *gameplay, t_window *window)
 	t_sprite	*sprite;
 
 	// sprite = window->map_sprites[gameplay->nb_cases + e_win_screen]; // ERROR
-	// put_image_to_image(&window->img, (t_vector_2){0, 0},
-		// &(sprite->sprite_img)[0]);
 	sprite = game->assets->win_screen;
+	put_image_to_image(&window->img, (t_vector_2){0, 0},
+		&(sprite->sprite_img)[0]);
 	// display_background(window, &game->camera->img_background);
 	display_characters_end_up(game, gameplay, window);
 	display_characters_end_down(game, gameplay, window);
@@ -81,9 +81,9 @@ void	display_lose_screen(t_game *game, t_gameplay *gameplay, t_window *window)
 	t_sprite	*sprite;
 
 	// sprite = window->map_sprites[gameplay->nb_cases + e_lose_screen]; // ERROR
-	// put_image_to_image(&window->img, (t_vector_2){0, 0},
-		// &(sprite->sprite_img)[0]);
 	sprite = game->assets->lose_screen;
+	put_image_to_image(&window->img, (t_vector_2){0, 0},
+		&(sprite->sprite_img)[0]);
 	// display_background(window, &game->camera->img_background);
 	display_characters_end_up(game, gameplay, window);
 	display_characters_end_down(game, gameplay, window);
@@ -97,6 +97,7 @@ int	display_end_screen(t_game *game, int is_end)
 {
 	if (is_end == 0)
 		return (0);
+	printf("is_end = %d\n", is_end);
 	if (is_end == 1)
 		display_win_screen(game, game->gameplay, game->window);
 	else if (is_end == 2)

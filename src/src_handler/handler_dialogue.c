@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:32:37 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 20:15:40 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 19:11:22 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static int	handle_dialogue_next(int keysym, t_game *game)
 	int	return_value;
 
 	return_value = 0;
-	if (keysym == XK_space
+	if ((keysym == XK_space || keysym == XK_Return)
 		&& game->gameplay->dialogue
 		&& game->gameplay->dialogue->text_box->is_display == true)
 	{

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 16:35:36 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 18:37:11 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ static int	on_update(t_game *game)
 {
 	// not commented
 	if (!game->window->win_ptr)
+		return (0);
+	if (display_title_screen(game, game->window,
+			game->gameplay->is_title_screen))
 		return (0);
 	if (display_tutorial(game, game->gameplay, game->window,
 			game->gameplay->tutorial_status))
@@ -51,8 +54,7 @@ static int	on_update(t_game *game)
 void	start_game(t_game *game)
 {
 	// not commented
-	set_tutorial_text_box(game);
-	game->gameplay->is_start = true;
+	game->gameplay->is_title_screen = true;
 	mlx_hook(game->window->win_ptr, DestroyNotify, KeyPressMask, &close_game,
 		game);
 	mlx_hook(game->window->win_ptr, KeyPress, KeyPressMask, &handle_keypress,

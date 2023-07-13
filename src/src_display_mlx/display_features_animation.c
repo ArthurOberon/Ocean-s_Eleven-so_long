@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:54:13 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/10 16:45:56 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 18:56:26 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	open_collectible_animation(t_game *game, t_gameplay *gameplay,
 	t_sprite *sprite, int chunk_pos)
 {
 	update_frame(sprite);
-	if (sprite->frame == 0)
+	if (sprite->frame == sprite->size - 1)
 		game->window->map_sprites[chunk_pos] = game->assets->ground;
 }
 

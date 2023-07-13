@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 18:43:35 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/05 21:28:20 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 19:15:52 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@
 static void	display_small_box_collectible(t_game *game, t_sprite **sprite_box,
 	t_vector_2 *start_pos_display, int *size_letter)
 {
-	(*sprite_box) = game->window->map_sprites[game->level->nb_cases + e_box];
+	// (*sprite_box) = game->window->map_sprites[game->level->nb_cases + e_box];
+	(*sprite_box) = game->assets->box;
 	*start_pos_display = (t_vector_2){WINDOW_WIDTH
 		- ((*sprite_box)->sprite_img->size.x + 10),
 		WINDOW_HEIGHT - CHUNK_SIZE - 10};
-	*size_letter = game->window->map_sprites[game->level->nb_cases
-		+ e_alphabet]->sprite_img->size.x;
+	// *size_letter = game->window->map_sprites[game->level->nb_cases
+		// + e_alphabet]->sprite_img->size.x;
+	*size_letter = game->assets->alphabet->sprite_img->size.x;
 	put_image_to_image(&game->window->img, *start_pos_display,
 		&((*sprite_box)->sprite_img)[(*sprite_box)->frame]);
 }
@@ -86,12 +88,14 @@ static void	display_number_moves_box(t_game *game, t_window *window,
 	t_sprite	*sprite_box;
 	char		str_itoa[10];
 
-	sprite_box = window->map_sprites[game->level->nb_cases + e_box];
+	// sprite_box = window->map_sprites[game->level->nb_cases + e_box];
+	sprite_box = game->assets->box;
 	start_pos_display = (t_vector_2){WINDOW_WIDTH
 		- ((sprite_box->sprite_img->size.x * 2) + 20),
 		WINDOW_HEIGHT - CHUNK_SIZE - 10};
-	size_letter = game->window->map_sprites[game->level->nb_cases
-		+ e_alphabet]->sprite_img->size.x;
+	// size_letter = game->window->map_sprites[game->level->nb_cases
+		// + e_alphabet]->sprite_img->size.x;
+	size_letter = game->assets->alphabet->sprite_img->size.x;
 	put_image_to_image(&window->img, start_pos_display,
 		&(sprite_box->sprite_img)[sprite_box->frame]);
 	pos_display.x = start_pos_display.x + sprite_box->sprite_img->size.x / 2

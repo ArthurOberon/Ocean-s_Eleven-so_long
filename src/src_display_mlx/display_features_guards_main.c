@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 17:28:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/10 16:47:10 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 19:18:22 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ void	display_guards(t_game *game, t_gameplay *gameplay, t_window *window,
 				turn_guards(&guards[i]);
 			display_one_guard(window, guards[i],
 				window->map_sprites[game->level->nb_cases + e_guards]);
-			display_one_guard_fov(window, guards[i],
-				window->map_sprites[game->level->nb_cases + e_guard_fov],
+			display_one_guard_fov(window, guards[i], game->assets->guard_fov,
+				// window->map_sprites[game->level->nb_cases + e_guard_fov],
 				gameplay->player);
 			guards[i].guard_pos = true_pos;
 			set_guard_fov_direction(&guards[i]);

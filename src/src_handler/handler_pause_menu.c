@@ -6,34 +6,34 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 00:02:32 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 16:08:26 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 18:48:45 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	get_menu(t_gameplay *gameplay, t_sprite **map_sprites, int nb_cases)
+static void	get_menu(t_gameplay *gameplay, t_sprites_assets *assets)
 {
 	// not commented
-	map_sprites[nb_cases + e_button_pause]->frame = 0;
-	map_sprites[nb_cases + e_button_reset]->frame = 0;
-	map_sprites[nb_cases + e_button_quit]->frame = 0;
-	map_sprites[nb_cases + e_button_tutorial]->frame = 0;
+	assets->button_pause->frame = 0;
+	assets->button_reset->frame = 0;
+	assets->button_quit->frame = 0;
+	assets->button_tutorial->frame = 0;
 	if (gameplay->menu_status == 0)
 	{
-		map_sprites[nb_cases + e_button_pause]->frame = 1;
+		assets->button_pause->frame = 1;
 	}
 	else if (gameplay->menu_status == 1)
 	{
-		map_sprites[nb_cases + e_button_reset]->frame = 1;
+		assets->button_reset->frame = 1;
 	}
 	else if (gameplay->menu_status == 2)
 	{
-		map_sprites[nb_cases + e_button_quit]->frame = 1;
+		assets->button_quit->frame = 1;
 	}
 	else if (gameplay->menu_status >= 3)
 	{
-		map_sprites[nb_cases + e_button_tutorial]->frame = 1;
+		assets->button_tutorial->frame = 1;
 	}
 }
 
@@ -57,9 +57,11 @@ static void	pressed_menu_button(t_game *game, t_gameplay *gameplay)
 	{
 		close_game(game);
 	}
-	if (gameplay->menu_status == 3)
+	if (gameplay->menu_status >= 3)
 	{
-		// display_tutorial(game);
+		set_tutorial_text_box(game);
+		if (game->gameplay->tutorial_status == -1)
+			game->gameplay->tutorial_status = 0;
 	}
 }
 
@@ -87,7 +89,7 @@ void	handle_pause_menu(int keysym, t_game *game)
 		if (game->gameplay->menu_status >= 0 && game->gameplay->menu_status < 2)
 			game->gameplay->menu_status += 1;
 	}
-	get_menu(game->gameplay, game->window->map_sprites, game->level->nb_cases);
-	if (keysym == XK_space)
+	get_menu(game->gameplay, game->assets);
+	if (keysym == XK_space || keysym == XK_Return)
 		pressed_menu_button(game, game->gameplay);
 }

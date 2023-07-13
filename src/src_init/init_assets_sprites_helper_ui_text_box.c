@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:43:32 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 17:24:58 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 18:30:50 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ static void	init_sprites_assets_ui_part_1(t_game *game,
 {
 	init_one_sprite_asset(game, &assets->button_pause,
 		(t_init_sprite_asset_args){PATH_BUTTON_PAUSE, FRAME_MENU_BUTTON,
-		(t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
+		(t_vector_2){CHUNK_SIZE * 2, CHUNK_SIZE * 2}});
 	init_one_sprite_asset(game, &assets->button_reset,
 		(t_init_sprite_asset_args){PATH_BUTTON_RESET, FRAME_MENU_BUTTON,
-		(t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
+		(t_vector_2){CHUNK_SIZE * 2, CHUNK_SIZE * 2}});
 	init_one_sprite_asset(game, &assets->button_quit,
 		(t_init_sprite_asset_args){PATH_BUTTON_QUIT, FRAME_MENU_BUTTON,
-		(t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
+		(t_vector_2){CHUNK_SIZE * 2, CHUNK_SIZE * 2}});
 	init_one_sprite_asset(game, &assets->button_tutorial,
 		(t_init_sprite_asset_args){PATH_BUTTON_TUTO, FRAME_MENU_BUTTON,
-		(t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
+		(t_vector_2){CHUNK_SIZE * 2, CHUNK_SIZE * 2}});
 }
 
 static void	init_sprites_assets_ui_part_2(t_game *game,
@@ -36,7 +36,7 @@ static void	init_sprites_assets_ui_part_2(t_game *game,
 {
 	init_one_sprite_asset(game, &assets->plus_one,
 		(t_init_sprite_asset_args){PATH_PLUS_ONE, FRAME_PLUS_ONE,
-		(t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
+		(t_vector_2){CHUNK_SIZE / 2, CHUNK_SIZE / 2}});
 	init_one_sprite_asset(game, &assets->heart,
 		(t_init_sprite_asset_args){PATH_HEART, FRAME_HEART,
 		(t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});

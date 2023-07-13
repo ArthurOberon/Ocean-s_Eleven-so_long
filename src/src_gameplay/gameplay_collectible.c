@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 10:48:06 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 17:49:05 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 18:55:08 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ static void	get_one_collectible(t_game *game, t_gameplay *gameplay,
 	{
 		game->level->map[one_collectible->pos] = 'O';
 		game->window->map_sprites[one_collectible->pos]
-			= one_collectible->sprite_open_animation;
+			= game->assets->collectible_open_0;
+			// = one_collectible->sprite_open_animation;
 	}
 	one_collectible->state = new_state;
 }
@@ -100,19 +101,6 @@ static void	get_one_collectible_by_guard(t_game *game, t_gameplay *gameplay,
 	get_one_collectible(game, gameplay, &collectible[random_collectible],
 		COLLECTED_ON_GUARD);
 }
-
-// static void	get_one_collectible_by(t_game *game, t_gameplay *gameplay,
-// 	t_collectible *one_collectible, int new_state)
-// {
-// 	if (new_state == COLLECTED)
-// 	{
-// 		get_one_collectible(game, gameplay, one_collectible, new_state);
-// 	}
-// 	else if (new_state == COLLECTED_ON_GUARD)
-// 	{
-// 		get_one_collectible_by_guard(game, gameplay, gameplay->collectible);
-// 	}
-// }
 
 void	collected_one_collectible(t_game *game, t_gameplay *gameplay,
 	int pos, int new_state)

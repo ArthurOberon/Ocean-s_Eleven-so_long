@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 16:34:25 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 19:05:59 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ static void	init_text_box_display_variables(t_game *game, t_text_box *text_box,
 		+ text_box->margin_size.y;
 	text_box->pos_display_text = text_box->pos_display_face;
 	text_box->pos_display_text.x += sprite_face->sprite_img->size.x;
-	text_box->size_one_alphabet
-		= game->window->map_sprites[game->level->nb_cases
-		+ e_alphabet]->sprite_img->size.x;
+	text_box->size_one_alphabet = game->assets->alphabet->sprite_img->size.x;
+		// = game->window->map_sprites[game->level->nb_cases
+		// + e_alphabet]->sprite_img->size.x;
 	text_box->characters_max.x = (background->sprite_img->size.x
 			- text_box->pos_display_text.x) / text_box->size_one_alphabet;
 	text_box->characters_max.y = (background->sprite_img->size.y
@@ -95,7 +95,8 @@ void	init_one_text_box(t_game *game, t_window *window, t_gameplay *gameplay,
 	t_sprite	*background;
 	t_sprite	*sprite_face;
 
-	background = window->map_sprites[game->level->nb_cases + e_background_text];
+	// background = window->map_sprites[game->level->nb_cases + e_background_text];
+	background = game->assets->background_text;
 	sprite_face = window->map_sprites[game->level->nb_cases
 		+ gameplay->player->player_character];
 	init_text_box_display_variables(game, text_box, background, sprite_face);
@@ -118,9 +119,10 @@ static void	init_gameplay_small_variables(t_game *game, t_gameplay *gameplay)
 {
 	gameplay->is_pause = false;
 	gameplay->is_stop = false;
-	gameplay->is_end = false;
 	gameplay->is_display_plus_one = false;
+	gameplay->is_title_screen = false;
 	gameplay->is_start = false;
+	gameplay->is_end = 0;
 	gameplay->victory_text_status = 0;
 	gameplay->tutorial_status = 0;
 	gameplay->menu_status = 0;

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:37:34 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 16:40:23 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 19:09:59 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,26 @@ static int	ft_tolower(int character)
 void	display_character(t_game *game, t_window *window,
 	t_vector_2 pos_display, char character)
 {
+	// not commented correctly (arg change)
 	character = ft_tolower(character);
 	if (character >= 97 && character <= 122)
 	{
 		if (character != ' ')
 		{
+			// put_image_to_image(&window->img, pos_display,
+				// &(window->map_sprites[game->level->nb_cases
+					// + e_alphabet]->sprite_img)[character - 'a']);
 			put_image_to_image(&window->img, pos_display,
-				&(window->map_sprites[game->level->nb_cases
-					+ e_alphabet]->sprite_img)[character - 'a']);
+				&(game->assets->alphabet->sprite_img)[character - 'a']);
 		}
 	}
 	if (character >= 33 && character <= 63)
 	{
 		put_image_to_image(&window->img, pos_display,
-			&(window->map_sprites[game->level->nb_cases
-				+ e_special_character]->sprite_img)[character - '!']);
+			&(game->assets->special_character->sprite_img)[character - '!']);
+		// put_image_to_image(&window->img, pos_display,
+			// &(window->map_sprites[game->level->nb_cases
+				// + e_special_character]->sprite_img)[character - '!']);
 	}
 }
 
@@ -73,8 +78,9 @@ static void	display_one_page_on_text_box(t_game *game, t_text_box text_box,
 	i = 0;
 	pos_in_text = (t_vector_2){0, 0};
 	pos_display_x_start = pos_display.x;
-	size_letter = game->window->map_sprites[game->level->nb_cases
-		+ e_alphabet]->sprite_img->size.x;
+	// size_letter = game->window->map_sprites[game->level->nb_cases
+	// 	+ e_alphabet]->sprite_img->size.x;
+	size_letter = game->assets->alphabet->sprite_img->size.x;
 	while (text_box.text_pages[text_box.page_in][i])
 	{
 		if (pos_in_text.x++ >= pos_max.x)

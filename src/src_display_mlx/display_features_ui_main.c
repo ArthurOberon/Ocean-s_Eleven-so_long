@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 02:08:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/10 16:01:39 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 19:12:27 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,9 @@ static void	display_character_bar_selection(t_game *game, t_window *window,
 	t_sprite	*sprite_selection_box;
 	t_vector_2	pos_display;
 
-	sprite_selection_box = window->map_sprites[game->level->nb_cases
-		+ e_selection_box];
+	// sprite_selection_box = window->map_sprites[game->level->nb_cases
+		// + e_selection_box];
+	sprite_selection_box = game->assets->selection_box;
 	i = -1;
 	size_sprite = 0;
 	while (++i < 4)
@@ -125,8 +126,8 @@ static void	display_heart(t_window *window, t_player *player, t_sprite *sprite)
  */
 void	display_ui(t_game *game, t_window *window, t_gameplay *gameplay)
 {
-	display_heart(window, gameplay->player,
-		window->map_sprites[game->level->nb_cases + e_heart]);
+	display_heart(window, gameplay->player, game->assets->heart);
+		// window->map_sprites[game->level->nb_cases + e_heart]);
 	display_character_bar_selection(game, window, gameplay->player);
 	display_ui_boxs(game, window, gameplay);
 }

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:34:28 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 17:07:10 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 18:31:58 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,11 @@ static void	is_display_plus_one_collectible(t_game *game, t_gameplay *gameplay,
 	if (gameplay->is_display_plus_one == false)
 		return ;
 	pos_display.x = player->player_pos.x
-		- game->camera->camera_f_pos.x - (CHUNK_SIZE / 5);
+		- game->camera->camera_f_pos.x - (CHUNK_SIZE / 3);
 	pos_display.y = player->player_pos.y
-		- game->camera->camera_f_pos.y - (CHUNK_SIZE / 5);
-	display_one_str(game, pos_display, "+1",
-		game->window->map_sprites[game->level->nb_cases + e_alphabet]
-		->sprite_img->size.x);
+		- game->camera->camera_f_pos.y - (CHUNK_SIZE / 3);
+	display_one_sprite_with_transparency(game->window, game->assets->plus_one,
+		pos_display);
 	if (!start_time.tv_sec)
 		gettimeofday(&start_time, NULL);
 	gettimeofday(&time, NULL);

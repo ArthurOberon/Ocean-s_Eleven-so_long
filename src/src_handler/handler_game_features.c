@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 00:14:31 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 16:04:57 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 18:26:52 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,18 @@ int	handle_end_screen(int keysym, t_game *game)
 	if (keysym == XK_Escape || keysym == XK_Q || keysym == XK_q
 		|| keysym == XK_space)
 		close_game(game);
+	return (0);
+}
+
+int	handle_title_screen(int keysym, t_game *game)
+{
+	if (keysym == XK_Escape || keysym == XK_Q || keysym == XK_q)
+		close_game(game);
+	if (keysym == XK_space)
+	{
+		game->gameplay->is_title_screen = false;
+		set_tutorial_text_box(game);
+		game->gameplay->is_start = true;
+	}
 	return (0);
 }

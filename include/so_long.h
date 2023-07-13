@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 17:30:38 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 19:13:37 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@
 # define PATH_WALL_CORNER_S_W	"wall/wall_corner/wall_corner_s_w_64px"
 # define PATH_WALL_NORTH		"wall/wall/wall_north_64px"
 # define PATH_WALL_SOUTH		"wall/wall/wall_south_64px"
-# define PATH_WALL_WEST			"wall/wall/wall_east_64px"
-# define PATH_WALL_EAST			"wall/wall/wall_west_64px"
+# define PATH_WALL_EAST			"wall/wall/wall_east_64px"
+# define PATH_WALL_WEST			"wall/wall/wall_west_64px"
 # define PATH_WALL_ROULETTE		"wall/roulette_table/roulette_table_64px"
 # define PATH_WALL_BLACKJACK	"wall/blackjack_table/blackjack_table_64px"
 
@@ -265,7 +265,7 @@ talking_character_basher_32px"
 
 // |---- ANIMATION ----|
 
-# define DELAY_ANIMATION 2
+# define DELAY_ANIMATION 0.08
 
 // |---- GUARD ----|
 
@@ -693,8 +693,9 @@ typedef struct s_gameplay
 	bool				is_pause;
 	bool				is_stop;
 	bool				is_display_plus_one;
-	bool				is_end;
+	bool				is_title_screen;
 	bool				is_start;
+	int					is_end;
 	int					victory_text_status;
 	int					tutorial_status;
 	int					menu_status;
@@ -779,6 +780,14 @@ void				debug_stat_tiles(t_stat_tiles stat);
 void				get_animation(t_game *game, t_gameplay *gameplay,
 						t_sprite *sprite, int chunk_pos);
 
+// |----------- DISPLAY_FEATURES_AT_START --------|
+
+int					display_tutorial(t_game *game, t_gameplay *gameplay,
+						t_window *window, int tutorial_status);
+
+int					display_title_screen(t_game *game, t_window *window,
+						int is_title_screen);
+
 // |----------- DISPLAY_FEATURES_BOMB -----------|
 
 void				display_bomb(t_player *player, t_bomb *bomb,
@@ -834,11 +843,6 @@ void				launch_qte(t_game *game, t_qte *qte, t_guard *guard);
 
 void				display_qte(t_game *game, t_qte *qte, t_player *player,
 						t_guard *guards);
-
-// |----------- DISPLAY_FEATURES_TUTORIAL --------|
-
-int					display_tutorial(t_game *game, t_gameplay *gameplay,
-						t_window *window, int tutorial_status);
 
 // |----------- DISPLAY_FEATURES_UI_BOXS ---------|
 
@@ -1046,6 +1050,7 @@ int					handle_dialogue(int keysym, t_game *game);
 int					close_game(t_game *game);
 int					secure_lost_focus(t_game *game);
 int					handle_end_screen(int keysym, t_game *game);
+int					handle_title_screen(int keysym, t_game *game);
 
 void				handle_out_game_features(int keysym, t_game *game);
 

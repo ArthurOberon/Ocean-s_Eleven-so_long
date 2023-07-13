@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_player.c                                      :+:      :+:    :+:   */
+/*   gameplay_move_player_main.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:25:07 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/07 00:21:32 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 17:39:12 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	move_player(t_game *game, t_player *player)
 	move_player_on_y(game, player, &move);
 	set_player_pos(player, move);
 	set_player_look_dir(player);
-	move_animation(player->player_look_dir, sprite);
+	// move_animation(player->player_look_dir, sprite);
 	if (chunk_before != pos_to_chunk(player->player_pos.x, player->player_pos.y,
 			game->level->map_vector.x))
 		game->gameplay->nb_move++;

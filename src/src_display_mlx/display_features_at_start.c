@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_features_tutorial.c                        :+:      :+:    :+:   */
+/*   display_features_at_start.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:15:42 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 16:38:00 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 18:22:34 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,28 @@ int	display_tutorial(t_game *game, t_gameplay *gameplay,
 	// sprite = window->map_sprites[game->level->nb_cases + e_tutorial];
 	sprite = game->assets->tutorial;
 	memcpy_img(&window->img, (t_vector_2){0, 0},
-		&(sprite->sprite_img[0]),
+		&(sprite->sprite_img[sprite->frame]),
 		(t_vector_2[2]){{0, 0}, {0, 0}});
 	display_dialogue(game, game->gameplay->dialogue);
 	mlx_put_image_to_window(window->mlx_ptr, window->win_ptr,
 		window->img.mlx_img, 0, 0);
 	return (1);
+}
+
+int	display_title_screen(t_game *game, t_window *window,
+	int is_title_screen)
+{
+	t_sprite	*sprite;
+
+	if (is_title_screen == 1)
+	{
+	sprite = game->assets->tutorial;
+		memcpy_img(&window->img, (t_vector_2){0, 0},
+			&(sprite->sprite_img[0]),
+			(t_vector_2[2]){{0, 0}, {0, 0}});
+		mlx_put_image_to_window(window->mlx_ptr, window->win_ptr,
+			window->img.mlx_img, 0, 0);
+		return (1);
+	}
+	return (0);
 }
