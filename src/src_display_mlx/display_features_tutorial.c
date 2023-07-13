@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:15:42 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 15:42:18 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 16:38:00 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	display_tutorial(t_game *game, t_gameplay *gameplay,
 	// not commented
 	if (tutorial_status == -1)
 		return (0);
-	sprite = window->map_sprites[game->level->nb_cases + e_tutorial];
+	// sprite = window->map_sprites[game->level->nb_cases + e_tutorial];
+	sprite = game->assets->tutorial;
 	memcpy_img(&window->img, (t_vector_2){0, 0},
 		&(sprite->sprite_img[0]),
 		(t_vector_2[2]){{0, 0}, {0, 0}});

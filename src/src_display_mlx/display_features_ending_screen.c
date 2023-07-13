@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:58:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 20:15:04 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 16:36:14 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ void	display_win_screen(t_game *game, t_gameplay *gameplay, t_window *window)
 	// sprite = window->map_sprites[gameplay->nb_cases + e_win_screen]; // ERROR
 	// put_image_to_image(&window->img, (t_vector_2){0, 0},
 		// &(sprite->sprite_img)[0]);
-	display_background(window, &game->camera->img_background);
+	sprite = game->assets->win_screen;
+	// display_background(window, &game->camera->img_background);
 	display_characters_end_up(game, gameplay, window);
 	display_characters_end_down(game, gameplay, window);
 	mlx_put_image_to_window(window->mlx_ptr, window->win_ptr,
@@ -82,7 +83,8 @@ void	display_lose_screen(t_game *game, t_gameplay *gameplay, t_window *window)
 	// sprite = window->map_sprites[gameplay->nb_cases + e_lose_screen]; // ERROR
 	// put_image_to_image(&window->img, (t_vector_2){0, 0},
 		// &(sprite->sprite_img)[0]);
-	display_background(window, &game->camera->img_background);
+	sprite = game->assets->lose_screen;
+	// display_background(window, &game->camera->img_background);
 	display_characters_end_up(game, gameplay, window);
 	display_characters_end_down(game, gameplay, window);
 	// put_image_to_image(&window->img, (t_vector_2){0, 0},

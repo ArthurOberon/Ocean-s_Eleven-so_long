@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:34:28 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 20:56:11 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 17:07:10 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ static void	is_display_plus_one_collectible(t_game *game, t_gameplay *gameplay,
 void	display_gameplay_features(t_game *game, t_gameplay *gameplay,
 	t_window *window)
 {
-	if (gameplay->nb_collect_remain == 0)
-		window->map_sprites[game->level->exit_pos] = game->assets->collect;
+	// if (gameplay->nb_collect_remain == 0)
+		// window->map_sprites[game->level->exit_pos] = game->assets->collect;
 	display_guards(game, gameplay, window, gameplay->guards);
 	display_bomb(gameplay->player, &gameplay->player->bomb, game, window);
 	display_qte(game, &gameplay->player->qte, gameplay->player,

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:07:00 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 12:44:45 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 16:08:26 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	display_menu(t_game *game, t_window *window,
 	sprite = window->map_sprites[nb_cases + e_button_pause];
 	put_image_to_image(&window->img, pos, &(sprite->sprite_img)[sprite->frame]);
 	pos.x = (WINDOW_WIDTH / 2) - (CHUNK_SIZE / 2);
-	sprite = window->map_sprites[nb_cases + e_button_restart];
+	sprite = window->map_sprites[nb_cases + e_button_reset];
 	put_image_to_image(&window->img, pos, &(sprite->sprite_img)[sprite->frame]);
 	pos.x = (WINDOW_WIDTH - (WINDOW_WIDTH / 6)) - (CHUNK_SIZE / 2);
 	sprite = window->map_sprites[nb_cases + e_button_quit];

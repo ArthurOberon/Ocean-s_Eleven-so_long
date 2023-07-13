@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:37:34 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/20 15:36:46 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 16:40:23 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ static void	display_face(t_game *game, t_vector_2 pos_display,
 	t_sprite	*sprite_face;
 
 	sprite_face = game->window->map_sprites[game->level->nb_cases
-		+ talking_character];
+		+ e_talking_danny + talking_character];
 	put_image_to_image(&game->window->img, pos_display,
 		&(sprite_face->sprite_img)[0]);
 }
@@ -125,7 +125,8 @@ void	display_one_node_texts_box(t_game *game, t_window *window,
 
 	if (text_box.is_display == false)
 		return ;
-	background = window->map_sprites[game->level->nb_cases + e_background_text];
+	// background = window->map_sprites[game->level->nb_cases + e_background_text];
+	background = game->assets->background_text;
 	put_image_to_image(&window->img, text_box.pos_display_background,
 		&(background->sprite_img)[0]);
 	display_face(game, text_box.pos_display_face, text_box.talking_character);

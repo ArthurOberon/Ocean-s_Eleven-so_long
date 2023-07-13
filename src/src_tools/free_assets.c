@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 12:03:52 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 12:14:06 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 17:14:31 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,28 @@ static void	free_assets_part_1(void *ptr, t_sprites_assets *assets)
 	free_one_sprite(ptr, assets->guard);
 	free_one_sprite(ptr, assets->guard_fov);
 	free_one_sprite(ptr, assets->exit);
-	free_one_sprite(ptr, assets->collect);
+	free_one_sprite(ptr, assets->collectible_idle);
+	free_one_sprite(ptr, assets->collectible_open_0);
+	free_one_sprite(ptr, assets->collectible_open_1);
+	free_one_sprite(ptr, assets->collectible_open_2);
+	free_one_sprite(ptr, assets->collectible_open_3);
+	free_one_sprite(ptr, assets->collectible_open_4);
+	free_one_sprite(ptr, assets->collectible_open_5);
+	free_one_sprite(ptr, assets->collectible_open_6);
+	free_one_sprite(ptr, assets->collectible_open_7);
+	free_one_sprite(ptr, assets->collectible_open_8);
+	free_one_sprite(ptr, assets->collectible_open_9);
 	free_one_sprite(ptr, assets->ground);
-	free_one_sprite(ptr, assets->wall_corner_n_o);
+	free_one_sprite(ptr, assets->wall_corner_n_w);
 	free_one_sprite(ptr, assets->wall_corner_n_e);
 	free_one_sprite(ptr, assets->wall_corner_s_e);
-	free_one_sprite(ptr, assets->wall_corner_s_o);
+	free_one_sprite(ptr, assets->wall_corner_s_w);
 	free_one_sprite(ptr, assets->wall_side_up);
 	free_one_sprite(ptr, assets->wall_side_down);
 	free_one_sprite(ptr, assets->wall_side_left);
 	free_one_sprite(ptr, assets->wall_side_right);
 	free_one_sprite(ptr, assets->wall_roulette);
-	free_one_sprite(ptr, assets->wall_poker);
+	free_one_sprite(ptr, assets->wall_blackjack);
 }
 
 /**

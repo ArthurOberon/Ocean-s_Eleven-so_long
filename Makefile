@@ -108,9 +108,14 @@ SRC_INIT		=	$(addprefix src_init/, \
 						init_gameplay_collectible.c \
 						init_assets_sprites_tools.c \
 						init_assets_sprites_images.c \
+						init_assets_sprites_helper.c \
 						init_gameplay_random_elements.c \
 						init_assets_sprites_animations.c \
-						init_assets_sprites_main_helper.c \
+						init_assets_sprites_helper_walls.c \
+						init_assets_sprites_helper_player.c \
+						init_assets_sprites_helper_others.c \
+						init_assets_sprites_helper_ui_text_box.c \
+						init_assets_sprites_helper_collectibles.c \
 						)
 
 # SOURCES USE TO READ AND PARSE THE MAP

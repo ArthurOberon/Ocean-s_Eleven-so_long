@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:40:38 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 13:06:11 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 17:07:48 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	init_sprites_extra_map(t_game *game, t_sprite **map_sprites, int i)
 	map_sprites[i + e_guards] = game->assets->guard;
 	map_sprites[i + e_guard_fov] = game->assets->guard_fov;
 	map_sprites[i + e_button_pause] = game->assets->button_pause;
-	map_sprites[i + e_button_restart] = game->assets->button_restart;
+	map_sprites[i + e_button_reset] = game->assets->button_reset;
 	map_sprites[i + e_button_quit] = game->assets->button_quit;
 	map_sprites[i + e_button_tutorial] = game->assets->button_tutorial;
 	map_sprites[i + e_heart] = game->assets->heart;
@@ -43,7 +43,11 @@ static void	init_sprites_extra_map(t_game *game, t_sprite **map_sprites, int i)
 	map_sprites[i + e_alphabet] = game->assets->alphabet;
 	map_sprites[i + e_special_character] = game->assets->special_character;
 	map_sprites[i + e_background_text] = game->assets->background_text;
-	map_sprites[i + e_tutorial] = game->assets->tutorial;
+	map_sprites[i + e_talking_danny] = game->assets->talking_danny;
+	map_sprites[i + e_talking_rusty] = game->assets->talking_rusty;
+	map_sprites[i + e_talking_linus] = game->assets->talking_linus;
+	map_sprites[i + e_talking_basher] = game->assets->talking_basher;
+	// map_sprites[i + e_tutorial] = game->assets->tutorial;
 }
 
 void	sprite_cpy(t_sprite *new, t_sprite *src)
@@ -89,7 +93,7 @@ void	init_sprites(t_game *game)
 		else if (game->level->map[i] == '1' || game->level->map[i] == '2')
 			get_wall_image(game, &map_sprites[i], i);
 		else if (game->level->map[i] == 'C')
-			map_sprites[i] = game->assets->collect;
+			map_sprites[i] = game->assets->collectible_idle;
 		else if (game->level->map[i] == 'E')
 			map_sprites[i] = game->assets->exit;
 		init_sprites_animations(game, map_sprites[i], game->level->map[i]);

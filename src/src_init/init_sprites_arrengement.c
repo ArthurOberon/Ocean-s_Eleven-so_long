@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sprites_arrengement.c                              :+:      :+:    :+:   */
+/*   init_sprites_arrengement.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:03:04 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 15:17:01 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 17:07:58 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	get_random_inside_wall_image(t_game *game, t_sprite **sprite)
 	if (rand() % 101 > 50)
 		*sprite = game->assets->wall_roulette;
 	else
-		*sprite = game->assets->wall_poker;
+		*sprite = game->assets->wall_blackjack;
 }
 
 /**
@@ -43,13 +43,13 @@ void	get_wall_image(t_game *game, t_sprite **sprite, int pos)
 	value.x = pos % (value_max.x);
 	value.y = pos / (value_max.x--);
 	if (value.x == 0 && value.y == 0)
-		*sprite = game->assets->wall_corner_n_o;
+		*sprite = game->assets->wall_corner_n_w;
 	else if (value.x == value_max.x && value.y == 0)
 		*sprite = game->assets->wall_corner_n_e;
 	else if (value.x == value_max.x && value.y == value_max.y)
 		*sprite = game->assets->wall_corner_s_e;
 	else if (value.x == 0 && value.y == value_max.y)
-		*sprite = game->assets->wall_corner_s_o;
+		*sprite = game->assets->wall_corner_s_w;
 	else if ((value.x >= 1 && value.x < value_max.x) && value.y == 0)
 		*sprite = game->assets->wall_side_up;
 	else if ((value.x >= 1 && value.x < value_max.x) && value.y == value_max.y)

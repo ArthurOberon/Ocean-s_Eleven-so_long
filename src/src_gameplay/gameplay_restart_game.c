@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:15:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 15:47:59 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/13 17:07:24 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	restart_map_sprites(t_game *game)
 		else if (game->level->map[i] == '1' || game->level->map[i] == '2')
 			get_wall_image(game, &game->window->map_sprites[i], i);
 		else if (game->level->map[i] == 'C')
-			game->window->map_sprites[i] = game->assets->collect;
+			game->window->map_sprites[i] = game->assets->collectible_idle;
 		else if (game->level->map[i] == 'E')
 			game->window->map_sprites[i] = game->assets->exit;
 		i++;
