@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:40:38 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/16 22:37:07 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 22:38:58 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ static void	init_sprites_extra_map(t_game *game, t_sprite **map_sprites, int i)
 	map_sprites[i + e_player_basher] = game->assets->player_basher;
 	// map_sprites[i + e_dynamite] = game->assets->dynamite;
 	// map_sprites[i + e_explosion] = game->assets->explosion;
-	map_sprites[i + e_area_qte] = game->assets->area_qte;
-	map_sprites[i + e_qte] = game->assets->qte;
-	map_sprites[i + e_guards] = game->assets->guard;
+	map_sprites[i + e_area_qte] = game->assets->area_qte; // TO DELETE ?
+	map_sprites[i + e_qte] = game->assets->qte; // TO DELETE ?
+	map_sprites[i + e_guards] = game->assets->guard; // TO DELETE ?
 	// map_sprites[i + e_guard_fov] = game->assessts->guard_fov;
 	// map_sprites[i + e_button_pause] = game->assets->button_pause;
 	// map_sprites[i + e_button_reset] = game->assets->button_reset;
