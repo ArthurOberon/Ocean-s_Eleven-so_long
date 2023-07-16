@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/16 17:44:19 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 21:23:42 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,8 @@ talking_character_basher_32px"
 
 // |---- BIG_IMAGE ----|
 
-# define PATH_TUTORIAL			"tutorial/tutorial_screen"
+# define PATH_TITLE_SCREEN		"start_screen/title_screen"
+# define PATH_TUTORIAL			"start_screen/tutorial/tutorial_screen"
 # define PATH_BACKGROUND		"background/game_background_64px"
 # define PATH_LOSE_SCREEN		"end_screen/lose_screen_16_9"
 # define PATH_WIN_SCREEN		"end_screen/win_screen_16_9"
@@ -256,9 +257,10 @@ talking_character_basher_32px"
 
 // |---- BIG_IMAGE ----|
 
+# define FRAME_TITLE_SCREEN 1
 # define FRAME_TUTORIAL 7
 # define FRAME_BACKGROUND 1
-# define FRAME_LOSE_SCREEN 1
+# define FRAME_LOSE_SCREEN 3
 # define FRAME_WIN_SCREEN 1
 
 // ----------------------------------------------------------------
@@ -566,6 +568,7 @@ typedef struct s_sprites_assets
 	t_sprite	*talking_rusty;
 	t_sprite	*talking_linus;
 	t_sprite	*talking_basher;
+	t_sprite	*title_screen;
 	t_sprite	*tutorial;
 	t_sprite	*background;
 	t_sprite	*lose_screen;
@@ -581,20 +584,20 @@ typedef struct s_init_sprite_asset_args
 
 typedef struct s_text_box
 {
-	bool		is_display;
-	bool		read_all;
-	t_vector_2	pos_display_background;
-	t_vector_2	pos_display_face;
-	t_vector_2	pos_display_text;
-	t_vector_2	margin_size;
-	t_vector_2	characters_max;
-	int			characters_max_one_box;
-	int			size_one_alphabet;
-	int			page_number;
-	int			page_in;
-	int			talking_character;
-	char		*text;
-	char		**text_pages;
+	bool			is_display;
+	bool			read_all;
+	t_vector_2		pos_display_background;
+	t_vector_2		pos_display_face;
+	t_vector_2		pos_display_text;
+	t_vector_2		margin_size;
+	t_vector_2		characters_max;
+	int				characters_max_one_box;
+	int				size_one_alphabet;
+	int				page_number;
+	int				page_in;
+	int				talking_character;
+	char			*text;
+	char			**text_pages;
 }	t_text_box;
 
 typedef struct s_texts_box_list
@@ -651,7 +654,7 @@ typedef struct s_personage_animation
 	t_sprite	*move_down;
 	t_sprite	*move_left;
 	t_sprite	*move_right;
-}	t_personage_animation;
+}	t_avatar_animation;
 
 typedef struct s_player
 {
@@ -726,7 +729,7 @@ typedef struct s_gameplay
 	t_vector_2				*chunks_pos;
 	t_player				*player;
 	t_guard					*guards;
-	t_personage_animation	*personage_animation;
+	t_avatar_animation	*personage_animation;
 }	t_gameplay;
 
 typedef struct s_camera
@@ -791,10 +794,10 @@ void				debug_stat_tiles(t_stat_tiles stat);
 
 int					get_guard_idle_frame(t_guard *guard);
 
-t_sprite			*get_guard_move_animation(t_guard *guard,
-						t_personage_animation *animation);
-t_sprite			*get_player_move_animation(t_player *player,
-						t_personage_animation *animation);
+t_sprite			*get_guard_move_animation(t_game *game, t_guard *guard,
+						t_avatar_animation *animation);
+t_sprite			*get_player_move_animation(t_game *game, t_player *player,
+						t_avatar_animation *animation);
 
 // |----------- DISPLAY_FEATURES_ANIMATION --------|
 
@@ -853,8 +856,7 @@ void				display_hp(t_window *window, t_player *player, int color);
 
 // |----------- DISPLAY_FEATURES_MENU ----------|
 
-int					display_menu(t_game *game, t_window *window,
-						int nb_cases, int is_pause);
+int					display_menu(t_game *game, t_window *window, int is_pause);
 
 // |----------- DISPLAY_FEATURES_QTE_LAUNCH ---------|
 
@@ -1113,12 +1115,6 @@ void				init_sprites_animations(t_game *game, t_sprite *sprite,
 void				init_sprites_assets_collectibles(t_game *game,
 						t_sprites_assets *assets);
 
-// |----------- INIT_SPRITES_ASSETS_HELPER -----------|
-
-void				init_assets_sprites_helper(t_game *game,
-						t_sprites_assets *assets);
-
-
 // |----------- INIT_SPRITES_ASSETS_HELPER_OTHERS -----------|
 
 void				init_sprites_assets_others(t_game *game,
@@ -1201,6 +1197,11 @@ void				init_gameplay(t_game *game, int *available_character,
 void				init_one_text_box(t_game *game, t_window *window,
 						t_gameplay *gameplay, t_text_box *text_box);
 
+// |---------- INIT_GAMEPLAY_PERSONAGE_ANIMATION ----------|
+
+t_avatar_animation	*init_avatar_animation(t_game *game,
+						t_sprites_assets *assets);
+
 // |----------- INIT_GAMPEPLAY_PLAYER ----------|
 
 void				init_player(t_game *game, t_player *player,
@@ -1212,14 +1213,14 @@ void				init_explosion_pos(t_game *game, t_bomb *bomb, bool alloc);
 void				put_unavailable_character_on_map(t_game *game,
 						t_gameplay *gameplay);
 
-// |----------- INIT_SPRITES_ARRENGEMENT -----------|
-
-void				get_wall_image(t_game *game, t_sprite **sprite, int pos);
-
 // |----------- INIT_SPRITES_MAIN ----------|
 
 void				init_sprites(t_game *game);
 void				init_sprite(t_img *image_asset, t_sprite *sprite, int size);
+
+// |----------- INIT_SPRITES_ORGANIZATION -----------|
+
+void				get_wall_image(t_game *game, t_sprite **sprite, int pos);
 
 // |================================================|
 // |					SRC_PARSING					|
@@ -1240,7 +1241,7 @@ t_lst_map			*ft_lstlast(t_lst_map *lst);
 char				*line_to_tab(char *line);
 char				*char_2d_to_1d(char **map_2d, int x, int y);
 
-// |----------- PARSE_MAP_UTILS_check_MAP ----------|
+// |----------- PARSE_MAP_UTILS_CHECK_MAP ----------|
 
 int					is_ber(char *file_name);
 int					is_closed(char **map, int x, int y);

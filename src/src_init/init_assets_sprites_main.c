@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:19:31 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 17:30:04 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 18:25:40 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	init_sprites_assets(t_game *game)
 	if (!assets)
 		exit_game(*game, "Error of malloc.\n");
 	game->assets = assets;
-	// init_sprites_assets_sprites_helper(game, assets);
 	init_sprites_assets_walls(game, assets);
 	init_sprites_assets_ui_text_box(game, assets);
 	init_sprites_assets_player(game, assets);

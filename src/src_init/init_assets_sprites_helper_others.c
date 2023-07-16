@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:43:27 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 17:28:40 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 18:30:07 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ static void	init_sprite_assets_guards(t_game *game, t_sprites_assets *assets)
 static void	init_sprite_assets_big_images(t_game *game,
 	t_sprites_assets *assets)
 {
+	init_one_sprite_asset(game, &assets->title_screen,
+		(t_init_sprite_asset_args){PATH_TITLE_SCREEN, FRAME_TITLE_SCREEN,
+		(t_vector_2){WINDOW_WIDTH, WINDOW_HEIGHT}});
 	init_one_sprite_asset(game, &assets->tutorial,
 		(t_init_sprite_asset_args){PATH_TUTORIAL, FRAME_TUTORIAL,
 		(t_vector_2){WINDOW_WIDTH, WINDOW_HEIGHT}});

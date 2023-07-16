@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 16:23:33 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/16 17:47:43 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 21:15:00 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,11 @@ int	get_guard_idle_frame(t_guard *guard)
 	return (0);
 }
 
-t_sprite	*get_guard_move_animation(t_guard *guard,
-	t_personage_animation *animation)
+t_sprite	*get_guard_move_animation(t_game *game, t_guard *guard,
+	t_avatar_animation *animation)
 {
+	if (game->gameplay->is_stop || game->gameplay->is_pause)
+		return (guard->guard_sprite);
 	if (guard->guard_f_dir.x == 0 && guard->guard_f_dir.y == 0)
 		return (animation[4].idle);
 	if (guard->guard_look_dir.x == 1)
@@ -60,9 +62,11 @@ t_sprite	*get_guard_move_animation(t_guard *guard,
 	return (animation[4].idle);
 }
 
-t_sprite	*get_player_move_animation(t_player *player,
-	t_personage_animation *animation)
+t_sprite	*get_player_move_animation(t_game *game, t_player *player,
+	t_avatar_animation *animation)
 {
+	if (game->gameplay->is_stop || game->gameplay->is_pause)
+		return (get_frame(animation[player->player_character].idle));
 	if (player->player_dir.x == 0 && player->player_dir.y == 0)
 		return (get_frame(animation[player->player_character].idle));
 	if (player->player_look_dir.x == 1)

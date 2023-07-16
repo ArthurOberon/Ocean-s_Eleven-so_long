@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:15:42 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 18:22:34 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 18:36:24 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ int	display_tutorial(t_game *game, t_gameplay *gameplay,
 	// not commented
 	if (tutorial_status == -1)
 		return (0);
-	// sprite = window->map_sprites[game->level->nb_cases + e_tutorial];
 	sprite = game->assets->tutorial;
 	memcpy_img(&window->img, (t_vector_2){0, 0},
-		&(sprite->sprite_img[sprite->frame]),
+		&(sprite->sprite_img[gameplay->tutorial_status]),
 		(t_vector_2[2]){{0, 0}, {0, 0}});
 	display_dialogue(game, game->gameplay->dialogue);
 	mlx_put_image_to_window(window->mlx_ptr, window->win_ptr,
@@ -38,7 +37,7 @@ int	display_title_screen(t_game *game, t_window *window,
 
 	if (is_title_screen == 1)
 	{
-	sprite = game->assets->tutorial;
+	sprite = game->assets->title_screen;
 		memcpy_img(&window->img, (t_vector_2){0, 0},
 			&(sprite->sprite_img[0]),
 			(t_vector_2[2]){{0, 0}, {0, 0}});

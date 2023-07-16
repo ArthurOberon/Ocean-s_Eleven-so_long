@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:54:13 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 18:56:26 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 21:24:08 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ static void	exit_animation(t_gameplay *gameplay, t_sprite *sprite)
 {
 	if (gameplay->nb_collect_remain != 0)
 		return ;
+	if (sprite->frame == sprite->size - 1)
+		return ;
 	update_frame(sprite);
 }
 
-static void	open_collectible_animation(t_game *game, t_gameplay *gameplay,
-	t_sprite *sprite, int chunk_pos)
+static void	open_collectible_animation(t_game *game, t_sprite *sprite,
+	int chunk_pos)
 {
 	update_frame(sprite);
 	if (sprite->frame == sprite->size - 1)
@@ -38,7 +40,7 @@ void	get_animation(t_game *game, t_gameplay *gameplay, t_sprite *sprite,
 	if (character == 'E')
 		exit_animation(gameplay, sprite);
 	else if (character == 'O')
-		open_collectible_animation(game, gameplay, sprite, chunk_pos);
+		open_collectible_animation(game, sprite, chunk_pos);
 	else
 		update_frame(sprite);
 }

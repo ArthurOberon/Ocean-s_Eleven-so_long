@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 17:28:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/16 17:51:41 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 21:15:00 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@
  * @param guard guard struct, used to get the guard position.
  * @param sprite sprite struct, used to get the sprite of the guard.
  */
-static void	display_one_guard(t_window *window, t_guard guard,
-	t_personage_animation *animation)
+static void	display_one_guard(t_game *game, t_window *window, t_guard guard,
+	t_avatar_animation *animation)
 {
+	// not commented
 	(&guard)->guard_sprite->frame = get_guard_idle_frame(&guard);
-	guard.guard_sprite = get_guard_move_animation(&guard, animation);
+	guard.guard_sprite = get_guard_move_animation(game, &guard, animation);
 	display_one_sprite_with_transparency(window, guard.guard_sprite,
 		guard.guard_pos);
 }
@@ -97,7 +98,7 @@ void	display_guards(t_game *game, t_gameplay *gameplay, t_window *window,
 			true_pos = get_display_guard_pos(game, &guards[i]);
 			if (gameplay->is_pause == false && gameplay->is_stop == false)
 				turn_guards(&guards[i]);
-			display_one_guard(window, guards[i],
+			display_one_guard(game, window, guards[i],
 				game->gameplay->personage_animation);
 			display_one_guard_fov(window, guards[i], game->assets->guard_fov,
 				gameplay->player);

@@ -6,22 +6,22 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:37:28 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/16 16:52:33 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 21:15:00 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_personage_animation	*init_personage_animation(t_game *game,
+t_avatar_animation	*init_avatar_animation(t_game *game,
 	t_sprites_assets *assets)
 {
-	t_personage_animation	*personage_animation;
+	t_avatar_animation	*personage_animation;
 
 	// not commented
-	personage_animation = ft_calloc(sizeof(t_personage_animation), 5);
+	personage_animation = ft_calloc(sizeof(t_avatar_animation), 5);
 	if (!personage_animation)
 		exit_game(*game, "Error of malloc.\n");
-	personage_animation[0]->idle = assets->player_danny_idle;
+	personage_animation[0].idle = assets->player_danny_idle;
 	personage_animation[0].move_up = assets->player_danny_move_up;
 	personage_animation[0].move_down = assets->player_danny_move_down;
 	personage_animation[0].move_left = assets->player_danny_move_left;

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 10:39:03 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 18:51:26 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 21:19:21 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static t_sprite	*get_right_open_animation(t_game *game, int code)
 {
-	return (game->assets->alphabet);
 	if (code == 0)
 		return (game->assets->collectible_open_0);
 	else if (code == 1)
@@ -80,12 +79,7 @@ void	init_collectible(t_game *game, t_gameplay *gameplay,
 		collectible[i].state = COLLECTABLE;
 		collectible[i].sprite_open_animation = get_right_open_animation(game,
 				collectible[i].code);
-		// collectible[i].sprite_open_animation = game->assets->qte;
 		collectible[i].pos = get_collectible_pos(game, i);
-		// printf("pos : %d\n", collectible[i].pos);
-		// printf("code : %d\n", collectible[i].code);
-		// printf("sprite : [%p]\n", collectible[i].sprite_open_animation);
 		i++;
 	}
-	printf("\n");
 }

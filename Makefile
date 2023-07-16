@@ -64,17 +64,17 @@ SRC_GAMEPLAY		=	$(addprefix src_gameplay/, \
 						gameplay_restart_game.c \
 						gameplay_features_bomb.c \
 						gameplay_collider_tools.c \
-						gameplay_move_animation.c \
 						gameplay_move_guard_main.c \
 						gameplay_move_player_main.c \
 						gameplay_move_guard_tools.c \
 						gameplay_move_player_tools.c \
 						gameplay_collider_positions.c \
 						gameplay_collider_check_tile.c \
-						gameplay_move_player_animation.c \
 						gameplay_player_to_character_main.c \
 						gameplay_player_to_character_functions.c \
 						)
+# gameplay_move_animation.c \
+# gameplay_move_player_animation.c \
 
 # SOURCES USE FOR GET_NEXT_LINE
 SRC_GNL				=	$(addprefix src_gnl/, \
@@ -104,16 +104,16 @@ SRC_INIT		=	$(addprefix src_init/, \
 						init_gameplay_player.c \
 						init_gameplay_all_texts.c \
 						init_available_character.c \
-						init_sprites_arrengement.c \
 						init_assets_sprites_main.c \
+						init_sprites_organization.c \
 						init_gameplay_collectible.c \
 						init_assets_sprites_tools.c \
 						init_assets_sprites_images.c \
-						init_assets_sprites_helper.c \
 						init_gameplay_random_elements.c \
 						init_assets_sprites_animations.c \
 						init_assets_sprites_helper_walls.c \
 						init_assets_sprites_helper_player.c \
+						init_gameplay_personage_animation.c \
 						init_assets_sprites_helper_others.c \
 						init_assets_sprites_helper_ui_text_box.c \
 						init_assets_sprites_helper_collectibles.c \

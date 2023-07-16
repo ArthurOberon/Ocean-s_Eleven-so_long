@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 18:17:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/23 11:22:55 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 20:49:08 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,16 @@ static void	display_characters_on_map(t_game *game, t_window *window, int i)
 
 	sprite = NULL;
 	if (game->level->map[i] == 'D')
-		sprite = window->map_sprites[game->level->nb_cases + e_main];
+		sprite = game->assets->player_danny_idle;
 	else if (game->level->map[i] == 'R')
-		sprite = window->map_sprites[game->level->nb_cases + e_eater];
+		sprite = game->assets->player_rusty_idle;
 	else if (game->level->map[i] == 'L')
-		sprite = window->map_sprites[game->level->nb_cases + e_thief];
+		sprite = game->assets->player_linus_idle;
 	else if (game->level->map[i] == 'B')
-		sprite = window->map_sprites[game->level->nb_cases + e_bomber];
+		sprite = game->assets->player_basher_idle;
 	if (sprite != NULL)
 	{
+		update_frame(sprite);
 		display_one_character_on_map(game, window, sprite, i);
 	}
 }

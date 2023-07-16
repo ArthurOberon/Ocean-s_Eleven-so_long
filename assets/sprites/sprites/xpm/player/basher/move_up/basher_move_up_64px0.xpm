@@ -3,7 +3,7 @@ static char * basher_move_up_64px0_xpm[] = {
 "64 64 9 1",
 " 	c None",
 ".	c #000000",
-"+	c #432A19",
+"+	c #181819",
 "@	c #70351F",
 "#	c #9F3C19",
 "$	c #F6D6BA",

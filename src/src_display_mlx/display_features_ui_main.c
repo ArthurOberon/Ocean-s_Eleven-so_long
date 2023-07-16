@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 02:08:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 19:12:27 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 20:07:15 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ static void	display_one_character_on_bar_selection(t_game *game,
 			&(sprite->sprite_img)[0]);
 	else
 		put_image_to_image(&game->window->img, pos_display,
-			&(game->window->map_sprites[game->level->nb_cases
-				+ e_avatar_character]->sprite_img)[0]);
+			&(game->assets->avatar_character->sprite_img)[0]);
 }
 
 /**
