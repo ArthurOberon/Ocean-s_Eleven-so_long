@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 23:48:42 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/09 23:56:51 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 22:36:13 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,8 @@ static void	randomize_sprite(t_sprite *sprite)
 void	init_sprites_animations(t_game *game, t_sprite *sprite, char character)
 {
 	// not commented
-	if (character == '1' || character == 'C')
+	if (character == '2' || character == 'C')
 	{
 		randomize_sprite(sprite);
 	}
-	// else
-	// {
-	// 	sprite->frame = 0;
-	// }
 }

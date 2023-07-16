@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_sprites_arrengement.c                         :+:      :+:    :+:   */
+/*   init_sprites_organization.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:03:04 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 17:07:58 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 22:37:39 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 static void	get_random_inside_wall_image(t_game *game, t_sprite **sprite)
 {
 	if (rand() % 101 > 50)
-		*sprite = game->assets->wall_roulette;
+		sprite_cpy(*sprite, game->assets->wall_roulette);
 	else
-		*sprite = game->assets->wall_blackjack;
+		sprite_cpy(*sprite, game->assets->wall_blackjack);
 }
 
 /**

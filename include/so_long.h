@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/16 21:58:33 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 22:37:31 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1217,6 +1217,7 @@ void				put_unavailable_character_on_map(t_game *game,
 // |----------- INIT_SPRITES_MAIN ----------|
 
 void				init_sprites(t_game *game);
+void				sprite_cpy(t_sprite *new, t_sprite *src);
 void				init_sprite(t_img *image_asset, t_sprite *sprite, int size);
 
 // |----------- INIT_SPRITES_ORGANIZATION -----------|
