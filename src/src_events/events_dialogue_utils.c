@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   text_box_events_utils.c                            :+:      :+:    :+:   */
+/*   events_dialogue_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 22:17:32 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/07 22:17:33 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 22:01:50 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,20 @@ void	get_text_box_events_remain_one_collectible(t_game *game,
 	{
 		if (gameplay->player->player_character == e_main)
 			add_one_text_to_dialogue(game, &gameplay->dialogue,
-				&gameplay->all_texts[e_text_remain_one_collectible_danny]);
+				&gameplay->all_texts[e_text_remain_one_collectible_danny],
+				e_main);
 		else if (gameplay->player->player_character == e_eater)
 			add_one_text_to_dialogue(game, &gameplay->dialogue,
-				&gameplay->all_texts[e_text_remain_one_collectible_rusty]);
+				&gameplay->all_texts[e_text_remain_one_collectible_rusty],
+				e_eater);
 		else if (gameplay->player->player_character == e_thief)
 			add_one_text_to_dialogue(game, &gameplay->dialogue,
-				&gameplay->all_texts[e_text_remain_one_collectible_linus]);
+				&gameplay->all_texts[e_text_remain_one_collectible_linus],
+				e_thief);
 		else if (gameplay->player->player_character == e_bomber)
 			add_one_text_to_dialogue(game, &gameplay->dialogue,
-				&gameplay->all_texts[e_text_remain_one_collectible_basher]);
+				&gameplay->all_texts[e_text_remain_one_collectible_basher],
+				e_bomber);
 		else
 			return ;
 		set_all_texts_remain_one_collectible(gameplay->all_texts, true);
@@ -83,16 +87,20 @@ void	get_text_box_events_remain_zero_collectible(t_game *game,
 	{
 		if (gameplay->player->player_character == e_main)
 			add_one_text_to_dialogue(game, &gameplay->dialogue,
-				&gameplay->all_texts[e_text_remain_zero_collectible_danny]);
+				&gameplay->all_texts[e_text_remain_zero_collectible_danny],
+				e_main);
 		if (gameplay->player->player_character == e_eater)
 			add_one_text_to_dialogue(game, &gameplay->dialogue,
-				&gameplay->all_texts[e_text_remain_zero_collectible_rusty]);
+				&gameplay->all_texts[e_text_remain_zero_collectible_rusty],
+				e_eater);
 		if (gameplay->player->player_character == e_thief)
 			add_one_text_to_dialogue(game, &gameplay->dialogue,
-				&gameplay->all_texts[e_text_remain_zero_collectible_linus]);
+				&gameplay->all_texts[e_text_remain_zero_collectible_linus],
+				e_thief);
 		if (gameplay->player->player_character == e_bomber)
 			add_one_text_to_dialogue(game, &gameplay->dialogue,
-				&gameplay->all_texts[e_text_remain_zero_collectible_basher]);
+				&gameplay->all_texts[e_text_remain_zero_collectible_basher],
+				e_bomber);
 		else
 			return ;
 		set_all_texts_remain_zero_collectible(gameplay->all_texts, true);

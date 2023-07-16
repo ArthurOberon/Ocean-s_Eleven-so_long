@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_player_to_character_functions.c                :+:      :+:    :+:   */
+/*   gameplay_player_to_character_functions.c           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 17:35:44 by arthurobero       #+#    #+#             */
-/*   Updated: 2023/06/07 22:26:08 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 22:04:07 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +31,27 @@ void	set_player_to_main(t_game *game, t_gameplay *gameplay,
 	t_player *player)
 {
 	set_player_main_hp(player);
+	player->player_character = e_main;
 	if (player->player_character == e_eater)
 	{
 		add_one_text_to_dialogue(game, &gameplay->dialogue,
-			&gameplay->all_texts[e_text_rusty_to_danny_1]);
-		player->player_character = e_main;
+			&gameplay->all_texts[e_text_rusty_to_danny_1], e_eater);
 		add_one_text_to_dialogue(game, &gameplay->dialogue,
-			&gameplay->all_texts[e_text_rusty_to_danny_2]);
+			&gameplay->all_texts[e_text_rusty_to_danny_2], e_main);
 	}
 	else if (player->player_character == e_thief)
 	{
 		add_one_text_to_dialogue(game, &gameplay->dialogue,
-			&gameplay->all_texts[e_text_linus_to_danny_1]);
-		player->player_character = e_main;
+			&gameplay->all_texts[e_text_linus_to_danny_1], e_thief);
 		add_one_text_to_dialogue(game, &gameplay->dialogue,
-			&gameplay->all_texts[e_text_linus_to_danny_2]);
+			&gameplay->all_texts[e_text_linus_to_danny_2], e_main);
 	}
 	else if (player->player_character == e_bomber)
 	{
 		add_one_text_to_dialogue(game, &gameplay->dialogue,
-			&gameplay->all_texts[e_text_basher_to_danny_1]);
-		player->player_character = e_main;
+			&gameplay->all_texts[e_text_basher_to_danny_1], e_bomber);
 		add_one_text_to_dialogue(game, &gameplay->dialogue,
-			&gameplay->all_texts[e_text_basher_to_danny_2]);
+			&gameplay->all_texts[e_text_basher_to_danny_2], e_main);
 	}
 }
 
@@ -68,29 +66,27 @@ void	set_player_to_eater(t_game *game, t_gameplay *gameplay,
 	t_player *player)
 {
 	player->hp = 1;
+	player->player_character = e_eater;
 	if (player->player_character == e_main)
 	{
 		add_one_text_to_dialogue(game, &gameplay->dialogue,
-			&gameplay->all_texts[e_text_danny_to_rusty_1]);
-		player->player_character = e_eater;
+			&gameplay->all_texts[e_text_danny_to_rusty_1], e_main);
 		add_one_text_to_dialogue(game, &gameplay->dialogue,
-			&gameplay->all_texts[e_text_danny_to_rusty_2]);
+			&gameplay->all_texts[e_text_danny_to_rusty_2], e_eater);
 	}
 	else if (player->player_character == e_thief)
 	{
 		add_one_text_to_dialogue(game, &gameplay->dialogue,
-			&gameplay->all_texts[e_text_linus_to_rusty_1]);
-		player->player_character = e_eater;
+			&gameplay->all_texts[e_text_linus_to_rusty_1], e_thief);
 		add_one_text_to_dialogue(game, &gameplay->dialogue,
-			&gameplay->all_texts[e_text_linus_to_rusty_2]);
+			&gameplay->all_texts[e_text_linus_to_rusty_2], e_eater);
 	}
 	else if (player->player_character == e_bomber)
 	{
 		add_one_text_to_dialogue(game, &gameplay->dialogue,
-			&gameplay->all_texts[e_text_basher_to_rusty_1]);
-		player->player_character = e_eater;
+			&gameplay->all_texts[e_text_basher_to_rusty_1], e_bomber);
 		add_one_text_to_dialogue(game, &gameplay->dialogue,
-			&gameplay->all_texts[e_text_basher_to_rusty_2]);
+			&gameplay->all_texts[e_text_basher_to_rusty_2], e_eater);
 	}
 }
 
@@ -105,29 +101,27 @@ void	set_player_to_thief(t_game *game, t_gameplay *gameplay,
 	t_player *player)
 {
 	player->hp = 1;
+	player->player_character = e_thief;
 	if (player->player_character == e_main)
 	{
 		add_one_text_to_dialogue(game, &gameplay->dialogue,
-			&gameplay->all_texts[e_text_danny_to_linus_1]);
-		player->player_character = e_thief;
+			&gameplay->all_texts[e_text_danny_to_linus_1], e_main);
 		add_one_text_to_dialogue(game, &gameplay->dialogue,
-			&gameplay->all_texts[e_text_danny_to_linus_2]);
+			&gameplay->all_texts[e_text_danny_to_linus_2], e_thief);
 	}
 	else if (player->player_character == e_eater)
 	{
 		add_one_text_to_dialogue(game, &gameplay->dialogue,
-			&gameplay->all_texts[e_text_rusty_to_linus_1]);
-		player->player_character = e_thief;
+			&gameplay->all_texts[e_text_rusty_to_linus_1], e_eater);
 		add_one_text_to_dialogue(game, &gameplay->dialogue,
-			&gameplay->all_texts[e_text_rusty_to_linus_2]);
+			&gameplay->all_texts[e_text_rusty_to_linus_2], e_thief);
 	}
 	else if (player->player_character == e_bomber)
 	{
 		add_one_text_to_dialogue(game, &gameplay->dialogue,
-			&gameplay->all_texts[e_text_basher_to_linus_1]);
-		player->player_character = e_thief;
+			&gameplay->all_texts[e_text_basher_to_linus_1], e_bomber);
 		add_one_text_to_dialogue(game, &gameplay->dialogue,
-			&gameplay->all_texts[e_text_basher_to_linus_2]);
+			&gameplay->all_texts[e_text_basher_to_linus_2], e_thief);
 	}
 }
 
@@ -142,28 +136,26 @@ void	set_player_to_bomber(t_game *game, t_gameplay *gameplay,
 	t_player *player)
 {
 	player->hp = 1;
+	player->player_character = e_bomber;
 	if (player->player_character == e_main)
 	{
 		add_one_text_to_dialogue(game, &gameplay->dialogue,
-			&gameplay->all_texts[e_text_danny_to_basher_1]);
-		player->player_character = e_bomber;
+			&gameplay->all_texts[e_text_danny_to_basher_1], e_main);
 		add_one_text_to_dialogue(game, &gameplay->dialogue,
-			&gameplay->all_texts[e_text_danny_to_basher_2]);
+			&gameplay->all_texts[e_text_danny_to_basher_2], e_bomber);
 	}
 	else if (player->player_character == e_eater)
 	{
 		add_one_text_to_dialogue(game, &gameplay->dialogue,
-			&gameplay->all_texts[e_text_rusty_to_basher_1]);
-		player->player_character = e_bomber;
+			&gameplay->all_texts[e_text_rusty_to_basher_1], e_eater);
 		add_one_text_to_dialogue(game, &gameplay->dialogue,
-			&gameplay->all_texts[e_text_rusty_to_basher_2]);
+			&gameplay->all_texts[e_text_rusty_to_basher_2], e_bomber);
 	}
 	else if (player->player_character == e_thief)
 	{
 		add_one_text_to_dialogue(game, &gameplay->dialogue,
-			&gameplay->all_texts[e_text_linus_to_basher_1]);
-		player->player_character = e_bomber;
+			&gameplay->all_texts[e_text_linus_to_basher_1], e_thief);
 		add_one_text_to_dialogue(game, &gameplay->dialogue,
-			&gameplay->all_texts[e_text_linus_to_basher_2]);
+			&gameplay->all_texts[e_text_linus_to_basher_2], e_bomber);
 	}
 }

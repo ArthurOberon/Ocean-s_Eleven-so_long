@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/16 21:23:42 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 21:58:33 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -928,7 +928,8 @@ void				get_text_box_events_remain_one_collectible(t_game *game,
 // |----------- EVENTS_DIALOGUE_TOOLS ----------|
 
 void				add_one_text_to_dialogue(t_game *game,
-						t_texts_box_list **texts_box_list, t_text *text);
+						t_texts_box_list **texts_box_list, t_text *text,
+						int talking_character);
 
 // |----------- TEXTS_BOX_LIST_UTILS_FREE ----------|
 
@@ -1194,8 +1195,8 @@ void				init_guards(t_game *game, t_guard *guards);
 void				init_gameplay(t_game *game, int *available_character,
 						int chosen_character);
 
-void				init_one_text_box(t_game *game, t_window *window,
-						t_gameplay *gameplay, t_text_box *text_box);
+void				init_one_text_box(t_game *game, t_gameplay *gameplay,
+						t_text_box *text_box, int talking_character);
 
 // |---------- INIT_GAMEPLAY_PERSONAGE_ANIMATION ----------|
 

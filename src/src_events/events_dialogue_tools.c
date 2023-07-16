@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   text_box.c                                         :+:      :+:    :+:   */
+/*   events_dialogue_tools.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 18:00:00 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/07 22:30:54 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 21:58:01 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ static void	set_text_box(t_game *game, t_text_box *text_box, char *text)
  * @param text text struct to add.
  */
 void	add_one_text_to_dialogue(t_game *game,
-	t_texts_box_list **texts_box_list, t_text *text)
+	t_texts_box_list **texts_box_list, t_text *text, int talking_character)
 {
 	t_texts_box_list	*new;
 	t_text_box			*text_box;
@@ -121,7 +121,7 @@ void	add_one_text_to_dialogue(t_game *game,
 		text_box = ft_calloc(sizeof(t_text_box), 1);
 		if (!text_box)
 			exit_game(*game, "Error of malloc.\n");
-		init_one_text_box(game, game->window, game->gameplay, text_box);
+		init_one_text_box(game, game->gameplay, text_box, talking_character);
 		set_text_box(game, text_box, text->text);
 		text->has_been_display = true;
 		new = ft_lstnew_texts_box(text_box);

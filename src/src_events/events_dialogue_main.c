@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 22:13:36 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 16:35:48 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 22:00:13 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	display_victory_text(t_game *game, int *victory_text_status)
 	if (*victory_text_status == 1)
 	{
 		add_one_text_to_dialogue(game, &game->gameplay->dialogue,
-			&game->gameplay->all_texts[e_text_code]);
+			&game->gameplay->all_texts[e_text_code],
+			game->gameplay->player->player_character);
 		display_dialogue(game, game->gameplay->dialogue);
 		mlx_put_image_to_window(game->window->mlx_ptr, game->window->win_ptr,
 			game->window->img.mlx_img, 0, 0);
@@ -51,7 +52,7 @@ void	set_tutorial_text_box(t_game *game)
 			= false;
 		add_one_text_to_dialogue(game, &game->gameplay->dialogue,
 			&game->gameplay->all_texts
-		[e_text_tutorial_1 + i]);
+		[e_text_tutorial_1 + i], e_main);
 		i++;
 	}
 }
@@ -66,22 +67,22 @@ void	set_text_box_events_start(t_game *game)
 	if (game->gameplay->player->player_character == e_main)
 	{
 		add_one_text_to_dialogue(game, &game->gameplay->dialogue,
-			&game->gameplay->all_texts[e_text_start_danny]);
+			&game->gameplay->all_texts[e_text_start_danny], e_main);
 	}
 	else if (game->gameplay->player->player_character == e_eater)
 	{
 		add_one_text_to_dialogue(game, &game->gameplay->dialogue,
-			&game->gameplay->all_texts[e_text_start_rusty]);
+			&game->gameplay->all_texts[e_text_start_rusty], e_eater);
 	}
 	else if (game->gameplay->player->player_character == e_thief)
 	{
 		add_one_text_to_dialogue(game, &game->gameplay->dialogue,
-			&game->gameplay->all_texts[e_text_start_linus]);
+			&game->gameplay->all_texts[e_text_start_linus], e_thief);
 	}
 	else if (game->gameplay->player->player_character == e_bomber)
 	{
 		add_one_text_to_dialogue(game, &game->gameplay->dialogue,
-			&game->gameplay->all_texts[e_text_start_basher]);
+			&game->gameplay->all_texts[e_text_start_basher], e_bomber);
 	}
 }
 

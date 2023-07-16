@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/16 21:15:00 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 21:56:14 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ static void	init_text_box_display_variables(t_game *game, t_text_box *text_box,
 	text_box->pos_display_text = text_box->pos_display_face;
 	text_box->pos_display_text.x += sprite_face->sprite_img->size.x;
 	text_box->size_one_alphabet = game->assets->alphabet->sprite_img->size.x;
-		// = game->window->map_sprites[game->level->nb_cases
-		// + e_alphabet]->sprite_img->size.x;
 	text_box->characters_max.x = (background->sprite_img->size.x
 			- text_box->pos_display_text.x) / text_box->size_one_alphabet;
 	text_box->characters_max.y = (background->sprite_img->size.y
@@ -89,22 +87,22 @@ static void	init_text_box_display_variables(t_game *game, t_text_box *text_box,
  * @param gameplay gameplay struct, used to get the player struct.
  * @param text_box text_box struct to initialize.
  */
-void	init_one_text_box(t_game *game, t_window *window, t_gameplay *gameplay,
-	t_text_box *text_box)
+void	init_one_text_box(t_game *game, t_gameplay *gameplay,
+	t_text_box *text_box, int talking_character)
 {
 	t_sprite	*background;
 	t_sprite	*sprite_face;
 
-	// background = window->map_sprites[game->level->nb_cases + e_background_text];
+	// not commented
 	background = game->assets->background_text;
-	sprite_face = window->map_sprites[game->level->nb_cases
+	sprite_face = game->window->map_sprites[game->level->nb_cases
 		+ gameplay->player->player_character];
 	init_text_box_display_variables(game, text_box, background, sprite_face);
 	text_box->is_display = false;
 	text_box->read_all = false;
 	text_box->page_number = 0;
 	text_box->page_in = 0;
-	text_box->talking_character = gameplay->player->player_character;
+	text_box->talking_character = talking_character;
 	text_box->text = NULL;
 	text_box->text_pages = NULL;
 }
