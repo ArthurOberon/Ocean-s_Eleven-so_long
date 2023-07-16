@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:27:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 18:14:05 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 16:49:50 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	handle_keypress(int keysym, t_game *game)
 		return (handle_title_screen(keysym, game));
 	if (game->gameplay->tutorial_status != -1)
 		return (handle_tutorial(keysym, game));
-	if (game->gameplay->is_end == true)
+	if (game->gameplay->is_end != 0)
 		return (handle_end_screen(keysym, game));
 	handle_out_game_features(keysym, game);
 	if (game->gameplay->is_pause == 1)

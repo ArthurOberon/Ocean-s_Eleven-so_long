@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_guard.c                                       :+:      :+:    :+:   */
+/*   init_gameplay_guard.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 15:39:49 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 14:04:27 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 17:38:50 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static void	init_one_guard_variables(t_game *game, t_guard *guard, int number)
 	guard->is_alive = true;
 	guard->is_pickpocketable = true;
 	guard->is_in_player = false;
+	guard->guard_sprite = game->assets->guard_idle;
 	guard->time = (struct timeval){0, 0};
 	guard->last_time = (struct timeval){0, 0};
 	guard->chase_start_time = (struct timeval){0, 0};

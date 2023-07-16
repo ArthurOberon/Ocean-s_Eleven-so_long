@@ -42,6 +42,7 @@ SRC_DISPLAY			=	$(addprefix src_display_mlx/, \
 					 	display_features_guards_main.c \
 					 	display_features_dialogue_main.c \
 					 	display_features_ending_screen.c \
+						display_features_animation_move.c \
 					 	display_features_guards_turn_fov.c \
 						display_features_character_on_map.c \
 					 	display_features_dialogue_text_box.c \

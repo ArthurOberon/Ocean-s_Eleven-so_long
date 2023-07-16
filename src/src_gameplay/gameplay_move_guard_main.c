@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_guard.c                                       :+:      :+:    :+:   */
+/*   gameplay_move_guard_main.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 22:27:25 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/07 00:45:38 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 17:52:31 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ void	move_guard(t_game *game, t_guard *guard, t_player *player)
 
 	sprite = game->window->map_sprites[game->level->nb_cases
 		+ e_guards];
-	if (guard->guard_pos.x == 0 && guard->guard_pos.y == 0)
-		return ;
 	move.x = 0;
 	move.y = 0;
 	move_guard_on_x(game, guard, &move);
@@ -83,4 +81,3 @@ void	move_guard(t_game *game, t_guard *guard, t_player *player)
 	set_guard_look_dir(guard, player, move);
 	set_guard_pos(game, guard, move);
 }
-	// move_animation(guard->guard_look_dir, sprite);

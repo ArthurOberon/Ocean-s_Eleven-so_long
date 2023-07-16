@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 21:36:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/29 12:32:34 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 16:45:53 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,4 +129,5 @@ void	init_player(t_game *game, t_player *player, int chosen_character)
 	player->iframes_flashing = 0;
 	player->iframes_start_time = (struct timeval){0, 0};
 	player->iframes_time = (struct timeval){0, 0};
+	player->player_sprite = NULL;
 }

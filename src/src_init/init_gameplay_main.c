@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 19:41:58 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 16:42:01 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,10 +137,14 @@ static void	init_gameplay_small_variables(t_game *game, t_gameplay *gameplay)
 
 
 
-t_personage_animation	*init_personage_animation(t_sprites_assets *assets)
+t_personage_animation	*init_personage_animation(t_game *game,
+	t_sprites_assets *assets)
 {
-	t_personage_animation	personage_animation[5];
+	t_personage_animation	*personage_animation;
 
+	personage_animation = ft_calloc(sizeof(t_personage_animation), 5);
+	if (!personage_animation)
+		exit_game(*game, "Error of malloc.\n");
 	personage_animation[0].idle = assets->player_danny_idle;
 	personage_animation[0].move_up = assets->player_danny_move_up;
 	personage_animation[0].move_down = assets->player_danny_move_down;
@@ -191,7 +195,7 @@ void	init_gameplay(t_game *game, int *available_character,
 
 	gameplay = ft_calloc(sizeof(t_gameplay), 1);
 	if (!gameplay)
-		exit_game(*game, "Error of malloc\n");
+		exit_game(*game, "Error of malloc.\n");
 	game->gameplay = gameplay;
 	init_gameplay_small_variables(game, gameplay);
 	gameplay->available_character[0] = available_character[0];
@@ -209,7 +213,8 @@ void	init_gameplay(t_game *game, int *available_character,
 	init_collectible(game, gameplay, gameplay->collectible,
 		gameplay->collectible_code);
 	// printf("pos : %d\n", gameplay->collectible[0].pos);
-	gameplay->personage_animation = init_personage_animation(game->assets);
+	gameplay->personage_animation
+		= init_personage_animation(game, game->assets);
 	put_unavailable_character_on_map(game, gameplay);
 	if (IS_DEBUG)
 		debug_chunk_pos(game);

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/30 18:51:32 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 16:56:55 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,10 @@ void	display_sprites(t_game *game, t_camera *camera, t_window *window)
 		display_one_sprite(window, sprite, display_pos);
 		i++;
 	}
+	game->gameplay->player->player_sprite
+		= get_player_move_animation(game->gameplay->player,
+			game->gameplay->personage_animation);
 	display_player(game, window, game->gameplay->player,
-		window->map_sprites[game->level->nb_cases
-		+ game->gameplay->player->player_character]);
+		game->gameplay->player->player_sprite);
 	display_gameplay_features(game, game->gameplay, window);
 }

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 00:14:31 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 18:26:52 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 16:50:08 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	handle_end_screen(int keysym, t_game *game)
 {
 	// not commented
 	if (keysym == XK_Escape || keysym == XK_Q || keysym == XK_q
-		|| keysym == XK_space)
+		|| keysym == XK_space || keysym == XK_Return)
 		close_game(game);
 	return (0);
 }

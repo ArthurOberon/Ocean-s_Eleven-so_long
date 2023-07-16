@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:58:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 17:41:51 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 17:31:25 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ int	display_end_screen(t_game *game, int is_end)
 {
 	if (is_end == 0)
 		return (0);
-	printf("is_end = %d\n", is_end);
 	if (is_end == 1)
 		display_win_screen(game, game->gameplay, game->window);
 	else if (is_end == 2)

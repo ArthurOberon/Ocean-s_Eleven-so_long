@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 20:25:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 19:17:06 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 17:51:54 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,19 @@ static void	change_guard_direction(t_guard *guard)
 	if (guard->chasing_player == true || guard->is_in_player == true)
 		return ;
 	if (!(guard->guard_look_dir.x != 0 && guard->guard_look_dir.y != 0))
+	{
 		standard_change_guard_direction(guard);
+	}
 	else
 	{
 		if (rand() % 101 > 50)
+		{
 			guard->guard_look_dir.x = 0;
+		}
 		else
+		{
 			guard->guard_look_dir.y = 0;
+		}
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 19:36:25 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/16 17:44:19 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -670,6 +670,7 @@ typedef struct s_player
 	t_vector_2			player_pos;
 	t_vector_2			player_chunk_pos;
 	t_f_vector_2		player_f_pos;
+	t_sprite			*player_sprite;
 }	t_player;
 // iframe -> Invincibility Frames
 
@@ -690,6 +691,7 @@ typedef struct s_guard
 	t_vector_2		guard_fov_pos_2;
 	t_f_vector_2	guard_fov_f_pos_1;
 	t_f_vector_2	guard_fov_f_pos_2;
+	t_sprite		*guard_sprite;
 	struct timeval	time;
 	struct timeval	last_time;
 	struct timeval	chase_start_time;
@@ -724,7 +726,7 @@ typedef struct s_gameplay
 	t_vector_2				*chunks_pos;
 	t_player				*player;
 	t_guard					*guards;
-	t_personage_animation	personage_animation[5];
+	t_personage_animation	*personage_animation;
 }	t_gameplay;
 
 typedef struct s_camera
@@ -784,6 +786,15 @@ void				debug_stat_tiles(t_stat_tiles stat);
 // |================================================|
 // |					SRC_DISPLAY					|
 // |================================================|
+
+// |----------- DISPLAY_FEATURES_ANIMATION_MOVE --------|
+
+int					get_guard_idle_frame(t_guard *guard);
+
+t_sprite			*get_guard_move_animation(t_guard *guard,
+						t_personage_animation *animation);
+t_sprite			*get_player_move_animation(t_player *player,
+						t_personage_animation *animation);
 
 // |----------- DISPLAY_FEATURES_ANIMATION --------|
 
