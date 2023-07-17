@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 21:36:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/17 19:27:07 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/17 22:40:33 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,10 @@ static void	init_qte(t_player *player)
 {
 	player->qte.is_pickpocketing = false;
 	player->qte.pressed = false;
-	player->qte.time_to_press = false;
-	player->qte.pressed_in_time = false;
+	player->qte.pressed_within_qte = false;
 	player->qte.loading_frame = 1;
-	player->qte.loading_value = CHUNK_SIZE * 2;
+	player->qte.loading_value = QTE_CHUNK_SIZE;
+	player->qte.pixel_start = 0;
 	player->qte.pickpocket_area.x = player->player_pos.x - CHUNK_SIZE;
 	player->qte.pickpocket_area.y = player->player_pos.y - CHUNK_SIZE;
 	player->qte.pickpocket_size.x = CHUNK_SIZE * 3;

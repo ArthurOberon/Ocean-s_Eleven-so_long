@@ -6,14 +6,14 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 13:58:54 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 17:05:41 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/17 22:40:16 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 /**
- * @brief Handle the pickpocket feature,
+ * @brief Handle the qte feature,
  * launch the qte if the player press SPACE, the player is playing as a thief,
  * and with a guard near him. And stop the qte if the player press DELETE.
  * But don't launch the qte if a dialogue is display.
@@ -21,25 +21,25 @@
  * @param keysym key pressed.
  * @param game game struct, used to get the gameplay struct.
  */
-void	handle_pickpocket(int keysym, t_game *game)
+void	handle_qte(int keysym, t_game *game)
 {
 	if (game->gameplay->player->player_character != e_thief)
 		return ;
 	if (keysym == XK_space)
 	{
 		game->gameplay->player->qte.pressed = true;
-		if (game->gameplay->player->qte.time_to_press == false)
+		if (game->gameplay->player->qte.is_pickpocketing == false)
 		{
-			game->gameplay->player->qte.pressed_in_time = false;
 			game->gameplay->player->qte.is_pickpocketing = true;
 		}
 		else
-			game->gameplay->player->qte.pressed_in_time = true;
+		{
+			game->gameplay->player->qte.pressed_within_qte = true;
+		}
 	}
 	if (keysym == XK_Delete)
 	{
-		game->gameplay->player->qte.time_to_press = false;
-		game->gameplay->player->qte.pressed_in_time = false;
+			game->gameplay->player->qte.pressed_within_qte = false;
 		game->gameplay->player->qte.is_pickpocketing = false;
 	}
 }

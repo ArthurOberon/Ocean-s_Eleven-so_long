@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 10:48:06 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/16 21:25:04 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/17 22:21:06 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,15 @@ static void	get_one_collectible(t_game *game, t_gameplay *gameplay,
 		{
 			gameplay->nb_collect_get += 1;
 			gameplay->nb_collect_remain -= 1;
+			add_collect_to_code(game, gameplay, one_collectible);
+		}
+		else
+		{
+			gameplay->all_texts[e_text_collect_steal_code].has_been_display = false;
+			add_one_text_to_dialogue(game, &gameplay->dialogue,
+				&gameplay->all_texts[e_text_collect_steal_code], game->gameplay->player->player_character);
 		}
 		printf("get code : [%d]\n", one_collectible->code);
-		if (one_collectible->state != COLLECTED_ON_GUARD)
-			add_collect_to_code(game, gameplay, one_collectible);
 	}
 	gameplay->is_display_plus_one = true;
 	if (new_state == COLLECTED)

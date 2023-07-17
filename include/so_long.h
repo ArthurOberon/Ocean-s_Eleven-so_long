@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/17 18:26:42 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/17 23:56:10 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -280,8 +280,9 @@ talking_character_basher_32px"
 
 // |---- QTE ----|
 
-# define DELAY_QTE	3
-# define DELAY_REACTION 1
+# define DELAY_QTE	0.001
+# define QTE_CHUNK_SIZE CHUNK_SIZE * 4
+
 
 // |---- DYNAMITE ----|
 
@@ -398,6 +399,7 @@ enum e_texts
 	e_text_remain_zero_collectible_linus,
 	e_text_remain_one_collectible_basher,
 	e_text_remain_zero_collectible_basher,
+	e_text_collect_steal_code,
 	e_text_code,
 	e_total_text_number,
 };
@@ -616,11 +618,11 @@ typedef struct s_text
 typedef struct s_qte
 {
 	bool				pressed;
-	bool				time_to_press;
-	bool				pressed_in_time;
+	bool				pressed_within_qte;
 	bool				is_pickpocketing;
 	int					loading_frame;
 	int					loading_value;
+	int					pixel_start;
 	t_vector_2			pickpocket_area;
 	t_vector_2			pickpocket_size;
 	struct timeval		start_time;
@@ -906,6 +908,8 @@ __uint32_t			get_color_pixel(t_img *img, int i, int j);
 
 void				display_one_sprite_with_transparency(t_window *window,
 						t_sprite *sprite, t_vector_2 pos);
+void				put_image_to_image_with_limit(t_img *window_img,
+						t_vector_2 pos, t_img *img, t_vector_2 *limit);
 
 // |================================================|
 // |					SRC_EVENT					|
@@ -984,6 +988,12 @@ void				check_collider_positions(t_game *game,
 void				make_bomb_explode(t_game *game, t_bomb bomb);
 void				set_bomb_position(t_bomb *bomb, t_player *player,
 						t_game *game);
+
+// |---------- GAMEPLAY_FEATURES_QTE ----------|
+
+int					get_pressed(t_game *game, t_qte *qte, t_guard *guard);
+
+void				end_qte(t_qte *qte, t_guard *guard, int not_pressed_flag);
 
 // |----------- GAMEPLAY_FEATURES ----------|
 
@@ -1086,7 +1096,7 @@ void				handle_pause_menu(int keysym, t_game *game);
 
 // |---------- HANDLER_PLAYER_FEATURES ---------|
 
-void				handle_pickpocket(int keysym, t_game *game);
+void				handle_qte(int keysym, t_game *game);
 void				handle_change_character_player(int keysym, t_game *game,
 						t_gameplay *gameplay, t_player *player);
 

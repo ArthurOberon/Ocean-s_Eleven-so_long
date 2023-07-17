@@ -62,6 +62,7 @@ SRC_GAMEPLAY		=	$(addprefix src_gameplay/, \
 						gameplay_features.c \
 						gameplay_collectible.c \
 						gameplay_restart_game.c \
+						gameplay_features_qte.c \
 						gameplay_features_bomb.c \
 						gameplay_collider_tools.c \
 						gameplay_move_guard_main.c \

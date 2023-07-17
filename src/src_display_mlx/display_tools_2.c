@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:04:26 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/17 18:56:29 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/17 22:43:45 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  * @param limit limit of the sprite to put,
  * used to avoid put all the image when it's on the edge of the screen.
  */
-static void	put_image_to_image_with_limit(t_img *window_img, t_vector_2 pos,
+void	put_image_to_image_with_limit(t_img *window_img, t_vector_2 pos,
 	t_img *img, t_vector_2 *limit)
 {
 	int			i;

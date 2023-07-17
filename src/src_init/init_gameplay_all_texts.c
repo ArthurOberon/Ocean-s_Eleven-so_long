@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:41:24 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 12:35:11 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/17 22:22:05 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ exploser ?";
 	texts[e_text_rusty_to_basher_2].text = "Bien sur, c'est presque deja fait.";
 	texts[e_text_linus_to_basher_1].text = "Je peux faire quelque chose ?";
 	texts[e_text_linus_to_basher_2].text = "Non. Ne touche a rien.";
+	texts[e_text_collect_steal_code].text = "We already have this code. It already \
+has been stolen.";
 }
 
 /**
