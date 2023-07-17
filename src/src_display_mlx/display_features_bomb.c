@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 15:05:27 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 19:02:43 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/17 14:24:15 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ static void	get_bomb_explosion(t_bomb *bomb, t_game *game, t_window *window)
 	{
 		display_explosition(game->camera, window, *bomb,
 			game->assets->explosion);
-			// game->window->map_sprites[game->level->nb_cases + e_explosion]);
 	}
 	else
 	{
@@ -83,7 +82,6 @@ static void	display_bomb_sprite(t_bomb *bomb, t_game *game, t_window *window)
 	t_vector_2		pos_tmp;
 
 	pos_tmp = bomb->bomb_pos;
-	// sprite = window->map_sprites[game->level->nb_cases + e_dynamite];
 	sprite = game->assets->dynamite;
 	bomb->bomb_pos.x = bomb->bomb_pos.x - game->camera->camera_f_pos.x;
 	bomb->bomb_pos.y = bomb->bomb_pos.y - game->camera->camera_f_pos.y;

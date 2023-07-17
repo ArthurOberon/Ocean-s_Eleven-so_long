@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:34:28 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/16 16:57:09 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/17 15:10:20 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	display_gameplay_features(t_game *game, t_gameplay *gameplay,
 {
 	display_guards(game, gameplay, window, gameplay->guards);
 	display_bomb(gameplay->player, &gameplay->player->bomb, game, window);
-	display_qte(game, &gameplay->player->qte, gameplay->player,
-		gameplay->guards);
+	// display_qte(game, &gameplay->player->qte, gameplay->player,
+	// 	gameplay->guards);
 	is_display_plus_one_collectible(game, gameplay, gameplay->player);
 	get_characters_on_map(game, window, gameplay);
 	display_ui(game, window, gameplay);

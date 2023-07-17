@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/16 22:37:31 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/17 18:26:42 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,7 +231,7 @@ talking_character_basher_32px"
 // |---- PICKPOCKET_QTE ----|
 
 # define FRAME_AREA_QTE 1
-# define FRAME_QTE 1
+# define FRAME_QTE 4
 
 // |---- GUARD ----|
 
@@ -258,7 +258,7 @@ talking_character_basher_32px"
 // |---- BIG_IMAGE ----|
 
 # define FRAME_TITLE_SCREEN 1
-# define FRAME_TUTORIAL 7
+# define FRAME_TUTORIAL 8
 # define FRAME_BACKGROUND 1
 # define FRAME_LOSE_SCREEN 3
 # define FRAME_WIN_SCREEN 1
@@ -619,6 +619,8 @@ typedef struct s_qte
 	bool				time_to_press;
 	bool				pressed_in_time;
 	bool				is_pickpocketing;
+	int					loading_frame;
+	int					loading_value;
 	t_vector_2			pickpocket_area;
 	t_vector_2			pickpocket_size;
 	struct timeval		start_time;
@@ -864,7 +866,7 @@ void				launch_qte(t_game *game, t_qte *qte, t_guard *guard);
 
 // |----------- DISPLAY_FEATURES_QTE_MAIN --------|
 
-void				display_qte(t_game *game, t_qte *qte, t_player *player,
+int					display_qte(t_game *game, t_qte *qte, t_player *player,
 						t_guard *guards);
 
 // |----------- DISPLAY_FEATURES_UI_BOXS ---------|

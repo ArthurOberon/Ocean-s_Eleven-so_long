@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:37:34 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/16 21:10:36 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/17 14:25:29 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,6 @@ void	display_character(t_game *game, t_window *window,
 	{
 		if (character != ' ')
 		{
-			// put_image_to_image(&window->img, pos_display,
-				// &(window->map_sprites[game->level->nb_cases
-					// + e_alphabet]->sprite_img)[character - 'a']);
 			put_image_to_image(&window->img, pos_display,
 				&(game->assets->alphabet->sprite_img)[character - 'a']);
 		}
@@ -53,9 +50,6 @@ void	display_character(t_game *game, t_window *window,
 	{
 		put_image_to_image(&window->img, pos_display,
 			&(game->assets->special_character->sprite_img)[character - '!']);
-		// put_image_to_image(&window->img, pos_display,
-			// &(window->map_sprites[game->level->nb_cases
-				// + e_special_character]->sprite_img)[character - '!']);
 	}
 }
 
@@ -78,8 +72,6 @@ static void	display_one_page_on_text_box(t_game *game, t_text_box text_box,
 	i = 0;
 	pos_in_text = (t_vector_2){0, 0};
 	pos_display_x_start = pos_display.x;
-	// size_letter = game->window->map_sprites[game->level->nb_cases
-	// 	+ e_alphabet]->sprite_img->size.x;
 	size_letter = game->assets->alphabet->sprite_img->size.x;
 	while (text_box.text_pages[text_box.page_in][i])
 	{

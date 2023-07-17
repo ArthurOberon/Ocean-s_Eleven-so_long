@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:17:13 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/10 16:17:03 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/17 18:56:52 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	put_image_to_image(t_img *window_img, t_vector_2 pos, t_img *img)
 		while (i < img->size.x)
 		{
 			pixel = get_color_pixel(img, i, j);
-			if (((pixel >> 24)) != 0xFF)
+			if ((pixel >> 24) != 0xFF)
 				img_pix_put(window_img, i + pos.x, j + pos.y, pixel);
 			i++;
 		}

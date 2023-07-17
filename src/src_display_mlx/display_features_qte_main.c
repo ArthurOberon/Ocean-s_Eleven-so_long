@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_qte.c                                      :+:      :+:    :+:   */
+/*   display_features_qte_main.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 15:30:42 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/04 21:35:54 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/17 15:13:13 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,9 @@ static int	check_qte_compared_to_one_guard(t_game *game, t_qte *qte,
  * @param guards guards struct, 
  * tab of guards used to check if one of them is in the qte_area.
  */
-void	display_qte(t_game *game, t_qte *qte, t_player *player, t_guard *guards)
+int	display_qte(t_game *game, t_qte *qte, t_player *player, t_guard *guards)
 {
+	// not commented (wrong args)
 	int	i;
 	int	check_guard;
 
@@ -68,7 +69,7 @@ void	display_qte(t_game *game, t_qte *qte, t_player *player, t_guard *guards)
 		else
 			game->gameplay->is_stop
 				= game->gameplay->dialogue->text_box->is_display;
-		return ;
+		return (0);
 	}
 	qte->pickpocket_area.x = player->player_pos.x - CHUNK_SIZE;
 	qte->pickpocket_area.y = player->player_pos.y - CHUNK_SIZE;
@@ -78,8 +79,9 @@ void	display_qte(t_game *game, t_qte *qte, t_player *player, t_guard *guards)
 		check_guard
 			= check_qte_compared_to_one_guard(game, qte, player, &guards[i]);
 		if (check_guard == 1)
-			return ;
+			return (1);
 		i++;
 	}
 	qte->is_pickpocketing = false;
+	return (0);
 }

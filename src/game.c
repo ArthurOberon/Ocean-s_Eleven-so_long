@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/16 21:26:12 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/17 15:11:59 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ static int	on_update(t_game *game)
 	if (display_end_screen(game, game->gameplay->is_end))
 		return (0);
 	if (display_menu(game, game->window, game->gameplay->is_pause))
+		return (0);
+	if (display_qte(game, &game->gameplay->player->qte, game->gameplay->player,
+			game->gameplay->guards))
 		return (0);
 	if (game->gameplay->is_stop == false)
 	{

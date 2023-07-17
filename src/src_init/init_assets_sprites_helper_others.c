@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:43:27 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/16 18:30:07 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/17 18:19:03 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void	init_sprites_assets_others_(t_game *game, t_sprites_assets *assets)
 		(t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
 	init_one_sprite_asset(game, &assets->qte,
 		(t_init_sprite_asset_args){PATH_QTE, FRAME_QTE,
-		(t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
+		(t_vector_2){CHUNK_SIZE * 2, (CHUNK_SIZE * 2) / 16}});
 }
 
 void	init_sprites_assets_others(t_game *game, t_sprites_assets *assets)

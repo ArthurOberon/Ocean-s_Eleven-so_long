@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:04:26 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/23 11:37:54 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/17 18:56:29 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	put_image_to_image_with_limit(t_img *window_img, t_vector_2 pos,
 		while (i < img->size.x - limit[1].x)
 		{
 			pixel = get_color_pixel(img, i, j);
-			if (((pixel >> 24)) != 0xFF)
+			if ((pixel >> 24) != 0xFF)
 				img_pix_put(window_img, i + pos.x, j + pos.y, pixel);
 			i++;
 		}
