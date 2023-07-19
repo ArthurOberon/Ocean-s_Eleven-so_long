@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_assets_sprites_animations.c                   :+:      :+:    :+:   */
+/*   init_gameplay_guard_helper.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/09 23:48:42 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/16 22:36:13 by aoberon          ###   ########.fr       */
+/*   Created: 2023/07/19 20:43:48 by aoberon           #+#    #+#             */
+/*   Updated: 2023/07/19 20:44:18 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	randomize_sprite(t_sprite *sprite)
+void	random_look_direction(t_guard *guard)
 {
-	// not commented
-	sprite->frame = rand() % sprite->size;
-}
+	int	random;
 
-void	init_sprites_animations(t_game *game, t_sprite *sprite, char character)
-{
 	// not commented
-	if (character == '2' || character == 'C')
-	{
-		randomize_sprite(sprite);
-	}
+	guard->guard_look_dir.x = 0;
+	guard->guard_look_dir.y = 0;
+	random = rand() % 4;
+	if (random == 0)
+		guard->guard_look_dir.x = -1;
+	else if (random == 1)
+		guard->guard_look_dir.y = 1;
+	else if (random == 2)
+		guard->guard_look_dir.x = 1;
+	else if (random == 3)
+		guard->guard_look_dir.y = -1;
 }

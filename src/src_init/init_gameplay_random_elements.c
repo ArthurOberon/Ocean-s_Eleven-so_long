@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:37:06 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/16 20:08:23 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 20:43:06 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ static void	set_character_on_random_position(t_game *game, int **ground_pos,
 	free(*ground_pos);
 	*ground_pos = create_tab_ground_pos(game->level->map, game->level->nb_cases,
 			ground_count);
-	// not protected malloc
+	if (!*ground_pos)
+		exit_game(*game, "Error of malloc.\n");
 }
 
 /**

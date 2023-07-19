@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:41:24 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 16:00:58 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 20:42:40 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,6 @@ exploser ?";
 	texts[e_text_linus_to_basher_2].text = "Non. Ne touche a rien.";
 	texts[e_text_collect_steal_code].text = "We already have this code. It already \
 has been stolen.";
-// 	texts[e_text_code].text = "Enter this code and let's get the money ! \
-// Ok, so : <";
 }
 
 /**
@@ -125,8 +123,6 @@ void	init_all_texts_of_the_game(t_game *game, t_gameplay *gameplay)
 	if (!texts)
 		exit_game(*game, "Error of malloc.\n");
 	gameplay->all_texts = texts;
-	texts[e_text_debug].text = "abcdefghijqlmnopqrstuvwxyz  \
-!\"#$%&'()*+,-./0123456789:;<=?>";
 	init_all_texts_part_1(texts);
 	init_all_texts_part_2(texts);
 	init_all_texts_part_3(texts);

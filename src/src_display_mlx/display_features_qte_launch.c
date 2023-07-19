@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 20:48:25 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/17 22:51:17 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 20:38:56 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 static void	get_pixel_start(t_qte *qte, t_sprite *sprite)
 {
 	__uint32_t	pixel;
-	
+
 	qte->pixel_start = 0;
 	while (qte->pixel_start < sprite->sprite_img->size.x)
 	{
 		pixel = get_color_pixel(
-			&(sprite->sprite_img)[qte->loading_frame], qte->pixel_start, 0);
+				&(sprite->sprite_img)[qte->loading_frame], qte->pixel_start, 0);
 		if (pixel >> 24 == 0xFF)
 		{
 			qte->pixel_start++;
@@ -45,7 +45,7 @@ static void	get_pixel_end(t_qte *qte, t_sprite *sprite)
 	while (end_pixel > 0)
 	{
 		pixel = get_color_pixel(
-			&(sprite->sprite_img)[qte->loading_frame], end_pixel, 0);
+				&(sprite->sprite_img)[qte->loading_frame], end_pixel, 0);
 		if (pixel >> 24 == 0xFF)
 		{
 			end_pixel--;
@@ -71,10 +71,9 @@ static void	display_bar(t_game *game, t_qte *qte,
 		(t_vector_2[2]){{qte->pixel_start, 0}, {qte->loading_value, 0}});
 }
 
-
 static void	display_qte_(t_game *game, t_qte *qte, t_vector_2 pos)
 {
-	double delay;
+	double	delay;
 
 	if (qte->start_time.tv_sec == 0)
 		gettimeofday(&qte->start_time, NULL);

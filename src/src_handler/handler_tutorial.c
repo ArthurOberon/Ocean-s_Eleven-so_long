@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 15:19:43 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 16:43:27 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 20:55:29 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,22 @@
 static int	close_tutorial(t_game *game)
 {
 	// not commented
-	if (game->gameplay->dialogue->text_box)
+	if (game->gameplay->dialogue)
+	{
+		game->gameplay->dialogue->text_box->is_display = false;
+		game->gameplay->dialogue->text_box->read_all = false;
+		game->gameplay->dialogue->text_box->text = NULL;
 		free_text_box_text_pages(game->gameplay->dialogue->text_box);
-	ft_lstclear_texts_box(&game->gameplay->dialogue);
+		game->gameplay->dialogue
+			= ft_lstfirst_texts_box(game->gameplay->dialogue);
+		ft_lstclear_texts_box(&game->gameplay->dialogue);
+	}
 	game->gameplay->tutorial_status = -1;
 	if (game->gameplay->is_start)
 	{
 		set_text_box_events_start(game);
 	}
-	return (0);
+	return (1);
 }
 
 static int	tutorial_option(int keysym, t_game *game)
@@ -35,7 +42,7 @@ static int	tutorial_option(int keysym, t_game *game)
 	}
 	if (keysym == XK_X || keysym == XK_x)
 	{
-		close_tutorial(game);
+		return (close_tutorial(game));
 	}
 	return (0);
 }
@@ -51,7 +58,8 @@ int	handle_tutorial(int keysym, t_game *game)
 	current = game->gameplay->dialogue;
 	next = game->gameplay->dialogue->next;
 	handle_dialogue(keysym, game);
-	tutorial_option(keysym, game);
+	if (tutorial_option(keysym, game))
+		return (0);
 	if (game->gameplay->dialogue == current)
 		return (0);
 	else if (game->gameplay->dialogue == next)

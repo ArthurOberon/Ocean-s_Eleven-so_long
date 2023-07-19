@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:45:08 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/07 23:48:20 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 19:36:02 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ static void	handle_bomb_add(int keysym, t_game *game)
 			game->gameplay->player->bomb.bomb_plant += 1;
 			gettimeofday(&game->gameplay->player->bomb.last_time, NULL);
 		}
-		ft_printf("plant a bomb. bomb planted : [%d]\n",
-			game->gameplay->player->bomb.bomb_plant);
+		if (DEBUG_DYNAMITE)
+			ft_printf("plant a bomb. bomb planted : [%d]\n",
+				game->gameplay->player->bomb.bomb_plant);
 	}
 }
 
@@ -54,8 +55,9 @@ static void	handle_bomb_remove(int keysym, t_game *game)
 			game->gameplay->player->bomb.bomb_pos.x = -1;
 			game->gameplay->player->bomb.bomb_pos.y = -1;
 		}
-		ft_printf("remove a bomb. bomb planted : [%d]\n",
-			game->gameplay->player->bomb.bomb_plant);
+		if (DEBUG_DYNAMITE)
+			ft_printf("remove a bomb. bomb planted : [%d]\n",
+				game->gameplay->player->bomb.bomb_plant);
 	}
 }
 

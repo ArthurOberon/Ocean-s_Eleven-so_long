@@ -6,21 +6,15 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:37:28 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/16 21:15:00 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 20:41:52 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_avatar_animation	*init_avatar_animation(t_game *game,
+void	init_avatar_animation_part_1(t_avatar_animation *personage_animation,
 	t_sprites_assets *assets)
 {
-	t_avatar_animation	*personage_animation;
-
-	// not commented
-	personage_animation = ft_calloc(sizeof(t_avatar_animation), 5);
-	if (!personage_animation)
-		exit_game(*game, "Error of malloc.\n");
 	personage_animation[0].idle = assets->player_danny_idle;
 	personage_animation[0].move_up = assets->player_danny_move_up;
 	personage_animation[0].move_down = assets->player_danny_move_down;
@@ -36,6 +30,11 @@ t_avatar_animation	*init_avatar_animation(t_game *game,
 	personage_animation[2].move_down = assets->player_linus_move_down;
 	personage_animation[2].move_left = assets->player_linus_move_left;
 	personage_animation[2].move_right = assets->player_linus_move_right;
+}
+
+void	init_avatar_animation_part_2(t_avatar_animation *personage_animation,
+	t_sprites_assets *assets)
+{
 	personage_animation[3].idle = assets->player_basher_idle;
 	personage_animation[3].move_up = assets->player_basher_move_up;
 	personage_animation[3].move_down = assets->player_basher_move_down;
@@ -46,5 +45,18 @@ t_avatar_animation	*init_avatar_animation(t_game *game,
 	personage_animation[4].move_down = assets->guard_move_down;
 	personage_animation[4].move_left = assets->guard_move_left;
 	personage_animation[4].move_right = assets->guard_move_right;
+}
+
+t_avatar_animation	*init_avatar_animation(t_game *game,
+	t_sprites_assets *assets)
+{
+	t_avatar_animation	*personage_animation;
+
+	// not commented
+	personage_animation = ft_calloc(sizeof(t_avatar_animation), 5);
+	if (!personage_animation)
+		exit_game(*game, "Error of malloc.\n");
+	init_avatar_animation_part_1(personage_animation, assets);
+	init_avatar_animation_part_2(personage_animation, assets);
 	return (personage_animation);
 }

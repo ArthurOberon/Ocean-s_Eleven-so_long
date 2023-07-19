@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 22:13:36 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 16:08:53 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 20:59:13 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,7 @@ int	display_victory_text(t_game *game, int *victory_text_status)
 		if (game->gameplay->dialogue)
 			return (1);
 		else if (game->gameplay->dialogue == NULL)
-		{
 			game->gameplay->is_end = 1;
-		}
 	}
 	return (0);
 }

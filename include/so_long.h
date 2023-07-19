@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 15:45:38 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 20:51:26 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <fcntl.h>
-# include <mlx.h>
+# include "minilibx-linux/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <time.h>
@@ -31,6 +31,7 @@
 # define WINDOW_HEIGHT 800
 
 # define CHUNK_SIZE 128
+// IF CHANGE CHUNK_SIZE, CHANGE QTE_CHUNK_SIZE (= CHUNK_SIZE * 4) (line 283)
 
 # define RATIO_PLAYER_SIZE_X 0.75
 # define RATIO_PLAYER_SIZE_Y 0.90
@@ -278,14 +279,16 @@ talking_character_basher_32px"
 // |---- QTE ----|
 
 # define DELAY_QTE	0.001
-# define QTE_CHUNK_SIZE CHUNK_SIZE * 4
-
+# define QTE_EASY	1
+# define QTE_CHUNK_SIZE 512
+// QTE_CHUNK_SIZE = CHUNK_SIZE * 4
 
 // |---- DYNAMITE ----|
 
 # define BOMB_TIMING 1.3
 # define BOMB_NUMBER 5
 # define DELAY_BOMB_EXPLOSION 0.7
+# define DEBUG_DYNAMITE 1
 
 // ----------------------------------------------------------------
 
@@ -319,9 +322,6 @@ enum e_player_character
 
 enum e_texts
 {
-	// debug
-	e_text_debug,
-	// debug
 	e_text_tutorial_1,
 	e_text_tutorial_2,
 	e_text_tutorial_3,
@@ -732,7 +732,6 @@ void				get_chunks_to_display(t_game *game, t_camera *camera);
 
 // |---------- CAMERA ----------|
 
-void				display_background(t_window *window, t_img *img); //ERROR -> TEMPORARY
 void				camera(t_game *game, t_camera *camera, t_player *player);
 
 // |================================================|
@@ -917,6 +916,11 @@ t_texts_box_list	*ft_lstfirst_texts_box(t_texts_box_list *lst);
 // |====================================================|
 // |					SRC_GAMEPLAY					|
 // |====================================================|
+
+// |--------- GAMEPLAY_COLLECTIBLE_HELPER ----------|
+
+bool				check_all_collectible_has_been_collected(
+						t_collectible *collectible, int size);
 
 // |--------- GAMEPLAY_COLLECTIBLE ----------|
 
@@ -1158,6 +1162,10 @@ void				init_all_texts_of_the_game(t_game *game,
 
 void				init_collectible(t_game *game, t_gameplay *gameplay,
 						t_collectible *collectible);
+
+// |---------- INIT_GAMEPLAY_GUARD_HELPER ---------|
+
+void				random_look_direction(t_guard *guard);
 
 // |---------- INIT_GAMEPLAY_GUARD ---------|
 

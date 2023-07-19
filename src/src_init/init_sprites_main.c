@@ -6,11 +6,20 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:40:38 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 15:42:09 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 19:39:15 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	get_random_frame_animation(t_sprite *sprite, char character)
+{
+	// not commented
+	if (character == '2' || character == 'C')
+	{
+		sprite->frame = rand() % sprite->size;
+	}
+}
 
 void	sprite_cpy(t_sprite *new, t_sprite *src)
 {
@@ -50,7 +59,7 @@ void	init_sprites(t_game *game)
 			sprite_cpy(map_sprites[i], game->assets->collectible_idle);
 		else if (game->level->map[i] == 'E')
 			sprite_cpy(map_sprites[i], game->assets->exit);
-		init_sprites_animations(game, map_sprites[i], game->level->map[i]);
+		get_random_frame_animation(map_sprites[i], game->level->map[i]);
 		i++;
 	}
 }

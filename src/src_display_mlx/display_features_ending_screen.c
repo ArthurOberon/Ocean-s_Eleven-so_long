@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:58:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 13:22:31 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 18:47:10 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ static void	display_characters_end_up(t_game *game, t_gameplay *gameplay,
 	t_sprite	*sprite;
 	t_vector_2	pos;
 
-	pos.x = WINDOW_WIDTH / 2 - (CHUNK_SIZE * 1.5);
+	pos.y = WINDOW_HEIGHT / 2;
 	if (gameplay->available_character[2] == 1
 		|| gameplay->available_character[2] == 3)
 	{
-		pos.y = WINDOW_HEIGHT / 2;
+		pos.x = WINDOW_WIDTH / 2 - (CHUNK_SIZE * 1.5);
 		sprite = game->assets->player_linus_idle;
 		put_image_to_image(&window->img, pos, &(sprite->sprite_img)[0]);
 	}

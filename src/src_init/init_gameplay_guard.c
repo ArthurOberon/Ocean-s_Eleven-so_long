@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 15:39:49 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/16 17:38:50 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 20:45:23 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ static void	init_one_guard_variables(t_game *game, t_guard *guard, int number)
 	guard->guard_pos.y = guard->guard_chunk_pos.y * CHUNK_SIZE;
 	guard->guard_f_pos.x = guard->guard_pos.x;
 	guard->guard_f_pos.y = guard->guard_pos.y;
-	guard->guard_look_dir.x = -1;
-	guard->guard_look_dir.y = 0;
+	random_look_direction(guard);
 	guard->guard_f_dir.x = 0;
 	guard->guard_f_dir.y = 0;
 	guard->size.x = (CHUNK_SIZE * RATIO_PLAYER_SIZE_X);

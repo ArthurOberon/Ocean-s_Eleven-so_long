@@ -1,4 +1,4 @@
-SO_LONG 			=	so_long
+NAME 				=	so_long
 
 CC 					=	cc
 CFLAGS 				=	-g -Wall -Wextra #-fsanitize=address #-Werror #-03
@@ -6,7 +6,7 @@ INCLUDES_DIR 		=	include/
 SRC_DIR 			=	src/
 OBJ_DIR 			=	.obj/
 LIB_DIR 			=	lib/
-LIB_DIR_MLX			=	$(LIB_DIR)
+LIB_DIR_MLX			=	$(LIB_DIR)minilibx-linux/
 LIB_DIR_PRINTF		=	$(LIB_DIR)ft_printf/
 INCLUDES_H			=	-I./$(INCLUDES_DIR) -I./$(LIB_DIR)
 MLX_FLAGS 			=	-L$(LIB_DIR_MLX) -lmlx -lX11 -lXext -lm
@@ -69,13 +69,12 @@ SRC_GAMEPLAY		=	$(addprefix src_gameplay/, \
 						gameplay_move_player_main.c \
 						gameplay_move_guard_tools.c \
 						gameplay_move_player_tools.c \
+						gameplay_collectible_helper.c \
 						gameplay_collider_positions.c \
 						gameplay_collider_check_tile.c \
 						gameplay_player_to_character_main.c \
 						gameplay_player_to_character_functions.c \
 						)
-# gameplay_move_animation.c \
-# gameplay_move_player_animation.c \
 
 # SOURCES USE FOR GET_NEXT_LINE
 SRC_GNL				=	$(addprefix src_gnl/, \
@@ -107,12 +106,12 @@ SRC_INIT		=	$(addprefix src_init/, \
 						init_gameplay_all_texts.c \
 						init_available_character.c \
 						init_assets_sprites_main.c \
-						init_sprites_organization.c \
 						init_gameplay_collectible.c \
 						init_assets_sprites_tools.c \
+						init_sprites_organization.c \
 						init_assets_sprites_images.c \
+						init_gameplay_guard_helper.c \
 						init_gameplay_random_elements.c \
-						init_assets_sprites_animations.c \
 						init_assets_sprites_helper_walls.c \
 						init_assets_sprites_helper_player.c \
 						init_gameplay_personage_animation.c \
@@ -169,30 +168,32 @@ SL_SRCS 			=	$(addprefix $(SRC_DIR), \
 
 PS_OBJ 			=	$(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o, $(SL_SRCS))
 
-all: $(SO_LONG)
+all: $(NAME)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(DEPS)
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INCLUDES_H) -c -o $@ $<
 
-$(SO_LONG): $(PS_OBJ) $(DEPS)
+$(NAME): $(PS_OBJ) $(DEPS)
 	@make -s -C $(LIB_DIR_PRINTF)
-	@echo "\e[36mMaking $(SO_LONG)...\e[0m"
-	@$(CC) $(CFLAGS) $(INCLUDES_H) $(PS_OBJ) $(MLX_FLAGS) $(FT_PRINTF_FLAGS) -o $(SO_LONG)
+	@make -s -C $(LIB_DIR_MLX)
+	@echo "\e[36mMaking $(NAME)...\e[0m"
+	@$(CC) $(CFLAGS) $(INCLUDES_H) $(PS_OBJ) $(MLX_FLAGS) $(FT_PRINTF_FLAGS) -o $(NAME)
 	@echo "\e[32mDone !\e[0m"
 
 bonus: all
 
 clean:
 	@make -s -C $(LIB_DIR_PRINTF) clean
+	@make -s -C $(LIB_DIR_MLX) clean
 	@rm -rf $(OBJ_DIR)
 	@echo "\e[31mObject files removed.\e[0m"
 
 fclean:	clean
 	@make -s -C $(LIB_DIR_PRINTF) fclean
-	@rm -f $(SO_LONG)
-	@echo "\e[31m$(SO_LONG) removed.\e[0m"
+	@rm -f $(NAME)
+	@echo "\e[31m$(NAME) removed.\e[0m"
 
 re:		fclean all
 

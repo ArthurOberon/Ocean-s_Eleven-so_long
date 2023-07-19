@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 12:03:52 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 14:41:07 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 20:47:41 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,11 @@ static void	free_assets_part_1(void *ptr, t_sprites_assets *assets)
 	free_one_sprite(ptr, assets->exit);
 	free_one_sprite(ptr, assets->player_danny_idle);
 	free_one_sprite(ptr, assets->player_danny_move_up);
+}
+
+static void	free_assets_part_2(void *ptr, t_sprites_assets *assets)
+{
+	// not commented
 	free_one_sprite(ptr, assets->player_danny_move_down);
 	free_one_sprite(ptr, assets->player_danny_move_left);
 	free_one_sprite(ptr, assets->player_danny_move_right);
@@ -93,6 +98,10 @@ static void	free_assets_part_1(void *ptr, t_sprites_assets *assets)
 	free_one_sprite(ptr, assets->guard_idle);
 	free_one_sprite(ptr, assets->guard_move_up);
 	free_one_sprite(ptr, assets->guard_move_down);
+}
+
+static void	free_assets_part_3(void *ptr, t_sprites_assets *assets)
+{
 	free_one_sprite(ptr, assets->guard_move_left);
 	free_one_sprite(ptr, assets->guard_move_right);
 	free_one_sprite(ptr, assets->guard_fov);
@@ -119,27 +128,6 @@ static void	free_assets_part_1(void *ptr, t_sprites_assets *assets)
 	free_one_sprite(ptr, assets->background);
 }
 
-// /**
-//  * @brief Free the second part of the t_sprites_assets struct.
-//  * 
-//  * @param ptr mlx_ptr, used to destroy the mlx_img of the sprite.
-//  * @param assets assets struct to free.
-//  */
-// static void	free_assets_part_2(void *ptr, t_sprites_assets *assets)
-// {
-// 	free_one_sprite(ptr, assets->dynamite);
-// 	free_one_sprite(ptr, assets->explosion);
-// 	free_one_sprite(ptr, assets->area_qte);
-// 	free_one_sprite(ptr, assets->qte);
-// 	free_one_sprite(ptr, assets->heart);
-// 	free_one_sprite(ptr, assets->box);
-// 	free_one_sprite(ptr, assets->selection_box);
-// 	free_one_sprite(ptr, assets->avatar_character);
-// 	free_one_sprite(ptr, assets->alphabet);
-// 	free_one_sprite(ptr, assets->special_character);
-// 	free_one_sprite(ptr, assets->background_text);
-// }
-
 /**
  * @brief free all the assets of the game.
  * 
@@ -149,6 +137,7 @@ static void	free_assets_part_1(void *ptr, t_sprites_assets *assets)
 void	free_assets(void *ptr, t_sprites_assets *assets)
 {
 	free_assets_part_1(ptr, assets);
-	// free_assets_part_2(ptr, assets);
+	free_assets_part_2(ptr, assets);
+	free_assets_part_3(ptr, assets);
 	free(assets);
 }

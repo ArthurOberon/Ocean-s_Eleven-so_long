@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bomb.c                                             :+:      :+:    :+:   */
+/*   gameplay_features_bomb.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:52:31 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 20:54:28 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 20:48:24 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	explode_chunk(t_game *game, t_bomb bomb, int i, int j)
 	if (game->level->map[pos] == '2')
 	{
 		game->level->map[pos] = '0';
-		game->window->map_sprites[pos] = game->assets->ground;
+		sprite_cpy(game->window->map_sprites[pos], game->assets->ground);
 	}
 	k = 0;
 	while (k < game->gameplay->nb_guard)
