@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:58:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/16 22:06:29 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 13:22:31 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,6 @@ void	display_lose_screen(t_game *game, t_gameplay *gameplay,
 	display_characters_end_down(game, gameplay, window);
 	put_image_to_image(&window->img, (t_vector_2){0, 0},
 		&(sprite->sprite_img)[1]);
-	put_image_to_image(&window->img, (t_vector_2){0, 0},
-		&(sprite ->sprite_img)[2]);
 	pos.x = CHUNK_SIZE + (CHUNK_SIZE / 2);
 	pos.y = WINDOW_HEIGHT - (CHUNK_SIZE + (CHUNK_SIZE / 2));
 	sprite = game->assets->guard_idle;

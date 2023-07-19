@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/17 23:56:10 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 13:23:18 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ basher_move_right_64px"
 // |---- PICKPOCKET_QTE ----|
 
 # define PATH_AREA_QTE			"pickpocket_qte/pickpocket_area_64px"
-# define PATH_QTE				"pickpocket_qte/sprite_qte_by_frame"
+# define PATH_QTE				"pickpocket_qte/qte/qte"
 
 // |---- GUARD ----|
 
@@ -192,8 +192,8 @@ talking_character_basher_32px"
 # define PATH_TITLE_SCREEN		"start_screen/title_screen"
 # define PATH_TUTORIAL			"start_screen/tutorial/tutorial_screen"
 # define PATH_BACKGROUND		"background/game_background_64px"
-# define PATH_LOSE_SCREEN		"end_screen/lose_screen_16_9"
-# define PATH_WIN_SCREEN		"end_screen/win_screen_16_9"
+# define PATH_LOSE_SCREEN		"end_screen/lose_screen"
+# define PATH_WIN_SCREEN		"end_screen/win_screen"
 
 // ----------------------------------------------------------------
 
@@ -219,9 +219,6 @@ talking_character_basher_32px"
 # define FRAME_PLAYER_MOVE 6
 
 # define FRAME_RUSTY_IDLE 33
-
-# define FRAME_MOVEMENT 2 // TO DELETE
-
 
 // |---- DYNAMITE ----|
 
@@ -260,7 +257,7 @@ talking_character_basher_32px"
 # define FRAME_TITLE_SCREEN 1
 # define FRAME_TUTORIAL 8
 # define FRAME_BACKGROUND 1
-# define FRAME_LOSE_SCREEN 3
+# define FRAME_LOSE_SCREEN 2
 # define FRAME_WIN_SCREEN 1
 
 // ----------------------------------------------------------------
