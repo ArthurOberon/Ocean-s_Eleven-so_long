@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 10:39:03 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/17 23:56:49 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 13:31:33 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,11 @@ static int	get_collectible_pos(t_game *game, int number_code)
 }
 
 void	init_collectible(t_game *game, t_gameplay *gameplay,
-	t_collectible *collectible, char *collectible_code)
+	t_collectible *collectible)
 {
-	int	i;
-	int	size;
+	int		i;
+	int		size;
+	char	*collectible_code;
 
 	size = gameplay->nb_collect_remain;
 	collectible = ft_calloc(sizeof(t_collectible), size);

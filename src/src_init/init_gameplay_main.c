@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/16 22:10:33 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 13:32:08 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,8 +163,7 @@ void	init_gameplay(t_game *game, int *available_character,
 	init_guards(game, gameplay->guards);
 	gameplay->dialogue = NULL;
 	init_all_texts_of_the_game(game, gameplay);
-	init_collectible(game, gameplay, gameplay->collectible,
-		gameplay->collectible_code);
+	init_collectible(game, gameplay, gameplay->collectible);
 	gameplay->personage_animation
 		= init_avatar_animation(game, game->assets);
 	put_unavailable_character_on_map(game, gameplay);

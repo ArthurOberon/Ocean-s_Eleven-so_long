@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:15:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/17 22:02:57 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 13:32:01 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ void	restart_the_game(t_game *game)
 	mlx_clear_window(game->window->mlx_ptr, game->window->win_ptr);
 	restart_map_sprites(game);
 	restart_all_texts_of_the_game(game);
-	init_collectible(game, game->gameplay, game->gameplay->collectible,
-		game->gameplay->collectible_code);
+	init_collectible(game, game->gameplay, game->gameplay->collectible);
 	game->gameplay->is_start = true;
 }

@@ -6,11 +6,25 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 22:13:36 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/16 22:00:13 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 13:47:21 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static char	*create_victory_text(t_game *game, char *text, char *code)
+{
+	char	*victory_text;
+
+	victory_text = ft_strjoin(text, code);
+	if (!victory_text)
+		exit_game(*game, "Error of malloc.\n");
+	victory_text = ft_strjoin(victory_text, "> It's open, Perfect ! \
+Gentlemen, 60 Millions $ only for us !");
+	if (!victory_text)
+		exit_game(*game, "Error of malloc.\n");
+	return (victory_text);
+}
 
 int	display_victory_text(t_game *game, int *victory_text_status)
 {
@@ -19,6 +33,9 @@ int	display_victory_text(t_game *game, int *victory_text_status)
 		return (0);
 	if (*victory_text_status == 1)
 	{
+		game->gameplay->all_texts[e_text_code].text
+			= create_victory_text(game, game->gameplay->all_texts[e_text_code].text,
+				game->gameplay->collectible_code);
 		add_one_text_to_dialogue(game, &game->gameplay->dialogue,
 			&game->gameplay->all_texts[e_text_code],
 			game->gameplay->player->player_character);

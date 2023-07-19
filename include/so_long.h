@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 13:23:18 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 13:31:42 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1192,7 +1192,7 @@ void				init_all_texts_of_the_game(t_game *game,
 // |---------- INIT_GAMEPLAY_COLLECTIBLE ---------|
 
 void				init_collectible(t_game *game, t_gameplay *gameplay,
-						t_collectible *collectible, char *collectible_code);
+						t_collectible *collectible);
 
 // |---------- INIT_GAMEPLAY_GUARD ---------|
 
