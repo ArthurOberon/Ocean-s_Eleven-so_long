@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:43:27 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/17 23:56:04 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 14:27:41 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,6 @@ static void	init_sprite_assets_guards(t_game *game, t_sprites_assets *assets)
 	init_one_sprite_asset(game, &assets->guard_fov,
 		(t_init_sprite_asset_args){PATH_GUARD_FOV,
 		FRAME_GUARD_FOV, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
-	// TO DELETE
-	init_one_sprite_asset(game, &assets->guard,
-		(t_init_sprite_asset_args){PATH_GUARD_IDLE, 1,
-		(t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
 }
 
 static void	init_sprite_assets_big_images(t_game *game,

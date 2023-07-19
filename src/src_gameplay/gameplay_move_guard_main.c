@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 22:27:25 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/16 17:52:31 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 13:57:51 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,7 @@ static void	move_guard_on_y(t_game *game, t_guard *guard, t_f_vector_2 *move)
 void	move_guard(t_game *game, t_guard *guard, t_player *player)
 {
 	t_f_vector_2	move;
-	t_sprite		*sprite;
 
-	sprite = game->window->map_sprites[game->level->nb_cases
-		+ e_guards];
 	move.x = 0;
 	move.y = 0;
 	move_guard_on_x(game, guard, &move);

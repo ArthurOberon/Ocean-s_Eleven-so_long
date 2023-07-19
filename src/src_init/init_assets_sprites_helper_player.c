@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:43:35 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 17:10:06 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 14:27:46 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,28 +90,10 @@ static void	init_sprites_assets_basher(t_game *game, t_sprites_assets *assets)
 		FRAME_PLAYER_MOVE, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
 }
 
-static void	init_sprites_assets_old(t_game *game, t_sprites_assets *assets)
-{
-	// TO DELETE
-	init_one_sprite_asset(game, &assets->player_danny,
-		(t_init_sprite_asset_args){PATH_PLAYER_DANNY_IDLE, 1,
-		(t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
-	init_one_sprite_asset(game, &assets->player_rusty,
-		(t_init_sprite_asset_args){PATH_PLAYER_RUSTY_IDLE, 1,
-		(t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
-	init_one_sprite_asset(game, &assets->player_linus,
-		(t_init_sprite_asset_args){PATH_PLAYER_LINUS_IDLE, 1,
-		(t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
-	init_one_sprite_asset(game, &assets->player_basher,
-		(t_init_sprite_asset_args){PATH_PLAYER_BASHER_IDLE, 1,
-		(t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
-}
-
 void	init_sprites_assets_player(t_game *game, t_sprites_assets *assets)
 {
 	init_sprites_assets_danny(game, assets);
 	init_sprites_assets_rusty(game, assets);
 	init_sprites_assets_linus(game, assets);
 	init_sprites_assets_basher(game, assets);
-	init_sprites_assets_old(game, assets);
 }

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:37:34 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/17 22:17:07 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 14:24:29 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,7 @@ static void	display_face(t_game *game, t_vector_2 pos_display,
 {
 	t_sprite	*sprite_face;
 
-	sprite_face = game->window->map_sprites[game->level->nb_cases
-		+ e_talking_danny + talking_character];
+	sprite_face = game->gameplay->talking_face[talking_character];
 	update_frame(sprite_face);
 	put_image_to_image(&game->window->img, pos_display,
 		&(sprite_face->sprite_img)[sprite_face->frame]);

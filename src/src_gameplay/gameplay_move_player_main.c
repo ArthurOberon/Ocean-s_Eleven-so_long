@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:25:07 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/16 19:01:56 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 14:25:24 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,11 @@ void	move_player(t_game *game, t_player *player)
 {
 	int				chunk_before;
 	t_f_vector_2	move;
-	t_sprite		*sprite;
 
-	sprite = game->window->map_sprites[game->level->nb_cases
-		+ player->player_character];
 	chunk_before = pos_to_chunk(player->player_pos.x, player->player_pos.y,
 			game->level->map_vector.x);
 	if (player->player_dir.x == 0 && player->player_dir.y == 0)
 	{
-		sprite->frame = 0;
-		sprite->last_time = (struct timeval){0, 0};
 		return ;
 	}
 	move.x = 0;

@@ -103,6 +103,7 @@ SRC_INIT		=	$(addprefix src_init/, \
 						init_gameplay_main.c \
 						init_gameplay_guard.c \
 						init_gameplay_player.c \
+						init_gameplay_helper.c \
 						init_gameplay_all_texts.c \
 						init_available_character.c \
 						init_assets_sprites_main.c \

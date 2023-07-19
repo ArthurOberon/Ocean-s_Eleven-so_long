@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 19:17:43 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 12:15:03 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 16:18:49 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ static void	free_level(t_level *level)
  * 
  * @param window window struct to free.
  */
-static void	free_window(t_window *window)
+static void	free_window(t_window *window, int size_map)
 {
-	if (window->map_sprites)
-		free(window->map_sprites);
+	// not commented (args changed)
+	free_map_sprites(window->map_sprites, size_map);
 	if (window->win_ptr)
 	{
 		mlx_destroy_window(window->mlx_ptr, window->win_ptr);
@@ -71,20 +71,31 @@ static void	free_camera(t_camera *camera, void *mlx_ptr)
  */
 static void	free_gameplay(t_gameplay *gameplay)
 {
-	if (gameplay->chunks_pos)
-		free(gameplay->chunks_pos);
+	// not commented (args changed)
+	// free_collectibles(gameplay->collectible, gameplay->collectible_code,
+		// gameplay->nb_collect_remain + gameplay->nb_collect_get);
+	// if (gameplay->collectible_code)
+		// free(gameplay->collectible_code);
+	if (gameplay->collectible)
+		free(gameplay->collectible);
 	if (gameplay->player->bomb.explosion_pos)
 		free(gameplay->player->bomb.explosion_pos);
 	if (gameplay->player)
 		free(gameplay->player);
 	if (gameplay->guards)
 		free(gameplay->guards);
-	if (gameplay->map_start_state)
-		free(gameplay->map_start_state);
 	if (gameplay->dialogue)
 		free_dialogue(gameplay->dialogue);
+	if (gameplay->all_texts[e_text_code].text)
+		free(gameplay->all_texts[e_text_code].text);
 	if (gameplay->all_texts)
 		free(gameplay->all_texts);
+	if (gameplay->chunks_pos)
+		free(gameplay->chunks_pos);
+	if (gameplay->personage_animation)
+		free(gameplay->personage_animation);
+	if (gameplay->map_start_state)
+		free(gameplay->map_start_state);
 	free(gameplay);
 }
 
@@ -99,15 +110,15 @@ void	exit_game(t_game game, const char *error)
 {
 	if (game.level)
 	{
-		free_level(game.level);
 		if (game.assets)
 			free_assets(game.window->mlx_ptr, game.assets);
 		if (game.camera)
 			free_camera(game.camera, game.window->mlx_ptr);
 		if (game.window)
-			free_window(game.window);
+			free_window(game.window, game.level->nb_cases);
 		if (game.gameplay)
 			free_gameplay(game.gameplay);
+		free_level(game.level);
 	}
 	if (error)
 	{

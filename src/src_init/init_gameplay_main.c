@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 13:32:08 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 14:24:18 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,7 @@ void	init_one_text_box(t_game *game, t_gameplay *gameplay,
 
 	// not commented
 	background = game->assets->background_text;
-	sprite_face = game->window->map_sprites[game->level->nb_cases
-		+ gameplay->player->player_character];
+	sprite_face = gameplay->talking_face[gameplay->player->player_character];
 	init_text_box_display_variables(game, text_box, background, sprite_face);
 	text_box->is_display = false;
 	text_box->read_all = false;
@@ -105,30 +104,6 @@ void	init_one_text_box(t_game *game, t_gameplay *gameplay,
 	text_box->talking_character = talking_character;
 	text_box->text = NULL;
 	text_box->text_pages = NULL;
-}
-
-/**
- * @brief initialize the small variables of the gameplay struct.
- * 
- * @param game game struct, used to get the level struct.
- * @param gameplay gameplay struct to initialize.
- */
-static void	init_gameplay_small_variables(t_game *game, t_gameplay *gameplay)
-{
-	gameplay->is_pause = false;
-	gameplay->is_stop = false;
-	gameplay->is_display_plus_one = false;
-	gameplay->is_title_screen = false;
-	gameplay->is_start = false;
-	gameplay->is_end = 0;
-	gameplay->victory_text_status = 0;
-	gameplay->tutorial_status = 0;
-	gameplay->menu_status = 0;
-	gameplay->fps = 0;
-	gameplay->delta_time = 0;
-	gameplay->nb_collect_get = 0;
-	gameplay->nb_collect_remain = game->level->nb_collect;
-	gameplay->nb_move = 0;
 }
 
 /**
@@ -150,12 +125,7 @@ void	init_gameplay(t_game *game, int *available_character,
 	if (!gameplay)
 		exit_game(*game, "Error of malloc.\n");
 	game->gameplay = gameplay;
-	init_gameplay_small_variables(game, gameplay);
-	gameplay->available_character[0] = available_character[0];
-	gameplay->available_character[1] = available_character[1];
-	gameplay->available_character[2] = available_character[2];
-	gameplay->available_character[3] = available_character[3];
-	gameplay->chosen_character = chosen_character;
+	init_gameplay_helper(game, gameplay, available_character, chosen_character);
 	create_chunk_positions(game, &gameplay->chunks_pos, game->level->map_vector,
 		game->level->nb_cases);
 	gameplay->map_start_state = ft_strdup(game->level->map);

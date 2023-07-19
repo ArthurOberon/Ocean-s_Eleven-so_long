@@ -6,11 +6,46 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:49:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 12:23:06 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 16:11:47 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	free_map_sprites(t_sprite **map_sprites, int size)
+{
+	int	i;
+
+	if (!map_sprites)
+		return ;
+	i = 0;
+	while (i < size)
+	{
+		if (map_sprites[i])
+			free(map_sprites[i]);
+		++i;
+	}
+	free(map_sprites);
+}
+
+void	free_collectibles(t_collectible *collectible,
+	char *collectible_code, int size)
+{
+	// not commented
+	int	i;
+
+	if (collectible_code)
+		free(collectible_code);
+	i = 0;
+	// while (i < size)
+	// {
+		// free_one_sprite(ptr, collectible[i].sprite_open_animation);
+		// free(collectible[i]);
+		// ++i;
+	// }
+	if (collectible)
+		free(collectible);
+}
 
 /**
  * @brief Free text_pages of a text_box struct.

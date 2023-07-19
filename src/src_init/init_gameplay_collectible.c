@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 10:39:03 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 13:31:33 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 16:30:15 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@ void	init_collectible(t_game *game, t_gameplay *gameplay,
 	if (!collectible_code)
 		exit_game(*game, "Error of malloc.\n");
 	gameplay->collectible_code = collectible_code;
+	printf("START collectible_code : '%s'\n", collectible_code);
+	collectible_code[0] = '1';
+	collectible_code[1] = '\0';
+	printf("START collectible_code : '%s'\n", collectible_code);
 	i = 0;
 	while (i < size)
 	{

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:03:04 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/16 22:37:39 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 15:42:15 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,21 @@ void	get_wall_image(t_game *game, t_sprite **sprite, int pos)
 	value.x = pos % (value_max.x);
 	value.y = pos / (value_max.x--);
 	if (value.x == 0 && value.y == 0)
-		*sprite = game->assets->wall_corner_n_w;
+		sprite_cpy(*sprite, game->assets->wall_corner_n_w);
 	else if (value.x == value_max.x && value.y == 0)
-		*sprite = game->assets->wall_corner_n_e;
+		sprite_cpy(*sprite, game->assets->wall_corner_n_e);
 	else if (value.x == value_max.x && value.y == value_max.y)
-		*sprite = game->assets->wall_corner_s_e;
+		sprite_cpy(*sprite, game->assets->wall_corner_s_e);
 	else if (value.x == 0 && value.y == value_max.y)
-		*sprite = game->assets->wall_corner_s_w;
+		sprite_cpy(*sprite, game->assets->wall_corner_s_w);
 	else if ((value.x >= 1 && value.x < value_max.x) && value.y == 0)
-		*sprite = game->assets->wall_side_up;
+		sprite_cpy(*sprite, game->assets->wall_side_up);
 	else if ((value.x >= 1 && value.x < value_max.x) && value.y == value_max.y)
-		*sprite = game->assets->wall_side_down;
+		sprite_cpy(*sprite, game->assets->wall_side_down);
 	else if (value.x == 0 && (value.y >= 1 && value.y < value_max.y))
-		*sprite = game->assets->wall_side_left;
+		sprite_cpy(*sprite, game->assets->wall_side_left);
 	else if (value.x == value_max.x && (value.y >= 1 && value.y < value_max.y))
-		*sprite = game->assets->wall_side_right;
+		sprite_cpy(*sprite, game->assets->wall_side_right);
 	else
 		get_random_inside_wall_image(game, sprite);
 }

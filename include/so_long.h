@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 13:31:42 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 15:45:38 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -305,37 +305,6 @@ talking_character_basher_32px"
 # define COLLECTED 21
 # define COLLECTED_ON_GUARD 22
 
-enum e_assets_pos
-{
-	e_player_danny,
-	e_player_rusty,
-	e_player_linus,
-	e_player_basher,
-	e_dynamite,
-	e_explosion,
-	e_area_qte,
-	e_qte,
-	e_guards,
-	e_guard_fov,
-	e_button_pause,
-	e_button_reset,
-	e_button_quit,
-	e_button_tutorial,
-	e_plus_one,
-	e_heart,
-	e_box,
-	e_selection_box,
-	e_avatar_character,
-	e_alphabet,
-	e_special_character,
-	e_background_text,
-	e_talking_danny,
-	e_talking_rusty,
-	e_talking_linus,
-	e_talking_basher,
-	e_total_assets,
-};
-
 enum e_player_character
 {
 	e_main,
@@ -424,6 +393,15 @@ typedef struct s_path_map
 	int	parent;
 }	t_path_map;
 
+typedef struct s_stat_tiles
+{
+	int	exit;
+	int	wall;
+	int	ground;
+	int	player;
+	int	collect;
+}	t_stat_tiles;
+
 typedef struct s_vector_2
 {
 	int	x;
@@ -444,14 +422,12 @@ typedef struct s_collider
 	int	s_e;
 }	t_collider;
 
-typedef struct s_stat_tiles
+typedef struct s_init_sprite_asset_args
 {
-	int	exit;
-	int	wall;
-	int	ground;
-	int	player;
-	int	collect;
-}	t_stat_tiles;
+	char		*path;
+	int			size;
+	t_vector_2	dst_size;
+}	t_init_sprite_asset_args;
 
 typedef struct s_img
 {
@@ -470,6 +446,128 @@ typedef struct s_sprite
 	int				size;
 	struct timeval	last_time;
 }	t_sprite;
+
+typedef struct s_personage_animation
+{
+	t_sprite	*idle;
+	t_sprite	*move_up;
+	t_sprite	*move_down;
+	t_sprite	*move_left;
+	t_sprite	*move_right;
+}	t_avatar_animation;
+
+typedef struct s_text_box
+{
+	bool			is_display;
+	bool			read_all;
+	t_vector_2		pos_display_background;
+	t_vector_2		pos_display_face;
+	t_vector_2		pos_display_text;
+	t_vector_2		margin_size;
+	t_vector_2		characters_max;
+	int				characters_max_one_box;
+	int				size_one_alphabet;
+	int				page_number;
+	int				page_in;
+	int				talking_character;
+	char			*text;
+	char			**text_pages;
+}	t_text_box;
+
+typedef struct s_texts_box_list
+{
+	t_text_box				*text_box;
+	struct s_texts_box_list	*next;
+	struct s_texts_box_list	*prev;
+}	t_texts_box_list;
+
+typedef struct s_text
+{
+	char	*text;
+	bool	has_been_display;
+}	t_text;
+
+typedef struct s_collectible
+{
+	int			code;
+	int			state;
+	int			pos;
+	t_sprite	*sprite_open_animation;
+}	t_collectible;
+
+typedef struct s_guard
+{
+	bool			chasing_player;
+	bool			is_alive;
+	bool			is_pickpocketable;
+	bool			is_in_player;
+	int				guard_pos_tab;
+	t_vector_2		size;
+	t_vector_2		guard_look_dir;
+	t_f_vector_2	guard_f_dir;
+	t_vector_2		guard_chunk_pos;
+	t_vector_2		guard_pos;
+	t_f_vector_2	guard_f_pos;
+	t_vector_2		guard_fov_pos_1;
+	t_vector_2		guard_fov_pos_2;
+	t_f_vector_2	guard_fov_f_pos_1;
+	t_f_vector_2	guard_fov_f_pos_2;
+	t_sprite		*guard_sprite;
+	struct timeval	time;
+	struct timeval	last_time;
+	struct timeval	chase_start_time;
+	struct timeval	chase_time;
+}	t_guard;
+// fov -> Field Of View
+
+typedef struct s_qte
+{
+	bool				pressed;
+	bool				pressed_within_qte;
+	bool				is_pickpocketing;
+	int					loading_frame;
+	int					loading_value;
+	int					pixel_start;
+	t_vector_2			pickpocket_area;
+	t_vector_2			pickpocket_size;
+	struct timeval		start_time;
+	struct timeval		time;
+}	t_qte;
+
+typedef struct s_bomb
+{
+	int					bomb_plant;
+	int					bomb_total;
+	int					bomb_chunk_pos;
+	t_vector_2			bomb_pos;
+	struct timeval		time;
+	struct timeval		last_time;
+	t_vector_2			*explosion_pos;
+	int					explosion_tab_size;
+	struct timeval		time_explosion;
+	struct timeval		start_time_explosion;
+}	t_bomb;
+
+typedef struct s_player
+{
+	int					player_character;
+	int					hp;
+	bool				has_been_hit;
+	bool				iframes;
+	int					iframes_flashing;
+	struct timeval		iframes_start_time;
+	struct timeval		iframes_time;
+	t_qte				qte;
+	t_bomb				bomb;
+	t_vector_2			size;
+	t_vector_2			player_look_dir;
+	t_vector_2			player_dir;	
+	t_vector_2			player_pos;
+	t_vector_2			player_chunk_pos;
+	t_f_vector_2		player_f_pos;
+	t_sprite			*player_sprite;
+}	t_player;
+// iframe -> Invincibility Frames
 
 typedef struct s_level
 {
@@ -536,10 +634,6 @@ typedef struct s_sprites_assets
 	t_sprite	*player_basher_move_down;
 	t_sprite	*player_basher_move_left;
 	t_sprite	*player_basher_move_right;
-	t_sprite	*player_danny; // TO DELETE
-	t_sprite	*player_rusty; // TO DELETE
-	t_sprite	*player_linus; // TO DELETE
-	t_sprite	*player_basher; // TO DELETE
 	t_sprite	*dynamite;
 	t_sprite	*explosion;
 	t_sprite	*area_qte;
@@ -549,7 +643,6 @@ typedef struct s_sprites_assets
 	t_sprite	*guard_move_down;
 	t_sprite	*guard_move_left;
 	t_sprite	*guard_move_right;
-	t_sprite	*guard; // TO DELETE
 	t_sprite	*guard_fov;
 	t_sprite	*button_pause;
 	t_sprite	*button_reset;
@@ -569,168 +662,40 @@ typedef struct s_sprites_assets
 	t_sprite	*talking_basher;
 	t_sprite	*title_screen;
 	t_sprite	*tutorial;
-	t_sprite	*background;
 	t_sprite	*lose_screen;
 	t_sprite	*win_screen;
+	t_sprite	*background;
 }	t_sprites_assets;
-
-typedef struct s_init_sprite_asset_args
-{
-	char		*path;
-	int			size;
-	t_vector_2	dst_size;
-}	t_init_sprite_asset_args;
-
-typedef struct s_text_box
-{
-	bool			is_display;
-	bool			read_all;
-	t_vector_2		pos_display_background;
-	t_vector_2		pos_display_face;
-	t_vector_2		pos_display_text;
-	t_vector_2		margin_size;
-	t_vector_2		characters_max;
-	int				characters_max_one_box;
-	int				size_one_alphabet;
-	int				page_number;
-	int				page_in;
-	int				talking_character;
-	char			*text;
-	char			**text_pages;
-}	t_text_box;
-
-typedef struct s_texts_box_list
-{
-	t_text_box				*text_box;
-	struct s_texts_box_list	*next;
-	struct s_texts_box_list	*prev;
-}	t_texts_box_list;
-
-typedef struct s_text
-{
-	char	*text;
-	bool	has_been_display;
-}	t_text;
-
-typedef struct s_qte
-{
-	bool				pressed;
-	bool				pressed_within_qte;
-	bool				is_pickpocketing;
-	int					loading_frame;
-	int					loading_value;
-	int					pixel_start;
-	t_vector_2			pickpocket_area;
-	t_vector_2			pickpocket_size;
-	struct timeval		start_time;
-	struct timeval		time;
-}	t_qte;
-
-typedef struct s_bomb
-{
-	int					bomb_plant;
-	int					bomb_total;
-	int					bomb_chunk_pos;
-	t_vector_2			bomb_pos;
-	struct timeval		time;
-	struct timeval		last_time;
-	t_vector_2			*explosion_pos;
-	int					explosion_tab_size;
-	struct timeval		time_explosion;
-	struct timeval		start_time_explosion;
-}	t_bomb;
-
-typedef struct s_collectible
-{
-	int			code;
-	int			state;
-	int			pos;
-	t_sprite	*sprite_open_animation;
-}	t_collectible;
-
-typedef struct s_personage_animation
-{
-	t_sprite	*idle;
-	t_sprite	*move_up;
-	t_sprite	*move_down;
-	t_sprite	*move_left;
-	t_sprite	*move_right;
-}	t_avatar_animation;
-
-typedef struct s_player
-{
-	int					player_character;
-	int					hp;
-	bool				has_been_hit;
-	bool				iframes;
-	int					iframes_flashing;
-	struct timeval		iframes_start_time;
-	struct timeval		iframes_time;
-	t_qte				qte;
-	t_bomb				bomb;
-	t_vector_2			size;
-	t_vector_2			player_look_dir;
-	t_vector_2			player_dir;	
-	t_vector_2			player_pos;
-	t_vector_2			player_chunk_pos;
-	t_f_vector_2		player_f_pos;
-	t_sprite			*player_sprite;
-}	t_player;
-// iframe -> Invincibility Frames
-
-typedef struct s_guard
-{
-	bool			chasing_player;
-	bool			is_alive;
-	bool			is_pickpocketable;
-	bool			is_in_player;
-	int				guard_pos_tab;
-	t_vector_2		size;
-	t_vector_2		guard_look_dir;
-	t_f_vector_2	guard_f_dir;
-	t_vector_2		guard_chunk_pos;
-	t_vector_2		guard_pos;
-	t_f_vector_2	guard_f_pos;
-	t_vector_2		guard_fov_pos_1;
-	t_vector_2		guard_fov_pos_2;
-	t_f_vector_2	guard_fov_f_pos_1;
-	t_f_vector_2	guard_fov_f_pos_2;
-	t_sprite		*guard_sprite;
-	struct timeval	time;
-	struct timeval	last_time;
-	struct timeval	chase_start_time;
-	struct timeval	chase_time;
-}	t_guard;
-// fov -> Field Of View
 
 typedef struct s_gameplay
 {
-	bool					is_pause;
-	bool					is_stop;
-	bool					is_display_plus_one;
-	bool					is_title_screen;
-	bool					is_start;
-	int						is_end;
-	int						victory_text_status;
-	int						tutorial_status;
-	int						menu_status;
-	int						available_character[4];
-	int						chosen_character;
-	t_collectible			*collectible;
-	char					*collectible_code;
-	t_text					*all_texts;
-	t_texts_box_list		*dialogue;
-	int						nb_collect_get;
-	int						nb_collect_remain;
-	int						nb_guard;
-	int						nb_move;
-	int						fps;
-	char					*map_start_state;
-	double					delta_time;
-	t_vector_2				*chunks_pos;
-	t_player				*player;
-	t_guard					*guards;
+	bool				is_pause;
+	bool				is_stop;
+	bool				is_display_plus_one;
+	bool				is_title_screen;
+	bool				is_start;
+	int					is_end;
+	int					victory_text_status;
+	int					tutorial_status;
+	int					menu_status;
+	int					available_character[4];
+	int					chosen_character;
+	int					nb_collect_get;
+	int					nb_collect_remain;
+	t_collectible		*collectible;
+	char				*collectible_code;
+	t_text				*all_texts;
+	t_texts_box_list	*dialogue;
+	t_player			*player;
+	int					nb_guard;
+	t_guard				*guards;
+	int					nb_move;
+	int					fps;
+	double				delta_time;
+	t_vector_2			*chunks_pos;
 	t_avatar_animation	*personage_animation;
+	t_sprite			*talking_face[4];
+	char				*map_start_state;
 }	t_gameplay;
 
 typedef struct s_camera
@@ -1199,6 +1164,11 @@ void				init_collectible(t_game *game, t_gameplay *gameplay,
 void				set_guard_fov_direction(t_guard *guard);
 void				init_guards(t_game *game, t_guard *guards);
 
+// |---------- INIT_GAMEPLAY_HELPER ---------|
+
+void				init_gameplay_helper(t_game *game, t_gameplay *gameplay,
+						int *available_character, int chosen_character);
+
 // |---------- INIT_GAMEPLAY_MAIN ----------|
 
 void				init_gameplay(t_game *game, int *available_character,
@@ -1298,6 +1268,7 @@ void				exit_pathfinding_error(t_level *level, char flag,
 
 // |---------- FREE_ASSETS ---------|
 
+void				free_one_sprite(void *ptr, t_sprite *sprite);
 void				free_assets(void *ptr, t_sprites_assets *assets);
 
 // |---------- FREE_UTILS ----------|
@@ -1305,6 +1276,9 @@ void				free_assets(void *ptr, t_sprites_assets *assets);
 void				free_2d_char_tab(char **tab, int y);
 void				free_dialogue(t_texts_box_list *dialogue);
 void				free_text_box_text_pages(t_text_box *text_box);
+void				free_map_sprites(t_sprite **map_sprites, int size);
+void				free_collectibles(t_collectible *collectible,
+						char *collectible_code, int size);
 
 // |----------- FREE -----------|
 

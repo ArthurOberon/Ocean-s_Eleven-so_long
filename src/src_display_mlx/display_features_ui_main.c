@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 02:08:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/16 20:07:15 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 14:24:01 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ static void	display_character_bar_selection(t_game *game, t_window *window,
 	t_sprite	*sprite_selection_box;
 	t_vector_2	pos_display;
 
-	// sprite_selection_box = window->map_sprites[game->level->nb_cases
-		// + e_selection_box];
 	sprite_selection_box = game->assets->selection_box;
 	i = -1;
 	size_sprite = 0;
@@ -80,7 +78,7 @@ static void	display_character_bar_selection(t_game *game, t_window *window,
 	{
 		pos_display = (t_vector_2){10 + (size_sprite * i) - (i * 2),
 			WINDOW_HEIGHT - CHUNK_SIZE - 10};
-		sprite = window->map_sprites[game->level->nb_cases + i];
+		sprite = game->gameplay->personage_animation[i].idle;
 		size_sprite = sprite->sprite_img->size.x;
 		put_image_to_image(&window->img, pos_display,
 			&(sprite_selection_box->sprite_img)[0]);
@@ -126,7 +124,6 @@ static void	display_heart(t_window *window, t_player *player, t_sprite *sprite)
 void	display_ui(t_game *game, t_window *window, t_gameplay *gameplay)
 {
 	display_heart(window, gameplay->player, game->assets->heart);
-		// window->map_sprites[game->level->nb_cases + e_heart]);
 	display_character_bar_selection(game, window, gameplay->player);
 	display_ui_boxs(game, window, gameplay);
 }

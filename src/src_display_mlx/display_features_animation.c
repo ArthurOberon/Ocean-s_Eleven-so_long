@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:54:13 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/17 23:56:32 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 16:16:43 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ static void	open_collectible_animation(t_game *game, t_sprite *sprite,
 {
 	update_frame(sprite);
 	if (sprite->frame == sprite->size - 1)
-		game->window->map_sprites[chunk_pos] = game->assets->ground;
+	{
+		sprite_cpy(game->window->map_sprites[chunk_pos], game->assets->ground);
+	}
 }
 
 void	get_animation(t_game *game, t_gameplay *gameplay, t_sprite *sprite,

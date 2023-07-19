@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 22:13:36 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 13:47:21 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 16:08:53 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,22 @@
 
 static char	*create_victory_text(t_game *game, char *text, char *code)
 {
+	char	*message_code;
 	char	*victory_text;
 
-	victory_text = ft_strjoin(text, code);
-	if (!victory_text)
+	message_code = ft_strjoin(text, code);
+	if (!message_code)
 		exit_game(*game, "Error of malloc.\n");
-	victory_text = ft_strjoin(victory_text, "> It's open, Perfect ! \
+	victory_text = ft_strjoin(message_code, "> It's open, Perfect ! \
 Gentlemen, 60 Millions $ only for us !");
 	if (!victory_text)
+	{
+		free(text);
+		free(message_code);
 		exit_game(*game, "Error of malloc.\n");
+	}
+	free(text);
+	free(message_code);
 	return (victory_text);
 }
 
@@ -34,7 +41,8 @@ int	display_victory_text(t_game *game, int *victory_text_status)
 	if (*victory_text_status == 1)
 	{
 		game->gameplay->all_texts[e_text_code].text
-			= create_victory_text(game, game->gameplay->all_texts[e_text_code].text,
+			= create_victory_text(game,
+				game->gameplay->all_texts[e_text_code].text,
 				game->gameplay->collectible_code);
 		add_one_text_to_dialogue(game, &game->gameplay->dialogue,
 			&game->gameplay->all_texts[e_text_code],

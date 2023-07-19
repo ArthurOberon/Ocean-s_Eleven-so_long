@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 10:48:06 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 13:29:24 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 16:26:14 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,13 @@ static void	add_collect_to_code(t_game *game, t_gameplay *gameplay,
 		i++;
 	}
 	ft_itoa(one_collectible->code, char_code);
+	printf("collec code : '%s'\n", gameplay->collectible_code);
 	gameplay->collectible_code[i] = char_code[0];
+	gameplay->collectible_code[i + 1] = 0;
+	// gameplay->collectible_code = ft_strjoin(gameplay->collectible_code,
+			// char_code);
+	// if (!gameplay->collectible_code[i])
+		// exit_game(*game, "Error of malloc.\n");
 }
 
 static void	get_one_collectible(t_game *game, t_gameplay *gameplay,
@@ -60,9 +66,11 @@ static void	get_one_collectible(t_game *game, t_gameplay *gameplay,
 		}
 		else
 		{
-			gameplay->all_texts[e_text_collect_steal_code].has_been_display = false;
+			gameplay->all_texts[e_text_collect_steal_code].has_been_display
+				= false;
 			add_one_text_to_dialogue(game, &gameplay->dialogue,
-				&gameplay->all_texts[e_text_collect_steal_code], game->gameplay->player->player_character);
+				&gameplay->all_texts[e_text_collect_steal_code],
+				game->gameplay->player->player_character);
 		}
 		printf("get code : [%d]\n", one_collectible->code);
 	}
@@ -70,8 +78,8 @@ static void	get_one_collectible(t_game *game, t_gameplay *gameplay,
 	if (new_state == COLLECTED)
 	{
 		game->level->map[one_collectible->pos] = 'O';
-		game->window->map_sprites[one_collectible->pos]
-			= one_collectible->sprite_open_animation;
+		sprite_cpy(game->window->map_sprites[one_collectible->pos],
+			one_collectible->sprite_open_animation);
 	}
 	one_collectible->state = new_state;
 }
