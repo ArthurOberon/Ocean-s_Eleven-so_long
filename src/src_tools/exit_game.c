@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 19:17:43 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 16:18:49 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 16:40:33 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,8 @@ static void	free_camera(t_camera *camera, void *mlx_ptr)
 static void	free_gameplay(t_gameplay *gameplay)
 {
 	// not commented (args changed)
-	// free_collectibles(gameplay->collectible, gameplay->collectible_code,
-		// gameplay->nb_collect_remain + gameplay->nb_collect_get);
-	// if (gameplay->collectible_code)
-		// free(gameplay->collectible_code);
-	if (gameplay->collectible)
-		free(gameplay->collectible);
+	free_collectibles(gameplay->collectible, gameplay->collectible_code,
+		gameplay->nb_collect_remain + gameplay->nb_collect_get);
 	if (gameplay->player->bomb.explosion_pos)
 		free(gameplay->player->bomb.explosion_pos);
 	if (gameplay->player)

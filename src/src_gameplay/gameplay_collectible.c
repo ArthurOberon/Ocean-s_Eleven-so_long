@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 10:48:06 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 16:26:14 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 16:38:00 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,7 @@ static void	add_collect_to_code(t_game *game, t_gameplay *gameplay,
 		i++;
 	}
 	ft_itoa(one_collectible->code, char_code);
-	printf("collec code : '%s'\n", gameplay->collectible_code);
 	gameplay->collectible_code[i] = char_code[0];
-	gameplay->collectible_code[i + 1] = 0;
-	// gameplay->collectible_code = ft_strjoin(gameplay->collectible_code,
-			// char_code);
-	// if (!gameplay->collectible_code[i])
-		// exit_game(*game, "Error of malloc.\n");
 }
 
 static void	get_one_collectible(t_game *game, t_gameplay *gameplay,

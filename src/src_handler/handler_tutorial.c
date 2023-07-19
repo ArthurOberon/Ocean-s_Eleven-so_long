@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 15:19:43 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/12 15:48:29 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 16:43:27 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 static int	close_tutorial(t_game *game)
 {
 	// not commented
+	if (game->gameplay->dialogue->text_box)
+		free_text_box_text_pages(game->gameplay->dialogue->text_box);
 	ft_lstclear_texts_box(&game->gameplay->dialogue);
 	game->gameplay->tutorial_status = -1;
 	if (game->gameplay->is_start)

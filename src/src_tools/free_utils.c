@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:49:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 16:11:47 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/19 16:40:38 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,11 @@ void	free_collectibles(t_collectible *collectible,
 	if (collectible_code)
 		free(collectible_code);
 	i = 0;
-	// while (i < size)
-	// {
-		// free_one_sprite(ptr, collectible[i].sprite_open_animation);
-		// free(collectible[i]);
-		// ++i;
-	// }
+	while (i < size)
+	{
+		free(collectible[i].sprite_open_animation);
+		++i;
+	}
 	if (collectible)
 		free(collectible);
 }
