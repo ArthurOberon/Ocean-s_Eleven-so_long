@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/20 13:15:15 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 14:37:22 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,10 +278,13 @@ talking_character_basher_32px"
 
 // |---- QTE ----|
 
-# define DELAY_QTE	0.001
 # define QTE_EASY	1
+# define DELAY_QTE	0.001
 # define QTE_CHUNK_SIZE 512
 // QTE_CHUNK_SIZE = CHUNK_SIZE * 4
+
+# define STRICT_CORRECTION 1
+// pickpocket don't give a collectible
 
 // |---- DYNAMITE ----|
 

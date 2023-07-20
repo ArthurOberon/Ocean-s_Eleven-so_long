@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 22:47:58 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/20 10:53:39 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 14:40:02 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ int	get_pressed(t_game *game, t_qte *qte, t_guard *guard)
 	}
 	else if (qte->loading_frame == 2)
 	{
-		collected_one_collectible(game, game->gameplay, -1, COLLECTED_ON_GUARD);
+		if (!STRICT_CORRECTION)
+			collected_one_collectible(game, game->gameplay,
+				-1, COLLECTED_ON_GUARD);
 		guard->is_pickpocketable = false;
 	}
 	end_qte(qte, guard, 0);
