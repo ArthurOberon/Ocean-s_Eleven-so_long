@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:08:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/16 20:02:58 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 11:56:42 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static void	get_chunks_in_int_tab(int *chunks_to_display, int chunk_start,
 		chunk_tmp = chunk_start + j * max.x;
 		while (++i < limit.x && i < max.x)
 		{
-			if (chunk_tmp > chunk_max)
+			if (chunk_tmp >= chunk_max)
 				break ;
 			chunks_to_display[k] = chunk_tmp;
 			chunk_tmp++;
