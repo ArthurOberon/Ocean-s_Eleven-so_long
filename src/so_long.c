@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:21:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/20 09:30:45 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 12:55:33 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ int	main(int argc, char **argv)
 	if (!available_character)
 		return (1);
 	bzero_game(&game);
-	parse_map(argv[argc_index], &(game.level->map), &(game.level->map_vector));
+	if (!parse_map(argv[argc_index], &(game.level->map),
+			&(game.level->map_vector)))
+		return (free(available_character), free(game.level), 1);
 	game.level->nb_cases = game.level->map_vector.x * game.level->map_vector.y;
-	if (IS_DEBUG)
-	{
-		printf("Map 1 line : %s\n", game.level->map);
-		ft_print_1d_to_2d(game.level);
-	}
-	pathfinding(&game);
+	if (!pathfinding(&game))
+		return (free(available_character), 1);
 	init_game(&game, available_character, chosen_character);
 	start_game(&game);
 	return (0);
+
+	// delete inutile files & printf (<stdio.h>)
 }

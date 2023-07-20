@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 15:13:50 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/06 12:42:32 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 12:50:08 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
  */
 void	exit_arg_error(void)
 {
-	ft_printf("Not the good number of arguments.\nPlease use so_long with this \
-format :\n./so_long 'mapfile.ber'\n");
+	ft_printf("Error\nNot the good number of arguments.\n\
+		Please use so_long with this format :\n./so_long 'mapfile.ber'\n");
 	exit(EXIT_FAILURE);
 }
 
@@ -28,15 +28,16 @@ format :\n./so_long 'mapfile.ber'\n");
  * 
  * @param map_2d map 2d array, used to free it.
  * @param y size of the map (height).
+ * @return int 0;
  */
-void	exit_map_error(char **map_2d, int y)
+int	exit_map_error(char **map_2d, int y)
 {
 	if (map_2d)
 		free_2d_char_tab(map_2d, y);
 	ft_printf("Error\nNot a valid map.\nPlease use a map : with .ber extenstion, \
 rectangular, close by 1, and line_to_tab with only one P and E, and at least one C\n\
 for example :\n1111\n1P01\n10C1\n1E01\n1111\n");
-	exit(EXIT_FAILURE);
+	return (0);
 }
 
 /**
@@ -45,8 +46,9 @@ for example :\n1111\n1P01\n10C1\n1E01\n1111\n");
  * @param level level struct, used to free map and path_map.
  * @param flag error flag to write the right error message.
  * @param pos_error position on the map of the error.
+ * @return int 0;
  */
-void	exit_pathfinding_error(t_level *level, char flag, int pos_error)
+int	exit_pathfinding_error(t_level *level, char flag, int pos_error)
 {
 	free(level->map);
 	free(level->path_map);
@@ -59,7 +61,8 @@ void	exit_pathfinding_error(t_level *level, char flag, int pos_error)
 			pos_error % level->map_vector.x, pos_error / level->map_vector.y);
 	ft_printf("is not reachable.\nPlease make the Exit and all the Collectibles \
 reachable from the Player P.\nfor example :\n1111\n1P01\n10C1\n1E01\n1111\n");
-	exit(EXIT_FAILURE);
+	free(level);
+	return (0);
 }
 
 /**

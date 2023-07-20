@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/20 11:19:44 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 12:33:01 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1239,7 +1239,7 @@ int					has_all_characters(char **map, int x, int y);
 
 // |----------- PARSE_MAPS ---------|
 
-void				parse_map(char *file_name, char **map,
+int					parse_map(char *file_name, char **map,
 						t_vector_2 *map_vector);
 
 // |====================================================|
@@ -1260,7 +1260,7 @@ t_path_map			*init_path_map(t_level *level);
 
 // |---------- PATHFINDING ---------|
 
-void				pathfinding(t_game *game);
+int					pathfinding(t_game *game);
 
 // |================================================|
 // |					SRC_TOOLS					|
@@ -1268,11 +1268,12 @@ void				pathfinding(t_game *game);
 
 // |---------- EXIT_ERROR_MESSAGE ----------|
 
-void				exit_arg_error(void);
-void				exit_map_error(char **map_2d, int y);
-void				exit_option_error(int *available_character);
-void				exit_pathfinding_error(t_level *level, char flag,
+int					exit_map_error(char **map_2d, int y);
+int					exit_pathfinding_error(t_level *level, char flag,
 						int pos_error);
+
+void				exit_arg_error(void);
+void				exit_option_error(int *available_character);
 
 // |---------- FREE_ASSETS ---------|
 
