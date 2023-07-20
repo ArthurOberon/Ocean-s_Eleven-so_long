@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/20 15:24:38 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 16:41:59 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,19 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <fcntl.h>
-# include "minilibx-linux/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <time.h>
 # include <sys/time.h>
 # include <math.h>
 
-// CAUTION /!/\/
-# include <stdio.h>
+# include "minilibx-linux/mlx.h"
 
-# define WINDOW_WIDTH 1600
-# define WINDOW_HEIGHT 800
+# define WINDOW_WIDTH 2000
+# define WINDOW_HEIGHT 1000
 
 # define CHUNK_SIZE 128
-// IF CHANGE CHUNK_SIZE, CHANGE QTE_CHUNK_SIZE (= CHUNK_SIZE * 4) (line 283)
+// IF CHANGE CHUNK_SIZE, CHANGE QTE_CHUNK_SIZE (= CHUNK_SIZE * 4)
 
 # define RATIO_PLAYER_SIZE_X 0.75
 # define RATIO_PLAYER_SIZE_Y 0.90
@@ -45,7 +43,7 @@
 # define FPS_CAP 125
 // -> 0.008
 
-# define SPRITES_PATH "assets/sprites/sprites/xpm/"
+# define SPRITES_PATH "assets/sprites/xpm/"
 
 // |---- WALL ----|
 
@@ -291,7 +289,7 @@ talking_character_basher_32px"
 # define BOMB_TIMING 1.3
 # define BOMB_NUMBER 5
 # define DELAY_BOMB_EXPLOSION 0.7
-# define DEBUG_DYNAMITE 1
+# define DEBUG_DYNAMITE 0
 
 // ----------------------------------------------------------------
 
