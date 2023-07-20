@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 15:19:43 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/20 10:33:46 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 14:31:21 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static int	close_tutorial(t_game *game)
 	{
 		set_text_box_events_start(game);
 	}
+	game->gameplay->is_pause = 0;
 	return (1);
 }
 
