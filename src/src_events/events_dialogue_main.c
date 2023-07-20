@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 22:13:36 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/20 10:37:07 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 16:18:53 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static char	*create_victory_text(t_game *game, char *text, char *code)
 	message_code = ft_strjoin(text, code);
 	if (!message_code)
 		exit_game(*game, "Error of malloc.\n");
-	victory_text = ft_strjoin(message_code, "> It's open, Perfect ! \
-Gentlemen, 60 Millions $ only for us !");
+	victory_text = ft_strjoin(message_code, "> It's open, perfect! \
+Gentlemen, $60 million just for us!");
 	if (!victory_text)
 	{
 		free(text);

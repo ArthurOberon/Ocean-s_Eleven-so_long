@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 15:13:50 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/20 12:50:08 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 15:27:31 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 void	exit_arg_error(void)
 {
 	ft_printf("Error\nNot the good number of arguments.\n\
-		Please use so_long with this format :\n./so_long 'mapfile.ber'\n");
+Please use so_long with this format :\n./so_long 'mapfile.ber'\n");
 	exit(EXIT_FAILURE);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/20 14:37:22 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 15:24:38 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -331,6 +331,7 @@ enum e_texts
 	e_text_tutorial_5,
 	e_text_tutorial_6,
 	e_text_tutorial_7,
+	e_text_tutorial_8,
 	e_text_start_danny,
 	e_text_start_rusty,
 	e_text_start_linus,
