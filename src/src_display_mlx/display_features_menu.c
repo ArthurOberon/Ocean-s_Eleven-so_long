@@ -6,15 +6,22 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:07:00 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 20:39:19 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 09:24:13 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Display the menu.
+ * 
+ * @param game game struct, used to get the assets struct.
+ * @param window window struct, used to display on.
+ * @param is_pause int, used to know if the menu must be displayed.
+ * @return int 1 if the menu was displayed, 0 otherwise.
+ */
 int	display_menu(t_game *game, t_window *window, int is_pause)
 {
-	// not commented
 	t_sprite	*sprite;
 	t_vector_2	pos;
 

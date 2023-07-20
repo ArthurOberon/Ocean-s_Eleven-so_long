@@ -6,15 +6,20 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 15:19:43 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 20:55:29 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 10:33:46 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Close the tutorial.
+ * 
+ * @param game game struct, used to get the gameplay struct.
+ * @return int 1.
+ */
 static int	close_tutorial(t_game *game)
 {
-	// not commented
 	if (game->gameplay->dialogue)
 	{
 		game->gameplay->dialogue->text_box->is_display = false;
@@ -33,9 +38,15 @@ static int	close_tutorial(t_game *game)
 	return (1);
 }
 
+/**
+ * @brief Handle the tutorial options (close the tutorial or the game).
+ * 
+ * @param keysym key pressed.
+ * @param game game struct, used to close the tutorial or the game.
+ * @return int 0 if the tutorial is not closed, 1 if it is.
+ */
 static int	tutorial_option(int keysym, t_game *game)
 {
-	// not commented
 	if (keysym == XK_Escape || keysym == XK_Q || keysym == XK_q)
 	{
 		return (close_game(game));
@@ -47,9 +58,15 @@ static int	tutorial_option(int keysym, t_game *game)
 	return (0);
 }
 
+/**
+ * @brief Handle the tutorial.
+ * 
+ * @param keysym key pressed.
+ * @param game game struct, used to get the gameplay struct.
+ * @return int 0 if the tutorial is not closed, 1 if it is.
+ */
 int	handle_tutorial(int keysym, t_game *game)
 {
-	// not commented
 	void	*prev;
 	void	*current;
 	void	*next;

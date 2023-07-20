@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:37:34 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 20:38:25 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 09:03:05 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,16 @@ static int	ft_tolower(int character)
 }
 
 /**
- * @brief display one character/letter on the text box.
+ * @brief display one character (ASCII) on the text box.
  * 
- * @param game game struct, used to get the level struct.
+ * @param game game struct, used to get the assets struct.
  * @param window window struct, used to display on.
- * @param pos_display position to display the character/letter.
- * @param character character/letter to display.
+ * @param pos_display position to display the character.
+ * @param character character (ASCII) to display.
  */
 void	display_character(t_game *game, t_window *window,
 	t_vector_2 pos_display, char character)
 {
-	// not commented correctly (arg change)
 	character = ft_tolower(character);
 	if (character >= 97 && character <= 122)
 	{
@@ -46,7 +45,7 @@ void	display_character(t_game *game, t_window *window,
 				&(game->assets->alphabet->sprite_img)[character - 'a']);
 		}
 	}
-	if (character >= 33 && character <= 63)
+	else if (character >= 33 && character <= 63)
 	{
 		put_image_to_image(&window->img, pos_display,
 			&(game->assets->special_character->sprite_img)[character - '!']);

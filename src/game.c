@@ -6,15 +6,18 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:18:02 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 21:00:53 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 11:36:46 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// 0xC6BF92
-// background = 0xE0E0E0
-
+/**
+ * @brief Update the game, called non-stop by on_update().
+ * 
+ * @param game game struct.
+ * @return int 1 if none of the functions are called, 0 otherwise.
+ */
 static int	on_update_(t_game *game)
 {
 	if (!game->window->win_ptr)
@@ -39,9 +42,15 @@ static int	on_update_(t_game *game)
 	return (1);
 }
 
+/**
+ * @brief Update the game, called non-stop by mlx_loop_hook.
+ * All the game is make here (display, gameplay, etc...).
+ * 
+ * @param game game struct.
+ * @return int 0.
+ */
 static int	on_update(t_game *game)
 {
-	// not commented
 	if (!on_update_(game))
 		return (0);
 	if (game->gameplay->is_stop == false)
@@ -60,9 +69,13 @@ static int	on_update(t_game *game)
 	return (0);
 }
 
+/**
+ * @brief Start the game, set all the hooks and start the mlx loop.
+ * 
+ * @param game game struct, used to set the hooks.
+ */
 void	start_game(t_game *game)
 {
-	// not commented
 	game->gameplay->is_title_screen = true;
 	mlx_hook(game->window->win_ptr, DestroyNotify, KeyPressMask, &close_game,
 		game);

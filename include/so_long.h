@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 20:51:26 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 11:19:44 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -447,7 +447,7 @@ typedef struct s_sprite
 	struct timeval	last_time;
 }	t_sprite;
 
-typedef struct s_personage_animation
+typedef struct s_avatar_animation
 {
 	t_sprite	*idle;
 	t_sprite	*move_up;
@@ -693,7 +693,7 @@ typedef struct s_gameplay
 	int					fps;
 	double				delta_time;
 	t_vector_2			*chunks_pos;
-	t_avatar_animation	*personage_animation;
+	t_avatar_animation	*avatar_animation;
 	t_sprite			*talking_face[4];
 	char				*map_start_state;
 }	t_gameplay;
@@ -881,7 +881,7 @@ void				put_image_to_image_with_limit(t_img *window_img,
 int					display_victory_text(t_game *game,
 						int *victory_text_status);
 
-void				set_tutorial_text_box(t_game *game);
+void				set_tutorial_dialogue(t_game *game);
 void				set_text_box_events_start(t_game *game);
 void				get_text_box_events(t_game *game, t_gameplay *gameplay);
 
@@ -919,7 +919,7 @@ t_texts_box_list	*ft_lstfirst_texts_box(t_texts_box_list *lst);
 
 // |--------- GAMEPLAY_COLLECTIBLE_HELPER ----------|
 
-bool				check_all_collectible_has_been_collected(
+bool				check_all_collectibles_have_been_collected(
 						t_collectible *collectible, int size);
 
 // |--------- GAMEPLAY_COLLECTIBLE ----------|
@@ -1134,9 +1134,9 @@ void				init_sprites_assets(t_game *game);
 void				init_one_sprite_asset(t_game *game, t_sprite **sprite,
 						t_init_sprite_asset_args init_sprite_asset_args);
 
-// |---------- GET_AVAILABLE_CHARACTER ---------|
+// |---------- INIT_AVAIBABLE_CHARACTER ---------|
 
-int					*get_available_character(char **argv, int *argc_index,
+int					*init_available_character(char **argv, int *argc_index,
 						int *chosen_character);
 
 // |----------- INIT_GAME_CAMERA -----------|
@@ -1158,14 +1158,15 @@ void				init_window(t_game *game);
 void				init_all_texts_of_the_game(t_game *game,
 						t_gameplay *gameplay);
 
+// |---------- INIT_GAMEPLAY_AVATAR_ANIMATION ----------|
+
+t_avatar_animation	*init_avatar_animation(t_game *game,
+						t_sprites_assets *assets);
+
 // |---------- INIT_GAMEPLAY_COLLECTIBLE ---------|
 
 void				init_collectible(t_game *game, t_gameplay *gameplay,
 						t_collectible *collectible);
-
-// |---------- INIT_GAMEPLAY_GUARD_HELPER ---------|
-
-void				random_look_direction(t_guard *guard);
 
 // |---------- INIT_GAMEPLAY_GUARD ---------|
 
@@ -1182,14 +1183,6 @@ void				init_gameplay_helper(t_game *game, t_gameplay *gameplay,
 void				init_gameplay(t_game *game, int *available_character,
 						int chosen_character);
 
-void				init_one_text_box(t_game *game, t_gameplay *gameplay,
-						t_text_box *text_box, int talking_character);
-
-// |---------- INIT_GAMEPLAY_PERSONAGE_ANIMATION ----------|
-
-t_avatar_animation	*init_avatar_animation(t_game *game,
-						t_sprites_assets *assets);
-
 // |----------- INIT_GAMPEPLAY_PLAYER ----------|
 
 void				init_player(t_game *game, t_player *player,
@@ -1198,14 +1191,21 @@ void				init_explosion_pos(t_game *game, t_bomb *bomb, bool alloc);
 
 // |----------- INIT_GAMEPLAY_RANDOM_ELEMENTS ----------|
 
+void				random_look_direction(t_guard *guard);
 void				put_unavailable_character_on_map(t_game *game,
 						t_gameplay *gameplay);
+
+// |----------- INIT_GAMEPLAY_TEXT_BOX ----------|
+
+void				init_one_text_box(t_game *game, t_gameplay *gameplay,
+						t_text_box *text_box, int talking_character);
 
 // |----------- INIT_SPRITES_MAIN ----------|
 
 void				init_sprites(t_game *game);
 void				sprite_cpy(t_sprite *new, t_sprite *src);
-void				init_sprite(t_img *image_asset, t_sprite *sprite, int size);
+void				get_random_frame_animation(t_sprite *sprite,
+						char character);
 
 // |----------- INIT_SPRITES_ORGANIZATION -----------|
 

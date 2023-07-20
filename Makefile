@@ -103,6 +103,7 @@ SRC_INIT		=	$(addprefix src_init/, \
 						init_gameplay_guard.c \
 						init_gameplay_player.c \
 						init_gameplay_helper.c \
+						init_gameplay_text_box.c \
 						init_gameplay_all_texts.c \
 						init_available_character.c \
 						init_assets_sprites_main.c \
@@ -110,11 +111,10 @@ SRC_INIT		=	$(addprefix src_init/, \
 						init_assets_sprites_tools.c \
 						init_sprites_organization.c \
 						init_assets_sprites_images.c \
-						init_gameplay_guard_helper.c \
 						init_gameplay_random_elements.c \
+						init_gameplay_avatar_animation.c \
 						init_assets_sprites_helper_walls.c \
 						init_assets_sprites_helper_player.c \
-						init_gameplay_personage_animation.c \
 						init_assets_sprites_helper_others.c \
 						init_assets_sprites_helper_ui_text_box.c \
 						init_assets_sprites_helper_collectibles.c \

@@ -6,14 +6,19 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 20:48:25 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 20:38:56 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 10:56:07 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// not commented ALL
-
+/**
+ * @brief Get the pixel to start the loading bar
+ * (the first pixel of the bar that is not transparent).
+ * 
+ * @param qte qte struct, used to get the pixel_start value.
+ * @param sprite sprite struct, used to get the size of the sprite_img.
+ */
 static void	get_pixel_start(t_qte *qte, t_sprite *sprite)
 {
 	__uint32_t	pixel;
@@ -36,6 +41,13 @@ static void	get_pixel_start(t_qte *qte, t_sprite *sprite)
 	}
 }
 
+/**
+ * @brief Get the pixel to end the loading bar
+ * (the last pixel of the bar that is not transparent).
+ * 
+ * @param qte qte struct, used to get the loading_value value.
+ * @param sprite sprite struct, used to get the size of the sprite_img.
+ */
 static void	get_pixel_end(t_qte *qte, t_sprite *sprite)
 {
 	int			end_pixel;
@@ -60,6 +72,13 @@ static void	get_pixel_end(t_qte *qte, t_sprite *sprite)
 	}
 }
 
+/**
+ * @brief Display the loading bar.
+ * 
+ * @param game game struct, used to get the window and assets structs.
+ * @param qte qte struct, used to get the loading_frame and loading_value values.
+ * @param pos position of the display.
+ */
 static void	display_bar(t_game *game, t_qte *qte,
 	t_vector_2 pos)
 {
@@ -71,6 +90,13 @@ static void	display_bar(t_game *game, t_qte *qte,
 		(t_vector_2[2]){{qte->pixel_start, 0}, {qte->loading_value, 0}});
 }
 
+/**
+ * @brief Display the qte.
+ * 
+ * @param game game struct, used to get the window and assets structs.
+ * @param qte qte struct.
+ * @param pos position of the display.
+ */
 static void	display_qte_(t_game *game, t_qte *qte, t_vector_2 pos)
 {
 	double	delay;

@@ -6,13 +6,20 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 10:48:06 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 20:59:06 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 11:48:42 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// not commented ALL
+/**
+ * @brief Add a collectible code to the collectible_code string.
+ * 
+ * @param game game struct, used to get the level struct.
+ * @param gameplay gameplay struct, used to get the collectible_code string.
+ * @param one_collectible collectible struct,
+ * contains the char to add to the string.
+ */
 static void	add_collect_to_code(t_game *game, t_gameplay *gameplay,
 	t_collectible *one_collectible)
 {
@@ -32,10 +39,20 @@ static void	add_collect_to_code(t_game *game, t_gameplay *gameplay,
 	gameplay->collectible_code[i] = char_code[0];
 }
 
+/**
+ * @brief Get a collectible,
+ * the way a collectible is collected depends on the collectible state
+ * and the new state.
+ * 
+ * @param game game struct, used to get the level and window struct.
+ * @param gameplay gameplay struct.
+ * @param one_collectible collectible struct, the collectible collected.
+ * @param new_state new state of the collectible collected.
+ */
 static void	get_one_collectible(t_game *game, t_gameplay *gameplay,
 	t_collectible *one_collectible, int new_state)
 {
-	if (game->gameplay->nb_collect_remain > 0)
+	if (gameplay->nb_collect_remain > 0)
 	{
 		if (one_collectible->state != COLLECTED_ON_GUARD)
 		{
@@ -51,7 +68,6 @@ static void	get_one_collectible(t_game *game, t_gameplay *gameplay,
 				&gameplay->all_texts[e_text_collect_steal_code],
 				game->gameplay->player->player_character);
 		}
-		printf("get code : [%d]\n", one_collectible->code);
 	}
 	gameplay->is_display_plus_one = true;
 	if (new_state == COLLECTED)
@@ -63,6 +79,14 @@ static void	get_one_collectible(t_game *game, t_gameplay *gameplay,
 	one_collectible->state = new_state;
 }
 
+/**
+ * @brief Get a random collectible with the state COLLECTABLE
+ * in the collectible array.
+ * 
+ * @param game game struct, used to get the level struct.
+ * @param collectible collectible struct, used to get the collectible array.
+ * @return int position of the random collectible in the collectible array.
+ */
 static int	get_one_random_collectable_collectible(t_game *game,
 	t_collectible *collectible)
 {
@@ -76,12 +100,19 @@ static int	get_one_random_collectable_collectible(t_game *game,
 	return (random_collectible);
 }
 
+/**
+ * @brief Collected one collectible on a guard.
+ * 
+ * @param game game struct, used to get the level struct.
+ * @param gameplay gameplay struct, used to get is_display_plus_one.
+ * @param collectible collectible struct, used to get the collectible array.
+ */
 static void	get_one_collectible_by_guard(t_game *game, t_gameplay *gameplay,
 	t_collectible *collectible)
 {
 	int				random_collectible;
 
-	if (check_all_collectible_has_been_collected(collectible,
+	if (check_all_collectibles_have_been_collected(collectible,
 			game->level->nb_collect))
 	{
 		gameplay->is_display_plus_one = true;
@@ -93,6 +124,15 @@ static void	get_one_collectible_by_guard(t_game *game, t_gameplay *gameplay,
 		COLLECTED_ON_GUARD);
 }
 
+/**
+ * @brief Collect one collectible.
+ * 
+ * @param game game struct.
+ * @param gameplay gameplay struct, used to get the collectible struct.
+ * @param pos position of the collectible collected.
+ * @param new_state new state of the collectible collected
+ * (COLLECTABLE or COLLECTED or COLLECTED_ON_GUARD).
+ */
 void	collected_one_collectible(t_game *game, t_gameplay *gameplay,
 	int pos, int new_state)
 {
@@ -101,7 +141,6 @@ void	collected_one_collectible(t_game *game, t_gameplay *gameplay,
 	if (new_state == COLLECTED_ON_GUARD)
 	{
 		get_one_collectible_by_guard(game, gameplay, gameplay->collectible);
-		printf("---\ncode : '%s'\n---\n", gameplay->collectible_code);
 		return ;
 	}
 	if (pos == -1)
@@ -113,7 +152,6 @@ void	collected_one_collectible(t_game *game, t_gameplay *gameplay,
 		{
 			get_one_collectible(game, gameplay, &gameplay->collectible[i],
 				new_state);
-			printf("---\ncode : '%s'\n---\n", gameplay->collectible_code);
 			return ;
 		}
 		i++;

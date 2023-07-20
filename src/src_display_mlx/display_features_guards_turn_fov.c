@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 20:25:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/17 22:09:06 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 09:19:57 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ static void	standard_change_guard_direction(t_guard *guard)
 }
 
 /**
- * @brief Turn the guard direction, clockwise if he does not look diagonally
- * (meaning !(x != 0 && y != 0)),
+ * @brief Turn the guard direction, clockwise
+ * if it is not looking diagonally, (i.e. !(x != 0 && y != 0),
  * else (after a purchase on diagonals) set randomly
  * one of the axe at 0 and the let the other at his current value.
  * 

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 15:30:42 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 20:58:55 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 09:16:39 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  * @param player player struct, used to set up his iframes variable.
  * @param guard guard struct,
  * used to check if the guard complete the conditions to launch the qte.
- * @return int 
+ * @return int 1 when the qte is in progress, 0 otherwise.
  */
 static int	check_qte_compared_to_one_guard(t_game *game, t_qte *qte,
 	t_player *player, t_guard *guard)
@@ -47,20 +47,20 @@ static int	check_qte_compared_to_one_guard(t_game *game, t_qte *qte,
 }
 
 /**
- * @brief Check if the qte can be launched and if it is, set up it.
+ * @brief Display the qte if the player character is thief and if a guard
+ * is in the qte_area.
  * 
  * @param game game struct, used to get the gameplay struct.
  * @param qte qte struct, used to launch the qte.
  * @param player player struct, used to check if the player character is thief
  * and to get the position of the qte.
- * @param guards guards struct, 
+ * @param guards guards struct,
  * tab of guards used to check if one of them is in the qte_area.
+ * @return int 1 when the qte is in progress, 0 otherwise.
  */
 int	display_qte(t_game *game, t_qte *qte, t_player *player, t_guard *guards)
 {
-	// not commented (wrong args)
 	int	i;
-	int	check_guard;
 
 	if (player->player_character != e_thief || qte->is_pickpocketing == false)
 	{
@@ -76,9 +76,7 @@ int	display_qte(t_game *game, t_qte *qte, t_player *player, t_guard *guards)
 	i = 0;
 	while (i < game->gameplay->nb_guard)
 	{
-		check_guard
-			= check_qte_compared_to_one_guard(game, qte, player, &guards[i]);
-		if (check_guard == 1)
+		if (check_qte_compared_to_one_guard(game, qte, player, &guards[i]))
 			return (1);
 		i++;
 	}

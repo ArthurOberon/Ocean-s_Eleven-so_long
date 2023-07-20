@@ -6,12 +6,18 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:41:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 20:39:24 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 09:27:24 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Init the collectibles sprites assets, part 1.
+ * 
+ * @param game game struct.
+ * @param assets assets struct, where the collectibles sprites assets are stored.
+ */
 static void	init_sprites_assets_collectibles_part_1(t_game *game,
 	t_sprites_assets *assets)
 {
@@ -38,6 +44,12 @@ static void	init_sprites_assets_collectibles_part_1(t_game *game,
 		FRAME_COLLECT_OPEN, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
 }
 
+/**
+ * @brief Init the collectibles sprites assets, part 2.
+ * 
+ * @param game game struct.
+ * @param assets assets struct, where the collectibles sprites assets are stored.
+*/
 static void	init_sprites_assets_collectibles_part_2(t_game *game,
 	t_sprites_assets *assets)
 {
@@ -55,9 +67,14 @@ static void	init_sprites_assets_collectibles_part_2(t_game *game,
 		FRAME_COLLECT_OPEN, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
 }
 
+/**
+ * @brief Init the collectibles sprites assets.
+ * 
+ * @param game game struct.
+ * @param assets assets struct, where the collectibles sprites assets are stored.
+ */
 void	init_sprites_assets_collectibles(t_game *game, t_sprites_assets *assets)
 {
-	// not commented
 	init_sprites_assets_collectibles_part_1(game, assets);
 	init_sprites_assets_collectibles_part_2(game, assets);
 }

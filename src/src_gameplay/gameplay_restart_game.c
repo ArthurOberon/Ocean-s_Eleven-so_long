@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:15:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 20:48:16 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 11:22:09 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,16 @@ static void	restart_map_sprites(t_game *game)
 	while (i < game->level->nb_cases)
 	{
 		if (game->level->map[i] == '0' || game->level->map[i] == 'P')
-			game->window->map_sprites[i] = game->assets->ground;
+			sprite_cpy(game->window->map_sprites[i], game->assets->ground);
 		else if (game->level->map[i] == '1' || game->level->map[i] == '2')
 			get_wall_image(game, &game->window->map_sprites[i], i);
 		else if (game->level->map[i] == 'C')
-			game->window->map_sprites[i] = game->assets->collectible_idle;
+			sprite_cpy(game->window->map_sprites[i],
+				game->assets->collectible_idle);
 		else if (game->level->map[i] == 'E')
-			game->window->map_sprites[i] = game->assets->exit;
+			sprite_cpy(game->window->map_sprites[i], game->assets->exit);
+		get_random_frame_animation(game->window->map_sprites[i],
+			game->level->map[i]);
 		i++;
 	}
 }
@@ -70,13 +73,18 @@ static void	restart_all_texts_of_the_game(t_game *game)
 		game->gameplay->all_texts[j].has_been_display = false;
 		j++;
 	}
-	set_tutorial_text_box(game);
+	set_tutorial_dialogue(game);
 }
 
+/**
+ * @brief Restart somes variables of the gameplay struct to the start state.
+ * 
+ * @param gameplay gameplay struct, to restart.
+ * @param level level struct, used to get the number of collectibles.
+ */
 static void	restart_gameplay_small_variables(t_gameplay *gameplay,
 	t_level *level)
 {
-	// not commented
 	gameplay->is_pause = false;
 	gameplay->is_stop = false;
 	gameplay->is_display_plus_one = false;
@@ -112,6 +120,8 @@ void	restart_the_game(t_game *game)
 	mlx_clear_window(game->window->mlx_ptr, game->window->win_ptr);
 	restart_map_sprites(game);
 	restart_all_texts_of_the_game(game);
+	free_collectibles(game->gameplay->collectible,
+		game->gameplay->collectible_code, game->level->nb_collect);
 	init_collectible(game, game->gameplay, game->gameplay->collectible);
 	game->gameplay->is_start = true;
 }

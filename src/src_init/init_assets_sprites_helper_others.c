@@ -6,14 +6,18 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:43:27 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 14:27:41 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 10:49:50 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// not commented
-
+/**
+ * @brief Init the guards sprites assets.
+ * 
+ * @param game game struct.
+ * @param assets assets struct, where the guards sprites assets are stored.
+ */
 static void	init_sprite_assets_guards(t_game *game, t_sprites_assets *assets)
 {
 	init_one_sprite_asset(game, &assets->guard_idle,
@@ -36,6 +40,12 @@ static void	init_sprite_assets_guards(t_game *game, t_sprites_assets *assets)
 		FRAME_GUARD_FOV, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
 }
 
+/**
+ * @brief Init the big images sprites assets (title screen, tutorial, etc...).
+ * 
+ * @param game game struct.
+ * @param assets assets struct, where the big images sprites assets are stored.
+ */
 static void	init_sprite_assets_big_images(t_game *game,
 	t_sprites_assets *assets)
 {
@@ -56,6 +66,12 @@ static void	init_sprite_assets_big_images(t_game *game,
 		(t_vector_2){WINDOW_WIDTH, WINDOW_HEIGHT}});
 }
 
+/**
+ * @brief Init the others sprites assets (ground, exit, etc...).
+ * 
+ * @param game game struct.
+ * @param assets assets struct, where the others sprites assets are stored.
+ */
 static void	init_sprites_assets_others_(t_game *game, t_sprites_assets *assets)
 {
 	init_one_sprite_asset(game, &assets->ground,
@@ -78,6 +94,12 @@ static void	init_sprites_assets_others_(t_game *game, t_sprites_assets *assets)
 		(t_vector_2){QTE_CHUNK_SIZE, QTE_CHUNK_SIZE / 16}});
 }
 
+/**
+ * @brief Init all the sprites assets.
+ * 
+ * @param game game struct.
+ * @param assets assets struct, where the sprites assets are stored.
+ */
 void	init_sprites_assets_others(t_game *game, t_sprites_assets *assets)
 {
 	init_sprite_assets_guards(game, assets);

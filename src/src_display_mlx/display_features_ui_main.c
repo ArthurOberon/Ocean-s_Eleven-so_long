@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 02:08:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 14:24:01 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 09:28:24 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	display_character_bar_selection(t_game *game, t_window *window,
 	{
 		pos_display = (t_vector_2){10 + (size_sprite * i) - (i * 2),
 			WINDOW_HEIGHT - CHUNK_SIZE - 10};
-		sprite = game->gameplay->personage_animation[i].idle;
+		sprite = game->gameplay->avatar_animation[i].idle;
 		size_sprite = sprite->sprite_img->size.x;
 		put_image_to_image(&window->img, pos_display,
 			&(sprite_selection_box->sprite_img)[0]);

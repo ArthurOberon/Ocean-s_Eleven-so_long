@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 10:39:03 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 16:38:05 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 11:48:48 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@ void	init_collectible(t_game *game, t_gameplay *gameplay,
 	int		size;
 	char	*collectible_code;
 
-	size = gameplay->nb_collect_remain;
+	size = game->level->nb_collect;
 	collectible = ft_calloc(sizeof(t_collectible), size);
 	if (!collectible)
 		exit_game(*game, "Error of malloc.\n");
 	gameplay->collectible = collectible;
-	collectible_code = ft_calloc(sizeof(char), size + gameplay->nb_guard + 1);
+	collectible_code = ft_calloc(sizeof(char), size + 1);
 	if (!collectible_code)
 		exit_game(*game, "Error of malloc.\n");
 	gameplay->collectible_code = collectible_code;
@@ -76,7 +76,6 @@ void	init_collectible(t_game *game, t_gameplay *gameplay,
 	while (i < size)
 	{
 		collectible[i].code = rand() % 10;
-		printf("code[%d] : %d\n", i, collectible[i].code);
 		collectible[i].state = COLLECTABLE;
 		collectible[i].sprite_open_animation = ft_calloc(sizeof(t_sprite), 1);
 		sprite_cpy(collectible[i].sprite_open_animation,

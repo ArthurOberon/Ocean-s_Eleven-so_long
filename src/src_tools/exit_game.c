@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 19:17:43 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 20:47:52 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 09:51:49 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,15 @@ static void	free_level(t_level *level)
  * 
  * @param window window struct to free.
  */
+
+/**
+ * @brief Free all the allocated memory in the window struct.
+ * 
+ * @param window window struct to free.
+ * @param size_map size of the t_sprite array map_sprites, used to free it.
+ */
 static void	free_window(t_window *window, int size_map)
 {
-	// not commented (args changed)
 	free_map_sprites(window->map_sprites, size_map);
 	if (window->win_ptr)
 	{
@@ -68,12 +74,12 @@ static void	free_camera(t_camera *camera, void *mlx_ptr)
  * @brief Free all the allocated memory in the gameplay struct.
  * 
  * @param gameplay gameplay struct to free.
+ * @param size_collectibles int, size of the collectibles array.
  */
-static void	free_gameplay(t_gameplay *gameplay)
+static void	free_gameplay(t_gameplay *gameplay, int size_collectibles)
 {
-	// not commented (args changed)
 	free_collectibles(gameplay->collectible, gameplay->collectible_code,
-		gameplay->nb_collect_remain + gameplay->nb_collect_get);
+		size_collectibles);
 	if (gameplay->player->bomb.explosion_pos)
 		free(gameplay->player->bomb.explosion_pos);
 	if (gameplay->player)
@@ -88,8 +94,8 @@ static void	free_gameplay(t_gameplay *gameplay)
 		free(gameplay->all_texts);
 	if (gameplay->chunks_pos)
 		free(gameplay->chunks_pos);
-	if (gameplay->personage_animation)
-		free(gameplay->personage_animation);
+	if (gameplay->avatar_animation)
+		free(gameplay->avatar_animation);
 	if (gameplay->map_start_state)
 		free(gameplay->map_start_state);
 	free(gameplay);
@@ -113,7 +119,7 @@ void	exit_game(t_game game, const char *error)
 		if (game.window)
 			free_window(game.window, game.level->nb_cases);
 		if (game.gameplay)
-			free_gameplay(game.gameplay);
+			free_gameplay(game.gameplay, game.level->nb_collect);
 		free_level(game.level);
 	}
 	if (error)

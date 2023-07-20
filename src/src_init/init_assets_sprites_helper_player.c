@@ -6,14 +6,18 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:43:35 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 14:27:46 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 10:48:51 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// not commented
-
+/**
+ * @brief Init the danny sprites assets.
+ * 
+ * @param game game struct.
+ * @param assets assets struct, where the danny sprites assets are stored.
+ */
 static void	init_sprites_assets_danny(t_game *game, t_sprites_assets *assets)
 {
 	init_one_sprite_asset(game, &assets->player_danny_idle,
@@ -33,6 +37,12 @@ static void	init_sprites_assets_danny(t_game *game, t_sprites_assets *assets)
 		FRAME_PLAYER_MOVE, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
 }
 
+/**
+ * @brief Init the rusty sprites assets.
+ * 
+ * @param game game struct.
+ * @param assets assets struct, where the rusty sprites assets are stored.
+ */
 static void	init_sprites_assets_rusty(t_game *game, t_sprites_assets *assets)
 {
 	init_one_sprite_asset(game, &assets->player_rusty_idle,
@@ -52,6 +62,12 @@ static void	init_sprites_assets_rusty(t_game *game, t_sprites_assets *assets)
 		FRAME_PLAYER_MOVE, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
 }
 
+/**
+ * @brief Init the linus sprites assets.
+ * 
+ * @param game game struct.
+ * @param assets assets struct, where the linus sprites assets are stored.
+ */
 static void	init_sprites_assets_linus(t_game *game, t_sprites_assets *assets)
 {
 	init_one_sprite_asset(game, &assets->player_linus_idle,
@@ -71,6 +87,12 @@ static void	init_sprites_assets_linus(t_game *game, t_sprites_assets *assets)
 		FRAME_PLAYER_MOVE, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
 }
 
+/**
+ * @brief Init the basher sprites assets.
+ * 
+ * @param game game struct.
+ * @param assets assets struct, where the basher sprites assets are stored.
+ */
 static void	init_sprites_assets_basher(t_game *game, t_sprites_assets *assets)
 {
 	init_one_sprite_asset(game, &assets->player_basher_idle,
@@ -90,6 +112,12 @@ static void	init_sprites_assets_basher(t_game *game, t_sprites_assets *assets)
 		FRAME_PLAYER_MOVE, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
 }
 
+/**
+ * @brief Init the player sprites assets.
+ * 
+ * @param game game struct.
+ * @param assets assets struct, where the player sprites assets are stored.
+ */
 void	init_sprites_assets_player(t_game *game, t_sprites_assets *assets)
 {
 	init_sprites_assets_danny(game, assets);

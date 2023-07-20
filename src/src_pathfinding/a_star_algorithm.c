@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:53:34 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/05 22:30:57 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 09:13:44 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  * @param path_map struct of the current path to set.
  * @param pos position to check in the four directions.
  * @param end_pos end position to calculate the distance.
- * @return int 1 if the end position has been found, 0 otherwise.
+ * @return int 1 if the end position was found, 0 otherwise.
  */
 static int	calculate_four_dir(t_level *level, t_path_map *path_map,
 	int pos, int end_pos)
@@ -60,7 +60,7 @@ static int	calculate_four_dir(t_level *level, t_path_map *path_map,
  * @param path_map map of the current path to check.
  * @param nb_cases number of cases in the map.
  * @return int position of the lower f value.
- * Return -1 if every case has been checked.
+ * Return -1 if every case was checked.
  */
 static int	find_lower_f(t_path_map *path_map, int nb_cases)
 {

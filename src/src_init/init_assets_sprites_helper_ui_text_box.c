@@ -6,14 +6,18 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:43:32 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 18:30:50 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 10:47:43 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// not commented
-
+/**
+ * @brief Init the sprites assets for the ui, part 1.
+ * 
+ * @param game game struct.
+ * @param assets assets struct, where the sprites assets are stored.
+ */
 static void	init_sprites_assets_ui_part_1(t_game *game,
 	t_sprites_assets *assets)
 {
@@ -31,6 +35,12 @@ static void	init_sprites_assets_ui_part_1(t_game *game,
 		(t_vector_2){CHUNK_SIZE * 2, CHUNK_SIZE * 2}});
 }
 
+/**
+ * @brief Init the sprites assets for the ui, part 2.
+ * 
+ * @param game game struct.
+ * @param assets assets struct, where the sprites assets are stored.
+ */
 static void	init_sprites_assets_ui_part_2(t_game *game,
 	t_sprites_assets *assets)
 {
@@ -51,6 +61,12 @@ static void	init_sprites_assets_ui_part_2(t_game *game,
 		FRAME_AVATAR_CHARACTER, (t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
 }
 
+/**
+ * @brief Init the sprites assets for the text box.
+ * 
+ * @param game game struct.
+ * @param assets assets struct, where the sprites assets are stored.
+ */
 static void	init_sprites_assets_text_box(t_game *game, t_sprites_assets *assets)
 {
 	init_one_sprite_asset(game, &assets->alphabet,
@@ -76,6 +92,12 @@ static void	init_sprites_assets_text_box(t_game *game, t_sprites_assets *assets)
 		(t_vector_2){CHUNK_SIZE, CHUNK_SIZE}});
 }
 
+/**
+ * @brief Init the sprites assets for the ui and text box.
+ * 
+ * @param game game struct.
+ * @param assets assets struct, where the sprites assets are stored.
+ */
 void	init_sprites_assets_ui_text_box(t_game *game, t_sprites_assets *assets)
 {
 	init_sprites_assets_ui_part_1(game, assets);

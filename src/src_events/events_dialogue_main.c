@@ -6,12 +6,20 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 22:13:36 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 20:59:13 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 10:37:07 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Create a victory string.
+ * 
+ * @param game game struct, used to get the gameplay struct.
+ * @param text string of the text before the code.
+ * @param code string of the code.
+ * @return char* string of the victory text.
+ */
 static char	*create_victory_text(t_game *game, char *text, char *code)
 {
 	char	*message_code;
@@ -33,9 +41,16 @@ Gentlemen, 60 Millions $ only for us !");
 	return (victory_text);
 }
 
+/**
+ * @brief Display the victory text.
+ * 
+ * @param game game struct, used to get the gameplay struct.
+ * @param victory_text_status int, used to know if the text have to be displayed.
+ * 0 is not displayed, 1 create the text, 2 display it.
+ * @return int 1 if the text have to be displayed, 0 otherwise.
+ */
 int	display_victory_text(t_game *game, int *victory_text_status)
 {
-	// not commented
 	if (*victory_text_status == 0)
 		return (0);
 	if (*victory_text_status == 1)
@@ -63,11 +78,15 @@ int	display_victory_text(t_game *game, int *victory_text_status)
 	return (0);
 }
 
-void	set_tutorial_text_box(t_game *game)
+/**
+ * @brief Set the tutorial dialogue.
+ * 
+ * @param game game struct, used to get the gameplay struct.
+ */
+void	set_tutorial_dialogue(t_game *game)
 {
 	int	i;
 
-	// not commented
 	i = 0;
 	while (i < FRAME_TUTORIAL)
 	{

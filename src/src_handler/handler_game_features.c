@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 00:14:31 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 20:51:51 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 11:35:23 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	secure_lost_focus(t_game *game)
 }
 
 /**
- * @brief Handle the out game features, meaning the pause, restart and quit.
+ * @brief Handle the out game features, i.e. the pause, restart and quit.
  * 
  * @param keysym key pressed.
  * @param game game struct, used to get the gameplay struct, or close the game.
@@ -56,9 +56,7 @@ void	handle_out_game_features(int keysym, t_game *game)
 		if (game->gameplay->is_pause == false)
 			game->gameplay->is_pause = true;
 		else
-		{
 			game->gameplay->is_pause = false;
-		}
 	}
 	if (keysym == XK_R || keysym == XK_r)
 	{
@@ -66,21 +64,37 @@ void	handle_out_game_features(int keysym, t_game *game)
 	}
 	if (keysym == XK_T || keysym == XK_t)
 	{
-		set_tutorial_text_box(game);
-		if (game->gameplay->tutorial_status == -1)
-			game->gameplay->tutorial_status = 0;
+		if (game->gameplay->dialogue == NULL)
+		{
+			set_tutorial_dialogue(game);
+			if (game->gameplay->tutorial_status == -1)
+				game->gameplay->tutorial_status = 0;
+		}
 	}
 }
 
+/**
+ * @brief Handle the end screen features.
+ * 
+ * @param keysym key pressed.
+ * @param game game struct, used to close the game.
+ * @return int 0.
+ */
 int	handle_end_screen(int keysym, t_game *game)
 {
-	// not commented
 	if (keysym == XK_Escape || keysym == XK_Q || keysym == XK_q
 		|| keysym == XK_space || keysym == XK_Return)
 		close_game(game);
 	return (0);
 }
 
+/**
+ * @brief Handle the title screen features.
+ * 
+ * @param keysym key pressed.
+ * @param game game struct, used to get the gameplay struct, or close the game.
+ * @return int 0.
+ */
 int	handle_title_screen(int keysym, t_game *game)
 {
 	if (keysym == XK_Escape || keysym == XK_Q || keysym == XK_q)
@@ -88,7 +102,7 @@ int	handle_title_screen(int keysym, t_game *game)
 	if (keysym == XK_space)
 	{
 		game->gameplay->is_title_screen = false;
-		set_tutorial_text_box(game);
+		set_tutorial_dialogue(game);
 		game->gameplay->is_start = true;
 	}
 	return (0);

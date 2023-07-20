@@ -6,24 +6,35 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:40:38 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 19:39:15 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 11:18:24 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Get the random frame animation of a t_sprite, if the character
+ * is a inside wall '2' or a collectible 'C'.
+ * 
+ * @param sprite t_sprite struct, where to set the random frame.
+ * @param character character of the sprite.
+ */
 void	get_random_frame_animation(t_sprite *sprite, char character)
 {
-	// not commented
 	if (character == '2' || character == 'C')
 	{
 		sprite->frame = rand() % sprite->size;
 	}
 }
 
+/**
+ * @brief copy a sprite struct.
+ * 
+ * @param new sprite struct, where the copy will be stored.
+ * @param src sprite struct, the copy source.
+ */
 void	sprite_cpy(t_sprite *new, t_sprite *src)
 {
-	// not commented
 	new->frame = src->frame;
 	new->last_time = src->last_time;
 	new->size = src->size;

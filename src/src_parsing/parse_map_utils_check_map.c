@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:55:43 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/05 22:05:38 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 09:22:34 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	is_ber(char *file_name)
 
 /**
  * @brief Check if the map is a rectangle,
- * meaning that all the lines have the same size.
+ * i.e. that all the lines have the same size.
  * 
  * @param lst list to check.
  * @param size size of the first line of the map.
@@ -48,7 +48,7 @@ int	is_rectangle(t_lst_map *lst, int size)
 }
 
 /**
- * @brief Check if the map is closed, meaning that the map is surrounded by '1'.
+ * @brief Check if the map is closed, i.e. that the map is surrounded by '1'.
  * 
  * @param map map to check.
  * @param x size of the map in x (width).

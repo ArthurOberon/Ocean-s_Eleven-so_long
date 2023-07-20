@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 20:53:58 by arthurobero       #+#    #+#             */
-/*   Updated: 2023/07/12 14:19:33 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 09:30:49 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static int	check_which_character(char **argv, int *argc_index,
 }
 
 /**
- * @brief Get the available character by checking the arguments.
+ * @brief Init the available character by checking the arguments.
  * And set the character the player will start with.
  * 
  * @param argv arguments of the program.
@@ -82,7 +82,7 @@ static int	check_which_character(char **argv, int *argc_index,
 	* between the available ones.
  * @return int* 
  */
-int	*get_available_character(char **argv, int *argc_index,
+int	*init_available_character(char **argv, int *argc_index,
 	int *chosen_character)
 {
 	int		*available_character;

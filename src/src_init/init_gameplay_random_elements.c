@@ -6,11 +6,33 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:37:06 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 20:43:06 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 09:35:13 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+/**
+ * @brief Set the guard look direction randomly.
+ * 
+ * @param guard guard struct, set up his look direction.
+ */
+void	random_look_direction(t_guard *guard)
+{
+	int	random;
+
+	guard->guard_look_dir.x = 0;
+	guard->guard_look_dir.y = 0;
+	random = rand() % 4;
+	if (random == 0)
+		guard->guard_look_dir.x = -1;
+	else if (random == 1)
+		guard->guard_look_dir.y = 1;
+	else if (random == 2)
+		guard->guard_look_dir.x = 1;
+	else if (random == 3)
+		guard->guard_look_dir.y = -1;
+}
 
 /**
  * @brief Get the all ground '0' position on the map.
@@ -70,12 +92,19 @@ static void	set_character_on_pos(t_game *game, t_gameplay *gameplay,
 	gameplay->available_character[character] = 2;
 }
 
+/**
+ * @brief Set a character on random position on the map.
+ * 
+ * @param game game struct, used to get the gameplay struct and the level struct.
+ * @param ground_pos int array, all the ground '0' position on the map.
+ * @param ground_count int, number of ground '0' on the map (size of ground_pos).
+ * @param character character to set on the map.
+ */
 static void	set_character_on_random_position(t_game *game, int **ground_pos,
 	int *ground_count, int character)
 {
 	int	random_pos;
 
-	// not commented
 	random_pos = (*ground_pos)[rand() % *ground_count];
 	set_character_on_pos(game, game->gameplay, character, random_pos);
 	free(*ground_pos);

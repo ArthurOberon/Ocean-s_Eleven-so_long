@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 18:43:35 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 20:38:18 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 09:20:24 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,10 @@
 static void	display_small_box_collectible(t_game *game, t_sprite **sprite_box,
 	t_vector_2 *start_pos_display, int *size_letter)
 {
-	// (*sprite_box) = game->window->map_sprites[game->level->nb_cases + e_box];
 	(*sprite_box) = game->assets->box;
 	*start_pos_display = (t_vector_2){WINDOW_WIDTH
 		- ((*sprite_box)->sprite_img->size.x + 10),
 		WINDOW_HEIGHT - CHUNK_SIZE - 10};
-	// *size_letter = game->window->map_sprites[game->level->nb_cases
-		// + e_alphabet]->sprite_img->size.x;
 	*size_letter = game->assets->alphabet->sprite_img->size.x;
 	put_image_to_image(&game->window->img, *start_pos_display,
 		&((*sprite_box)->sprite_img)[(*sprite_box)->frame]);
@@ -109,7 +106,7 @@ static void	display_number_moves_box(t_game *game, t_window *window,
 
 /**
  * @brief Display the boxs of the UI,
- * meaning the number of moves and the number of collectibles.
+ * i.e. the number of moves and the number of collectibles.
  * 
  * @param game game struct, used to get all the info of the game.
  * @param window window struct, used to display on.

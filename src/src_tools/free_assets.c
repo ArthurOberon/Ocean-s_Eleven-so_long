@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 12:03:52 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 20:47:41 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 09:45:10 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void	free_one_sprite(void *ptr, t_sprite *sprite)
 }
 
 /**
- * @brief Free the first part of the t_sprites_assets struct.
+ * @brief Free the t_sprites_assets struct, part 1.
  * 
- * @param ptr mlx_ptr, used to destroy the mlx_img of the sprite.
+ * @param ptr mlx_ptr, used to destroy the mlx_img of the sprites.
  * @param assets assets struct to free.
  */
 static void	free_assets_part_1(void *ptr, t_sprites_assets *assets)
@@ -70,9 +70,14 @@ static void	free_assets_part_1(void *ptr, t_sprites_assets *assets)
 	free_one_sprite(ptr, assets->player_danny_move_up);
 }
 
+/**
+ * @brief Free the t_sprites_assets struct, part 2.
+ * 
+ * @param ptr mlx_ptr, used to destroy the mlx_img of the sprites.
+ * @param assets assets struct to free. 
+ */
 static void	free_assets_part_2(void *ptr, t_sprites_assets *assets)
 {
-	// not commented
 	free_one_sprite(ptr, assets->player_danny_move_down);
 	free_one_sprite(ptr, assets->player_danny_move_left);
 	free_one_sprite(ptr, assets->player_danny_move_right);
@@ -100,6 +105,12 @@ static void	free_assets_part_2(void *ptr, t_sprites_assets *assets)
 	free_one_sprite(ptr, assets->guard_move_down);
 }
 
+/**
+ * @brief Free the t_sprites_assets struct, part 3.
+ * 
+ * @param ptr mlx_ptr, used to destroy the mlx_img of the sprites.
+ * @param assets assets struct to free.
+ */
 static void	free_assets_part_3(void *ptr, t_sprites_assets *assets)
 {
 	free_one_sprite(ptr, assets->guard_move_left);

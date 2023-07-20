@@ -6,15 +6,20 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:58:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 18:47:10 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 10:59:00 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// not commented ALL !!!
-
-static void	display_characters_end_up(t_game *game, t_gameplay *gameplay,
+/**
+ * @brief Display the characters of the top at the end of the game.
+ * 
+ * @param game game struct, used to get the assets struct.
+ * @param gameplay gameplay struct, used to get the available_character array.
+ * @param window window struct, used to display on it.
+ */
+static void	display_characters_end_top(t_game *game, t_gameplay *gameplay,
 	t_window *window)
 {
 	t_sprite	*sprite;
@@ -37,6 +42,13 @@ static void	display_characters_end_up(t_game *game, t_gameplay *gameplay,
 	}
 }
 
+/**
+ * @brief Display the characters of the down at the end of the game.
+ * 
+ * @param game game struct, used to get the assets struct.
+ * @param gameplay gameplay struct, used to get the available_character array.
+ * @param window window struct, used to display on it.
+ */
 static void	display_characters_end_down(t_game *game, t_gameplay *gameplay,
 	t_window *window)
 {
@@ -60,6 +72,13 @@ static void	display_characters_end_down(t_game *game, t_gameplay *gameplay,
 	}
 }
 
+/**
+ * @brief Display the win screen.
+ * 
+ * @param game game struct, used to get the assets struct.
+ * @param gameplay gameplay struct.
+ * @param window window struct, used to display on it.
+ */
 void	display_win_screen(t_game *game, t_gameplay *gameplay, t_window *window)
 {
 	t_sprite	*sprite;
@@ -67,12 +86,19 @@ void	display_win_screen(t_game *game, t_gameplay *gameplay, t_window *window)
 	sprite = game->assets->win_screen;
 	put_image_to_image(&window->img, (t_vector_2){0, 0},
 		&(sprite->sprite_img)[0]);
-	display_characters_end_up(game, gameplay, window);
+	display_characters_end_top(game, gameplay, window);
 	display_characters_end_down(game, gameplay, window);
 	mlx_put_image_to_window(window->mlx_ptr, window->win_ptr,
 		window->img.mlx_img, 0, 0);
 }
 
+/**
+ * @brief Display the lose screen.
+ * 
+ * @param game game struct, used to get the assets struct.
+ * @param gameplay gameplay struct.
+ * @param window window struct, used to display on it.
+ */
 void	display_lose_screen(t_game *game, t_gameplay *gameplay,
 	t_window *window)
 {
@@ -82,7 +108,7 @@ void	display_lose_screen(t_game *game, t_gameplay *gameplay,
 	sprite = game->assets->lose_screen;
 	put_image_to_image(&window->img, (t_vector_2){0, 0},
 		&(sprite->sprite_img)[0]);
-	display_characters_end_up(game, gameplay, window);
+	display_characters_end_top(game, gameplay, window);
 	display_characters_end_down(game, gameplay, window);
 	put_image_to_image(&window->img, (t_vector_2){0, 0},
 		&(sprite->sprite_img)[1]);
@@ -96,6 +122,13 @@ void	display_lose_screen(t_game *game, t_gameplay *gameplay,
 		window->img.mlx_img, 0, 0);
 }
 
+/**
+ * @brief Display the end screen, win or lose.
+ * 
+ * @param game game struct, used to get the gameplay and window struct.
+ * @param is_end int, 1 if the game is won, 2 if the game is lost, 0 otherwise.
+ * @return int 0 if it's not the end (so don't display end screen), 1 otherwise.
+ */
 int	display_end_screen(t_game *game, int is_end)
 {
 	if (is_end == 0)

@@ -6,15 +6,22 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:27:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 20:57:44 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 10:29:31 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Handle the key press events.
+ * 
+ * @param keysym key pressed.
+ * @param game game struct, used to set events depending on the key pressed.
+ * @return int 2 if none of the events are triggered,
+ * 0 or 1 if an event is triggered.
+ */
 int	handle_keypress_(int keysym, t_game *game)
 {
-	// not commented
 	if (game->gameplay->is_title_screen)
 		return (handle_title_screen(keysym, game));
 	if (game->gameplay->tutorial_status != -1)

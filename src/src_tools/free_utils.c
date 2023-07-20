@@ -6,12 +6,18 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:49:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/19 20:45:51 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 11:28:24 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Free the map_sprites struct array.
+ * 
+ * @param map_sprites map_sprites struct array to free.
+ * @param size size of the map_sprites struct array.
+ */
 void	free_map_sprites(t_sprite **map_sprites, int size)
 {
 	int	i;
@@ -28,10 +34,16 @@ void	free_map_sprites(t_sprite **map_sprites, int size)
 	free(map_sprites);
 }
 
+/**
+ * @brief Free the collectibles struct array and the collectibles_code string.
+ * 
+ * @param collectible collectibles struct array to free.
+ * @param collectible_code string of the collectibles code.
+ * @param size size of the collectibles struct array.
+ */
 void	free_collectibles(t_collectible *collectible,
 	char *collectible_code, int size)
 {
-	// not commented
 	int	i;
 
 	if (collectible_code)
