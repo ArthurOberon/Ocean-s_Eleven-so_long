@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:53:34 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/20 09:13:44 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 13:04:45 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,6 @@ int	a_star(t_level *level, int pos, int end_pos)
 		if (pos == -1)
 			break ;
 		bool_end = calculate_four_dir(level, level->path_map, pos, end_pos);
-		if (IS_DEBUG)
-			ft_print_path_map(level, end_pos);
 	}
 	return (bool_end);
 }

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/20 12:33:01 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 13:15:15 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -292,8 +292,7 @@ talking_character_basher_32px"
 
 // ----------------------------------------------------------------
 
-# define IS_DEBUG 0
-# define IS_DEBUG_TIME 0
+# define IS_DEBUG 1
 
 # define RED 0xFF0000
 # define GREEN 0x00FF00
@@ -740,16 +739,7 @@ void				camera(t_game *game, t_camera *camera, t_player *player);
 
 // |----------- DEBUG_DISPLAY ----------|
 
-void				display_map(t_img *img, t_game game);
-void				display_debug(t_img *img, int color,
-						t_vector_2 *chunk_pos, int size);
-void				display_player_box_collider(t_img *img, t_player *player,
-						int color);
-
-// |---------- DEBUG_PRINT ---------|
-
-void				debug_chunk_pos(t_game *game);
-void				debug_stat_tiles(t_stat_tiles stat);
+void				debug_fps(t_game *game);
 
 // |================================================|
 // |					SRC_DISPLAY					|

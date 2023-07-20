@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:21:10 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/20 12:55:33 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/07/20 13:20:09 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,4 @@ int	main(int argc, char **argv)
 	init_game(&game, available_character, chosen_character);
 	start_game(&game);
 	return (0);
-
-	// delete inutile files & printf (<stdio.h>)
 }

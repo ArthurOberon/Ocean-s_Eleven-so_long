@@ -1,7 +1,7 @@
 NAME 				=	so_long
 
 CC 					=	cc
-CFLAGS 				=	-g -Wall -Wextra #-fsanitize=address #-Werror #-03
+CFLAGS 				=	-Wall -Wextra -Werror
 INCLUDES_DIR 		=	include/
 SRC_DIR 			=	src/
 OBJ_DIR 			=	.obj/
@@ -20,7 +20,6 @@ SRC_CAMERA			= $(addprefix src_camera/, \
 
 # SOURCES USE WHEN IS_DEBUG == 1
 SRC_DEBUG			=	$(addprefix src_debug/, \
-						debug_print.c \
 						debug_display.c \
 						)
 
@@ -163,7 +162,6 @@ SL_SRCS 			=	$(addprefix $(SRC_DIR), \
 					 	game.c \
 						so_long.c \
 						\
-						temporary.c \
 						)
 
 PS_OBJ 			=	$(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o, $(SL_SRCS))
