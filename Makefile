@@ -2,10 +2,10 @@ NAME 				=	so_long
 
 CC 					=	cc
 CFLAGS 				=	-Wall -Wextra -Werror
-INCLUDES_DIR 		=	include/
-SRC_DIR 			=	src/
+INCLUDES_DIR 		=	includes/
+SRC_DIR 			=	srcs/
 OBJ_DIR 			=	.obj/
-LIB_DIR 			=	lib/
+LIB_DIR 			=	libs/
 LIB_DIR_MLX			=	$(LIB_DIR)minilibx-linux/
 LIB_DIR_PRINTF		=	$(LIB_DIR)ft_printf/
 INCLUDES_H			=	-I./$(INCLUDES_DIR) -I./$(LIB_DIR)
