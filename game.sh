@@ -14,9 +14,24 @@ levels=(
 )
 
 for level in "${levels[@]}"; do
+  flags=()
+  paths=()
+
+  # Split the level string into flags and paths
+  for part in $level; do
+    if [[ $part == -* ]]; then
+      flags+=("$part")
+    else
+      paths+=("$part")
+    fi
+  done
+
+  echo "flags: ${flags[@]}"
+  echo "paths: ${paths[@]}"
+
   success=false
   while [ "$success" != true ]; do
-    ./so_long "$level"
+    ./so_long "${flags[@]}" "${paths[@]}"
     exit_code=$?
     if [ $exit_code -eq 0 ]; then
       success=true
