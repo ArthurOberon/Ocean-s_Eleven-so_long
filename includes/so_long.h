@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2024/01/14 13:43:09 by aoberon          ###   ########.fr       */
+/*   Updated: 2024/01/14 19:26:10 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@
 // Size player = chunk size - X % chunk size
 
 # define SPEED 700
-// 300
 
 # define SPEED_GUARD 450
 

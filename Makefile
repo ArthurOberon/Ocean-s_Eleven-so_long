@@ -13,18 +13,18 @@ MLX_FLAGS 			=	-L$(LIB_DIR_MLX) -lmlx -lX11 -lXext -lm
 FT_PRINTF_FLAGS		=	-L$(LIB_DIR_PRINTF) -lftprintf
 DEPS 				=	$(INCLUDES_DIR)so_long.h $(INCLUDES_DIR)get_next_line.h Makefile
 
-SRC_CAMERA			= $(addprefix src_camera/, \
+SRC_CAMERA			= $(addprefix camera/, \
 						camera.c \
 						camera_chunks.c \
 						)
 
 # SOURCES USE WHEN IS_DEBUG == 1
-SRC_DEBUG			=	$(addprefix src_debug/, \
+SRC_DEBUG			=	$(addprefix debug/, \
 						debug_display.c \
 						)
 
 # SOURCES USE TO DISPLAY THE GAME WITH THE MLX
-SRC_DISPLAY			=	$(addprefix src_display_mlx/, \
+SRC_DISPLAY			=	$(addprefix display_mlx/, \
 					 	display_player.c \
 					 	display_sprites.c \
 					 	display_tools_1.c \
@@ -47,7 +47,7 @@ SRC_DISPLAY			=	$(addprefix src_display_mlx/, \
 					 	display_features_dialogue_text_box.c \
 						)
 
-SRC_EVENT			=	$(addprefix src_events/, \
+SRC_EVENT			=	$(addprefix events/, \
 						events_dialogue_main.c \
 						events_dialogue_tools.c \
 						events_dialogue_utils.c \
@@ -56,7 +56,7 @@ SRC_EVENT			=	$(addprefix src_events/, \
 						)
 
 # SOURCES USE FOR THE GAMEPLAY
-SRC_GAMEPLAY		=	$(addprefix src_gameplay/, \
+SRC_GAMEPLAY		=	$(addprefix gameplay/, \
 						gameplay_tools.c \
 						gameplay_features.c \
 						gameplay_collectible.c \
@@ -76,12 +76,12 @@ SRC_GAMEPLAY		=	$(addprefix src_gameplay/, \
 						)
 
 # SOURCES USE FOR GET_NEXT_LINE
-SRC_GNL				=	$(addprefix src_gnl/, \
+SRC_GNL				=	$(addprefix gnl/, \
 						get_next_line.c \
 						get_next_line_utils.c \
 						)
 
-SRC_HANDLER			=	$(addprefix src_handler/, \
+SRC_HANDLER			=	$(addprefix handler/, \
 						handler.c \
 						handler_bomb.c \
 						handler_tutorial.c \
@@ -93,7 +93,7 @@ SRC_HANDLER			=	$(addprefix src_handler/, \
 						)
 
 # SOURCES USE TO INIT VARIABLES FOR DISPLAY
-SRC_INIT		=	$(addprefix src_init/, \
+SRC_INIT		=	$(addprefix init/, \
 						init_game_main.c \
 						init_game_camera.c \
 						init_game_window.c \
@@ -120,7 +120,7 @@ SRC_INIT		=	$(addprefix src_init/, \
 						)
 
 # SOURCES USE TO READ AND PARSE THE MAP
-SRC_PARSING			=	$(addprefix src_parsing/, \
+SRC_PARSING			=	$(addprefix parsing/, \
 						parse_map.c \
 						lst_map_utils.c \
 						parse_map_utils_check_map.c \
@@ -128,14 +128,14 @@ SRC_PARSING			=	$(addprefix src_parsing/, \
 						)
 
 # SOURCES USE FOR THE ALGO A_STAR
-SRC_PATH 			=	$(addprefix src_pathfinding/, \
+SRC_PATH 			=	$(addprefix pathfinding/, \
 						pathfinding.c \
 						a_star_utils.c \
 						a_star_algorithm.c \
 						)
 
 # SOURCES USEFULS
-SRC_TOOLS			=	$(addprefix src_tools/, \
+SRC_TOOLS			=	$(addprefix tools/, \
 						utils.c \
 						exit_game.c \
 						free_utils.c \
