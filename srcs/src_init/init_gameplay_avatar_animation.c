@@ -75,7 +75,7 @@ t_avatar_animation	*init_avatar_animation(t_game *game,
 
 	avatar_animation = ft_calloc(sizeof(t_avatar_animation), 5);
 	if (!avatar_animation)
-		exit_game(*game, "Error of malloc.\n");
+		exit_game(*game, EXIT_FAILURE, "Error of malloc.\n");
 	init_avatar_animation_part_1(avatar_animation, assets);
 	init_avatar_animation_part_2(avatar_animation, assets);
 	return (avatar_animation);

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 18:00:00 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/20 11:03:48 by aoberon          ###   ########.fr       */
+/*   Updated: 2024/01/14 13:43:54 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ static void	set_text_box(t_game *game, t_text_box *text_box, char *text)
 	text_box->text_pages = str_n_divide(text,
 			text_box->characters_max_one_box, divide_size);
 	if (!text_box->text_pages)
-		exit_game(*game, "Error of malloc.\n");
+		exit_game(*game, EXIT_FAILURE, "Error of malloc.\n");
 	text_box->is_display = true;
 	game->gameplay->is_stop = true;
 	text_box->read_all = false;
@@ -120,13 +120,13 @@ void	add_one_text_to_dialogue(t_game *game,
 	{
 		text_box = ft_calloc(sizeof(t_text_box), 1);
 		if (!text_box)
-			exit_game(*game, "Error of malloc.\n");
+			exit_game(*game, EXIT_FAILURE, "Error of malloc.\n");
 		init_one_text_box(game, game->gameplay, text_box, talking_character);
 		set_text_box(game, text_box, text->text);
 		text->has_been_display = true;
 		new = ft_lstnew_texts_box(text_box);
 		if (!new)
-			exit_game(*game, "Error of malloc.\n");
+			exit_game(*game, EXIT_FAILURE, "Error of malloc.\n");
 		ft_lstadd_back_texts_box(texts_box_list, new);
 	}
 }

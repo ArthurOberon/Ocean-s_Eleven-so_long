@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:18:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/20 13:03:39 by aoberon          ###   ########.fr       */
+/*   Updated: 2024/01/14 13:46:36 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	create_chunk_positions(t_game *game, t_vector_2 **chunk_pos,
 
 	(*chunk_pos) = ft_calloc(sizeof(t_vector_2), nb);
 	if (!*chunk_pos)
-		exit_game(*game, "Error of malloc.\n");
+		exit_game(*game, EXIT_FAILURE, "Error of malloc.\n");
 	i = 0;
 	y = 0;
 	while (i < size.y)
@@ -65,7 +65,7 @@ void	init_gameplay(t_game *game, int *available_character,
 
 	gameplay = ft_calloc(sizeof(t_gameplay), 1);
 	if (!gameplay)
-		exit_game(*game, "Error of malloc.\n");
+		exit_game(*game, EXIT_FAILURE, "Error of malloc.\n");
 	game->gameplay = gameplay;
 	init_gameplay_helper(game, gameplay, available_character, chosen_character);
 	create_chunk_positions(game, &gameplay->chunks_pos, game->level->map_vector,

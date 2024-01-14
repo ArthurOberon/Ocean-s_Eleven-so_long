@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 19:17:43 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/20 09:51:49 by aoberon          ###   ########.fr       */
+/*   Updated: 2024/01/14 13:41:22 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,10 @@ static void	free_gameplay(t_gameplay *gameplay, int size_collectibles)
  * Exit with EXIT_SUCCESS if there is no error, otherwise exit with EXIT_FAILURE.
  * 
  * @param game game struct to free all the allocated memory.
+ * @param exit_code exit code to exit with.
  * @param error message to print before exiting if there is an error.
  */
-void	exit_game(t_game game, const char *error)
+void	exit_game(t_game game, int exit_code, const char *error)
 {
 	if (game.level)
 	{
@@ -123,9 +124,14 @@ void	exit_game(t_game game, const char *error)
 		free_level(game.level);
 	}
 	if (error)
-	{
 		ft_printf("%s", error);
-		exit(EXIT_FAILURE);
-	}
-	exit(EXIT_SUCCESS);
+	exit(exit_code);
 }
+
+	// if (!ft_strncmp(error, STR_FAILED_LEVEL, ft_strlen(STR_FAILED_LEVEL)))
+	// 	exit(EXIT_FAILED_LEVEL);
+	// else if (error)
+	// {
+	// 	ft_printf("%s", error);
+	// 	exit(EXIT_FAILURE);
+	// }

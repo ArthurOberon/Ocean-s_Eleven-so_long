@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/20 16:41:59 by aoberon          ###   ########.fr       */
+/*   Updated: 2024/01/14 13:43:09 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -281,9 +281,6 @@ talking_character_basher_32px"
 # define QTE_CHUNK_SIZE 512
 // QTE_CHUNK_SIZE = CHUNK_SIZE * 4
 
-# define STRICT_CORRECTION 1
-// pickpocket don't give a collectible
-
 // |---- DYNAMITE ----|
 
 # define BOMB_TIMING 1.3
@@ -293,7 +290,7 @@ talking_character_basher_32px"
 
 // ----------------------------------------------------------------
 
-# define IS_DEBUG 1
+# define IS_DEBUG 0
 
 # define RED 0xFF0000
 # define GREEN 0x00FF00
@@ -307,6 +304,8 @@ talking_character_basher_32px"
 # define COLLECTABLE 20
 # define COLLECTED 21
 # define COLLECTED_ON_GUARD 22
+
+# define EXIT_FAILED_LEVEL 2
 
 enum e_player_character
 {
@@ -1283,7 +1282,7 @@ void				free_collectibles(t_collectible *collectible,
 
 // |----------- FREE -----------|
 
-void				exit_game(t_game game, const char *error);
+void				exit_game(t_game game, int exit_code, const char *error);
 
 // |----------- MEM_FUNCTIONS ----------|
 

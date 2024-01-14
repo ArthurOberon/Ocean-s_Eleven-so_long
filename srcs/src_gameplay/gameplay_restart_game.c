@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:15:22 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/20 11:22:09 by aoberon          ###   ########.fr       */
+/*   Updated: 2024/01/14 13:43:59 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	restart_the_game(t_game *game)
 	free(game->level->map);
 	game->level->map = ft_strdup(game->gameplay->map_start_state);
 	if (!game->level->map)
-		exit_game(*game, "Error of malloc.\n");
+		exit_game(*game, EXIT_FAILURE, "Error of malloc.\n");
 	free(game->gameplay->guards);
 	init_guards(game, game->gameplay->guards);
 	free(game->gameplay->player->bomb.explosion_pos);

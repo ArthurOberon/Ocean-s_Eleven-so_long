@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 14:43:09 by aoberon           #+#    #+#             */
-/*   Updated: 2023/06/07 22:10:33 by aoberon          ###   ########.fr       */
+/*   Updated: 2024/01/14 13:45:55 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ void	alloc_sprite_asset(t_game *game, t_sprite **asset, int size)
 
 	sprite = ft_calloc(sizeof(t_sprite), 1);
 	if (!sprite)
-		exit_game(*game, "Error of malloc.\n");
+		exit_game(*game, EXIT_FAILURE, "Error of malloc.\n");
 	sprite->frame = 0;
 	sprite->size = size;
 	sprite->last_time = (struct timeval){0, 0};
 	sprite->sprite_img = ft_calloc(sizeof(t_img), size);
 	if (!sprite->sprite_img)
-		exit_game(*game, "Error of malloc.\n");
+		exit_game(*game, EXIT_FAILURE, "Error of malloc.\n");
 	*asset = sprite;
 }
 

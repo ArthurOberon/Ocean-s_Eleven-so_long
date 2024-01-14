@@ -6,21 +6,22 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 00:14:31 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/20 11:35:23 by aoberon          ###   ########.fr       */
+/*   Updated: 2024/01/14 13:48:50 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 /**
- * @brief Close the game and free all the memory.
+ * @brief Close the game, free all the memory and exit the program
+ * with EXIT_SUCCESS status (0).
  * 
  * @param game game struct, to free all the memory.
  * @return int 0.
  */
 int	close_game(t_game *game)
 {
-	exit_game(*game, NULL);
+	exit_game(*game, EXIT_SUCCESS, NULL);
 	return (0);
 }
 
@@ -84,7 +85,12 @@ int	handle_end_screen(int keysym, t_game *game)
 {
 	if (keysym == XK_Escape || keysym == XK_Q || keysym == XK_q
 		|| keysym == XK_space || keysym == XK_Return)
-		close_game(game);
+	{
+		if (game->gameplay->is_end == 1)
+			close_game(game);
+		else if (game->gameplay->is_end == 2)
+			exit_game(*game, EXIT_FAILED_LEVEL, NULL);
+	}
 	return (0);
 }
 

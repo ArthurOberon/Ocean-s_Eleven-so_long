@@ -26,9 +26,6 @@ for level in "${levels[@]}"; do
     fi
   done
 
-  echo "flags: ${flags[@]}"
-  echo "paths: ${paths[@]}"
-
   success=false
   while [ "$success" != true ]; do
     ./so_long "${flags[@]}" "${paths[@]}"

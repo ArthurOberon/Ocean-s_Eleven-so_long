@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:41:24 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/20 16:23:24 by aoberon          ###   ########.fr       */
+/*   Updated: 2024/01/14 13:46:20 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ void	init_all_texts_of_the_game(t_game *game, t_gameplay *gameplay)
 
 	texts = ft_calloc(sizeof(t_text), e_total_text_number);
 	if (!texts)
-		exit_game(*game, "Error of malloc.\n");
+		exit_game(*game, EXIT_FAILURE, "Error of malloc.\n");
 	gameplay->all_texts = texts;
 	init_all_texts_part_1(texts);
 	init_all_texts_part_2(texts);
@@ -158,7 +158,7 @@ void	init_all_texts_of_the_game(t_game *game, t_gameplay *gameplay)
 	texts[e_text_code].text = ft_strdup("Enter this code and get the \
 money! Okay, so: <");
 	if (!texts[e_text_code].text)
-		exit_game(*game, "Error of malloc.\n");
+		exit_game(*game, EXIT_FAILURE, "Error of malloc.\n");
 	i = 0;
 	while (i < e_total_text_number)
 	{

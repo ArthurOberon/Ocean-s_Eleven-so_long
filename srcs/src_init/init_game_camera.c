@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 12:01:27 by aoberon           #+#    #+#             */
-/*   Updated: 2023/07/13 17:31:54 by aoberon          ###   ########.fr       */
+/*   Updated: 2024/01/14 13:46:00 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	init_camera(t_game *game)
 
 	camera = ft_calloc(sizeof(t_camera), 1);
 	if (!camera)
-		exit_game(*game, "Error of malloc.\n");
+		exit_game(*game, EXIT_FAILURE, "Error of malloc.\n");
 	game->camera = camera;
 	player_pos = game->gameplay->player->player_f_pos;
 	camera->camera_f_size.x = WINDOW_WIDTH;
@@ -82,6 +82,6 @@ void	init_camera(t_game *game)
 	camera->chunks_to_display = ft_calloc(sizeof(int),
 			camera->nb_chunks_in_camera_total + 1);
 	if (!camera->chunks_to_display)
-		exit_game(*game, "Error of malloc.\n");
+		exit_game(*game, EXIT_FAILURE, "Error of malloc.\n");
 	init_background_image(game, camera);
 }
