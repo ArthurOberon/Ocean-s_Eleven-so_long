@@ -11,7 +11,7 @@ LIB_DIR_PRINTF		=	$(LIB_DIR)ft_printf/
 INCLUDES_H			=	-I./$(INCLUDES_DIR) -I./$(LIB_DIR)
 MLX_FLAGS 			=	-L$(LIB_DIR_MLX) -lmlx -lX11 -lXext -lm
 FT_PRINTF_FLAGS		=	-L$(LIB_DIR_PRINTF) -lftprintf
-DEPS 				=	$(INCLUDES_DIR)so_long.h $(INCLUDES_DIR)get_next_line.h Makefile
+DEPS 				=	$(INCLUDES_DIR)so_long.h $(INCLUDES_DIR)libs.h $(INCLUDES_DIR)srcs.h $(INCLUDES_DIR)structs.h $(INCLUDES_DIR)textures.h $(INCLUDES_DIR)get_next_line.h Makefile
 
 SRC_CAMERA			= $(addprefix camera/, \
 						camera.c \
