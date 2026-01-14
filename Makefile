@@ -6,11 +6,9 @@ INCLUDES_DIR 		=	includes/
 SRC_DIR 			=	srcs/
 OBJ_DIR 			=	.obj/
 LIB_DIR 			=	libs/
-LIB_DIR_MLX			=	$(LIB_DIR)minilibx-linux/
-LIB_DIR_PRINTF		=	$(LIB_DIR)ft_printf/
 INCLUDES_H			=	-I./$(INCLUDES_DIR) -I./$(LIB_DIR)
-MLX_FLAGS 			=	-L$(LIB_DIR_MLX) -lmlx -lX11 -lXext -lm
-FT_PRINTF_FLAGS		=	-L$(LIB_DIR_PRINTF) -lftprintf
+MLX_FLAGS 			=	-L$(LIB_DIR)minilibx-linux -lmlx -lX11 -lXext -lm
+FT_PRINTF_FLAGS		=	-L$(LIB_DIR)ft_printf -lftprintf
 DEPS 				=	$(INCLUDES_DIR)so_long.h $(INCLUDES_DIR)libs.h $(INCLUDES_DIR)srcs.h $(INCLUDES_DIR)structs.h $(INCLUDES_DIR)textures.h $(INCLUDES_DIR)get_next_line.h Makefile
 
 SRC_CAMERA			= $(addprefix camera/, \
@@ -164,32 +162,45 @@ SL_SRCS 			=	$(addprefix $(SRC_DIR), \
 						\
 						)
 
-PS_OBJ 			=	$(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o, $(SL_SRCS))
+OBJS 			=	$(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o, $(SL_SRCS))
+MLX				= $(LIB_DIR)minilibx-linux/libmlx.a
 
 all: $(NAME)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(DEPS)
+$(MLX):
+	@echo "\e[36;1mCloning MINILIBX...\e[0m"
+	@if [ ! -d "$(LIB_DIR)minilibx-linux" ]; then \
+		cd $(LIB_DIR) && git clone git@github.com:42Paris/minilibx-linux.git; \
+	else \
+		cd $(LIB_DIR)minilibx-linux && git pull; \
+	fi
+	@echo "\e[36;1mMaking MINILIBX...\e[0m"
+	@make --no-print-directory -s -C $(LIB_DIR)minilibx-linux > /dev/null 2>&1
+	@echo "\e[32;1mDone !\e[0m"
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(MLX) $(DEPS)
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INCLUDES_H) -c -o $@ $<
 
-$(NAME): $(PS_OBJ) $(DEPS)
-	@make -s -C $(LIB_DIR_PRINTF)
-	@make -s -C $(LIB_DIR_MLX)
+$(NAME): $(MLX) $(OBJS) $(DEPS)
+	@make --no-print-directory -s -C $(LIB_DIR)ft_printf
 	@echo "\e[36mMaking $(NAME)...\e[0m"
-	@$(CC) $(CFLAGS) $(INCLUDES_H) $(PS_OBJ) $(MLX_FLAGS) $(FT_PRINTF_FLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(INCLUDES_H) $(OBJS) $(MLX_FLAGS) $(FT_PRINTF_FLAGS) -o $(NAME)
 	@echo "\e[32mDone !\e[0m"
 
 bonus: all
 
 clean:
-	@make -s -C $(LIB_DIR_PRINTF) clean
-	@make -s -C $(LIB_DIR_MLX) clean
+	@make --no-print-directory -s -C $(LIB_DIR)ft_printf clean
+	@make --no-print-directory -s -C $(LIB_DIR)minilibx-linux clean
 	@rm -rf $(OBJ_DIR)
 	@echo "\e[31mObject files removed.\e[0m"
 
 fclean:	clean
-	@make -s -C $(LIB_DIR_PRINTF) fclean
+	@make --no-print-directory -s -C $(LIB_DIR)ft_printf fclean
+	@rm -rf $(LIB_DIR)minilibx-linux
+	@echo "\e[31m$(LIB_DIR)minilibx-linux removed.\e[0m"
 	@rm -f $(NAME)
 	@echo "\e[31m$(NAME) removed.\e[0m"
 

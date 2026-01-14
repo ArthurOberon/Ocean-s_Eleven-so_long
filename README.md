@@ -2,7 +2,7 @@
 
 ## 📝 About
 
-**Libft** is the first graphic project from **École 42** introducing students to **basic computer graphics** and **game dev**.
+**so_long** is the first graphic project from **École 42** introducing students to **basic computer graphics** and **game dev**.
 
 The objective is to create a 2D *(top view)* game with `MiniLibX`. The rules are simple : The player is in a closed map with one or more collectible, and he must collecte them all to open the exit to go inside. 
 
