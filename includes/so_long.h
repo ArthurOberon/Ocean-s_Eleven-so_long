@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:12:41 by aoberon           #+#    #+#             */
-/*   Updated: 2026/01/13 17:30:52 by aoberon          ###   ########.fr       */
+/*   Updated: 2026/01/14 12:13:38 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@
 
 # define SPEED 700
 
-# define SPEED_GUARD 450
-
 # define FPS_CAP 125
 // -> 0.008
 
@@ -41,6 +39,7 @@
 
 // |---- GUARD ----|
 
+# define SPEED_GUARD 450
 # define DELAY_TURN_GUARD 2.5
 # define DELAY_GUARD_CHASE_PLAYER 6
 
@@ -50,7 +49,7 @@
 
 // |---- QTE ----|
 
-# define QTE_EASY	1
+# define QTE_EASY	0			// Can retry a QTE and not being chased on the 1st failed (0 -> false, 1 -> true)
 # define DELAY_QTE	0.001
 # define QTE_CHUNK_SIZE 512
 // QTE_CHUNK_SIZE = CHUNK_SIZE * 4
