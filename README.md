@@ -74,7 +74,7 @@ But before playing, remember to read the manuel :
 			-
 			Slightly more complicated than that.
 
-Tonight, proceed to the biggest heist Las Vegas has ever seen. Steal $160 000 000 in the vaults of 3 casinos : The Bellagio, The Mirage, and The M.G.M. Grand.
+Tonight, pull off the biggest heist Las Vegas has ever seen. Steal $160 000 000 from the vaults of 3 casinos : The Bellagio, The Mirage, and The M.G.M. Grand.
 
 Play as Danny, Rusty, Linus and Basher to get through the casino maze, avoid the security guards and collect the codes that open the vault.   
 And do not underestimate your team, Each member has a talent of their own.
