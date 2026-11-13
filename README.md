@@ -2,15 +2,15 @@
 
 ## 📝 About
 
-**so_long** is the first graphic project from **École 42** introducing students to **basic computer graphics** and **game dev**.
+**so_long** is the first graphics project of **École 42** introducing students to **basic computer graphics** and **game development**.
 
-The objective is to create a 2D *(top view)* game with `MiniLibX`. The rules are simple : The player is in a closed map with one or more collectible, and he must collecte them all to open the exit to go inside. 
+The objective is to create a 2D *(top-down view)* game with `MiniLibX`. The rules are simple : The player is in a closed map with one or more collectibles, and he must collect them all to open the exit to go inside. 
 
 ---
 
 ## MiniLibX Usage
 
-Here's a man I create to explain the simple usage of the mlx lib : [So_Long_Man](https://arthuroberon.notion.site/So_Long_Man-19d70fea9d6548e9aa952cf3a955a9ce).
+I wrote a short manual on the basics of MiniLibX : [So_Long_Man](https://arthuroberon.notion.site/So_Long_Man-19d70fea9d6548e9aa952cf3a955a9ce).
 
 ## ⚙️ Usage
 
@@ -18,9 +18,9 @@ Here's a man I create to explain the simple usage of the mlx lib : [So_Long_Man]
 
 ```sh
 make				# make the game
-make bonus			# make the game
+make bonus			# make the game (same as make)
 make clean			# remove object files
-make fclean			# remove object files + so_long
+make fclean			# remove object files + so_long binary + cloned MiniLibX
 make re				# rebuild everything
 ```
 
@@ -28,9 +28,8 @@ make re				# rebuild everything
 
 #### Create a Map
 
-
-First, you have to create a map file respecting the following rules :
-- Having a `.ber` extension on the file.
+A map is a `.ber` file. It must :
+- Have a `.ber` extension on the file.
 - constructed with 3 components: walls, collectibles, and free space.
 - composed of only these 5 characters:
 	- `0` for an empty space.
@@ -38,14 +37,14 @@ First, you have to create a map file respecting the following rules :
 	- `C` for a collectible.
 	- `E` for a map exit.
 	- `P` for the player’s starting position.
-- must contain
+- contain :
 	- 1 exit.
 	- 1 starting position.
 	- at least 1 collectible.
-- must be rectangular.
-- must be enclosed/surrounded by walls.
+- be rectangular.
+- be enclosed/surrounded by walls.
 
-Here a example of a minimalist `.ber` map :
+A minimal example of an `.ber` map :
 ```
 1111111111111
 10010000000C1
@@ -54,7 +53,7 @@ Here a example of a minimalist `.ber` map :
 1111111111111
 ```
 
-If you don't want to create your own map, there plenty of valid map in the following folder : `maps/valid/`.
+If you don't want to create your own map, there are plenty of valids maps in the folder : `maps/valid/`.
 
 ### Launch the Game
 
@@ -65,7 +64,7 @@ Then, to launch the game, simply execute this command :
 ```
 
 
-But before to play, think to read the cover :
+But before playing, remember to read the manuel :
 
 ---
 
@@ -75,16 +74,16 @@ But before to play, think to read the cover :
 			-
 			Slightly more complicated than that.
 
-Tonight, proceed to the biggest heist that Las Vegas has never see. Steal 160 000 000 $ in the safe of 3 casinos : The Bellagio, Mirage, and the M.G.M. Grand.
+Tonight, proceed to the biggest heist Las Vegas has ever seen. Steal $160 000 000 in the vaults of 3 casinos : The Bellagio, The Mirage, and The M.G.M. Grand.
 
-Play as Danny, Rusty, Linus and Basher to go through the casino maze, security guards and codes to get access to the vault.   
-And do not underestimate your team, each has there very own talent !
+Play as Danny, Rusty, Linus and Basher to get through the casino maze, avoid the security guards and collect the codes that open the vault.   
+And do not underestimate your team, Each member has a talent of their own.
 
 			There's a 95-pound Chinese man with 160 million dollars behind this door.
 			-
 			Let's get him out.
 
-In this game, there is plenty of new features enemies, QTE, dialogue, and much more.
+In this game, there is plenty of new feature : enemies, QTE, dialogue, and much more.
 To play, execute the following command :
 ```sh
 bash game.sh
@@ -96,9 +95,9 @@ bash game.sh
 ---
 
 
-### Game Cover
+### Game Manual
 
-The basic move set :
+The basic controls :
 ```
 W : move up
 S : move down
@@ -117,14 +116,14 @@ Here's Rusty :
 
 ![Rusty Idle](resources/rusty-idle.gif)
 
-Always eating, he passes more discreetly by the guards, they detecte less around them when he is played.
+Always eating, he passes more discreetly by the guards, only the first tile of their field of view can spot him.
 
 
 Here's Linus :
 
 ![Linus Idle](resources/linus-idle.gif)
 
-Thanks to his pickpocketing skills, he can retrieve a code from the guards' pockets.
+Thanks to his pickpocketing skills, he can retrieve a code from a guard's pockets.
 To do this, the guard must be within his pickpocketing range *(represented by the hands around Linus)*. Pickpocketing a guard will trigger a QTE, where you must stop the bar in the green zone *(middle one)*.
 
 ```
@@ -139,7 +138,7 @@ Here's Basher :
 ![Basher Idle](resources/basher-idle.gif)
 
 An explosives expert, he always has what it takes to bring down walls *(and more)*.
-Basher can stack up to 5 sticks of dynamite in a charge, and he can also remove them. The heavier the charge, the bigger the explosion. 
+Basher can stack up to 5 sticks of dynamite in a charge, and he can also take them back. The heavier the charge, the bigger the explosion. 
 
 ```
 Space : Plant a bomb
@@ -153,15 +152,15 @@ This is a security guard :
 
 ![Guard Round](resources/guard-round.gif)
 
-But do not cross his eyesight, or be ready to run away.
+But do not cross their line of sight, or be ready to run away.
 
 ![Guard Chase](resources/guard-chase.gif)
 
 ---
 
-#### Settings Man
+#### Settings Manual
 
-You can change several setting in the `so_long.h` file.
+You can change several settings in the `so_long.h` file.
 Here is the main settings available :
 
 ```h
@@ -175,13 +174,14 @@ Here is the main settings available :
 # define DELAY_TURN_GUARD 2.5
 # define DELAY_GUARD_CHASE_PLAYER 6
 
-// |---- INVINCIBILITY FRAME ----|
+// |---- INVINCIBILITY FRAMES ----|
 
 # define DELAY_IFRAMES 1.5
 
 // |---- QTE ----|
 
-# define QTE_EASY	0			// Can retry a QTE and not being chased on the 1st failed (0 -> false, 1 -> true)
+# define QTE_EASY	0			// A failed QTE can be retried and the guard does not chase you on the first failure (0 -> false, 1 -> true)
+
 
 // |---- DYNAMITE ----|
 

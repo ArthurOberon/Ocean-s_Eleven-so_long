@@ -28,7 +28,7 @@ void	calculate_fps(int *fps, double *delta_time)
 	gettimeofday(&now, NULL);
 	*delta_time = (((double)(now.tv_usec - last_time.tv_usec) / CLOCKS_PER_SEC)
 			+ now.tv_sec - last_time.tv_sec);
-	while (*delta_time <= (1.f / FPS_CAP) * 0)
+	while (*delta_time <= (1.f / FPS_CAP))
 	{
 		gettimeofday(&now, NULL);
 		*delta_time = (((double)(now.tv_usec - last_time.tv_usec)
